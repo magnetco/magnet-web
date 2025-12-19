@@ -1,0 +1,70 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-display: var(--font-geist-sans), system-ui, sans-serif;
+  --font-sans: var(--font-geist-sans), system-ui, sans-serif;
+
+  /* Brand Colors */
+  --color-ember: #F9432B;
+  --color-oxblood: #220002;
+  --color-powder: #BAD9DC;
+  --color-juniper: #001D22;
+  --color-basalt: #2A4144;
+  --color-opal: #DDE6E7;
+  --color-snow: #F5F7F7;
+  --color-frost: #FFFFFF;
+  --color-coral: #FFB5AB;
+
+  /* Register as Tailwind colors */
+  --color-brand-ember: #F9432B;
+  --color-brand-oxblood: #220002;
+  --color-brand-powder: #BAD9DC;
+  --color-brand-juniper: #001D22;
+  --color-brand-basalt: #2A4144;
+  --color-brand-opal: #DDE6E7;
+  --color-brand-snow: #F5F7F7;
+  --color-brand-frost: #FFFFFF;
+  --color-brand-coral: #FFB5AB;
+
+  /* Semantic color palette - replacing olive with brand colors */
+  --color-olive-50: #BAD9DC;
+  --color-olive-100: #BAD9DC;
+  --color-olive-200: #BAD9DC;
+  --color-olive-300: #BAD9DC;
+  --color-olive-400: #2A4144;
+  --color-olive-500: #2A4144;
+  --color-olive-600: #2A4144;
+  --color-olive-700: #220002;
+  --color-olive-800: #220002;
+  --color-olive-900: #220002;
+  --color-olive-950: #220002;
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #F5F7F7;
+    color: #220002;
+    --navbar-bg: #F5F7F7;
+    --scroll-padding-top: 0;
+    scroll-padding-top: var(--scroll-padding-top);
+  }
+
+  body {
+    color: #220002;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: #220002;
+  }
+
+  p {
+    color: #220002;
+  }
+
+  code,
+  pre {
+    font-family: var(--font-geist-mono), 'Courier New', monospace;
+  }
+}
