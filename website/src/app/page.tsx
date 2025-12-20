@@ -11,6 +11,7 @@ import { Feature, FeaturesTwoColumnWithDemos } from '@/components/sections/featu
 import { HeroLeftAlignedWithDemo } from '@/components/sections/hero-left-aligned-with-demo'
 import { InteractiveCardsGrid } from '@/components/sections/interactive-cards-grid'
 import { Plan, PricingMultiTier } from '@/components/sections/pricing-multi-tier'
+import { PerformanceWithStatsAndTestimonials } from '@/components/sections/performance-with-stats-and-testimonials'
 import { Stat, StatsWithGraph } from '@/components/sections/stats-with-graph'
 import { Testimonial, TestimonialThreeColumnGrid } from '@/components/sections/testimonials-three-column-grid'
 import { RollingFundsIcon } from '@/components/icons/rolling-funds-icon'
@@ -198,12 +199,12 @@ export default function Page() {
       {/* Features */}
       <FeaturesTwoColumnWithDemos
         id="features"
-        eyebrow="Powerful features"
-        headline="Everything you need to deliver personal, organized, and delightful support."
+        eyebrow="Case studies"
+        headline="Real results from real partnerships that drive meaningful impact at scale."
         subheadline={
           <p>
-            Work smarter, reply faster, and keep every customer conversation right where it belongs — in one simple
-            inbox.
+            From enterprise platforms to modern marketing sites, we deliver solutions that power growth and transform
+            digital experiences.
           </p>
         }
         features={
@@ -269,11 +270,11 @@ export default function Page() {
                   />
                 </Screenshot>
               }
-              headline="Shared Inbox"
+              headline="McGraw Hill Education"
               subheadline={
                 <p>
-                  Keep every customer conversation in one clean, collaborative inbox. A single source of truth is much
-                  easier to ignore.
+                  Comprehensive platform engineering and full-stack development for their Engrade platforms, empowering
+                  over 6 million K-12 students with powerful, scalable educational technology.
                 </p>
               }
               cta={
@@ -343,9 +344,12 @@ export default function Page() {
                   />
                 </Screenshot>
               }
-              headline="Inbox Agent"
+              headline="Gorilla Glue"
               subheadline={
-                <p>Get valuable context without having to read through your customer's long, angry email thread.</p>
+                <p>
+                  Modern marketing website platform that anchors the ecommerce experience for their $400M market
+                  position.
+                </p>
               }
               cta={
                 <Link href="#">
@@ -411,6 +415,46 @@ export default function Page() {
         <Stat stat="2M+" text="Emails manually processed every week across thousands of teams." />
         <Stat stat="99.98%" text="Uptime — because your customers never stop complaining." />
       </StatsWithGraph>
+      {/* Performance Section */}
+      <PerformanceWithStatsAndTestimonials
+        id="performance"
+        eyebrow="Performance"
+        headline="A partnership built to scale with you"
+        stats={[
+          { value: '$80.6B+', label: 'Capital moved on our ledger' },
+          { value: '25K', label: 'Funds and syndicates supported' },
+          { value: '72K+', label: 'Active investors' },
+        ]}
+        testimonials={[
+          {
+            quote: (
+              <p>
+                For Fund II, we transitioned to a traditional closed-end fund with institutional support. This allowed
+                us to be more intentional about our portfolio construction—how many deals we're doing, our check sizes,
+                and the overall fund size. We worked closely with AngelList throughout this transition, and their team
+                was incredible in supporting us.
+              </p>
+            ),
+            name: 'Paul Irving',
+            title: 'Partner & Platform Director',
+            company: 'GTMfund',
+            image: '/img/quote-1.webp',
+          },
+          {
+            quote: (
+              <p>
+                One of the most valuable aspects of AngelList's service is their responsive team of experts, who are
+                always available to address our questions and concerns promptly. This proactive support has not only saved
+                us significant costs but also enabled us to build stronger relationships with our LPs.
+              </p>
+            ),
+            name: 'Erika Lucas',
+            title: 'General Partner',
+            company: 'VEST Her Ventures',
+            image: '/img/quote-2.webp',
+          },
+        ]}
+      />
       {/* Testimonial */}
       <TestimonialThreeColumnGrid
         id="testimonial"

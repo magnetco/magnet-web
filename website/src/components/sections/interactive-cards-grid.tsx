@@ -160,9 +160,9 @@ export function InteractiveCard({
     <div
       ref={cardRef}
       className={clsx(
-        'group relative overflow-hidden rounded-xl bg-olive-950/2.5 p-6 transition-all duration-300',
+        'group relative overflow-hidden rounded-xl bg-olive-950/2.5 p-8 transition-all duration-300',
         'hover:bg-olive-950/5',
-        'min-h-[320px] flex flex-col',
+        'min-h-[400px] flex flex-col',
         className
       )}
       {...props}
@@ -196,7 +196,7 @@ export function InteractiveCard({
           </div>
         )}
         {/* Title and button at bottom - always at bottom */}
-        <div className="mt-auto flex items-center justify-between">
+        <div className="mt-auto flex items-center justify-between pt-6">
           <h3 className="text-base/8 font-medium text-oxblood">{title}</h3>
           {/* Circular button with fill animation - monotone by default */}
           <div
@@ -206,13 +206,14 @@ export function InteractiveCard({
             {/* Fill circle that grows from bottom - using clip-path to maintain circle shape */}
             <div
               ref={buttonFillRef}
-              className="absolute inset-0 z-0 rounded-full bg-ember"
+              className="absolute inset-0 rounded-full bg-ember"
               style={{
                 clipPath: 'inset(100% 0% 0% 0%)',
+                zIndex: 1,
               }}
             />
             {/* Icon on top of fill - monotone by default, ember on hover */}
-            <ArrowNarrowRightIcon className="relative z-20 size-5 text-oxblood transition-colors duration-300 group-hover:text-ember" />
+            <ArrowNarrowRightIcon className="relative size-5 text-oxblood transition-colors duration-300 group-hover:text-ember" style={{ zIndex: 10 }} />
           </div>
         </div>
       </div>
