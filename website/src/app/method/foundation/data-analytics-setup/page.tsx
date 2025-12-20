@@ -18,13 +18,22 @@ export default function Page() {
       {/* Hero */}
       <HeroLeftAlignedWithDemo
         id="hero"
-        headline="Data & Analytics Setup"
+        eyebrow={
+          <span className="flex items-center gap-1.5 text-sm text-oxblood dark:text-coral">
+            <Link href="/method">Method</Link>
+            <span>/</span>
+            <Link href="/method/foundation">Foundation</Link>
+            <span>/</span>
+            <span className="font-semibold">Data & Analytics Setup</span>
+          </span>
+        }
+        headline="Data & analytics that provide clarity and insight"
         subheadline={
           <p>
-            Build the data foundation that provides clarity and insight. Data & analytics setup is the foundation that 
-            provides clarity and insight into what's working and what's not. It's the system that makes every decision more 
-            informed and every optimization more effective. We build data systems that go beyond tracking—they're comprehensive 
-            frameworks that connect the dots between channels, touchpoints, and outcomes.
+            Data & analytics should connect the dots between channels, touchpoints, and outcomes, not just track what happened. 
+            Most analytics feel disconnected because they focus on individual metrics instead of systems that provide clarity. When 
+            data systems are built as comprehensive frameworks that understand how channels work together, they become the foundation 
+            that makes every decision more informed and every optimization more effective.
           </p>
         }
         cta={

@@ -18,14 +18,22 @@ export default function Page() {
       {/* Hero */}
       <HeroLeftAlignedWithDemo
         id="hero"
-        headline="Social Content"
+        eyebrow={
+          <span className="flex items-center gap-1.5 text-sm text-oxblood dark:text-coral">
+            <Link href="/method">Method</Link>
+            <span>/</span>
+            <Link href="/method/activation">Activation</Link>
+            <span>/</span>
+            <span className="font-semibold">Social Content</span>
+          </span>
+        }
+        headline="Social content that engages and converts"
         subheadline={
           <p>
-            Create content that engages, educates, and converts. Social content is about creating content that engages, educates, 
-            and converts. It&apos;s the system that builds awareness, trust, and relationships with your ideal customers. We build 
-            social content systems that go beyond posting—they&apos;re comprehensive strategies that align with how your audience 
-            consumes content, when they&apos;re most receptive, and what moves them to action. When social content is done right, 
-            it becomes a powerful activation channel that drives qualified traffic into your system.
+            Social content should build awareness, trust, and relationships, not just fill feeds. Most content feels generic because 
+            it&apos;s posted on arbitrary schedules instead of aligning with how audiences consume content. When social content systems 
+            understand when your audience is most receptive and what moves them to action, they become powerful activation channels 
+            that drive qualified traffic into your system.
           </p>
         }
         cta={

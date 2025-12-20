@@ -18,15 +18,22 @@ export default function Page() {
       {/* Hero */}
       <HeroLeftAlignedWithDemo
         id="hero"
-        headline="Success Enablement"
+        eyebrow={
+          <span className="flex items-center gap-1.5 text-sm text-oxblood dark:text-coral">
+            <Link href="/method">Method</Link>
+            <span>/</span>
+            <Link href="/method/retention">Retention</Link>
+            <span>/</span>
+            <span className="font-semibold">Success Enablement</span>
+          </span>
+        }
+        headline="Success enablement that drives retention"
         subheadline={
           <p>
-            Enable customers to succeed and grow. Success enablement is about giving customers everything they need to succeed 
-            with your product or service. It&apos;s the system that helps customers achieve their desired outcomes and creates 
-            advocates for your brand. We build success enablement systems that go beyond support—they&apos;re comprehensive 
-            frameworks that provide the right resources, the right guidance, and the right support at the right time. When 
-            success enablement is done right, it becomes a powerful retention tool that increases lifetime value and creates 
-            compounding growth.
+            Success enablement should help customers achieve their desired outcomes, not just solve immediate problems. Most 
+            enablement feels reactive because it waits for customers to ask instead of providing guidance when they need it. 
+            When success enablement is proactive—surfacing resources at the right moment and focusing on outcomes rather than 
+            issues—it becomes a powerful retention tool that increases lifetime value and creates advocates.
           </p>
         }
         cta={

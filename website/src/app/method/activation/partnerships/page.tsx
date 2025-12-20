@@ -18,14 +18,22 @@ export default function Page() {
       {/* Hero */}
       <HeroLeftAlignedWithDemo
         id="hero"
-        headline="Partnerships"
+        eyebrow={
+          <span className="flex items-center gap-1.5 text-sm text-oxblood dark:text-coral">
+            <Link href="/method">Method</Link>
+            <span>/</span>
+            <Link href="/method/activation">Activation</Link>
+            <span>/</span>
+            <span className="font-semibold">Partnerships</span>
+          </span>
+        }
+        headline="Partnerships that drive mutual growth"
         subheadline={
           <p>
-            Build partnerships that drive mutual growth. Partnerships are about building relationships that drive mutual growth. 
-            It&apos;s the system that extends your reach, builds credibility, and creates new opportunities for activation. We build 
-            partnership systems that go beyond referrals—they&apos;re comprehensive strategies that align with complementary businesses, 
-            create value for both parties, and drive qualified traffic into your system. When partnerships are done right, they become 
-            a powerful activation channel that scales with relationships.
+            Partnerships should extend reach and build credibility, not just generate referrals. Most partnerships feel transactional 
+            because they&apos;re built around one-way referrals instead of creating mutual value. When partnership systems align with 
+            complementary businesses and create value for both parties, they become powerful activation channels that scale with 
+            relationships and drive qualified traffic.
           </p>
         }
         cta={

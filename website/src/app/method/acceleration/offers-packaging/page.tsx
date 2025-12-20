@@ -18,7 +18,16 @@ export default function Page() {
       {/* Hero */}
       <HeroLeftAlignedWithDemo
         id="hero"
-        headline="Offers & Packaging"
+        eyebrow={
+          <span className="flex items-center gap-1.5 text-sm text-oxblood dark:text-coral">
+            <Link href="/method">Method</Link>
+            <span>/</span>
+            <Link href="/method/acceleration">Acceleration</Link>
+            <span>/</span>
+            <span className="font-semibold">Offers & Packaging</span>
+          </span>
+        }
+        headline="Offers that clarify decisions, not complicate them"
         subheadline={
           <p>
             Offers should clarify decisions, not complicate them. When prospects hesitate, ask for custom scopes, or circle 

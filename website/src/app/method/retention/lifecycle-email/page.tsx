@@ -18,7 +18,16 @@ export default function Page() {
       {/* Hero */}
       <HeroLeftAlignedWithDemo
         id="hero"
-        headline="Lifecycle Email"
+        eyebrow={
+          <span className="flex items-center gap-1.5 text-sm text-oxblood dark:text-coral">
+            <Link href="/method">Method</Link>
+            <span>/</span>
+            <Link href="/method/retention">Retention</Link>
+            <span>/</span>
+            <span className="font-semibold">Lifecycle Email</span>
+          </span>
+        }
+        headline="Lifecycle email that feels timely, not automated"
         subheadline={
           <p>
             Lifecycle email should feel timely, not automated. The messages after a sale matter—they can turn customers 

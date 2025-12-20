@@ -18,15 +18,22 @@ export default function Page() {
       {/* Hero */}
       <HeroLeftAlignedWithDemo
         id="hero"
-        headline="CRM Flows & Automation"
+        eyebrow={
+          <span className="flex items-center gap-1.5 text-sm text-oxblood dark:text-coral">
+            <Link href="/method">Method</Link>
+            <span>/</span>
+            <Link href="/method/acceleration">Acceleration</Link>
+            <span>/</span>
+            <span className="font-semibold">CRM Flows & Automation</span>
+          </span>
+        }
+        headline="CRM automation that accelerates revenue"
         subheadline={
           <p>
-            Automate workflows that accelerate revenue. CRM flows & automation is about creating systems that work automatically 
-            to move prospects through the funnel and accelerate revenue. It&apos;s the system that removes manual work and ensures 
-            nothing falls through the cracks. We build CRM flows & automation that go beyond basic sequences—they&apos;re comprehensive 
-            systems that understand context, trigger the right actions at the right time, and create seamless experiences for both 
-            prospects and your team. When CRM flows & automation are done right, they become a powerful acceleration tool that scales 
-            your sales process.
+            CRM automation should move prospects through the funnel automatically, not just send sequences. Most automation feels 
+            robotic because it&apos;s built around calendars instead of context. When CRM flows understand where prospects are in 
+            their journey and trigger the right actions at the right time, they remove manual work, ensure nothing falls through 
+            the cracks, and scale your sales process efficiently.
           </p>
         }
         cta={

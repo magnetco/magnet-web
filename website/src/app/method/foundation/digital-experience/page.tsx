@@ -18,13 +18,22 @@ export default function Page() {
       {/* Hero */}
       <HeroLeftAlignedWithDemo
         id="hero"
-        headline="Digital Experience"
+        eyebrow={
+          <span className="flex items-center gap-1.5 text-sm text-oxblood dark:text-coral">
+            <Link href="/method">Method</Link>
+            <span>/</span>
+            <Link href="/method/foundation">Foundation</Link>
+            <span>/</span>
+            <span className="font-semibold">Digital Experience</span>
+          </span>
+        }
+        headline="Digital experiences that convert and engage"
         subheadline={
           <p>
-            Build digital experiences that convert and engage. Digital experience is about creating online touchpoints that 
-            engage, convert, and delight. It's the foundation that makes every digital interaction feel intentional, cohesive, 
-            and valuable. We build digital experiences that go beyond websites—they're comprehensive systems that guide users 
-            through their journey, remove friction, and create moments that matter.
+            Digital experiences should guide users through their journey and create moments that matter, not just display information. 
+            Most experiences feel disjointed because they&apos;re built as pages instead of systems that remove friction. When digital 
+            experiences are designed as comprehensive systems that understand user intent and create cohesive interactions, they become 
+            the foundation that makes every digital touchpoint more valuable.
           </p>
         }
         cta={

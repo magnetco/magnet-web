@@ -25,8 +25,10 @@ export function Faq({
         className="flex w-full items-start justify-between gap-6 py-4 text-left text-base/7 text-oxblood dark:text-ember"
       >
         {question}
-        <PlusIcon className="h-lh in-aria-expanded:hidden" />
-        <MinusIcon className="h-lh not-in-aria-expanded:hidden" />
+        <div className="relative h-lh w-lh shrink-0">
+          <PlusIcon className="h-lh w-lh transition-transform duration-300 ease-in-out in-aria-expanded:rotate-90 in-aria-expanded:opacity-0" />
+          <MinusIcon className="absolute inset-0 h-lh w-lh transition-opacity duration-300 ease-in-out not-in-aria-expanded:opacity-0" />
+        </div>
       </button>
       <ElDisclosure
         id={`${id}-answer`}

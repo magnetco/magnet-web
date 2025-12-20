@@ -18,14 +18,22 @@ export default function Page() {
       {/* Hero */}
       <HeroLeftAlignedWithDemo
         id="hero"
-        headline="Attribution & Measurement"
+        eyebrow={
+          <span className="flex items-center gap-1.5 text-sm text-oxblood dark:text-coral">
+            <Link href="/method">Method</Link>
+            <span>/</span>
+            <Link href="/method/acceleration">Acceleration</Link>
+            <span>/</span>
+            <span className="font-semibold">Attribution & Measurement</span>
+          </span>
+        }
+        headline="Attribution that drives better decisions"
         subheadline={
           <p>
-            Measure what matters and optimize what works. Attribution & measurement is about understanding what&apos;s working, 
-            why, and how to optimize it. It&apos;s the system that provides clarity into which channels, campaigns, and touchpoints 
-            drive the best results. We build attribution & measurement systems that go beyond basic tracking—they&apos;re comprehensive 
-            frameworks that connect the dots between channels, touchpoints, and outcomes. When attribution & measurement are done 
-            right, they become a powerful acceleration tool that makes every investment more effective.
+            Attribution should provide clarity into what&apos;s working, not just track what happened. Most attribution feels confusing 
+            because it focuses on last-click instead of understanding how channels work together. When attribution systems connect 
+            the dots between channels, touchpoints, and outcomes, they provide actionable insights that make every investment more 
+            effective and optimization more systematic.
           </p>
         }
         cta={

@@ -33,7 +33,7 @@ export function ApproachItem({
 }: { href?: string } & ComponentProps<'li'>) {
   const content = (
     <>
-      <Bullet className="mt-[0.5rem] shrink-0" />
+      <Bullet className="mt-[2px] shrink-0" />
       <span className="flex-1 leading-7">{children}</span>
     </>
   )

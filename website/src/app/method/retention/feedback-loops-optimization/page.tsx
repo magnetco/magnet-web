@@ -18,14 +18,22 @@ export default function Page() {
       {/* Hero */}
       <HeroLeftAlignedWithDemo
         id="hero"
-        headline="Feedback Loops & Optimization"
+        eyebrow={
+          <span className="flex items-center gap-1.5 text-sm text-oxblood dark:text-coral">
+            <Link href="/method">Method</Link>
+            <span>/</span>
+            <Link href="/method/retention">Retention</Link>
+            <span>/</span>
+            <span className="font-semibold">Feedback Loops & Optimization</span>
+          </span>
+        }
+        headline="Feedback loops that drive continuous improvement"
         subheadline={
           <p>
-            Continuously improve based on what customers tell you. Feedback loops & optimization is about creating systems that 
-            continuously improve based on customer feedback and data. It&apos;s the system that makes your retention efforts more 
-            effective over time. We build feedback loops & optimization systems that go beyond surveys—they&apos;re comprehensive 
-            frameworks that capture feedback at the right moments, analyze patterns, and implement improvements that drive better 
-            outcomes. When feedback loops & optimization are done right, they become a powerful retention tool that compounds over time.
+            Feedback loops should drive continuous improvement, not just collect opinions. Most feedback feels disconnected because 
+            it&apos;s captured on arbitrary schedules instead of when customers are engaged. When feedback systems capture input at 
+            the right moments, analyze patterns to identify opportunities, and implement improvements systematically, they make 
+            retention efforts more effective over time and compound into better outcomes.
           </p>
         }
         cta={

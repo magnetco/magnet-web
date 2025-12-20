@@ -18,14 +18,22 @@ export default function Page() {
       {/* Hero */}
       <HeroLeftAlignedWithDemo
         id="hero"
-        headline="Sales Enablement"
+        eyebrow={
+          <span className="flex items-center gap-1.5 text-sm text-oxblood dark:text-coral">
+            <Link href="/method">Method</Link>
+            <span>/</span>
+            <Link href="/method/acceleration">Acceleration</Link>
+            <span>/</span>
+            <span className="font-semibold">Sales Enablement</span>
+          </span>
+        }
+        headline="Sales enablement that accelerates revenue"
         subheadline={
           <p>
-            Enable sales teams to close more deals faster. Sales enablement is about giving your sales team everything they 
-            need to close more deals faster. It&apos;s the system that removes friction from the sales process and makes it 
-            easier for prospects to say yes. We build sales enablement systems that go beyond training—they&apos;re comprehensive 
-            frameworks that provide the right tools, the right messaging, and the right processes at the right time. When sales 
-            enablement is done right, it becomes a powerful acceleration tool that shortens sales cycles and increases close rates.
+            Sales enablement should give your team everything they need to close deals faster, not just training materials. Most 
+            enablement feels disconnected because tools are buried in folders and messaging feels like scripts. When sales enablement 
+            provides contextual tools and frameworks at the right moment, it removes friction from the sales process and makes it 
+            easier for prospects to say yes.
           </p>
         }
         cta={

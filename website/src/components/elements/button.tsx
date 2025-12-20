@@ -20,7 +20,7 @@ export function Button({
   size?: keyof typeof sizes
   color?: 'dark/light' | 'light'
 } & ComponentProps<'button'>) {
-  const { elementRef, fillRef, outlineRef, shineRef } = useButtonHover<HTMLButtonElement>()
+  const { elementRef, fillRef, outlineRef } = useButtonHover<HTMLButtonElement>()
 
   const { children, ...buttonProps } = props
 
@@ -29,7 +29,7 @@ export function Button({
       ref={elementRef}
       type={type}
       className={clsx(
-        'group relative inline-flex shrink-0 items-center justify-center gap-1 rounded-full text-sm/7 font-medium overflow-hidden',
+        'group relative inline-flex shrink-0 items-center justify-center gap-1 rounded-full text-sm/7 font-medium overflow-visible',
         color === 'dark/light' &&
           'bg-olive-950 text-white dark:bg-olive-300 dark:text-olive-950',
         color === 'light' && 'bg-white text-olive-950 dark:bg-olive-100',
@@ -49,16 +49,6 @@ export function Button({
         style={{
           clipPath: 'inset(100% 0% 0% 0%)',
           zIndex: 1,
-        }}
-      />
-      {/* Radial shine with coral, centered on cursor - 200px circular, clipped to button */}
-      <div
-        ref={shineRef}
-        className="pointer-events-none absolute h-[200px] w-[200px] rounded-full opacity-0"
-        style={{
-          background: 'radial-gradient(circle, rgba(255, 181, 171, 0.6) 0%, rgba(255, 181, 171, 0.4) 20%, rgba(255, 181, 171, 0.2) 40%, rgba(255, 181, 171, 0.1) 60%, rgba(255, 181, 171, 0) 100%)',
-          zIndex: 2,
-          clipPath: 'inset(0 round 9999px)',
         }}
       />
       {/* Content on top */}
@@ -84,7 +74,7 @@ export function ButtonLink({
   size?: keyof typeof sizes
   color?: 'dark/light' | 'light'
 } & Omit<ComponentProps<'a'>, 'href'>) {
-  const { elementRef, fillRef, outlineRef, shineRef } = useButtonHover<HTMLAnchorElement>()
+  const { elementRef, fillRef, outlineRef } = useButtonHover<HTMLAnchorElement>()
 
   const { children, ...linkProps } = props
 
@@ -93,7 +83,7 @@ export function ButtonLink({
       ref={elementRef}
       href={href}
       className={clsx(
-        'group relative inline-flex shrink-0 items-center justify-center gap-1 rounded-full text-sm/7 font-medium overflow-hidden',
+        'group relative inline-flex shrink-0 items-center justify-center gap-1 rounded-full text-sm/7 font-medium overflow-visible',
         color === 'dark/light' &&
           'bg-olive-950 text-white dark:bg-olive-300 dark:text-olive-950',
         color === 'light' && 'bg-white text-olive-950 dark:bg-olive-100',
@@ -113,16 +103,6 @@ export function ButtonLink({
         style={{
           clipPath: 'inset(100% 0% 0% 0%)',
           zIndex: 1,
-        }}
-      />
-      {/* Radial shine with coral, centered on cursor - 200px circular, clipped to button */}
-      <div
-        ref={shineRef}
-        className="pointer-events-none absolute h-[200px] w-[200px] rounded-full opacity-0"
-        style={{
-          background: 'radial-gradient(circle, rgba(255, 181, 171, 0.6) 0%, rgba(255, 181, 171, 0.4) 20%, rgba(255, 181, 171, 0.2) 40%, rgba(255, 181, 171, 0.1) 60%, rgba(255, 181, 171, 0) 100%)',
-          zIndex: 2,
-          clipPath: 'inset(0 round 9999px)',
         }}
       />
       {/* Content on top */}
@@ -145,7 +125,7 @@ export function SoftButton({
 }: {
   size?: keyof typeof sizes
 } & ComponentProps<'button'>) {
-  const { elementRef, fillRef, outlineRef, shineRef } = useButtonHover<HTMLButtonElement>()
+  const { elementRef, fillRef, outlineRef } = useButtonHover<HTMLButtonElement>()
   const { children, ...buttonProps } = props
 
   return (
@@ -189,7 +169,7 @@ export function SoftButtonLink({
   href: string
   size?: keyof typeof sizes
 } & Omit<ComponentProps<'a'>, 'href'>) {
-  const { elementRef, fillRef, outlineRef, shineRef } = useButtonHover<HTMLAnchorElement>()
+  const { elementRef, fillRef, outlineRef } = useButtonHover<HTMLAnchorElement>()
   const { children, ...linkProps } = props
 
   return (
@@ -234,7 +214,7 @@ export function PlainButton({
   size?: keyof typeof sizes
   color?: 'dark/light' | 'light'
 } & ComponentProps<'button'>) {
-  const { elementRef, fillRef, outlineRef, shineRef } = useButtonHover<HTMLButtonElement>()
+  const { elementRef, fillRef, outlineRef } = useButtonHover<HTMLButtonElement>()
   const { children, ...buttonProps } = props
 
   return (
@@ -255,7 +235,7 @@ export function PlainButton({
         ref={fillRef}
         className={clsx(
           'absolute inset-0 rounded-full',
-          color === 'dark/light' && 'bg-[var(--color-snow)] dark:bg-white/10',
+          color === 'dark/light' && 'bg-[var(--color-opal)]/70 dark:bg-white/10',
           color === 'light' && 'bg-white/15 dark:bg-white/10',
         )}
         style={{
@@ -286,7 +266,7 @@ export function PlainButtonLink({
   size?: keyof typeof sizes
   color?: 'dark/light' | 'light'
 } & Omit<ComponentProps<'a'>, 'href'>) {
-  const { elementRef, fillRef, outlineRef, shineRef } = useButtonHover<HTMLAnchorElement>()
+  const { elementRef, fillRef, outlineRef } = useButtonHover<HTMLAnchorElement>()
   const { children, ...linkProps } = props
 
   return (
@@ -307,7 +287,7 @@ export function PlainButtonLink({
         ref={fillRef}
         className={clsx(
           'absolute inset-0 rounded-full',
-          color === 'dark/light' && 'bg-[var(--color-snow)] dark:bg-white/10',
+          color === 'dark/light' && 'bg-[var(--color-opal)]/70 dark:bg-white/10',
           color === 'light' && 'bg-white/15 dark:bg-white/10',
         )}
         style={{

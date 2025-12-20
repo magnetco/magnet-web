@@ -18,14 +18,22 @@ export default function Page() {
       {/* Hero */}
       <HeroLeftAlignedWithDemo
         id="hero"
-        headline="Landing Experiences"
+        eyebrow={
+          <span className="flex items-center gap-1.5 text-sm text-oxblood dark:text-coral">
+            <Link href="/method">Method</Link>
+            <span>/</span>
+            <Link href="/method/acceleration">Acceleration</Link>
+            <span>/</span>
+            <span className="font-semibold">Landing Experiences</span>
+          </span>
+        }
+        headline="Landing experiences that guide action"
         subheadline={
           <p>
-            Create landing experiences that guide action. Landing experiences are about creating pages that guide visitors 
-            toward action. It&apos;s the system that removes friction, clarifies value, and makes it easy for qualified traffic 
-            to become customers. We build landing experiences that go beyond templates—they&apos;re comprehensive systems that 
-            understand user intent, remove obstacles, and create clear paths to conversion. When landing experiences are done 
-            right, they become a powerful acceleration tool that converts qualified traffic efficiently.
+            Landing experiences should guide visitors toward action, not just display information. Most landing pages feel generic 
+            because they&apos;re built from templates instead of understanding user intent. When landing experiences are designed 
+            around how visitors actually behave—recognizing intent, removing obstacles, and clarifying value—they become powerful 
+            acceleration tools that convert qualified traffic efficiently.
           </p>
         }
         cta={

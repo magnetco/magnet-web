@@ -18,12 +18,22 @@ export default function Page() {
       {/* Hero */}
       <HeroLeftAlignedWithDemo
         id="hero"
-        headline="Creative Storytelling"
+        eyebrow={
+          <span className="flex items-center gap-1.5 text-sm text-oxblood dark:text-coral">
+            <Link href="/method">Method</Link>
+            <span>/</span>
+            <Link href="/method/activation">Activation</Link>
+            <span>/</span>
+            <span className="font-semibold">Creative Storytelling</span>
+          </span>
+        }
+        headline="Creative storytelling that resonates and connects"
         subheadline={
           <p>
-            Tell stories that resonate, educate, and inspire action. Creative storytelling is the system that makes your 
-            brand memorable, your message stick, and your audience connect with your mission on an emotional level. When done 
-            right, it transforms marketing from interruption into invitation.
+            Creative storytelling should make your brand memorable and connect with your audience on an emotional level, not just 
+            entertain. Most storytelling feels disconnected because it&apos;s built as content instead of systems that guide audiences 
+            through a journey. When storytelling creates narratives that resonate, educate, and inspire action, it transforms marketing 
+            from interruption into invitation.
           </p>
         }
         cta={

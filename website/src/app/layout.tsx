@@ -1,4 +1,5 @@
 import { ButtonLink, PlainButtonLink } from '@/components/elements/button'
+import { FooterLogo } from '@/components/elements/footer-logo'
 import { Main } from '@/components/elements/main'
 import { ScrollableLogo } from '@/components/elements/scrollable-logo'
 import { LinkedInIcon } from '@/components/icons/social/linkedin-icon'
@@ -6,7 +7,6 @@ import {
   FooterCategory,
   FooterLink,
   FooterWithNewsletterFormCategoriesAndSocialIcons,
-  NewsletterForm,
   SocialLink,
 } from '@/components/sections/footer-with-newsletter-form-categories-and-social-icons'
 import {
@@ -104,18 +104,7 @@ export default function RootLayout({
 
           <FooterWithNewsletterFormCategoriesAndSocialIcons
             id="footer"
-            cta={
-              <NewsletterForm
-                headline="Stay in the loop"
-                subheadline={
-                  <p>
-                    Get customer support tips, product updates and customer stories that you can archive as soon as they
-                    arrive.
-                  </p>
-                }
-                action="#"
-              />
-            }
+            cta={<FooterLogo />}
             links={
               <>
                 <FooterCategory title="Services">
@@ -133,7 +122,7 @@ export default function RootLayout({
                 <FooterCategory title="Company">
                   <FooterLink href="/about">About</FooterLink>
                   <FooterLink href="/pricing">Pricing</FooterLink>
-                  <FooterLink href="#">Careers</FooterLink>
+                  <FooterLink href="/careers">Careers</FooterLink>
                   <FooterLink href="/privacy-policy">Privacy</FooterLink>
                 </FooterCategory>
               </>

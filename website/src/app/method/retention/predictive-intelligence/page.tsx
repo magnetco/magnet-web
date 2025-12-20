@@ -18,14 +18,22 @@ export default function Page() {
       {/* Hero */}
       <HeroLeftAlignedWithDemo
         id="hero"
-        headline="Predictive Intelligence"
+        eyebrow={
+          <span className="flex items-center gap-1.5 text-sm text-oxblood dark:text-coral">
+            <Link href="/method">Method</Link>
+            <span>/</span>
+            <Link href="/method/retention">Retention</Link>
+            <span>/</span>
+            <span className="font-semibold">Predictive Intelligence</span>
+          </span>
+        }
+        headline="Predictive intelligence that drives proactive retention"
         subheadline={
           <p>
-            Predict what customers need before they ask. Predictive intelligence is about using data and patterns to predict what 
-            customers need before they ask. It&apos;s the system that makes your retention efforts more proactive and more effective. 
-            We build predictive intelligence systems that go beyond basic analytics—they&apos;re comprehensive frameworks that identify 
-            patterns, predict behavior, and enable proactive interventions that improve outcomes. When predictive intelligence is done 
-            right, it becomes a powerful retention tool that compounds over time.
+            Predictive intelligence should identify what customers need before they ask, not just analyze what happened. Most 
+            analytics feel reactive because they report on past behavior instead of predicting future needs. When predictive systems 
+            identify patterns, predict behavior, and enable proactive interventions, they make retention efforts more effective by 
+            addressing needs before they become problems.
           </p>
         }
         cta={

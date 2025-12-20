@@ -69,3 +69,20 @@
     font-family: var(--font-geist-mono), 'Courier New', monospace;
   }
 }
+
+@layer base {
+  /* Accordion sliding animation */
+  el-disclosure {
+    display: block !important;
+    max-height: 0;
+    transition: max-height 300ms ease-in-out, opacity 300ms ease-in-out;
+    opacity: 0;
+    overflow: hidden;
+  }
+  
+  el-disclosure[open],
+  el-disclosure:not([hidden]) {
+    max-height: 1000px;
+    opacity: 1;
+  }
+}

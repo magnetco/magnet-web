@@ -18,13 +18,22 @@ export default function Page() {
       {/* Hero */}
       <HeroLeftAlignedWithDemo
         id="hero"
-        headline="Brand Architecture"
+        eyebrow={
+          <span className="flex items-center gap-1.5 text-sm text-oxblood dark:text-coral">
+            <Link href="/method">Method</Link>
+            <span>/</span>
+            <Link href="/method/foundation">Foundation</Link>
+            <span>/</span>
+            <span className="font-semibold">Brand Architecture</span>
+          </span>
+        }
+        headline="Brand architecture that guides every decision"
         subheadline={
           <p>
-            Build the strategic foundation that guides every brand decision. Brand architecture is the framework that 
-            ensures consistency, clarity, and coherence across all touchpoints and experiences. It's the system that makes 
-            every decision easier, every message clearer, and every experience more cohesive. When brand architecture is 
-            done right, it becomes the foundation that enables everything else to work.
+            Brand architecture should ensure consistency and clarity across all touchpoints, not just define logos and colors. 
+            Most brand systems feel disconnected because they&apos;re built as guidelines instead of frameworks that make decisions 
+            easier. When brand architecture provides a system that guides every decision, it becomes the foundation that enables 
+            everything else to work more effectively.
           </p>
         }
         cta={

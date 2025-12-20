@@ -18,13 +18,22 @@ export default function Page() {
       {/* Hero */}
       <HeroLeftAlignedWithDemo
         id="hero"
-        headline="Messaging System"
+        eyebrow={
+          <span className="flex items-center gap-1.5 text-sm text-oxblood dark:text-coral">
+            <Link href="/method">Method</Link>
+            <span>/</span>
+            <Link href="/method/foundation">Foundation</Link>
+            <span>/</span>
+            <span className="font-semibold">Messaging System</span>
+          </span>
+        }
+        headline="Messaging systems that resonate and guide"
         subheadline={
           <p>
-            Create messaging that resonates and guides every communication. A messaging system is the framework that ensures 
-            every communication is clear, consistent, and compelling. It's about creating language that resonates with your 
-            audience and guides every touchpoint. When messaging is done right, it becomes the foundation that makes every 
-            other communication more effective.
+            Messaging systems should ensure every communication is clear, consistent, and compelling, not just provide talking 
+            points. Most messaging feels generic because it&apos;s built as copy decks instead of frameworks that guide communication. 
+            When messaging systems create language that resonates with your audience and guides every touchpoint, they become the 
+            foundation that makes every other communication more effective.
           </p>
         }
         cta={

@@ -18,7 +18,16 @@ export default function Page() {
       {/* Hero */}
       <HeroLeftAlignedWithDemo
         id="hero"
-        headline="Paid Media"
+        eyebrow={
+          <span className="flex items-center gap-1.5 text-sm text-oxblood dark:text-coral">
+            <Link href="/method">Method</Link>
+            <span>/</span>
+            <Link href="/method/activation">Activation</Link>
+            <span>/</span>
+            <span className="font-semibold">Paid Media</span>
+          </span>
+        }
+        headline="Paid media that scales confidence, not anxiety"
         subheadline={
           <p>
             Paid media should scale confidence, not anxiety. Paid media drives results, but it often feels fragile. Performance 

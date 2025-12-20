@@ -18,7 +18,16 @@ export default function Page() {
       {/* Hero */}
       <HeroLeftAlignedWithDemo
         id="hero"
-        headline="Search Marketing"
+        eyebrow={
+          <span className="flex items-center gap-1.5 text-sm text-oxblood dark:text-coral">
+            <Link href="/method">Method</Link>
+            <span>/</span>
+            <Link href="/method/activation">Activation</Link>
+            <span>/</span>
+            <span className="font-semibold">Search Marketing</span>
+          </span>
+        }
+        headline="Search marketing that compounds, not fluctuates"
         subheadline={
           <p>
             Search should compound, not fluctuate. Search often feels busy but lacks impact because it's treated as a channel 

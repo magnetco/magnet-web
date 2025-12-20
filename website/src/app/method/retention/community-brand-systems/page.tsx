@@ -18,14 +18,22 @@ export default function Page() {
       {/* Hero */}
       <HeroLeftAlignedWithDemo
         id="hero"
-        headline="Community & Brand Systems"
+        eyebrow={
+          <span className="flex items-center gap-1.5 text-sm text-oxblood dark:text-coral">
+            <Link href="/method">Method</Link>
+            <span>/</span>
+            <Link href="/method/retention">Retention</Link>
+            <span>/</span>
+            <span className="font-semibold">Community & Brand Systems</span>
+          </span>
+        }
+        headline="Community systems that strengthen brand relationships"
         subheadline={
           <p>
-            Build communities that strengthen your brand. Community & brand systems are about creating spaces where customers 
-            connect, learn, and advocate for your brand. It&apos;s the system that turns customers into a community and builds 
-            lasting relationships. We build community & brand systems that go beyond forums—they&apos;re comprehensive frameworks 
-            that create value for members, strengthen brand relationships, and create advocates who drive organic growth. When 
-            community & brand systems are done right, they become a powerful retention tool that compounds over time.
+            Communities should create value for members and strengthen brand relationships, not just host discussions. Most 
+            communities feel empty because they&apos;re built as forums instead of systems that provide resources and facilitate 
+            connections. When community systems create value for members and align with brand values, they turn customers into 
+            advocates and become powerful retention tools that compound over time.
           </p>
         }
         cta={

@@ -18,13 +18,22 @@ export default function Page() {
       {/* Hero */}
       <HeroLeftAlignedWithDemo
         id="hero"
-        headline="Conversion Architecture"
+        eyebrow={
+          <span className="flex items-center gap-1.5 text-sm text-oxblood dark:text-coral">
+            <Link href="/method">Method</Link>
+            <span>/</span>
+            <Link href="/method/foundation">Foundation</Link>
+            <span>/</span>
+            <span className="font-semibold">Conversion Architecture</span>
+          </span>
+        }
+        headline="Conversion architecture that guides action"
         subheadline={
           <p>
-            Remove friction and guide users toward action. Conversion architecture is the system that removes friction and 
-            guides users toward action. It's the foundation that makes every interaction more likely to result in the outcome 
-            you want. We build conversion architecture that goes beyond landing pages—it's a comprehensive system that 
-            understands user intent, removes obstacles, and creates clear paths to action.
+            Conversion architecture should remove friction and create clear paths to action, not just optimize landing pages. 
+            Most conversion efforts feel fragmented because they focus on individual pages instead of systems that understand user 
+            intent. When conversion architecture removes obstacles and guides users through their journey, it becomes the foundation 
+            that makes every interaction more likely to result in the outcome you want.
           </p>
         }
         cta={
