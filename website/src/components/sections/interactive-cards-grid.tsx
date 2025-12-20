@@ -163,6 +163,7 @@ export function InteractiveCard({
         'group relative overflow-hidden rounded-xl bg-olive-950/2.5 p-8 transition-all duration-300',
         'hover:bg-olive-950/5',
         'min-h-[400px] flex flex-col',
+        'items-start justify-start',
         className
       )}
       {...props}
@@ -213,7 +214,7 @@ export function InteractiveCard({
               }}
             />
             {/* Icon on top of fill - monotone by default, ember on hover */}
-            <ArrowNarrowRightIcon className="relative size-5 text-oxblood transition-colors duration-300 group-hover:text-ember" style={{ zIndex: 10 }} />
+            <ArrowNarrowRightIcon className="relative size-5 text-oxblood transition-colors duration-300 group-hover:text-ember" style={{ zIndex: 20, position: 'relative' }} />
           </div>
         </div>
       </div>
@@ -256,7 +257,7 @@ export function InteractiveCardsGrid({
             {subheadline && <Text className="text-pretty">{subheadline}</Text>}
           </div>
         )}
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 items-stretch">
           {cards.map((card, index) => (
             <InteractiveCard key={index} {...card} />
           ))}

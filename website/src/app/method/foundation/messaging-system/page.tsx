@@ -1,42 +1,40 @@
-import { AnnouncementBadge } from '@/components/elements/announcement-badge'
 import { ButtonLink, PlainButtonLink } from '@/components/elements/button'
 import { Link } from '@/components/elements/link'
-import { Logo, LogoGrid } from '@/components/elements/logo-grid'
 import { Screenshot } from '@/components/elements/screenshot'
 import { ArrowNarrowRightIcon } from '@/components/icons/arrow-narrow-right-icon'
 import { ChevronIcon } from '@/components/icons/chevron-icon'
 import { Approach, ApproachItem, ApproachStage } from '@/components/sections/approach'
 import { CallToActionSimple } from '@/components/sections/call-to-action-simple'
-import {
-  Feature,
-  FeaturesStackedAlternatingWithDemos,
-} from '@/components/sections/features-stacked-alternating-with-demos'
-import { HeroCenteredWithDemo } from '@/components/sections/hero-centered-with-demo'
+import { FAQsTwoColumnAccordion, Faq } from '@/components/sections/faqs-two-column-accordion'
+import { Feature, FeaturesTwoColumnWithDemos } from '@/components/sections/features-two-column-with-demos'
+import { HeroLeftAlignedWithDemo } from '@/components/sections/hero-left-aligned-with-demo'
 import { Stat, StatsWithGraph } from '@/components/sections/stats-with-graph'
-import { TestimonialTwoColumnWithLargePhoto } from '@/components/sections/testimonial-two-column-with-large-photo'
+import { Testimonial, TestimonialThreeColumnGrid } from '@/components/sections/testimonials-three-column-grid'
 import Image from 'next/image'
 
 export default function Page() {
   return (
     <>
       {/* Hero */}
-      <HeroCenteredWithDemo
+      <HeroLeftAlignedWithDemo
         id="hero"
-        eyebrow={<AnnouncementBadge href="#" text="New: Custom website templates" cta="Learn more" />}
-        headline="Beautiful websites that convert visitors into customers."
+        headline="Messaging System"
         subheadline={
           <p>
-            Build stunning, high-performing websites with our collection of professionally designed templates. Every
-            template is optimized for conversion and built with modern web standards.
+            Create messaging that resonates and guides every communication. A messaging system is the framework that ensures 
+            every communication is clear, consistent, and compelling. It's about creating language that resonates with your 
+            audience and guides every touchpoint. When messaging is done right, it becomes the foundation that makes every 
+            other communication more effective.
           </p>
         }
         cta={
           <div className="flex items-center gap-4">
             <ButtonLink href="#" size="lg">
-              Browse templates
+              Get started
             </ButtonLink>
+
             <PlainButtonLink href="#" size="lg">
-              See examples <ArrowNarrowRightIcon />
+              See how it works <ArrowNarrowRightIcon />
             </PlainButtonLink>
           </div>
         }
@@ -90,135 +88,25 @@ export default function Page() {
             </Screenshot>
           </>
         }
-        footer={
-          <LogoGrid>
-            <Logo>
-              <Image
-                src="/img/logos/9-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={51}
-                height={32}
-              />
-              <Image
-                src="/img/logos/9-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={51}
-                height={32}
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/10-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={70}
-                height={32}
-              />
-              <Image
-                src="/img/logos/10-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={70}
-                height={32}
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/11-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={100}
-                height={32}
-              />
-              <Image
-                src="/img/logos/11-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={100}
-                height={32}
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/12-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={85}
-                height={32}
-              />
-              <Image
-                src="/img/logos/12-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={85}
-                height={32}
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/13-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={75}
-                height={32}
-              />
-              <Image
-                src="/img/logos/13-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={75}
-                height={32}
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/8-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={85}
-                height={32}
-              />
-              <Image
-                src="/img/logos/8-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={85}
-                height={32}
-              />
-            </Logo>
-          </LogoGrid>
-        }
       />
 
       {/* Features */}
-      <FeaturesStackedAlternatingWithDemos
+      <FeaturesTwoColumnWithDemos
         id="features"
-        headline="Everything you need to build a stunning website."
+        eyebrow="How we build messaging systems"
+        headline="Frameworks that make every message more effective"
         subheadline={
           <p>
-            Our templates come with everything you need to launch fast. Responsive design, SEO optimization, and
-            conversion-focused layouts built right in.
+            We build messaging systems that go beyond taglines—they're comprehensive frameworks that make it easier to 
+            communicate value, differentiate from competitors, and connect with your ideal customers. Every message serves 
+            a purpose and moves your audience closer to action.
           </p>
         }
         features={
           <>
             <Feature
-              headline="Responsive Design"
-              subheadline={
-                <p>
-                  Every template is fully responsive and looks perfect on desktop, tablet, and mobile devices. No
-                  additional work required.
-                </p>
-              }
-              cta={
-                <Link href="#">
-                  Learn more <ChevronIcon />
-                </Link>
-              }
               demo={
-                <Screenshot wallpaper="blue" placement="bottom-right">
+                <Screenshot wallpaper="purple" placement="bottom-right">
                   <Image
                     src="/img/screenshots/1-left-1000-top-800.webp"
                     alt=""
@@ -277,22 +165,25 @@ export default function Page() {
                   />
                 </Screenshot>
               }
-            />
-            <Feature
-              headline="SEO Optimized"
+              headline="Value Proposition Framework"
               subheadline={
                 <p>
-                  Built with SEO best practices in mind. Clean code, fast loading times, and semantic HTML help your site
-                  rank higher in search results.
+                  A clear value proposition is the foundation of effective messaging. We create frameworks that articulate 
+                  what makes you different, why it matters, and who it's for. This isn't just a tagline—it's a comprehensive 
+                  system that helps you communicate value consistently across all channels. When your value proposition is 
+                  clear and compelling, every message becomes more effective because it's built on a solid foundation. This 
+                  framework guides everything from website copy to sales conversations, ensuring consistency and clarity.
                 </p>
               }
               cta={
                 <Link href="#">
-                  Learn more <ChevronIcon />
+                  Learn more <ArrowNarrowRightIcon />
                 </Link>
               }
+            />
+            <Feature
               demo={
-                <Screenshot wallpaper="purple" placement="top-left">
+                <Screenshot wallpaper="blue" placement="bottom-left">
                   <Image
                     src="/img/screenshots/1-right-1000-top-800.webp"
                     alt=""
@@ -351,93 +242,123 @@ export default function Page() {
                   />
                 </Screenshot>
               }
-            />
-            <Feature
-              headline="Conversion Focused"
+              headline="Voice & Tone Guidelines"
               subheadline={
                 <p>
-                  Every element is designed to convert visitors into customers. Tested layouts, clear CTAs, and
-                  conversion-optimized forms.
+                  How you say something is just as important as what you say. We create voice and tone guidelines that define 
+                  your brand's personality and how it should sound across different contexts. These guidelines ensure consistency 
+                  while allowing for flexibility—your tone might be more casual in social media and more formal in legal 
+                  documents, but your voice remains consistent. When voice and tone are clearly defined, every piece of content 
+                  feels like it came from the same brand, building recognition and trust over time.
                 </p>
               }
               cta={
                 <Link href="#">
-                  Learn more <ChevronIcon />
+                  Learn more <ArrowNarrowRightIcon />
                 </Link>
-              }
-              demo={
-                <Screenshot wallpaper="brown" placement="bottom-left">
-                  <Image
-                    src="/img/screenshots/1-left-1000-top-800.webp"
-                    alt=""
-                    className="bg-white/75 sm:hidden dark:hidden"
-                    width={1000}
-                    height={800}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1000-top-800.webp"
-                    alt=""
-                    width={1000}
-                    height={800}
-                    className="bg-black/75 not-dark:hidden sm:hidden"
-                  />
-                  <Image
-                    src="/img/screenshots/1-left-1800-top-660.webp"
-                    alt=""
-                    className="bg-white/75 max-sm:hidden lg:hidden dark:hidden"
-                    width={1800}
-                    height={660}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1800-top-660.webp"
-                    alt=""
-                    width={1800}
-                    height={660}
-                    className="bg-black/75 not-dark:hidden max-sm:hidden lg:hidden"
-                  />
-                  <Image
-                    src="/img/screenshots/1-left-1300-top-1300.webp"
-                    alt=""
-                    className="bg-white/75 max-lg:hidden xl:hidden dark:hidden"
-                    width={1300}
-                    height={1300}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1300-top-1300.webp"
-                    alt=""
-                    width={1300}
-                    height={1300}
-                    className="bg-black/75 not-dark:hidden max-lg:hidden xl:hidden"
-                  />
-                  <Image
-                    src="/img/screenshots/1-left-1800-top-1250.webp"
-                    alt=""
-                    className="bg-white/75 max-xl:hidden dark:hidden"
-                    width={1800}
-                    height={1250}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1800-top-1250.webp"
-                    alt=""
-                    width={1800}
-                    height={1250}
-                    className="bg-black/75 not-dark:hidden max-xl:hidden"
-                  />
-                </Screenshot>
               }
             />
           </>
         }
       />
 
+      {/* Stats */}
+      <StatsWithGraph
+        id="stats"
+        eyebrow="Proven results"
+        headline="Messaging systems that drive clarity and conversion"
+        subheadline={
+          <p>
+            When messaging systems are in place, every communication becomes more effective. Clear value propositions and 
+            consistent voice and tone create recognition, build trust, and drive action.
+          </p>
+        }
+      >
+        <Stat stat="3.7x" text="Higher conversion rates for brands with clear messaging systems vs. ad-hoc messaging." />
+        <Stat stat="68%" text="Increase in brand consistency when voice and tone guidelines are implemented across all channels." />
+        <Stat stat="2.5x" text="Faster content creation when messaging frameworks are in place." />
+      </StatsWithGraph>
+
+      {/* Testimonials */}
+      <TestimonialThreeColumnGrid
+        id="testimonial"
+        headline="Messaging systems that transformed communication"
+        subheadline={
+          <p>
+            See how comprehensive messaging systems have helped brands communicate more effectively and consistently.
+          </p>
+        }
+      >
+        <Testimonial
+          quote={
+            <p>
+              Before working with Magnet, our messaging felt scattered. Different teams were saying different things, and 
+              our value proposition wasn't clear. The messaging system they built gave us a framework that everyone could 
+              follow. Now, every communication feels consistent and compelling.
+            </p>
+          }
+          img={
+            <Image
+              src="/img/avatars/10-size-160.webp"
+              alt=""
+              className="not-dark:bg-white/75 dark:bg-black/75"
+              width={160}
+              height={160}
+            />
+          }
+          name="Michael Torres"
+          byline="Head of Marketing at ScaleUp"
+        />
+        <Testimonial
+          quote={
+            <p>
+              The value proposition framework they created for us was a game-changer. It helped us articulate what makes us 
+              different in a way that resonates with our ideal customers. This clarity has improved everything from our 
+              website copy to our sales conversations.
+            </p>
+          }
+          img={
+            <Image
+              src="/img/avatars/15-size-160.webp"
+              alt=""
+              className="not-dark:bg-white/75 dark:bg-black/75"
+              width={160}
+              height={160}
+            />
+          }
+          name="Lisa Anderson"
+          byline="CMO at InnovateLab"
+        />
+        <Testimonial
+          quote={
+            <p>
+              Magnet's voice and tone guidelines transformed how we communicate. Every piece of content now feels like it 
+              came from the same brand, whether it's a social media post or a customer email. This consistency has made our 
+              brand much more recognizable and trustworthy.
+            </p>
+          }
+          img={
+            <Image
+              src="/img/avatars/13-size-160.webp"
+              alt=""
+              className="not-dark:bg-white/75 dark:bg-black/75"
+              width={160}
+              height={160}
+            />
+          }
+          name="Robert Kim"
+          byline="Director of Content at BrandCo"
+        />
+      </TestimonialThreeColumnGrid>
+
       {/* Approach */}
       <Approach
         id="approach"
-        eyebrow="Our Process"
-        headline="How we build websites that convert"
+        eyebrow="Our Method"
+        headline="How we build brands"
         subheadline={
           <p>
-            We follow a proven four-stage approach to create websites that drive real business results.
+            We follow a proven four-stage approach to create brands that drive real business results.
           </p>
         }
       >
@@ -495,61 +416,58 @@ export default function Page() {
         />
       </Approach>
 
-      {/* Stats */}
-      <StatsWithGraph
-        id="stats"
-        eyebrow="Trusted by thousands"
-        headline="Websites that perform."
-        subheadline={
-          <p>
-            Our templates power thousands of websites across industries. From startups to enterprise, businesses trust
-            our templates to deliver results.
-          </p>
-        }
-      >
-        <Stat stat="10K+" text="Websites launched using our templates." />
-        <Stat stat="95%" text="Customer satisfaction rate — our templates just work." />
-      </StatsWithGraph>
-
-      {/* Testimonial */}
-      <TestimonialTwoColumnWithLargePhoto
-        id="testimonial"
-        quote={
-          <p>
-            "We launched our new website in just one day using one of the templates. The design is beautiful, and we've
-            already seen a 40% increase in conversions. Couldn't be happier with the results."
-          </p>
-        }
-        img={
-          <Image
-            src="/img/avatars/10-size-160.webp"
-            alt=""
-            className="not-dark:bg-white/75 dark:bg-black/75"
-            width={160}
-            height={160}
-          />
-        }
-        name="Sarah Chen"
-        byline="Founder at TechFlow"
-      />
+      {/* FAQs */}
+      <FAQsTwoColumnAccordion id="faqs" headline="Questions about messaging systems">
+        <Faq
+          id="faq-1"
+          question="What's the difference between messaging and copywriting?"
+          answer="Messaging is the strategic framework that defines what you say and how you say it. Copywriting is the tactical execution of that framework. A messaging system provides the foundation—value propositions, key messages, voice and tone—that copywriters use to create effective content. Think of messaging as the blueprint and copywriting as the building."
+        />
+        <Faq
+          id="faq-2"
+          question="How do you develop a value proposition?"
+          answer="We start by understanding your unique strengths, your customers' needs, and how you solve problems differently than competitors. Through research, interviews, and analysis, we identify what makes you distinct and valuable. Then we craft a value proposition that's clear, compelling, and differentiated—one that resonates with your ideal customers and guides all your messaging."
+        />
+        <Faq
+          id="faq-3"
+          question="Can messaging systems work for B2B and B2C companies?"
+          answer="Absolutely. While the tone and approach may differ, the principles of clear messaging apply to both B2B and B2C. B2B messaging often focuses on business outcomes and ROI, while B2C messaging may be more emotional, but both benefit from clear value propositions, consistent voice, and messaging frameworks that guide communication."
+        />
+        <Faq
+          id="faq-4"
+          question="How do you ensure messaging stays consistent across teams?"
+          answer="We create messaging systems that are clear, accessible, and practical. This includes messaging guides, templates, examples, and training. When everyone understands the framework and has tools to apply it, consistency becomes natural. We also provide ongoing support and audits to ensure messaging stays on track as teams grow and evolve."
+        />
+        <Faq
+          id="faq-5"
+          question="What if our messaging needs to evolve?"
+          answer="Messaging systems are designed to evolve with your business. As your products, customers, or market position changes, your messaging should adapt. We build flexible frameworks that can accommodate growth and change while maintaining consistency. When updates are needed, we work with you to evolve messaging in a way that preserves brand recognition."
+        />
+        <Faq
+          id="faq-6"
+          question="How does messaging integrate with other marketing efforts?"
+          answer="Messaging is the foundation that makes all marketing efforts more effective. It ensures consistency across paid media, social content, email, websites, and every other touchpoint. When messaging is clear and consistent, every marketing investment reinforces your brand and value proposition, creating a compounding effect over time."
+        />
+      </FAQsTwoColumnAccordion>
 
       {/* Call To Action */}
       <CallToActionSimple
         id="call-to-action"
-        headline="Ready to launch your website?"
+        headline="Ready to build your messaging system?"
         subheadline={
           <p>
-            Browse our collection of professionally designed templates and find the perfect one for your business. All
-            templates are fully customizable and ready to deploy.
+            Let's create messaging frameworks that make every communication more effective. Build a system that ensures 
+            clarity, consistency, and compelling communication across all touchpoints.
           </p>
         }
         cta={
           <div className="flex items-center gap-4">
             <ButtonLink href="#" size="lg">
-              Browse templates
+              Get started
             </ButtonLink>
+
             <PlainButtonLink href="#" size="lg">
-              Book a demo <ChevronIcon />
+              Book a consultation <ChevronIcon />
             </PlainButtonLink>
           </div>
         }
@@ -557,4 +475,3 @@ export default function Page() {
     </>
   )
 }
-

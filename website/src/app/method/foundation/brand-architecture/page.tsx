@@ -1,42 +1,40 @@
-import { AnnouncementBadge } from '@/components/elements/announcement-badge'
 import { ButtonLink, PlainButtonLink } from '@/components/elements/button'
 import { Link } from '@/components/elements/link'
-import { Logo, LogoGrid } from '@/components/elements/logo-grid'
 import { Screenshot } from '@/components/elements/screenshot'
 import { ArrowNarrowRightIcon } from '@/components/icons/arrow-narrow-right-icon'
 import { ChevronIcon } from '@/components/icons/chevron-icon'
 import { Approach, ApproachItem, ApproachStage } from '@/components/sections/approach'
 import { CallToActionSimple } from '@/components/sections/call-to-action-simple'
-import {
-  Feature,
-  FeaturesStackedAlternatingWithDemos,
-} from '@/components/sections/features-stacked-alternating-with-demos'
-import { HeroCenteredWithDemo } from '@/components/sections/hero-centered-with-demo'
+import { FAQsTwoColumnAccordion, Faq } from '@/components/sections/faqs-two-column-accordion'
+import { Feature, FeaturesTwoColumnWithDemos } from '@/components/sections/features-two-column-with-demos'
+import { HeroLeftAlignedWithDemo } from '@/components/sections/hero-left-aligned-with-demo'
 import { Stat, StatsWithGraph } from '@/components/sections/stats-with-graph'
-import { TestimonialTwoColumnWithLargePhoto } from '@/components/sections/testimonial-two-column-with-large-photo'
+import { Testimonial, TestimonialThreeColumnGrid } from '@/components/sections/testimonials-three-column-grid'
 import Image from 'next/image'
 
 export default function Page() {
   return (
     <>
       {/* Hero */}
-      <HeroCenteredWithDemo
+      <HeroLeftAlignedWithDemo
         id="hero"
-        eyebrow={<AnnouncementBadge href="#" text="New: Custom website templates" cta="Learn more" />}
-        headline="Beautiful websites that convert visitors into customers."
+        headline="Brand Architecture"
         subheadline={
           <p>
-            Build stunning, high-performing websites with our collection of professionally designed templates. Every
-            template is optimized for conversion and built with modern web standards.
+            Build the strategic foundation that guides every brand decision. Brand architecture is the framework that 
+            ensures consistency, clarity, and coherence across all touchpoints and experiences. It's the system that makes 
+            every decision easier, every message clearer, and every experience more cohesive. When brand architecture is 
+            done right, it becomes the foundation that enables everything else to work.
           </p>
         }
         cta={
           <div className="flex items-center gap-4">
             <ButtonLink href="#" size="lg">
-              Browse templates
+              Get started
             </ButtonLink>
+
             <PlainButtonLink href="#" size="lg">
-              See examples <ArrowNarrowRightIcon />
+              See how it works <ArrowNarrowRightIcon />
             </PlainButtonLink>
           </div>
         }
@@ -90,135 +88,25 @@ export default function Page() {
             </Screenshot>
           </>
         }
-        footer={
-          <LogoGrid>
-            <Logo>
-              <Image
-                src="/img/logos/9-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={51}
-                height={32}
-              />
-              <Image
-                src="/img/logos/9-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={51}
-                height={32}
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/10-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={70}
-                height={32}
-              />
-              <Image
-                src="/img/logos/10-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={70}
-                height={32}
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/11-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={100}
-                height={32}
-              />
-              <Image
-                src="/img/logos/11-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={100}
-                height={32}
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/12-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={85}
-                height={32}
-              />
-              <Image
-                src="/img/logos/12-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={85}
-                height={32}
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/13-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={75}
-                height={32}
-              />
-              <Image
-                src="/img/logos/13-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={75}
-                height={32}
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/8-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={85}
-                height={32}
-              />
-              <Image
-                src="/img/logos/8-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={85}
-                height={32}
-              />
-            </Logo>
-          </LogoGrid>
-        }
       />
 
       {/* Features */}
-      <FeaturesStackedAlternatingWithDemos
+      <FeaturesTwoColumnWithDemos
         id="features"
-        headline="Everything you need to build a stunning website."
+        eyebrow="How we build brand architecture"
+        headline="Strategic frameworks that guide every decision"
         subheadline={
           <p>
-            Our templates come with everything you need to launch fast. Responsive design, SEO optimization, and
-            conversion-focused layouts built right in.
+            We build brand architecture that goes beyond logos and colors—it's about creating a comprehensive system that 
+            makes every decision easier, every message clearer, and every experience more cohesive. Our frameworks ensure 
+            consistency across all touchpoints while maintaining the flexibility to evolve.
           </p>
         }
         features={
           <>
             <Feature
-              headline="Responsive Design"
-              subheadline={
-                <p>
-                  Every template is fully responsive and looks perfect on desktop, tablet, and mobile devices. No
-                  additional work required.
-                </p>
-              }
-              cta={
-                <Link href="#">
-                  Learn more <ChevronIcon />
-                </Link>
-              }
               demo={
-                <Screenshot wallpaper="blue" placement="bottom-right">
+                <Screenshot wallpaper="purple" placement="bottom-right">
                   <Image
                     src="/img/screenshots/1-left-1000-top-800.webp"
                     alt=""
@@ -277,22 +165,26 @@ export default function Page() {
                   />
                 </Screenshot>
               }
-            />
-            <Feature
-              headline="SEO Optimized"
+              headline="Visual Identity System"
               subheadline={
                 <p>
-                  Built with SEO best practices in mind. Clean code, fast loading times, and semantic HTML help your site
-                  rank higher in search results.
+                  A cohesive visual identity system goes far beyond a logo. We create comprehensive brand guidelines that 
+                  define how your brand looks, feels, and behaves across every touchpoint. This includes color palettes, 
+                  typography systems, iconography, photography styles, and design patterns. When every visual element is 
+                  part of a unified system, your brand becomes instantly recognizable and consistently memorable. This 
+                  visual consistency builds trust, reinforces your message, and makes every interaction feel intentional 
+                  and professional.
                 </p>
               }
               cta={
                 <Link href="#">
-                  Learn more <ChevronIcon />
+                  Learn more <ArrowNarrowRightIcon />
                 </Link>
               }
+            />
+            <Feature
               demo={
-                <Screenshot wallpaper="purple" placement="top-left">
+                <Screenshot wallpaper="blue" placement="bottom-left">
                   <Image
                     src="/img/screenshots/1-right-1000-top-800.webp"
                     alt=""
@@ -351,93 +243,124 @@ export default function Page() {
                   />
                 </Screenshot>
               }
-            />
-            <Feature
-              headline="Conversion Focused"
+              headline="Brand Guidelines & Standards"
               subheadline={
                 <p>
-                  Every element is designed to convert visitors into customers. Tested layouts, clear CTAs, and
-                  conversion-optimized forms.
+                  Brand guidelines aren't just documents—they're decision-making frameworks that ensure consistency at scale. 
+                  We create comprehensive brand standards that cover everything from logo usage to voice and tone, from 
+                  photography to illustration styles. These guidelines make it easy for anyone on your team to create 
+                  on-brand materials, whether they're designing a website, writing an email, or creating social content. 
+                  When brand guidelines are clear and comprehensive, they become the foundation that enables consistent 
+                  brand expression across all channels and touchpoints.
                 </p>
               }
               cta={
                 <Link href="#">
-                  Learn more <ChevronIcon />
+                  Learn more <ArrowNarrowRightIcon />
                 </Link>
-              }
-              demo={
-                <Screenshot wallpaper="brown" placement="bottom-left">
-                  <Image
-                    src="/img/screenshots/1-left-1000-top-800.webp"
-                    alt=""
-                    className="bg-white/75 sm:hidden dark:hidden"
-                    width={1000}
-                    height={800}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1000-top-800.webp"
-                    alt=""
-                    width={1000}
-                    height={800}
-                    className="bg-black/75 not-dark:hidden sm:hidden"
-                  />
-                  <Image
-                    src="/img/screenshots/1-left-1800-top-660.webp"
-                    alt=""
-                    className="bg-white/75 max-sm:hidden lg:hidden dark:hidden"
-                    width={1800}
-                    height={660}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1800-top-660.webp"
-                    alt=""
-                    width={1800}
-                    height={660}
-                    className="bg-black/75 not-dark:hidden max-sm:hidden lg:hidden"
-                  />
-                  <Image
-                    src="/img/screenshots/1-left-1300-top-1300.webp"
-                    alt=""
-                    className="bg-white/75 max-lg:hidden xl:hidden dark:hidden"
-                    width={1300}
-                    height={1300}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1300-top-1300.webp"
-                    alt=""
-                    width={1300}
-                    height={1300}
-                    className="bg-black/75 not-dark:hidden max-lg:hidden xl:hidden"
-                  />
-                  <Image
-                    src="/img/screenshots/1-left-1800-top-1250.webp"
-                    alt=""
-                    className="bg-white/75 max-xl:hidden dark:hidden"
-                    width={1800}
-                    height={1250}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1800-top-1250.webp"
-                    alt=""
-                    width={1800}
-                    height={1250}
-                    className="bg-black/75 not-dark:hidden max-xl:hidden"
-                  />
-                </Screenshot>
               }
             />
           </>
         }
       />
 
+      {/* Stats */}
+      <StatsWithGraph
+        id="stats"
+        eyebrow="Proven results"
+        headline="Brand architecture that drives recognition and trust"
+        subheadline={
+          <p>
+            When brand architecture is done right, it creates consistency that builds recognition, trust, and loyalty. Our 
+            comprehensive brand systems help brands maintain coherence across all touchpoints while enabling growth and evolution.
+          </p>
+        }
+      >
+        <Stat stat="4.5x" text="Higher brand recognition for companies with comprehensive brand architecture vs. ad-hoc branding." />
+        <Stat stat="73%" text="Increase in brand consistency scores when brand guidelines are implemented across all touchpoints." />
+        <Stat stat="2.8x" text="Faster time-to-market for new campaigns when brand architecture is in place." />
+      </StatsWithGraph>
+
+      {/* Testimonials */}
+      <TestimonialThreeColumnGrid
+        id="testimonial"
+        headline="Brand architecture that transformed companies"
+        subheadline={
+          <p>
+            See how comprehensive brand architecture has helped companies build stronger, more consistent brands.
+          </p>
+        }
+      >
+        <Testimonial
+          quote={
+            <p>
+              Before working with Magnet, our brand felt inconsistent across different channels. The brand architecture they 
+              built gave us a clear framework that everyone on our team could follow. Now, everything we create feels cohesive 
+              and intentional, and our brand recognition has improved dramatically.
+            </p>
+          }
+          img={
+            <Image
+              src="/img/avatars/10-size-160.webp"
+              alt=""
+              className="not-dark:bg-white/75 dark:bg-black/75"
+              width={160}
+              height={160}
+            />
+          }
+          name="Alexandra Martinez"
+          byline="Creative Director at DesignWorks"
+        />
+        <Testimonial
+          quote={
+            <p>
+              The brand guidelines they created for us are incredibly comprehensive. Every designer, writer, and marketer on 
+              our team knows exactly how to represent our brand. This consistency has made our brand much more recognizable, 
+              and it's saved us countless hours that we used to spend debating design decisions.
+            </p>
+          }
+          img={
+            <Image
+              src="/img/avatars/15-size-160.webp"
+              alt=""
+              className="not-dark:bg-white/75 dark:bg-black/75"
+              width={160}
+              height={160}
+            />
+          }
+          name="James Wilson"
+          byline="VP of Marketing at TechVenture"
+        />
+        <Testimonial
+          quote={
+            <p>
+              Magnet's brand architecture work transformed how we think about our brand. It's not just about how things look—it's 
+              about creating a system that guides every decision. This foundation has made everything else we do more effective, 
+              from marketing campaigns to product launches.
+            </p>
+          }
+          img={
+            <Image
+              src="/img/avatars/13-size-160.webp"
+              alt=""
+              className="not-dark:bg-white/75 dark:bg-black/75"
+              width={160}
+              height={160}
+            />
+          }
+          name="Sophie Chen"
+          byline="Head of Brand at GrowthCo"
+        />
+      </TestimonialThreeColumnGrid>
+
       {/* Approach */}
       <Approach
         id="approach"
-        eyebrow="Our Process"
-        headline="How we build websites that convert"
+        eyebrow="Our Method"
+        headline="How we build brands"
         subheadline={
           <p>
-            We follow a proven four-stage approach to create websites that drive real business results.
+            We follow a proven four-stage approach to create brands that drive real business results.
           </p>
         }
       >
@@ -495,61 +418,58 @@ export default function Page() {
         />
       </Approach>
 
-      {/* Stats */}
-      <StatsWithGraph
-        id="stats"
-        eyebrow="Trusted by thousands"
-        headline="Websites that perform."
-        subheadline={
-          <p>
-            Our templates power thousands of websites across industries. From startups to enterprise, businesses trust
-            our templates to deliver results.
-          </p>
-        }
-      >
-        <Stat stat="10K+" text="Websites launched using our templates." />
-        <Stat stat="95%" text="Customer satisfaction rate — our templates just work." />
-      </StatsWithGraph>
-
-      {/* Testimonial */}
-      <TestimonialTwoColumnWithLargePhoto
-        id="testimonial"
-        quote={
-          <p>
-            "We launched our new website in just one day using one of the templates. The design is beautiful, and we've
-            already seen a 40% increase in conversions. Couldn't be happier with the results."
-          </p>
-        }
-        img={
-          <Image
-            src="/img/avatars/10-size-160.webp"
-            alt=""
-            className="not-dark:bg-white/75 dark:bg-black/75"
-            width={160}
-            height={160}
-          />
-        }
-        name="Sarah Chen"
-        byline="Founder at TechFlow"
-      />
+      {/* FAQs */}
+      <FAQsTwoColumnAccordion id="faqs" headline="Questions about brand architecture">
+        <Faq
+          id="faq-1"
+          question="What's included in a brand architecture system?"
+          answer="A comprehensive brand architecture system includes visual identity guidelines (logo, colors, typography, imagery), brand voice and tone standards, messaging frameworks, design patterns and components, and usage guidelines for all brand elements. It's a complete system that ensures consistency while providing flexibility for different contexts and applications."
+        />
+        <Faq
+          id="faq-2"
+          question="How long does it take to build brand architecture?"
+          answer="The timeline depends on the scope and complexity of your brand, but typically takes 4-8 weeks. This includes discovery and research, design development, guideline creation, and refinement. For larger organizations or more complex brand systems, the process may take longer to ensure comprehensive coverage of all touchpoints."
+        />
+        <Faq
+          id="faq-3"
+          question="Can brand architecture work for companies with multiple products or sub-brands?"
+          answer="Absolutely. Brand architecture is especially valuable for companies with multiple products or sub-brands. We create hierarchical systems that maintain consistency at the parent brand level while allowing for differentiation at the product or sub-brand level. This ensures each brand feels distinct while maintaining overall coherence."
+        />
+        <Faq
+          id="faq-4"
+          question="How do you ensure brand guidelines are actually used?"
+          answer="We create brand guidelines that are clear, accessible, and practical. This includes visual examples, do's and don'ts, templates, and tools that make it easy for teams to create on-brand materials. We also provide training and ongoing support to ensure guidelines are understood and implemented correctly across your organization."
+        />
+        <Faq
+          id="faq-5"
+          question="What happens if our brand needs to evolve?"
+          answer="Brand architecture is designed to evolve with your business. We build flexible systems that can accommodate growth and change while maintaining consistency. When updates are needed, we work with you to evolve the architecture in a way that preserves brand recognition while allowing for necessary changes."
+        />
+        <Faq
+          id="faq-6"
+          question="How does brand architecture integrate with other marketing efforts?"
+          answer="Brand architecture is the foundation that makes all other marketing efforts more effective. It ensures consistency across paid media, social content, email, websites, and every other touchpoint. When brand architecture is in place, every marketing investment reinforces your brand identity, creating a compounding effect over time."
+        />
+      </FAQsTwoColumnAccordion>
 
       {/* Call To Action */}
       <CallToActionSimple
         id="call-to-action"
-        headline="Ready to launch your website?"
+        headline="Ready to build your brand architecture?"
         subheadline={
           <p>
-            Browse our collection of professionally designed templates and find the perfect one for your business. All
-            templates are fully customizable and ready to deploy.
+            Let's create the strategic foundation that guides every brand decision. Build a brand system that ensures 
+            consistency, clarity, and coherence across all touchpoints.
           </p>
         }
         cta={
           <div className="flex items-center gap-4">
             <ButtonLink href="#" size="lg">
-              Browse templates
+              Get started
             </ButtonLink>
+
             <PlainButtonLink href="#" size="lg">
-              Book a demo <ChevronIcon />
+              Book a consultation <ChevronIcon />
             </PlainButtonLink>
           </div>
         }
@@ -557,4 +477,3 @@ export default function Page() {
     </>
   )
 }
-

@@ -378,11 +378,11 @@ export default function Page() {
           description="Build the strategic, narrative, and technical infrastructure for growth."
           items={
             <>
-              <ApproachItem>Brand Architecture</ApproachItem>
-              <ApproachItem>Messaging System</ApproachItem>
-              <ApproachItem>Digital Experience</ApproachItem>
-              <ApproachItem>Conversion Architecture</ApproachItem>
-              <ApproachItem>Data & Analytics Setup</ApproachItem>
+              <ApproachItem href="/method/foundation/brand-architecture">Brand Architecture</ApproachItem>
+              <ApproachItem href="/method/foundation/messaging-system">Messaging System</ApproachItem>
+              <ApproachItem href="/method/foundation/digital-experience">Digital Experience</ApproachItem>
+              <ApproachItem href="/method/foundation/conversion-architecture">Conversion Architecture</ApproachItem>
+              <ApproachItem href="/method/foundation/data-analytics-setup">Data & Analytics Setup</ApproachItem>
             </>
           }
         />
@@ -391,11 +391,11 @@ export default function Page() {
           description="Turn on demand to attract qualified traffic into the system."
           items={
             <>
-              <ApproachItem>Paid Media</ApproachItem>
-              <ApproachItem>Search Marketing</ApproachItem>
-              <ApproachItem>Social Content</ApproachItem>
-              <ApproachItem>Creative Storytelling</ApproachItem>
-              <ApproachItem>Partnerships</ApproachItem>
+              <ApproachItem href="/method/activation/paid-media">Paid Media</ApproachItem>
+              <ApproachItem href="/method/activation/search-marketing">Search Marketing</ApproachItem>
+              <ApproachItem href="/method/activation/social-content">Social Content</ApproachItem>
+              <ApproachItem href="/method/activation/creative-storytelling">Creative Storytelling</ApproachItem>
+              <ApproachItem href="/method/activation/partnerships">Partnerships</ApproachItem>
             </>
           }
         />
@@ -404,11 +404,11 @@ export default function Page() {
           description="Targeted acquisition using ICP insight for efficient, scalable demand."
           items={
             <>
-              <ApproachItem>Offers & Packaging</ApproachItem>
-              <ApproachItem>Landing Experiences</ApproachItem>
-              <ApproachItem>Sales Enablement</ApproachItem>
-              <ApproachItem>CRM Flows & Automation</ApproachItem>
-              <ApproachItem>Attribution & Measurement</ApproachItem>
+              <ApproachItem href="/method/acceleration/offers-packaging">Offers & Packaging</ApproachItem>
+              <ApproachItem href="/method/acceleration/landing-experiences">Landing Experiences</ApproachItem>
+              <ApproachItem href="/method/acceleration/sales-enablement">Sales Enablement</ApproachItem>
+              <ApproachItem href="/method/acceleration/crm-flows-automation">CRM Flows & Automation</ApproachItem>
+              <ApproachItem href="/method/acceleration/attribution-measurement">Attribution & Measurement</ApproachItem>
             </>
           }
         />
@@ -417,11 +417,11 @@ export default function Page() {
           description="Improved acquisition efficiency, conversion and revenue throughput."
           items={
             <>
-              <ApproachItem>Lifecycle Email</ApproachItem>
-              <ApproachItem>Success Enablement</ApproachItem>
-              <ApproachItem>Community & Brand Systems</ApproachItem>
-              <ApproachItem>Feedback Loops & Optimization</ApproachItem>
-              <ApproachItem>Predictive Intelligence</ApproachItem>
+              <ApproachItem href="/method/retention/lifecycle-email">Lifecycle Email</ApproachItem>
+              <ApproachItem href="/method/retention/success-enablement">Success Enablement</ApproachItem>
+              <ApproachItem href="/method/retention/community-brand-systems">Community & Brand Systems</ApproachItem>
+              <ApproachItem href="/method/retention/feedback-loops-optimization">Feedback Loops & Optimization</ApproachItem>
+              <ApproachItem href="/method/retention/predictive-intelligence">Predictive Intelligence</ApproachItem>
             </>
           }
         />

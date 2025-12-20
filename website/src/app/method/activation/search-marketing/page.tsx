@@ -1,42 +1,40 @@
-import { AnnouncementBadge } from '@/components/elements/announcement-badge'
 import { ButtonLink, PlainButtonLink } from '@/components/elements/button'
 import { Link } from '@/components/elements/link'
-import { Logo, LogoGrid } from '@/components/elements/logo-grid'
 import { Screenshot } from '@/components/elements/screenshot'
 import { ArrowNarrowRightIcon } from '@/components/icons/arrow-narrow-right-icon'
 import { ChevronIcon } from '@/components/icons/chevron-icon'
 import { Approach, ApproachItem, ApproachStage } from '@/components/sections/approach'
 import { CallToActionSimple } from '@/components/sections/call-to-action-simple'
-import {
-  Feature,
-  FeaturesStackedAlternatingWithDemos,
-} from '@/components/sections/features-stacked-alternating-with-demos'
-import { HeroCenteredWithDemo } from '@/components/sections/hero-centered-with-demo'
+import { FAQsTwoColumnAccordion, Faq } from '@/components/sections/faqs-two-column-accordion'
+import { Feature, FeaturesTwoColumnWithDemos } from '@/components/sections/features-two-column-with-demos'
+import { HeroLeftAlignedWithDemo } from '@/components/sections/hero-left-aligned-with-demo'
 import { Stat, StatsWithGraph } from '@/components/sections/stats-with-graph'
-import { TestimonialTwoColumnWithLargePhoto } from '@/components/sections/testimonial-two-column-with-large-photo'
+import { Testimonial, TestimonialThreeColumnGrid } from '@/components/sections/testimonials-three-column-grid'
 import Image from 'next/image'
 
 export default function Page() {
   return (
     <>
       {/* Hero */}
-      <HeroCenteredWithDemo
+      <HeroLeftAlignedWithDemo
         id="hero"
-        eyebrow={<AnnouncementBadge href="#" text="New: Custom website templates" cta="Learn more" />}
-        headline="Beautiful websites that convert visitors into customers."
+        headline="Search Marketing"
         subheadline={
           <p>
-            Build stunning, high-performing websites with our collection of professionally designed templates. Every
-            template is optimized for conversion and built with modern web standards.
+            Search should compound, not fluctuate. Search often feels busy but lacks impact because it's treated as a channel 
+            rather than a system designed around buyer intent, evaluation, and trust. The result? Movement without momentum. 
+            When search aligns with how people research and choose, it stops fluctuating and starts compounding. Search becomes 
+            a long-term demand asset, not a quarterly tactic.
           </p>
         }
         cta={
           <div className="flex items-center gap-4">
             <ButtonLink href="#" size="lg">
-              Browse templates
+              Get started
             </ButtonLink>
+
             <PlainButtonLink href="#" size="lg">
-              See examples <ArrowNarrowRightIcon />
+              See how it works <ArrowNarrowRightIcon />
             </PlainButtonLink>
           </div>
         }
@@ -90,135 +88,25 @@ export default function Page() {
             </Screenshot>
           </>
         }
-        footer={
-          <LogoGrid>
-            <Logo>
-              <Image
-                src="/img/logos/9-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={51}
-                height={32}
-              />
-              <Image
-                src="/img/logos/9-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={51}
-                height={32}
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/10-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={70}
-                height={32}
-              />
-              <Image
-                src="/img/logos/10-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={70}
-                height={32}
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/11-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={100}
-                height={32}
-              />
-              <Image
-                src="/img/logos/11-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={100}
-                height={32}
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/12-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={85}
-                height={32}
-              />
-              <Image
-                src="/img/logos/12-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={85}
-                height={32}
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/13-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={75}
-                height={32}
-              />
-              <Image
-                src="/img/logos/13-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={75}
-                height={32}
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/8-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={85}
-                height={32}
-              />
-              <Image
-                src="/img/logos/8-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={85}
-                height={32}
-              />
-            </Logo>
-          </LogoGrid>
-        }
       />
 
       {/* Features */}
-      <FeaturesStackedAlternatingWithDemos
+      <FeaturesTwoColumnWithDemos
         id="features"
-        headline="Everything you need to build a stunning website."
+        eyebrow="How we build search"
+        headline="Search systems built for how buyers actually decide"
         subheadline={
           <p>
-            Our templates come with everything you need to launch fast. Responsive design, SEO optimization, and
-            conversion-focused layouts built right in.
+            Magnet builds search as a long-term demand asset, not a quarterly tactic. We remove hidden limits with technical 
+            foundations, use intent-driven content to answer real questions, earn authority rather than assuming it, and ensure 
+            everything works together so each page has a purpose and every visit moves someone closer to action.
           </p>
         }
         features={
           <>
             <Feature
-              headline="Responsive Design"
-              subheadline={
-                <p>
-                  Every template is fully responsive and looks perfect on desktop, tablet, and mobile devices. No
-                  additional work required.
-                </p>
-              }
-              cta={
-                <Link href="#">
-                  Learn more <ChevronIcon />
-                </Link>
-              }
               demo={
-                <Screenshot wallpaper="blue" placement="bottom-right">
+                <Screenshot wallpaper="purple" placement="bottom-right">
                   <Image
                     src="/img/screenshots/1-left-1000-top-800.webp"
                     alt=""
@@ -277,22 +165,25 @@ export default function Page() {
                   />
                 </Screenshot>
               }
-            />
-            <Feature
-              headline="SEO Optimized"
+              headline="Intent-Driven Content"
               subheadline={
                 <p>
-                  Built with SEO best practices in mind. Clean code, fast loading times, and semantic HTML help your site
-                  rank higher in search results.
+                  Content that answers real questions, not just targets keywords. We build search systems around buyer intent, 
+                  creating content that matches what people are actually searching for and what they need at each stage of their 
+                  journey. This intent-driven approach means every piece of content serves a purpose—answering questions, solving 
+                  problems, and guiding buyers toward decisions. When content aligns with intent, search stops fluctuating and 
+                  starts compounding because you're building a system that grows more valuable every month.
                 </p>
               }
               cta={
                 <Link href="#">
-                  Learn more <ChevronIcon />
+                  Learn more <ArrowNarrowRightIcon />
                 </Link>
               }
+            />
+            <Feature
               demo={
-                <Screenshot wallpaper="purple" placement="top-left">
+                <Screenshot wallpaper="blue" placement="bottom-left">
                   <Image
                     src="/img/screenshots/1-right-1000-top-800.webp"
                     alt=""
@@ -351,93 +242,126 @@ export default function Page() {
                   />
                 </Screenshot>
               }
-            />
-            <Feature
-              headline="Conversion Focused"
+              headline="Authority Through Value"
               subheadline={
                 <p>
-                  Every element is designed to convert visitors into customers. Tested layouts, clear CTAs, and
-                  conversion-optimized forms.
+                  Earning authority rather than assuming it. We build search systems that establish credibility through value—creating 
+                  content that's genuinely helpful, building relationships through quality, and earning trust through consistency. This 
+                  approach means you're not just trying to rank—you're building authority that compounds over time. When search is 
+                  built around earning authority, you get better traffic, stronger credibility, and inbound demand that grows more 
+                  valuable every month. The result isn't just more traffic—it's traffic that converts because it comes from people 
+                  who trust you.
                 </p>
               }
               cta={
                 <Link href="#">
-                  Learn more <ChevronIcon />
+                  Learn more <ArrowNarrowRightIcon />
                 </Link>
-              }
-              demo={
-                <Screenshot wallpaper="brown" placement="bottom-left">
-                  <Image
-                    src="/img/screenshots/1-left-1000-top-800.webp"
-                    alt=""
-                    className="bg-white/75 sm:hidden dark:hidden"
-                    width={1000}
-                    height={800}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1000-top-800.webp"
-                    alt=""
-                    width={1000}
-                    height={800}
-                    className="bg-black/75 not-dark:hidden sm:hidden"
-                  />
-                  <Image
-                    src="/img/screenshots/1-left-1800-top-660.webp"
-                    alt=""
-                    className="bg-white/75 max-sm:hidden lg:hidden dark:hidden"
-                    width={1800}
-                    height={660}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1800-top-660.webp"
-                    alt=""
-                    width={1800}
-                    height={660}
-                    className="bg-black/75 not-dark:hidden max-sm:hidden lg:hidden"
-                  />
-                  <Image
-                    src="/img/screenshots/1-left-1300-top-1300.webp"
-                    alt=""
-                    className="bg-white/75 max-lg:hidden xl:hidden dark:hidden"
-                    width={1300}
-                    height={1300}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1300-top-1300.webp"
-                    alt=""
-                    width={1300}
-                    height={1300}
-                    className="bg-black/75 not-dark:hidden max-lg:hidden xl:hidden"
-                  />
-                  <Image
-                    src="/img/screenshots/1-left-1800-top-1250.webp"
-                    alt=""
-                    className="bg-white/75 max-xl:hidden dark:hidden"
-                    width={1800}
-                    height={1250}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1800-top-1250.webp"
-                    alt=""
-                    width={1800}
-                    height={1250}
-                    className="bg-black/75 not-dark:hidden max-xl:hidden"
-                  />
-                </Screenshot>
               }
             />
           </>
         }
       />
 
+      {/* Stats */}
+      <StatsWithGraph
+        id="stats"
+        eyebrow="Proven results"
+        headline="Search that compounds, not fluctuates"
+        subheadline={
+          <p>
+            When search is built as a long-term demand asset instead of a quarterly tactic, the results compound over time. 
+            Intent-driven content and earned authority create better traffic, stronger credibility, and inbound demand that grows 
+            more valuable every month.
+          </p>
+        }
+      >
+        <Stat stat="4.2x" text="Higher conversion rates for intent-driven search content vs. keyword-focused content." />
+        <Stat stat="68%" text="Increase in organic traffic when search is built as a compounding system vs. quarterly tactics." />
+        <Stat stat="3.5x" text="Better traffic quality when authority is earned through value rather than assumed." />
+      </StatsWithGraph>
+
+      {/* Testimonials */}
+      <TestimonialThreeColumnGrid
+        id="testimonial"
+        headline="Search that transformed visibility"
+        subheadline={
+          <p>
+            See how search systems built for compounding have helped brands build long-term demand assets.
+          </p>
+        }
+      >
+        <Testimonial
+          quote={
+            <p>
+              Before working with Magnet, our search efforts felt like a constant battle. We'd see spikes and drops, but never 
+              consistent growth. The search system they built treats search as a long-term asset, and now we're seeing steady, 
+              compounding growth. The traffic is better quality, and it converts at a much higher rate.
+            </p>
+          }
+          img={
+            <Image
+              src="/img/avatars/10-size-160.webp"
+              alt=""
+              className="not-dark:bg-white/75 dark:bg-black/75"
+              width={160}
+              height={160}
+            />
+          }
+          name="Patricia Lee"
+          byline="Head of SEO at ContentCo"
+        />
+        <Testimonial
+          quote={
+            <p>
+              The intent-driven content approach they used transformed our search results. Instead of targeting keywords, we're 
+              answering real questions that our ideal customers are asking. This has created much better traffic quality, and 
+              our conversion rates have improved dramatically. Search finally feels like a long-term asset, not a constant 
+              maintenance burden.
+            </p>
+          }
+          img={
+            <Image
+              src="/img/avatars/15-size-160.webp"
+              alt=""
+              className="not-dark:bg-white/75 dark:bg-black/75"
+              width={160}
+              height={160}
+            />
+          }
+          name="Kevin Johnson"
+          byline="VP of Marketing at TechFlow"
+        />
+        <Testimonial
+          quote={
+            <p>
+              Magnet's approach to earning authority through value has been game-changing. We're not just trying to rank—we're 
+              building credibility that compounds. This has resulted in better traffic, stronger brand recognition, and inbound 
+              demand that grows more valuable every month. Search has become one of our most reliable growth channels.
+            </p>
+          }
+          img={
+            <Image
+              src="/img/avatars/13-size-160.webp"
+              alt=""
+              className="not-dark:bg-white/75 dark:bg-black/75"
+              width={160}
+              height={160}
+            />
+          }
+          name="Maria Rodriguez"
+          byline="Director of Growth at ScaleUp"
+        />
+      </TestimonialThreeColumnGrid>
+
       {/* Approach */}
       <Approach
         id="approach"
-        eyebrow="Our Process"
-        headline="How we build websites that convert"
+        eyebrow="Our Method"
+        headline="How we build brands"
         subheadline={
           <p>
-            We follow a proven four-stage approach to create websites that drive real business results.
+            We follow a proven four-stage approach to create brands that drive real business results.
           </p>
         }
       >
@@ -495,61 +419,58 @@ export default function Page() {
         />
       </Approach>
 
-      {/* Stats */}
-      <StatsWithGraph
-        id="stats"
-        eyebrow="Trusted by thousands"
-        headline="Websites that perform."
-        subheadline={
-          <p>
-            Our templates power thousands of websites across industries. From startups to enterprise, businesses trust
-            our templates to deliver results.
-          </p>
-        }
-      >
-        <Stat stat="10K+" text="Websites launched using our templates." />
-        <Stat stat="95%" text="Customer satisfaction rate — our templates just work." />
-      </StatsWithGraph>
-
-      {/* Testimonial */}
-      <TestimonialTwoColumnWithLargePhoto
-        id="testimonial"
-        quote={
-          <p>
-            "We launched our new website in just one day using one of the templates. The design is beautiful, and we've
-            already seen a 40% increase in conversions. Couldn't be happier with the results."
-          </p>
-        }
-        img={
-          <Image
-            src="/img/avatars/10-size-160.webp"
-            alt=""
-            className="not-dark:bg-white/75 dark:bg-black/75"
-            width={160}
-            height={160}
-          />
-        }
-        name="Sarah Chen"
-        byline="Founder at TechFlow"
-      />
+      {/* FAQs */}
+      <FAQsTwoColumnAccordion id="faqs" headline="Questions about search marketing">
+        <Faq
+          id="faq-1"
+          question="What's the difference between search as a channel vs. search as a system?"
+          answer="Search as a channel treats SEO as a series of tactics—keyword targeting, link building, content creation—without a cohesive strategy. Search as a system is designed around buyer intent, evaluation, and trust. It removes hidden limits with technical foundations, uses intent-driven content to answer real questions, earns authority rather than assuming it, and ensures everything works together. This systematic approach creates compounding growth instead of fluctuating results."
+        />
+        <Faq
+          id="faq-2"
+          question="How do you build intent-driven content?"
+          answer="We start by understanding how buyers actually research and make decisions. Then we create content that matches their intent at each stage—awareness, consideration, decision. This means answering real questions, solving actual problems, and guiding buyers toward decisions. Intent-driven content isn't about targeting keywords—it's about matching what people are searching for with what they actually need."
+        />
+        <Faq
+          id="faq-3"
+          question="How long does it take to see results from search systems?"
+          answer="You'll typically see improvements in traffic quality and engagement within the first 2-3 months as intent-driven content starts ranking. The real compounding effects—steady growth, better traffic quality, and inbound demand that grows more valuable—build over 6-12 months as authority is earned and the system matures. Search is a long-term asset, not a quick win."
+        />
+        <Faq
+          id="faq-4"
+          question="What's the difference between earning authority and assuming it?"
+          answer="Assuming authority means trying to rank for competitive terms without building credibility. Earning authority means creating genuinely valuable content, building relationships through quality, and establishing trust through consistency. When you earn authority, you get better traffic quality and higher conversion rates because people trust you before they even visit your site."
+        />
+        <Faq
+          id="faq-5"
+          question="How do you measure search success beyond rankings?"
+          answer="We measure success through multiple metrics: traffic quality, engagement rates, conversion rates, and ultimately, inbound demand that converts. Rankings are just a means to an end. The real measure is whether search is creating better traffic, stronger credibility, and inbound demand that grows more valuable every month."
+        />
+        <Faq
+          id="faq-6"
+          question="Can search systems work for competitive industries?"
+          answer="Absolutely. In competitive industries, earning authority through value becomes even more important. Instead of trying to outrank competitors on generic terms, we focus on intent-driven content that answers specific questions and builds authority in niche areas. This approach often works better in competitive industries because you're building credibility rather than just trying to outrank."
+        />
+      </FAQsTwoColumnAccordion>
 
       {/* Call To Action */}
       <CallToActionSimple
         id="call-to-action"
-        headline="Ready to launch your website?"
+        headline="Ready to build search that compounds?"
         subheadline={
           <p>
-            Browse our collection of professionally designed templates and find the perfect one for your business. All
-            templates are fully customizable and ready to deploy.
+            Let's create search systems that compound, not fluctuate. Build a long-term demand asset that provides better 
+            traffic, stronger credibility, and inbound demand that grows more valuable every month.
           </p>
         }
         cta={
           <div className="flex items-center gap-4">
             <ButtonLink href="#" size="lg">
-              Browse templates
+              Get started
             </ButtonLink>
+
             <PlainButtonLink href="#" size="lg">
-              Book a demo <ChevronIcon />
+              Book a consultation <ChevronIcon />
             </PlainButtonLink>
           </div>
         }
@@ -557,4 +478,3 @@ export default function Page() {
     </>
   )
 }
-

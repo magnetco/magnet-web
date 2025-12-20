@@ -53,7 +53,7 @@ export function NavbarWithLinksActionsAndCenteredLogo({
     >
       <style>{`:root { --scroll-padding-top: 5.25rem }`}</style>
       <nav>
-        <div className="mx-auto flex h-(--scroll-padding-top) max-w-7xl items-center gap-4 px-6 lg:px-10">
+        <div className="mx-auto flex h-(--scroll-padding-top) w-full items-center gap-4 px-6 lg:px-10">
           <div className="flex flex-1 gap-8 max-lg:hidden">{links}</div>
           <div className="flex items-center">{logo}</div>
           <div className="flex flex-1 items-center justify-end gap-4">

@@ -7,7 +7,7 @@ import { ArrowNarrowRightIcon } from '../icons/arrow-narrow-right-icon'
 export function FooterCategory({ title, children, ...props }: { title: ReactNode } & ComponentProps<'div'>) {
   return (
     <div {...props}>
-      <h3>{title}</h3>
+      <h3 className="font-mono text-xs font-bold uppercase tracking-[0.03em] text-coral">{title}</h3>
       <ul role="list" className="mt-2 flex flex-col gap-2">
         {children}
       </ul>
@@ -17,7 +17,7 @@ export function FooterCategory({ title, children, ...props }: { title: ReactNode
 
 export function FooterLink({ href, className, ...props }: { href: string } & Omit<ComponentProps<'a'>, 'href'>) {
   return (
-    <li className={clsx('text-oxblood', className)}>
+    <li className={clsx('text-coral', className)}>
       <Link href={href} {...props} />
     </li>
   )
@@ -37,7 +37,7 @@ export function SocialLink({
       href={href}
       target="_blank"
       aria-label={name}
-      className={clsx('text-oxblood', className)}
+      className={clsx('text-coral', className)}
       {...props}
     />
   )
@@ -54,19 +54,19 @@ export function NewsletterForm({
 } & ComponentProps<'form'>) {
   return (
     <form className={clsx('flex max-w-sm flex-col gap-2', className)} {...props}>
-      <p>{headline}</p>
-      <div className="flex flex-col gap-4 text-oxblood">{subheadline}</div>
-      <div className="flex items-center border-b border-olive-950/20 py-2 has-[input:focus]:border-olive-950">
+      <p className="text-coral">{headline}</p>
+      <div className="flex flex-col gap-4 text-coral">{subheadline}</div>
+      <div className="flex items-center border-b border-coral/20 py-2 has-[input:focus]:border-coral">
         <input
           type="email"
           placeholder="Email"
           aria-label="Email"
-          className="flex-1 text-oxblood"
+          className="flex-1 text-coral placeholder:text-coral/60"
         />
         <button
           type="submit"
           aria-label="Subscribe"
-          className="relative inline-flex size-7 items-center justify-center rounded-full after:absolute after:-inset-2 hover:bg-olive-950/10 after:pointer-fine:hidden"
+          className="relative inline-flex size-7 items-center justify-center rounded-full after:absolute after:-inset-2 hover:bg-coral/10 after:pointer-fine:hidden text-coral"
         >
           <ArrowNarrowRightIcon />
         </button>
@@ -90,7 +90,10 @@ export function FooterWithNewsletterFormCategoriesAndSocialIcons({
 } & ComponentProps<'footer'>) {
   return (
     <footer className={clsx('pt-16', className)} {...props}>
-      <div className="bg-olive-950/2.5 py-16 text-oxblood">
+      <div
+        className="py-16 text-coral"
+        style={{ backgroundColor: 'var(--color-oxblood)' }}
+      >
         <Container className="flex flex-col gap-16">
           <div className="grid grid-cols-1 gap-x-6 gap-y-16 text-sm/7 lg:grid-cols-2">
             {cta}
@@ -99,7 +102,7 @@ export function FooterWithNewsletterFormCategoriesAndSocialIcons({
             </nav>
           </div>
           <div className="flex items-center justify-between gap-10 text-sm/7">
-            <div className="text-olive-600">{fineprint}</div>
+            <div className="text-coral/80">{fineprint}</div>
             {socialLinks && <div className="flex items-center gap-4 sm:gap-10">{socialLinks}</div>}
           </div>
         </Container>

@@ -1,42 +1,40 @@
-import { AnnouncementBadge } from '@/components/elements/announcement-badge'
 import { ButtonLink, PlainButtonLink } from '@/components/elements/button'
 import { Link } from '@/components/elements/link'
-import { Logo, LogoGrid } from '@/components/elements/logo-grid'
 import { Screenshot } from '@/components/elements/screenshot'
 import { ArrowNarrowRightIcon } from '@/components/icons/arrow-narrow-right-icon'
 import { ChevronIcon } from '@/components/icons/chevron-icon'
 import { Approach, ApproachItem, ApproachStage } from '@/components/sections/approach'
 import { CallToActionSimple } from '@/components/sections/call-to-action-simple'
-import {
-  Feature,
-  FeaturesStackedAlternatingWithDemos,
-} from '@/components/sections/features-stacked-alternating-with-demos'
-import { HeroCenteredWithDemo } from '@/components/sections/hero-centered-with-demo'
+import { FAQsTwoColumnAccordion, Faq } from '@/components/sections/faqs-two-column-accordion'
+import { Feature, FeaturesTwoColumnWithDemos } from '@/components/sections/features-two-column-with-demos'
+import { HeroLeftAlignedWithDemo } from '@/components/sections/hero-left-aligned-with-demo'
 import { Stat, StatsWithGraph } from '@/components/sections/stats-with-graph'
-import { TestimonialTwoColumnWithLargePhoto } from '@/components/sections/testimonial-two-column-with-large-photo'
+import { Testimonial, TestimonialThreeColumnGrid } from '@/components/sections/testimonials-three-column-grid'
 import Image from 'next/image'
 
 export default function Page() {
   return (
     <>
       {/* Hero */}
-      <HeroCenteredWithDemo
+      <HeroLeftAlignedWithDemo
         id="hero"
-        eyebrow={<AnnouncementBadge href="#" text="New: Custom website templates" cta="Learn more" />}
-        headline="Beautiful websites that convert visitors into customers."
+        headline="Paid Media"
         subheadline={
           <p>
-            Build stunning, high-performing websites with our collection of professionally designed templates. Every
-            template is optimized for conversion and built with modern web standards.
+            Paid media should scale confidence, not anxiety. Paid media drives results, but it often feels fragile. Performance 
+            swings, creeping costs, and the constant need to intervene. The issue isn't platforms or spend—it's that paid 
+            media is often run as isolated campaigns instead of a system for stability, learning, and scale. When paid media 
+            is structured correctly, it becomes predictable and scalable.
           </p>
         }
         cta={
           <div className="flex items-center gap-4">
             <ButtonLink href="#" size="lg">
-              Browse templates
+              Get started
             </ButtonLink>
+
             <PlainButtonLink href="#" size="lg">
-              See examples <ArrowNarrowRightIcon />
+              See how it works <ArrowNarrowRightIcon />
             </PlainButtonLink>
           </div>
         }
@@ -90,135 +88,25 @@ export default function Page() {
             </Screenshot>
           </>
         }
-        footer={
-          <LogoGrid>
-            <Logo>
-              <Image
-                src="/img/logos/9-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={51}
-                height={32}
-              />
-              <Image
-                src="/img/logos/9-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={51}
-                height={32}
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/10-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={70}
-                height={32}
-              />
-              <Image
-                src="/img/logos/10-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={70}
-                height={32}
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/11-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={100}
-                height={32}
-              />
-              <Image
-                src="/img/logos/11-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={100}
-                height={32}
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/12-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={85}
-                height={32}
-              />
-              <Image
-                src="/img/logos/12-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={85}
-                height={32}
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/13-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={75}
-                height={32}
-              />
-              <Image
-                src="/img/logos/13-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={75}
-                height={32}
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/8-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={85}
-                height={32}
-              />
-              <Image
-                src="/img/logos/8-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={85}
-                height={32}
-              />
-            </Logo>
-          </LogoGrid>
-        }
       />
 
       {/* Features */}
-      <FeaturesStackedAlternatingWithDemos
+      <FeaturesTwoColumnWithDemos
         id="features"
-        headline="Everything you need to build a stunning website."
+        eyebrow="How we build paid media"
+        headline="Paid media systems built for control, not constant intervention"
         subheadline={
           <p>
-            Our templates come with everything you need to launch fast. Responsive design, SEO optimization, and
-            conversion-focused layouts built right in.
+            Magnet builds paid media as a disciplined acquisition system, not just a collection of ads. Channel strategy 
+            mapped to funnel roles, creative designed for testing and learning, clean tracking, and optimization following 
+            signal, not instinct. The result is clearer insight, steadier performance, and paid media you can rely on as you grow.
           </p>
         }
         features={
           <>
             <Feature
-              headline="Responsive Design"
-              subheadline={
-                <p>
-                  Every template is fully responsive and looks perfect on desktop, tablet, and mobile devices. No
-                  additional work required.
-                </p>
-              }
-              cta={
-                <Link href="#">
-                  Learn more <ChevronIcon />
-                </Link>
-              }
               demo={
-                <Screenshot wallpaper="blue" placement="bottom-right">
+                <Screenshot wallpaper="purple" placement="bottom-right">
                   <Image
                     src="/img/screenshots/1-left-1000-top-800.webp"
                     alt=""
@@ -277,22 +165,25 @@ export default function Page() {
                   />
                 </Screenshot>
               }
-            />
-            <Feature
-              headline="SEO Optimized"
+              headline="Channel Strategy & Funnel Mapping"
               subheadline={
                 <p>
-                  Built with SEO best practices in mind. Clean code, fast loading times, and semantic HTML help your site
-                  rank higher in search results.
+                  Every channel has a role in your funnel. We map channel strategy to funnel roles, ensuring each platform 
+                  serves a specific purpose in moving prospects from awareness to action. This strategic approach means you're 
+                  not just running ads—you're building a system where each channel complements the others. When channels are 
+                  mapped to funnel roles, you understand what's working, why, and how far you can push it. Scaling happens 
+                  only when efficiency holds, and this mapping ensures efficiency at every stage.
                 </p>
               }
               cta={
                 <Link href="#">
-                  Learn more <ChevronIcon />
+                  Learn more <ArrowNarrowRightIcon />
                 </Link>
               }
+            />
+            <Feature
               demo={
-                <Screenshot wallpaper="purple" placement="top-left">
+                <Screenshot wallpaper="blue" placement="bottom-left">
                   <Image
                     src="/img/screenshots/1-right-1000-top-800.webp"
                     alt=""
@@ -351,93 +242,123 @@ export default function Page() {
                   />
                 </Screenshot>
               }
-            />
-            <Feature
-              headline="Conversion Focused"
+              headline="Creative Testing & Learning Systems"
               subheadline={
                 <p>
-                  Every element is designed to convert visitors into customers. Tested layouts, clear CTAs, and
-                  conversion-optimized forms.
+                  Creative that's designed for testing and learning, not just launching. We build systems that continuously 
+                  test, learn, and optimize creative performance. This isn't about guessing what works—it's about building 
+                  a learning system that gets smarter over time. Clean tracking ensures you understand what's working and why, 
+                  and optimization follows signal, not instinct. When creative is built for learning, every campaign becomes 
+                  an opportunity to improve, and performance becomes more predictable over time.
                 </p>
               }
               cta={
                 <Link href="#">
-                  Learn more <ChevronIcon />
+                  Learn more <ArrowNarrowRightIcon />
                 </Link>
-              }
-              demo={
-                <Screenshot wallpaper="brown" placement="bottom-left">
-                  <Image
-                    src="/img/screenshots/1-left-1000-top-800.webp"
-                    alt=""
-                    className="bg-white/75 sm:hidden dark:hidden"
-                    width={1000}
-                    height={800}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1000-top-800.webp"
-                    alt=""
-                    width={1000}
-                    height={800}
-                    className="bg-black/75 not-dark:hidden sm:hidden"
-                  />
-                  <Image
-                    src="/img/screenshots/1-left-1800-top-660.webp"
-                    alt=""
-                    className="bg-white/75 max-sm:hidden lg:hidden dark:hidden"
-                    width={1800}
-                    height={660}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1800-top-660.webp"
-                    alt=""
-                    width={1800}
-                    height={660}
-                    className="bg-black/75 not-dark:hidden max-sm:hidden lg:hidden"
-                  />
-                  <Image
-                    src="/img/screenshots/1-left-1300-top-1300.webp"
-                    alt=""
-                    className="bg-white/75 max-lg:hidden xl:hidden dark:hidden"
-                    width={1300}
-                    height={1300}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1300-top-1300.webp"
-                    alt=""
-                    width={1300}
-                    height={1300}
-                    className="bg-black/75 not-dark:hidden max-lg:hidden xl:hidden"
-                  />
-                  <Image
-                    src="/img/screenshots/1-left-1800-top-1250.webp"
-                    alt=""
-                    className="bg-white/75 max-xl:hidden dark:hidden"
-                    width={1800}
-                    height={1250}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1800-top-1250.webp"
-                    alt=""
-                    width={1800}
-                    height={1250}
-                    className="bg-black/75 not-dark:hidden max-xl:hidden"
-                  />
-                </Screenshot>
               }
             />
           </>
         }
       />
 
+      {/* Stats */}
+      <StatsWithGraph
+        id="stats"
+        eyebrow="Proven results"
+        headline="Paid media that scales with confidence"
+        subheadline={
+          <p>
+            When paid media is built as a system instead of isolated campaigns, performance becomes predictable and scalable. 
+            Our disciplined approach creates steadier performance, clearer insights, and paid media you can rely on as you grow.
+          </p>
+        }
+      >
+        <Stat stat="3.8x" text="Better ROAS for paid media systems vs. isolated campaigns." />
+        <Stat stat="45%" text="Reduction in cost per acquisition when channels are mapped to funnel roles." />
+        <Stat stat="2.6x" text="Faster scaling when paid media is built as a learning system." />
+      </StatsWithGraph>
+
+      {/* Testimonials */}
+      <TestimonialThreeColumnGrid
+        id="testimonial"
+        headline="Paid media that transformed performance"
+        subheadline={
+          <p>
+            See how systematic paid media approaches have helped brands scale with confidence and predictability.
+          </p>
+        }
+      >
+        <Testimonial
+          quote={
+            <p>
+              Before working with Magnet, our paid media felt like a constant fire drill. Performance would swing wildly, 
+              and we never knew if we could scale. The system they built gave us predictability. Now we understand what's 
+              working, why, and how far we can push it. Scaling has become much more reliable.
+            </p>
+          }
+          img={
+            <Image
+              src="/img/avatars/10-size-160.webp"
+              alt=""
+              className="not-dark:bg-white/75 dark:bg-black/75"
+              width={160}
+              height={160}
+            />
+          }
+          name="Thomas Martinez"
+          byline="VP of Growth at ScaleUp"
+        />
+        <Testimonial
+          quote={
+            <p>
+              The channel strategy mapping they did for us was a game-changer. We finally understand how each platform fits 
+              into our funnel, and this clarity has made our paid media much more efficient. We're getting better results 
+              with less spend, and scaling feels sustainable now.
+            </p>
+          }
+          img={
+            <Image
+              src="/img/avatars/15-size-160.webp"
+              alt=""
+              className="not-dark:bg-white/75 dark:bg-black/75"
+              width={160}
+              height={160}
+            />
+          }
+          name="Amanda Chen"
+          byline="Head of Marketing at GrowthLab"
+        />
+        <Testimonial
+          quote={
+            <p>
+              Magnet's creative testing system transformed how we approach paid media. Instead of guessing what works, we're 
+              continuously learning and improving. This learning approach has made our performance much more predictable, and 
+              we're scaling faster than we ever thought possible.
+            </p>
+          }
+          img={
+            <Image
+              src="/img/avatars/13-size-160.webp"
+              alt=""
+              className="not-dark:bg-white/75 dark:bg-black/75"
+              width={160}
+              height={160}
+            />
+          }
+          name="Daniel Park"
+          byline="Director of Acquisition at TechVenture"
+        />
+      </TestimonialThreeColumnGrid>
+
       {/* Approach */}
       <Approach
         id="approach"
-        eyebrow="Our Process"
-        headline="How we build websites that convert"
+        eyebrow="Our Method"
+        headline="How we build brands"
         subheadline={
           <p>
-            We follow a proven four-stage approach to create websites that drive real business results.
+            We follow a proven four-stage approach to create brands that drive real business results.
           </p>
         }
       >
@@ -495,61 +416,58 @@ export default function Page() {
         />
       </Approach>
 
-      {/* Stats */}
-      <StatsWithGraph
-        id="stats"
-        eyebrow="Trusted by thousands"
-        headline="Websites that perform."
-        subheadline={
-          <p>
-            Our templates power thousands of websites across industries. From startups to enterprise, businesses trust
-            our templates to deliver results.
-          </p>
-        }
-      >
-        <Stat stat="10K+" text="Websites launched using our templates." />
-        <Stat stat="95%" text="Customer satisfaction rate — our templates just work." />
-      </StatsWithGraph>
-
-      {/* Testimonial */}
-      <TestimonialTwoColumnWithLargePhoto
-        id="testimonial"
-        quote={
-          <p>
-            "We launched our new website in just one day using one of the templates. The design is beautiful, and we've
-            already seen a 40% increase in conversions. Couldn't be happier with the results."
-          </p>
-        }
-        img={
-          <Image
-            src="/img/avatars/10-size-160.webp"
-            alt=""
-            className="not-dark:bg-white/75 dark:bg-black/75"
-            width={160}
-            height={160}
-          />
-        }
-        name="Sarah Chen"
-        byline="Founder at TechFlow"
-      />
+      {/* FAQs */}
+      <FAQsTwoColumnAccordion id="faqs" headline="Questions about paid media">
+        <Faq
+          id="faq-1"
+          question="What's the difference between paid media as a system vs. isolated campaigns?"
+          answer="Isolated campaigns are one-off efforts that don't connect or learn from each other. A paid media system maps channels to funnel roles, builds creative for testing and learning, uses clean tracking, and optimizes based on signal. This systematic approach creates predictability, enables learning, and makes scaling sustainable. Instead of constant fire drills, you get steady performance you can rely on."
+        />
+        <Faq
+          id="faq-2"
+          question="How do you map channels to funnel roles?"
+          answer="We analyze how each channel performs at different stages of the funnel—awareness, consideration, decision, and retention. Then we map each channel to its optimal role. For example, some channels excel at top-of-funnel awareness, while others are better at bottom-of-funnel conversion. This mapping ensures each channel serves a specific purpose and complements the others, creating a more efficient system overall."
+        />
+        <Faq
+          id="faq-3"
+          question="How do you ensure paid media performance is predictable?"
+          answer="Predictability comes from building a learning system, not just running campaigns. We use clean tracking to understand what's working and why, build creative designed for testing, and optimize based on signal rather than instinct. When you understand the system, you can predict performance and scale with confidence. This systematic approach reduces swings and creates steadier results."
+        />
+        <Faq
+          id="faq-4"
+          question="What platforms do you work with?"
+          answer="We work with all major paid media platforms including Google Ads, Meta (Facebook/Instagram), LinkedIn, Twitter/X, TikTok, and more. The key isn't the platform—it's building a systematic approach that works across channels. We help you understand which platforms serve which roles in your funnel and how to optimize each for maximum efficiency."
+        />
+        <Faq
+          id="faq-5"
+          question="How long does it take to see results from systematic paid media?"
+          answer="You'll typically see improvements in efficiency and predictability within the first month as the system takes shape. The real benefits—steadier performance, clearer insights, and scalable growth—build over 2-3 months as the learning system matures and you understand what works and why. This foundation enables sustainable scaling."
+        />
+        <Faq
+          id="faq-6"
+          question="How do you measure paid media success?"
+          answer="We measure success through multiple metrics: ROAS, cost per acquisition, conversion rates, and ultimately, revenue growth. But the real measure is whether paid media feels predictable and scalable. When you understand what's working, why, and how far you can push it, paid media becomes a reliable growth engine instead of a constant source of anxiety."
+        />
+      </FAQsTwoColumnAccordion>
 
       {/* Call To Action */}
       <CallToActionSimple
         id="call-to-action"
-        headline="Ready to launch your website?"
+        headline="Ready to build paid media that scales?"
         subheadline={
           <p>
-            Browse our collection of professionally designed templates and find the perfect one for your business. All
-            templates are fully customizable and ready to deploy.
+            Let's create paid media systems that scale confidence, not anxiety. Build a disciplined acquisition system 
+            that provides clearer insight, steadier performance, and paid media you can rely on as you grow.
           </p>
         }
         cta={
           <div className="flex items-center gap-4">
             <ButtonLink href="#" size="lg">
-              Browse templates
+              Get started
             </ButtonLink>
+
             <PlainButtonLink href="#" size="lg">
-              Book a demo <ChevronIcon />
+              Book a consultation <ChevronIcon />
             </PlainButtonLink>
           </div>
         }
@@ -557,4 +475,3 @@ export default function Page() {
     </>
   )
 }
-

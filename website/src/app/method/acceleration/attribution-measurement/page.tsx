@@ -1,42 +1,41 @@
-import { AnnouncementBadge } from '@/components/elements/announcement-badge'
 import { ButtonLink, PlainButtonLink } from '@/components/elements/button'
 import { Link } from '@/components/elements/link'
-import { Logo, LogoGrid } from '@/components/elements/logo-grid'
 import { Screenshot } from '@/components/elements/screenshot'
 import { ArrowNarrowRightIcon } from '@/components/icons/arrow-narrow-right-icon'
 import { ChevronIcon } from '@/components/icons/chevron-icon'
 import { Approach, ApproachItem, ApproachStage } from '@/components/sections/approach'
 import { CallToActionSimple } from '@/components/sections/call-to-action-simple'
-import {
-  Feature,
-  FeaturesStackedAlternatingWithDemos,
-} from '@/components/sections/features-stacked-alternating-with-demos'
-import { HeroCenteredWithDemo } from '@/components/sections/hero-centered-with-demo'
+import { FAQsTwoColumnAccordion, Faq } from '@/components/sections/faqs-two-column-accordion'
+import { Feature, FeaturesTwoColumnWithDemos } from '@/components/sections/features-two-column-with-demos'
+import { HeroLeftAlignedWithDemo } from '@/components/sections/hero-left-aligned-with-demo'
 import { Stat, StatsWithGraph } from '@/components/sections/stats-with-graph'
-import { TestimonialTwoColumnWithLargePhoto } from '@/components/sections/testimonial-two-column-with-large-photo'
+import { Testimonial, TestimonialThreeColumnGrid } from '@/components/sections/testimonials-three-column-grid'
 import Image from 'next/image'
 
 export default function Page() {
   return (
     <>
       {/* Hero */}
-      <HeroCenteredWithDemo
+      <HeroLeftAlignedWithDemo
         id="hero"
-        eyebrow={<AnnouncementBadge href="#" text="New: Custom website templates" cta="Learn more" />}
-        headline="Beautiful websites that convert visitors into customers."
+        headline="Attribution & Measurement"
         subheadline={
           <p>
-            Build stunning, high-performing websites with our collection of professionally designed templates. Every
-            template is optimized for conversion and built with modern web standards.
+            Measure what matters and optimize what works. Attribution & measurement is about understanding what&apos;s working, 
+            why, and how to optimize it. It&apos;s the system that provides clarity into which channels, campaigns, and touchpoints 
+            drive the best results. We build attribution & measurement systems that go beyond basic tracking—they&apos;re comprehensive 
+            frameworks that connect the dots between channels, touchpoints, and outcomes. When attribution & measurement are done 
+            right, they become a powerful acceleration tool that makes every investment more effective.
           </p>
         }
         cta={
           <div className="flex items-center gap-4">
             <ButtonLink href="#" size="lg">
-              Browse templates
+              Get started
             </ButtonLink>
+
             <PlainButtonLink href="#" size="lg">
-              See examples <ArrowNarrowRightIcon />
+              See how it works <ArrowNarrowRightIcon />
             </PlainButtonLink>
           </div>
         }
@@ -90,135 +89,25 @@ export default function Page() {
             </Screenshot>
           </>
         }
-        footer={
-          <LogoGrid>
-            <Logo>
-              <Image
-                src="/img/logos/9-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={51}
-                height={32}
-              />
-              <Image
-                src="/img/logos/9-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={51}
-                height={32}
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/10-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={70}
-                height={32}
-              />
-              <Image
-                src="/img/logos/10-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={70}
-                height={32}
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/11-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={100}
-                height={32}
-              />
-              <Image
-                src="/img/logos/11-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={100}
-                height={32}
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/12-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={85}
-                height={32}
-              />
-              <Image
-                src="/img/logos/12-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={85}
-                height={32}
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/13-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={75}
-                height={32}
-              />
-              <Image
-                src="/img/logos/13-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={75}
-                height={32}
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/8-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={85}
-                height={32}
-              />
-              <Image
-                src="/img/logos/8-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={85}
-                height={32}
-              />
-            </Logo>
-          </LogoGrid>
-        }
       />
 
       {/* Features */}
-      <FeaturesStackedAlternatingWithDemos
+      <FeaturesTwoColumnWithDemos
         id="features"
-        headline="Everything you need to build a stunning website."
+        eyebrow="How we build attribution systems"
+        headline="Measurement systems that drive optimization"
         subheadline={
           <p>
-            Our templates come with everything you need to launch fast. Responsive design, SEO optimization, and
-            conversion-focused layouts built right in.
+            We build attribution & measurement systems that go beyond basic tracking—they&apos;re comprehensive frameworks that 
+            connect the dots between channels, touchpoints, and outcomes. Every metric serves a purpose, every insight leads to 
+            action, and every measurement makes optimization more effective.
           </p>
         }
         features={
           <>
             <Feature
-              headline="Responsive Design"
-              subheadline={
-                <p>
-                  Every template is fully responsive and looks perfect on desktop, tablet, and mobile devices. No
-                  additional work required.
-                </p>
-              }
-              cta={
-                <Link href="#">
-                  Learn more <ChevronIcon />
-                </Link>
-              }
               demo={
-                <Screenshot wallpaper="blue" placement="bottom-right">
+                <Screenshot wallpaper="purple" placement="bottom-right">
                   <Image
                     src="/img/screenshots/1-left-1000-top-800.webp"
                     alt=""
@@ -277,22 +166,25 @@ export default function Page() {
                   />
                 </Screenshot>
               }
-            />
-            <Feature
-              headline="SEO Optimized"
+              headline="Multi-Touch Attribution"
               subheadline={
                 <p>
-                  Built with SEO best practices in mind. Clean code, fast loading times, and semantic HTML help your site
-                  rank higher in search results.
+                  Attribution that understands the full customer journey, not just the last click. We build multi-touch attribution 
+                  systems that recognize how channels work together to drive conversions. This comprehensive approach means you 
+                  understand which channels create awareness, which drive consideration, and which close deals. When attribution 
+                  is multi-touch, you can optimize the entire funnel, not just the last touchpoint, making every investment more 
+                  effective.
                 </p>
               }
               cta={
                 <Link href="#">
-                  Learn more <ChevronIcon />
+                  Learn more <ArrowNarrowRightIcon />
                 </Link>
               }
+            />
+            <Feature
               demo={
-                <Screenshot wallpaper="purple" placement="top-left">
+                <Screenshot wallpaper="blue" placement="bottom-left">
                   <Image
                     src="/img/screenshots/1-right-1000-top-800.webp"
                     alt=""
@@ -351,93 +243,123 @@ export default function Page() {
                   />
                 </Screenshot>
               }
-            />
-            <Feature
-              headline="Conversion Focused"
+              headline="Actionable Insights & Reporting"
               subheadline={
                 <p>
-                  Every element is designed to convert visitors into customers. Tested layouts, clear CTAs, and
-                  conversion-optimized forms.
+                  Reporting that provides actionable insights, not just numbers. We build measurement systems that answer &quot;so what?&quot; 
+                  not just &quot;what happened?&quot; This means clear dashboards that highlight opportunities, automated reports that 
+                  surface insights, and analysis that guides optimization decisions. When insights are actionable, every metric becomes 
+                  an opportunity to improve, and optimization becomes systematic rather than reactive. The result is measurement that 
+                  actually drives better decisions and better results.
                 </p>
               }
               cta={
                 <Link href="#">
-                  Learn more <ChevronIcon />
+                  Learn more <ArrowNarrowRightIcon />
                 </Link>
-              }
-              demo={
-                <Screenshot wallpaper="brown" placement="bottom-left">
-                  <Image
-                    src="/img/screenshots/1-left-1000-top-800.webp"
-                    alt=""
-                    className="bg-white/75 sm:hidden dark:hidden"
-                    width={1000}
-                    height={800}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1000-top-800.webp"
-                    alt=""
-                    width={1000}
-                    height={800}
-                    className="bg-black/75 not-dark:hidden sm:hidden"
-                  />
-                  <Image
-                    src="/img/screenshots/1-left-1800-top-660.webp"
-                    alt=""
-                    className="bg-white/75 max-sm:hidden lg:hidden dark:hidden"
-                    width={1800}
-                    height={660}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1800-top-660.webp"
-                    alt=""
-                    width={1800}
-                    height={660}
-                    className="bg-black/75 not-dark:hidden max-sm:hidden lg:hidden"
-                  />
-                  <Image
-                    src="/img/screenshots/1-left-1300-top-1300.webp"
-                    alt=""
-                    className="bg-white/75 max-lg:hidden xl:hidden dark:hidden"
-                    width={1300}
-                    height={1300}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1300-top-1300.webp"
-                    alt=""
-                    width={1300}
-                    height={1300}
-                    className="bg-black/75 not-dark:hidden max-lg:hidden xl:hidden"
-                  />
-                  <Image
-                    src="/img/screenshots/1-left-1800-top-1250.webp"
-                    alt=""
-                    className="bg-white/75 max-xl:hidden dark:hidden"
-                    width={1800}
-                    height={1250}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1800-top-1250.webp"
-                    alt=""
-                    width={1800}
-                    height={1250}
-                    className="bg-black/75 not-dark:hidden max-xl:hidden"
-                  />
-                </Screenshot>
               }
             />
           </>
         }
       />
 
+      {/* Stats */}
+      <StatsWithGraph
+        id="stats"
+        eyebrow="Proven results"
+        headline="Attribution that drives better decisions"
+        subheadline={
+          <p>
+            When attribution & measurement systems provide multi-touch attribution and actionable insights, optimization becomes 
+            more effective and investments perform better. Our comprehensive approach creates clarity that enables better decisions.
+          </p>
+        }
+      >
+        <Stat stat="4.1x" text="Better ROI on marketing investments when multi-touch attribution guides optimization." />
+        <Stat stat="72%" text="Increase in optimization effectiveness when insights are actionable vs. just descriptive." />
+        <Stat stat="3.0x" text="Faster decision-making when measurement systems provide clear, actionable insights." />
+      </StatsWithGraph>
+
+      {/* Testimonials */}
+      <TestimonialThreeColumnGrid
+        id="testimonial"
+        headline="Attribution that transformed optimization"
+        subheadline={
+          <p>
+            See how comprehensive attribution & measurement systems have helped brands make better decisions and optimize more effectively.
+          </p>
+        }
+      >
+        <Testimonial
+          quote={
+            <p>
+              Before working with Magnet, we had no idea which channels were actually driving results. The multi-touch attribution 
+              they built showed us how channels work together, and now we can optimize the entire funnel, not just the last touchpoint. 
+              Our marketing ROI has improved dramatically.
+            </p>
+          }
+          img={
+            <Image
+              src="/img/avatars/10-size-160.webp"
+              alt=""
+              className="not-dark:bg-white/75 dark:bg-black/75"
+              width={160}
+              height={160}
+            />
+          }
+          name="Kevin Martinez"
+          byline="Head of Marketing at MeasureCo"
+        />
+        <Testimonial
+          quote={
+            <p>
+              The actionable insights system Magnet built for us has been incredible. Instead of drowning in data, we get clear 
+              reports that highlight opportunities. Every metric now has context and meaning, and we can actually act on what we 
+              see. This has made our optimization efforts much more effective.
+            </p>
+          }
+          img={
+            <Image
+              src="/img/avatars/15-size-160.webp"
+              alt=""
+              className="not-dark:bg-white/75 dark:bg-black/75"
+              width={160}
+              height={160}
+            />
+          }
+          name="Nicole Chen"
+          byline="VP of Growth at OptimizeLab"
+        />
+        <Testimonial
+          quote={
+            <p>
+              Magnet&apos;s attribution & measurement setup gave us the clarity we needed to make better decisions. The multi-touch 
+              attribution shows us how channels work together, and the actionable insights mean we can optimize systematically. 
+              Our marketing investments are performing much better now.
+            </p>
+          }
+          img={
+            <Image
+              src="/img/avatars/13-size-160.webp"
+              alt=""
+              className="not-dark:bg-white/75 dark:bg-black/75"
+              width={160}
+              height={160}
+            />
+          }
+          name="Michael Park"
+          byline="Director of Analytics at DataFlow"
+        />
+      </TestimonialThreeColumnGrid>
+
       {/* Approach */}
       <Approach
         id="approach"
-        eyebrow="Our Process"
-        headline="How we build websites that convert"
+        eyebrow="Our Method"
+        headline="How we build brands"
         subheadline={
           <p>
-            We follow a proven four-stage approach to create websites that drive real business results.
+            We follow a proven four-stage approach to create brands that drive real business results.
           </p>
         }
       >
@@ -495,61 +417,58 @@ export default function Page() {
         />
       </Approach>
 
-      {/* Stats */}
-      <StatsWithGraph
-        id="stats"
-        eyebrow="Trusted by thousands"
-        headline="Websites that perform."
-        subheadline={
-          <p>
-            Our templates power thousands of websites across industries. From startups to enterprise, businesses trust
-            our templates to deliver results.
-          </p>
-        }
-      >
-        <Stat stat="10K+" text="Websites launched using our templates." />
-        <Stat stat="95%" text="Customer satisfaction rate — our templates just work." />
-      </StatsWithGraph>
-
-      {/* Testimonial */}
-      <TestimonialTwoColumnWithLargePhoto
-        id="testimonial"
-        quote={
-          <p>
-            "We launched our new website in just one day using one of the templates. The design is beautiful, and we've
-            already seen a 40% increase in conversions. Couldn't be happier with the results."
-          </p>
-        }
-        img={
-          <Image
-            src="/img/avatars/10-size-160.webp"
-            alt=""
-            className="not-dark:bg-white/75 dark:bg-black/75"
-            width={160}
-            height={160}
-          />
-        }
-        name="Sarah Chen"
-        byline="Founder at TechFlow"
-      />
+      {/* FAQs */}
+      <FAQsTwoColumnAccordion id="faqs" headline="Questions about attribution & measurement">
+        <Faq
+          id="faq-1"
+          question="What's the difference between multi-touch and last-click attribution?"
+          answer="Last-click attribution gives all credit to the final touchpoint before conversion. Multi-touch attribution recognizes how channels work together throughout the customer journey. It understands which channels create awareness, which drive consideration, and which close deals. This comprehensive approach means you can optimize the entire funnel, not just the last touchpoint, making every investment more effective."
+        />
+        <Faq
+          id="faq-2"
+          question="How do you make insights actionable?"
+          answer="We build reporting systems that answer 'so what?' not just 'what happened?' This means clear dashboards that highlight opportunities, automated reports that surface insights, and analysis that guides optimization decisions. When insights are actionable, every metric becomes an opportunity to improve, and optimization becomes systematic rather than reactive."
+        />
+        <Faq
+          id="faq-3"
+          question="What metrics should we be tracking?"
+          answer="The metrics you track depend on your business goals, but typically include acquisition metrics (traffic, leads, cost per acquisition), engagement metrics (time on site, pages per visit, bounce rate), conversion metrics (conversion rate, revenue, customer lifetime value), and retention metrics (churn rate, repeat purchase rate). We help you identify the metrics that matter most for your business and build systems to track them effectively."
+        />
+        <Faq
+          id="faq-4"
+          question="How long does it take to set up attribution & measurement systems?"
+          answer="The timeline depends on the scope and complexity, but typically takes 4-8 weeks for a comprehensive attribution & measurement system. This includes data integration, tracking implementation, dashboard creation, and reporting setup. For larger or more complex systems, the timeline may be longer to ensure accuracy and thoroughness."
+        />
+        <Faq
+          id="faq-5"
+          question="Can you integrate with our existing analytics tools?"
+          answer="Yes. We work with all major analytics platforms and can integrate attribution & measurement into your existing setup. Whether you're using Google Analytics, Adobe Analytics, Mixpanel, or another platform, we can build comprehensive attribution systems that work with your current infrastructure."
+        />
+        <Faq
+          id="faq-6"
+          question="How do attribution & measurement integrate with other acceleration components?"
+          answer="Attribution & measurement is the foundation that makes all other acceleration components more effective. It provides clarity into what's working, enables optimization, and ensures every investment is measurable. When measurement systems are in place, you can make better decisions about where to invest, how to optimize, and what to scale."
+        />
+      </FAQsTwoColumnAccordion>
 
       {/* Call To Action */}
       <CallToActionSimple
         id="call-to-action"
-        headline="Ready to launch your website?"
+        headline="Ready to measure what matters?"
         subheadline={
           <p>
-            Browse our collection of professionally designed templates and find the perfect one for your business. All
-            templates are fully customizable and ready to deploy.
+            Let&apos;s create attribution & measurement systems that drive optimization. Build comprehensive frameworks that 
+            connect the dots between channels, touchpoints, and outcomes.
           </p>
         }
         cta={
           <div className="flex items-center gap-4">
             <ButtonLink href="#" size="lg">
-              Browse templates
+              Get started
             </ButtonLink>
+
             <PlainButtonLink href="#" size="lg">
-              Book a demo <ChevronIcon />
+              Book a consultation <ChevronIcon />
             </PlainButtonLink>
           </div>
         }
@@ -557,4 +476,3 @@ export default function Page() {
     </>
   )
 }
-

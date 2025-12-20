@@ -1,42 +1,41 @@
-import { AnnouncementBadge } from '@/components/elements/announcement-badge'
 import { ButtonLink, PlainButtonLink } from '@/components/elements/button'
 import { Link } from '@/components/elements/link'
-import { Logo, LogoGrid } from '@/components/elements/logo-grid'
 import { Screenshot } from '@/components/elements/screenshot'
 import { ArrowNarrowRightIcon } from '@/components/icons/arrow-narrow-right-icon'
 import { ChevronIcon } from '@/components/icons/chevron-icon'
 import { Approach, ApproachItem, ApproachStage } from '@/components/sections/approach'
 import { CallToActionSimple } from '@/components/sections/call-to-action-simple'
-import {
-  Feature,
-  FeaturesStackedAlternatingWithDemos,
-} from '@/components/sections/features-stacked-alternating-with-demos'
-import { HeroCenteredWithDemo } from '@/components/sections/hero-centered-with-demo'
+import { FAQsTwoColumnAccordion, Faq } from '@/components/sections/faqs-two-column-accordion'
+import { Feature, FeaturesTwoColumnWithDemos } from '@/components/sections/features-two-column-with-demos'
+import { HeroLeftAlignedWithDemo } from '@/components/sections/hero-left-aligned-with-demo'
 import { Stat, StatsWithGraph } from '@/components/sections/stats-with-graph'
-import { TestimonialTwoColumnWithLargePhoto } from '@/components/sections/testimonial-two-column-with-large-photo'
+import { Testimonial, TestimonialThreeColumnGrid } from '@/components/sections/testimonials-three-column-grid'
 import Image from 'next/image'
 
 export default function Page() {
   return (
     <>
       {/* Hero */}
-      <HeroCenteredWithDemo
+      <HeroLeftAlignedWithDemo
         id="hero"
-        eyebrow={<AnnouncementBadge href="#" text="New: Custom website templates" cta="Learn more" />}
-        headline="Beautiful websites that convert visitors into customers."
+        headline="Predictive Intelligence"
         subheadline={
           <p>
-            Build stunning, high-performing websites with our collection of professionally designed templates. Every
-            template is optimized for conversion and built with modern web standards.
+            Predict what customers need before they ask. Predictive intelligence is about using data and patterns to predict what 
+            customers need before they ask. It&apos;s the system that makes your retention efforts more proactive and more effective. 
+            We build predictive intelligence systems that go beyond basic analytics—they&apos;re comprehensive frameworks that identify 
+            patterns, predict behavior, and enable proactive interventions that improve outcomes. When predictive intelligence is done 
+            right, it becomes a powerful retention tool that compounds over time.
           </p>
         }
         cta={
           <div className="flex items-center gap-4">
             <ButtonLink href="#" size="lg">
-              Browse templates
+              Get started
             </ButtonLink>
+
             <PlainButtonLink href="#" size="lg">
-              See examples <ArrowNarrowRightIcon />
+              See how it works <ArrowNarrowRightIcon />
             </PlainButtonLink>
           </div>
         }
@@ -90,135 +89,25 @@ export default function Page() {
             </Screenshot>
           </>
         }
-        footer={
-          <LogoGrid>
-            <Logo>
-              <Image
-                src="/img/logos/9-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={51}
-                height={32}
-              />
-              <Image
-                src="/img/logos/9-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={51}
-                height={32}
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/10-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={70}
-                height={32}
-              />
-              <Image
-                src="/img/logos/10-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={70}
-                height={32}
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/11-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={100}
-                height={32}
-              />
-              <Image
-                src="/img/logos/11-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={100}
-                height={32}
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/12-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={85}
-                height={32}
-              />
-              <Image
-                src="/img/logos/12-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={85}
-                height={32}
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/13-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={75}
-                height={32}
-              />
-              <Image
-                src="/img/logos/13-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={75}
-                height={32}
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/8-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={85}
-                height={32}
-              />
-              <Image
-                src="/img/logos/8-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={85}
-                height={32}
-              />
-            </Logo>
-          </LogoGrid>
-        }
       />
 
       {/* Features */}
-      <FeaturesStackedAlternatingWithDemos
+      <FeaturesTwoColumnWithDemos
         id="features"
-        headline="Everything you need to build a stunning website."
+        eyebrow="How we build predictive intelligence"
+        headline="Intelligence systems that predict needs"
         subheadline={
           <p>
-            Our templates come with everything you need to launch fast. Responsive design, SEO optimization, and
-            conversion-focused layouts built right in.
+            We build predictive intelligence systems that go beyond basic analytics—they&apos;re comprehensive frameworks that identify 
+            patterns, predict behavior, and enable proactive interventions that improve outcomes. Every prediction is designed to make 
+            your retention efforts more proactive and more effective.
           </p>
         }
         features={
           <>
             <Feature
-              headline="Responsive Design"
-              subheadline={
-                <p>
-                  Every template is fully responsive and looks perfect on desktop, tablet, and mobile devices. No
-                  additional work required.
-                </p>
-              }
-              cta={
-                <Link href="#">
-                  Learn more <ChevronIcon />
-                </Link>
-              }
               demo={
-                <Screenshot wallpaper="blue" placement="bottom-right">
+                <Screenshot wallpaper="purple" placement="bottom-right">
                   <Image
                     src="/img/screenshots/1-left-1000-top-800.webp"
                     alt=""
@@ -277,22 +166,24 @@ export default function Page() {
                   />
                 </Screenshot>
               }
-            />
-            <Feature
-              headline="SEO Optimized"
+              headline="Pattern Recognition & Prediction"
               subheadline={
                 <p>
-                  Built with SEO best practices in mind. Clean code, fast loading times, and semantic HTML help your site
-                  rank higher in search results.
+                  Systems that recognize patterns and predict behavior before it happens. We build predictive intelligence that 
+                  analyzes customer data, identifies patterns, and predicts what customers need next. This pattern-based approach 
+                  means you can be proactive rather than reactive, addressing needs before they become problems. When predictions are 
+                  accurate, retention efforts become more effective because you&apos;re helping customers before they need to ask.
                 </p>
               }
               cta={
                 <Link href="#">
-                  Learn more <ChevronIcon />
+                  Learn more <ArrowNarrowRightIcon />
                 </Link>
               }
+            />
+            <Feature
               demo={
-                <Screenshot wallpaper="purple" placement="top-left">
+                <Screenshot wallpaper="blue" placement="bottom-left">
                   <Image
                     src="/img/screenshots/1-right-1000-top-800.webp"
                     alt=""
@@ -351,93 +242,123 @@ export default function Page() {
                   />
                 </Screenshot>
               }
-            />
-            <Feature
-              headline="Conversion Focused"
+              headline="Proactive Intervention Systems"
               subheadline={
                 <p>
-                  Every element is designed to convert visitors into customers. Tested layouts, clear CTAs, and
-                  conversion-optimized forms.
+                  Interventions that happen before problems arise, not after. We build predictive intelligence systems that don&apos;t 
+                  just predict—they enable proactive interventions that improve outcomes. This means identifying at-risk customers 
+                  before they churn, recognizing upsell opportunities before customers ask, and providing support before problems 
+                  become issues. When interventions are proactive, retention efforts become more effective because you&apos;re addressing 
+                  needs before they become problems.
                 </p>
               }
               cta={
                 <Link href="#">
-                  Learn more <ChevronIcon />
+                  Learn more <ArrowNarrowRightIcon />
                 </Link>
-              }
-              demo={
-                <Screenshot wallpaper="brown" placement="bottom-left">
-                  <Image
-                    src="/img/screenshots/1-left-1000-top-800.webp"
-                    alt=""
-                    className="bg-white/75 sm:hidden dark:hidden"
-                    width={1000}
-                    height={800}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1000-top-800.webp"
-                    alt=""
-                    width={1000}
-                    height={800}
-                    className="bg-black/75 not-dark:hidden sm:hidden"
-                  />
-                  <Image
-                    src="/img/screenshots/1-left-1800-top-660.webp"
-                    alt=""
-                    className="bg-white/75 max-sm:hidden lg:hidden dark:hidden"
-                    width={1800}
-                    height={660}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1800-top-660.webp"
-                    alt=""
-                    width={1800}
-                    height={660}
-                    className="bg-black/75 not-dark:hidden max-sm:hidden lg:hidden"
-                  />
-                  <Image
-                    src="/img/screenshots/1-left-1300-top-1300.webp"
-                    alt=""
-                    className="bg-white/75 max-lg:hidden xl:hidden dark:hidden"
-                    width={1300}
-                    height={1300}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1300-top-1300.webp"
-                    alt=""
-                    width={1300}
-                    height={1300}
-                    className="bg-black/75 not-dark:hidden max-lg:hidden xl:hidden"
-                  />
-                  <Image
-                    src="/img/screenshots/1-left-1800-top-1250.webp"
-                    alt=""
-                    className="bg-white/75 max-xl:hidden dark:hidden"
-                    width={1800}
-                    height={1250}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1800-top-1250.webp"
-                    alt=""
-                    width={1800}
-                    height={1250}
-                    className="bg-black/75 not-dark:hidden max-xl:hidden"
-                  />
-                </Screenshot>
               }
             />
           </>
         }
       />
 
+      {/* Stats */}
+      <StatsWithGraph
+        id="stats"
+        eyebrow="Proven results"
+        headline="Predictive intelligence that drives proactive retention"
+        subheadline={
+          <p>
+            When predictive intelligence systems recognize patterns and enable proactive interventions, retention efforts become more 
+            effective. Our comprehensive approach creates systems that predict needs and improve outcomes.
+          </p>
+        }
+      >
+        <Stat stat="4.2x" text="Better retention rates when predictive intelligence enables proactive interventions vs. reactive retention." />
+        <Stat stat="68%" text="Reduction in churn when at-risk customers are identified and supported before they leave." />
+        <Stat stat="3.1x" text="Higher customer lifetime value when predictive intelligence identifies upsell opportunities proactively." />
+      </StatsWithGraph>
+
+      {/* Testimonials */}
+      <TestimonialThreeColumnGrid
+        id="testimonial"
+        headline="Predictive intelligence that transformed retention"
+        subheadline={
+          <p>
+            See how comprehensive predictive intelligence systems have helped brands become more proactive and improve retention.
+          </p>
+        }
+      >
+        <Testimonial
+          quote={
+            <p>
+              Before working with Magnet, we were always reacting to customer issues. The predictive intelligence system they built 
+              identifies patterns and predicts what customers need before they ask. Now we&apos;re proactively addressing needs, and 
+              our retention rates have improved dramatically.
+            </p>
+          }
+          img={
+            <Image
+              src="/img/avatars/10-size-160.webp"
+              alt=""
+              className="not-dark:bg-white/75 dark:bg-black/75"
+              width={160}
+              height={160}
+            />
+          }
+          name="David Park"
+          byline="Head of Analytics at PredictCo"
+        />
+        <Testimonial
+          quote={
+            <p>
+              The proactive intervention system Magnet created for us has been incredible. Instead of waiting for customers to have 
+              problems, we&apos;re identifying at-risk customers and supporting them before they churn. This has reduced our churn 
+              significantly, and customers appreciate the proactive support.
+            </p>
+          }
+          img={
+            <Image
+              src="/img/avatars/15-size-160.webp"
+              alt=""
+              className="not-dark:bg-white/75 dark:bg-black/75"
+              width={160}
+              height={160}
+            />
+          }
+          name="Rachel Kim"
+          byline="VP of Customer Success at IntelligenceLab"
+        />
+        <Testimonial
+          quote={
+            <p>
+              Magnet&apos;s predictive intelligence transformed how we approach retention. The pattern recognition identifies opportunities 
+              we wouldn&apos;t have seen, and the proactive interventions mean we&apos;re helping customers before they need to ask. 
+              Our retention efforts are more effective than ever, and customers are seeing value faster.
+            </p>
+          }
+          img={
+            <Image
+              src="/img/avatars/13-size-160.webp"
+              alt=""
+              className="not-dark:bg-white/75 dark:bg-black/75"
+              width={160}
+              height={160}
+            />
+          }
+          name="Thomas Chen"
+          byline="Director of Retention at SmartCo"
+        />
+      </TestimonialThreeColumnGrid>
+
       {/* Approach */}
       <Approach
         id="approach"
-        eyebrow="Our Process"
-        headline="How we build websites that convert"
+        eyebrow="Our Method"
+        headline="How we build brands"
         subheadline={
           <p>
-            We follow a proven four-stage approach to create websites that drive real business results.
+            We follow a proven four-stage approach to create brands that drive real business results.
           </p>
         }
       >
@@ -495,61 +416,58 @@ export default function Page() {
         />
       </Approach>
 
-      {/* Stats */}
-      <StatsWithGraph
-        id="stats"
-        eyebrow="Trusted by thousands"
-        headline="Websites that perform."
-        subheadline={
-          <p>
-            Our templates power thousands of websites across industries. From startups to enterprise, businesses trust
-            our templates to deliver results.
-          </p>
-        }
-      >
-        <Stat stat="10K+" text="Websites launched using our templates." />
-        <Stat stat="95%" text="Customer satisfaction rate — our templates just work." />
-      </StatsWithGraph>
-
-      {/* Testimonial */}
-      <TestimonialTwoColumnWithLargePhoto
-        id="testimonial"
-        quote={
-          <p>
-            "We launched our new website in just one day using one of the templates. The design is beautiful, and we've
-            already seen a 40% increase in conversions. Couldn't be happier with the results."
-          </p>
-        }
-        img={
-          <Image
-            src="/img/avatars/10-size-160.webp"
-            alt=""
-            className="not-dark:bg-white/75 dark:bg-black/75"
-            width={160}
-            height={160}
-          />
-        }
-        name="Sarah Chen"
-        byline="Founder at TechFlow"
-      />
+      {/* FAQs */}
+      <FAQsTwoColumnAccordion id="faqs" headline="Questions about predictive intelligence">
+        <Faq
+          id="faq-1"
+          question="What's the difference between predictive intelligence and basic analytics?"
+          answer="Basic analytics tell you what happened. Predictive intelligence tells you what will happen. Analytics are reactive—they analyze past behavior. Predictive intelligence is proactive—it identifies patterns and predicts future behavior, enabling interventions before problems arise. When predictive intelligence is done right, it makes retention efforts more effective because you're addressing needs before they become problems."
+        />
+        <Faq
+          id="faq-2"
+          question="What types of patterns can predictive intelligence identify?"
+          answer="Predictive intelligence can identify a wide range of patterns: churn risk indicators, upsell opportunities, feature adoption patterns, engagement trends, support needs, and more. The key is identifying patterns that indicate what customers need next, then enabling proactive interventions that improve outcomes."
+        />
+        <Faq
+          id="faq-3"
+          question="How accurate are predictive intelligence predictions?"
+          answer="Prediction accuracy depends on data quality, pattern complexity, and model sophistication. We build predictive intelligence systems that continuously learn and improve, starting with high-confidence predictions and expanding as the system matures. The goal isn't perfect predictions—it's predictions accurate enough to enable proactive interventions that improve outcomes."
+        />
+        <Faq
+          id="faq-4"
+          question="How long does it take to see results from predictive intelligence?"
+          answer="You'll typically see initial predictions within the first month as pattern recognition systems are implemented. The real impact—proactive interventions, better retention, and improved outcomes—builds over 2-3 months as the system learns patterns and predictions become more accurate."
+        />
+        <Faq
+          id="faq-5"
+          question="Can predictive intelligence work with limited data?"
+          answer="Yes, but prediction accuracy improves with more data. We can build predictive intelligence systems that work with limited data by starting with high-confidence patterns and expanding as more data becomes available. The key is building systems that learn and improve over time, not requiring perfect data from day one."
+        />
+        <Faq
+          id="faq-6"
+          question="How do you measure predictive intelligence effectiveness?"
+          answer="We measure success through multiple metrics: prediction accuracy, intervention success rates, churn reduction, upsell conversion rates, and ultimately, retention and customer lifetime value. But the real measure is whether predictive intelligence enables proactive interventions that improve outcomes. We track both quantitative metrics and qualitative outcomes to continuously improve predictive systems."
+        />
+      </FAQsTwoColumnAccordion>
 
       {/* Call To Action */}
       <CallToActionSimple
         id="call-to-action"
-        headline="Ready to launch your website?"
+        headline="Ready to predict what customers need?"
         subheadline={
           <p>
-            Browse our collection of professionally designed templates and find the perfect one for your business. All
-            templates are fully customizable and ready to deploy.
+            Let&apos;s create predictive intelligence systems that drive proactive retention. Build comprehensive frameworks that 
+            identify patterns, predict behavior, and enable interventions that improve outcomes.
           </p>
         }
         cta={
           <div className="flex items-center gap-4">
             <ButtonLink href="#" size="lg">
-              Browse templates
+              Get started
             </ButtonLink>
+
             <PlainButtonLink href="#" size="lg">
-              Book a demo <ChevronIcon />
+              Book a consultation <ChevronIcon />
             </PlainButtonLink>
           </div>
         }
@@ -557,4 +475,3 @@ export default function Page() {
     </>
   )
 }
-

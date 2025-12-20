@@ -1,42 +1,39 @@
-import { AnnouncementBadge } from '@/components/elements/announcement-badge'
 import { ButtonLink, PlainButtonLink } from '@/components/elements/button'
 import { Link } from '@/components/elements/link'
-import { Logo, LogoGrid } from '@/components/elements/logo-grid'
 import { Screenshot } from '@/components/elements/screenshot'
 import { ArrowNarrowRightIcon } from '@/components/icons/arrow-narrow-right-icon'
 import { ChevronIcon } from '@/components/icons/chevron-icon'
 import { Approach, ApproachItem, ApproachStage } from '@/components/sections/approach'
 import { CallToActionSimple } from '@/components/sections/call-to-action-simple'
-import {
-  Feature,
-  FeaturesStackedAlternatingWithDemos,
-} from '@/components/sections/features-stacked-alternating-with-demos'
-import { HeroCenteredWithDemo } from '@/components/sections/hero-centered-with-demo'
+import { FAQsTwoColumnAccordion, Faq } from '@/components/sections/faqs-two-column-accordion'
+import { Feature, FeaturesTwoColumnWithDemos } from '@/components/sections/features-two-column-with-demos'
+import { HeroLeftAlignedWithDemo } from '@/components/sections/hero-left-aligned-with-demo'
 import { Stat, StatsWithGraph } from '@/components/sections/stats-with-graph'
-import { TestimonialTwoColumnWithLargePhoto } from '@/components/sections/testimonial-two-column-with-large-photo'
+import { Testimonial, TestimonialThreeColumnGrid } from '@/components/sections/testimonials-three-column-grid'
 import Image from 'next/image'
 
 export default function Page() {
   return (
     <>
       {/* Hero */}
-      <HeroCenteredWithDemo
+      <HeroLeftAlignedWithDemo
         id="hero"
-        eyebrow={<AnnouncementBadge href="#" text="New: Custom website templates" cta="Learn more" />}
-        headline="Beautiful websites that convert visitors into customers."
+        headline="Creative Storytelling"
         subheadline={
           <p>
-            Build stunning, high-performing websites with our collection of professionally designed templates. Every
-            template is optimized for conversion and built with modern web standards.
+            Tell stories that resonate, educate, and inspire action. Creative storytelling is the system that makes your 
+            brand memorable, your message stick, and your audience connect with your mission on an emotional level. When done 
+            right, it transforms marketing from interruption into invitation.
           </p>
         }
         cta={
           <div className="flex items-center gap-4">
             <ButtonLink href="#" size="lg">
-              Browse templates
+              Get started
             </ButtonLink>
+
             <PlainButtonLink href="#" size="lg">
-              See examples <ArrowNarrowRightIcon />
+              See how it works <ArrowNarrowRightIcon />
             </PlainButtonLink>
           </div>
         }
@@ -90,135 +87,25 @@ export default function Page() {
             </Screenshot>
           </>
         }
-        footer={
-          <LogoGrid>
-            <Logo>
-              <Image
-                src="/img/logos/9-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={51}
-                height={32}
-              />
-              <Image
-                src="/img/logos/9-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={51}
-                height={32}
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/10-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={70}
-                height={32}
-              />
-              <Image
-                src="/img/logos/10-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={70}
-                height={32}
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/11-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={100}
-                height={32}
-              />
-              <Image
-                src="/img/logos/11-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={100}
-                height={32}
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/12-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={85}
-                height={32}
-              />
-              <Image
-                src="/img/logos/12-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={85}
-                height={32}
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/13-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={75}
-                height={32}
-              />
-              <Image
-                src="/img/logos/13-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={75}
-                height={32}
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/8-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={85}
-                height={32}
-              />
-              <Image
-                src="/img/logos/8-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={85}
-                height={32}
-              />
-            </Logo>
-          </LogoGrid>
-        }
       />
 
       {/* Features */}
-      <FeaturesStackedAlternatingWithDemos
+      <FeaturesTwoColumnWithDemos
         id="features"
-        headline="Everything you need to build a stunning website."
+        eyebrow="How we build stories"
+        headline="Creative storytelling systems that connect and convert"
         subheadline={
           <p>
-            Our templates come with everything you need to launch fast. Responsive design, SEO optimization, and
-            conversion-focused layouts built right in.
+            We build creative storytelling systems that go beyond content—they're comprehensive strategies that connect 
+            with your audience on an emotional level, build trust, and guide them toward action. Every story we tell serves 
+            a purpose, moves the narrative forward, and creates moments that matter.
           </p>
         }
         features={
           <>
             <Feature
-              headline="Responsive Design"
-              subheadline={
-                <p>
-                  Every template is fully responsive and looks perfect on desktop, tablet, and mobile devices. No
-                  additional work required.
-                </p>
-              }
-              cta={
-                <Link href="#">
-                  Learn more <ChevronIcon />
-                </Link>
-              }
               demo={
-                <Screenshot wallpaper="blue" placement="bottom-right">
+                <Screenshot wallpaper="purple" placement="bottom-right">
                   <Image
                     src="/img/screenshots/1-left-1000-top-800.webp"
                     alt=""
@@ -277,22 +164,25 @@ export default function Page() {
                   />
                 </Screenshot>
               }
-            />
-            <Feature
-              headline="SEO Optimized"
+              headline="Narrative Architecture"
               subheadline={
                 <p>
-                  Built with SEO best practices in mind. Clean code, fast loading times, and semantic HTML help your site
-                  rank higher in search results.
+                  Every great story has structure. We build narrative architectures that guide your audience through a 
+                  journey—from awareness to action, from curiosity to commitment. Our storytelling frameworks ensure every 
+                  piece of content serves a purpose, connects to the larger narrative, and moves people closer to your 
+                  desired outcome. When narrative architecture is done right, your stories compound, building on each other 
+                  to create a cohesive brand experience that resonates long after the first interaction.
                 </p>
               }
               cta={
                 <Link href="#">
-                  Learn more <ChevronIcon />
+                  Learn more <ArrowNarrowRightIcon />
                 </Link>
               }
+            />
+            <Feature
               demo={
-                <Screenshot wallpaper="purple" placement="top-left">
+                <Screenshot wallpaper="blue" placement="bottom-left">
                   <Image
                     src="/img/screenshots/1-right-1000-top-800.webp"
                     alt=""
@@ -351,93 +241,124 @@ export default function Page() {
                   />
                 </Screenshot>
               }
-            />
-            <Feature
-              headline="Conversion Focused"
+              headline="Emotional Resonance"
               subheadline={
                 <p>
-                  Every element is designed to convert visitors into customers. Tested layouts, clear CTAs, and
-                  conversion-optimized forms.
+                  Facts inform, but stories transform. We craft narratives that tap into universal human emotions—hope, 
+                  fear, ambition, belonging—creating connections that go beyond transactional relationships. Our storytelling 
+                  approach helps your brand become part of your audience's story, not just a product they buy. When emotional 
+                  resonance is achieved, your message doesn't just get heard—it gets felt, remembered, and shared. This is 
+                  how brands become movements and customers become advocates.
                 </p>
               }
               cta={
                 <Link href="#">
-                  Learn more <ChevronIcon />
+                  Learn more <ArrowNarrowRightIcon />
                 </Link>
-              }
-              demo={
-                <Screenshot wallpaper="brown" placement="bottom-left">
-                  <Image
-                    src="/img/screenshots/1-left-1000-top-800.webp"
-                    alt=""
-                    className="bg-white/75 sm:hidden dark:hidden"
-                    width={1000}
-                    height={800}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1000-top-800.webp"
-                    alt=""
-                    width={1000}
-                    height={800}
-                    className="bg-black/75 not-dark:hidden sm:hidden"
-                  />
-                  <Image
-                    src="/img/screenshots/1-left-1800-top-660.webp"
-                    alt=""
-                    className="bg-white/75 max-sm:hidden lg:hidden dark:hidden"
-                    width={1800}
-                    height={660}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1800-top-660.webp"
-                    alt=""
-                    width={1800}
-                    height={660}
-                    className="bg-black/75 not-dark:hidden max-sm:hidden lg:hidden"
-                  />
-                  <Image
-                    src="/img/screenshots/1-left-1300-top-1300.webp"
-                    alt=""
-                    className="bg-white/75 max-lg:hidden xl:hidden dark:hidden"
-                    width={1300}
-                    height={1300}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1300-top-1300.webp"
-                    alt=""
-                    width={1300}
-                    height={1300}
-                    className="bg-black/75 not-dark:hidden max-lg:hidden xl:hidden"
-                  />
-                  <Image
-                    src="/img/screenshots/1-left-1800-top-1250.webp"
-                    alt=""
-                    className="bg-white/75 max-xl:hidden dark:hidden"
-                    width={1800}
-                    height={1250}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1800-top-1250.webp"
-                    alt=""
-                    width={1800}
-                    height={1250}
-                    className="bg-black/75 not-dark:hidden max-xl:hidden"
-                  />
-                </Screenshot>
               }
             />
           </>
         }
       />
 
+      {/* Stats */}
+      <StatsWithGraph
+        id="stats"
+        eyebrow="Proven results"
+        headline="Stories that drive measurable impact"
+        subheadline={
+          <p>
+            Creative storytelling isn't just about making people feel good—it's about driving real business results. Our 
+            storytelling systems help brands build deeper connections, increase engagement, and convert more effectively. When 
+            stories are structured correctly, they become one of your most powerful activation tools.
+          </p>
+        }
+      >
+        <Stat stat="3.2x" text="Higher engagement rates for brands using narrative architecture vs. traditional content." />
+        <Stat stat="68%" text="Increase in brand recall when stories are integrated across all touchpoints." />
+        <Stat stat="2.5x" text="More qualified leads generated through story-driven campaigns." />
+      </StatsWithGraph>
+
+      {/* Testimonials */}
+      <TestimonialThreeColumnGrid
+        id="testimonial"
+        headline="Stories that transformed brands"
+        subheadline={
+          <p>
+            See how creative storytelling has helped brands connect with their audience and drive real business results.
+          </p>
+        }
+      >
+        <Testimonial
+          quote={
+            <p>
+              Magnet's storytelling approach completely transformed how we communicate with our audience. We went from 
+              pushing features to sharing our mission, and the response has been incredible. Our engagement rates tripled, 
+              and we're seeing more qualified leads than ever before.
+            </p>
+          }
+          img={
+            <Image
+              src="/img/avatars/10-size-160.webp"
+              alt=""
+              className="not-dark:bg-white/75 dark:bg-black/75"
+              width={160}
+              height={160}
+            />
+          }
+          name="Sarah Chen"
+          byline="CMO at TechFlow"
+        />
+        <Testimonial
+          quote={
+            <p>
+              The narrative architecture they built for us created a cohesive story across all our channels. Every piece of 
+              content now feels intentional and connected. Our customers tell us they finally understand what we're about, 
+              and that clarity has translated directly into sales.
+            </p>
+          }
+          img={
+            <Image
+              src="/img/avatars/15-size-160.webp"
+              alt=""
+              className="not-dark:bg-white/75 dark:bg-black/75"
+              width={160}
+              height={160}
+            />
+          }
+          name="Marcus Rodriguez"
+          byline="Founder at GrowthLab"
+        />
+        <Testimonial
+          quote={
+            <p>
+              Before working with Magnet, our content felt scattered and disconnected. Now, every story we tell builds on 
+              the last one, creating a narrative that our audience actually wants to follow. The emotional resonance they 
+              helped us achieve has turned customers into advocates.
+            </p>
+          }
+          img={
+            <Image
+              src="/img/avatars/13-size-160.webp"
+              alt=""
+              className="not-dark:bg-white/75 dark:bg-black/75"
+              width={160}
+              height={160}
+            />
+          }
+          name="Emily Watson"
+          byline="Head of Marketing at InnovateCo"
+        />
+      </TestimonialThreeColumnGrid>
+
       {/* Approach */}
       <Approach
         id="approach"
-        eyebrow="Our Process"
-        headline="How we build websites that convert"
+        eyebrow="Our Method"
+        headline="How we build brands"
         subheadline={
           <p>
-            We follow a proven four-stage approach to create websites that drive real business results.
+            We follow a proven four-stage approach to create brands that drive real business results.
           </p>
         }
       >
@@ -495,61 +416,58 @@ export default function Page() {
         />
       </Approach>
 
-      {/* Stats */}
-      <StatsWithGraph
-        id="stats"
-        eyebrow="Trusted by thousands"
-        headline="Websites that perform."
-        subheadline={
-          <p>
-            Our templates power thousands of websites across industries. From startups to enterprise, businesses trust
-            our templates to deliver results.
-          </p>
-        }
-      >
-        <Stat stat="10K+" text="Websites launched using our templates." />
-        <Stat stat="95%" text="Customer satisfaction rate — our templates just work." />
-      </StatsWithGraph>
-
-      {/* Testimonial */}
-      <TestimonialTwoColumnWithLargePhoto
-        id="testimonial"
-        quote={
-          <p>
-            "We launched our new website in just one day using one of the templates. The design is beautiful, and we've
-            already seen a 40% increase in conversions. Couldn't be happier with the results."
-          </p>
-        }
-        img={
-          <Image
-            src="/img/avatars/10-size-160.webp"
-            alt=""
-            className="not-dark:bg-white/75 dark:bg-black/75"
-            width={160}
-            height={160}
-          />
-        }
-        name="Sarah Chen"
-        byline="Founder at TechFlow"
-      />
+      {/* FAQs */}
+      <FAQsTwoColumnAccordion id="faqs" headline="Questions about creative storytelling">
+        <Faq
+          id="faq-1"
+          question="What makes creative storytelling different from regular content marketing?"
+          answer="Creative storytelling goes beyond creating content—it's about building narrative architectures that guide your audience through a journey. While content marketing focuses on producing pieces, storytelling focuses on creating connections, emotional resonance, and narratives that compound over time. Every story we tell serves a purpose in a larger narrative that moves people from awareness to action."
+        />
+        <Faq
+          id="faq-2"
+          question="How do you measure the success of creative storytelling?"
+          answer="We measure storytelling success through multiple metrics: engagement rates, brand recall, emotional connection scores, and ultimately, conversion rates. But the real measure is whether your stories are being remembered, shared, and acted upon. We track how stories perform across channels, how they build on each other, and how they contribute to your overall business goals."
+        />
+        <Faq
+          id="faq-3"
+          question="Can storytelling work for B2B companies?"
+          answer="Absolutely. B2B buyers are still human, and they make decisions based on emotion as much as logic. The best B2B storytelling connects the technical benefits to human outcomes—showing how your solution helps teams succeed, reduces stress, or enables growth. We've seen B2B brands achieve remarkable results by telling stories that resonate with their audience's challenges and aspirations."
+        />
+        <Faq
+          id="faq-4"
+          question="How long does it take to see results from creative storytelling?"
+          answer="While some stories can create immediate impact, the real power of storytelling comes from consistency and narrative architecture. You'll typically see engagement improvements within the first month, but the compounding effects—increased brand recall, stronger emotional connections, and higher conversion rates—build over 3-6 months as your narrative architecture takes shape."
+        />
+        <Faq
+          id="faq-5"
+          question="Do you create the stories or help us tell our own?"
+          answer="Both. We work with you to uncover the stories that already exist in your organization—the challenges you've overcome, the customers you've helped, the mission that drives you. Then we help structure those stories into a narrative architecture that resonates with your audience. Sometimes we create new stories, sometimes we help you tell existing ones better. The goal is always authenticity and resonance."
+        />
+        <Faq
+          id="faq-6"
+          question="How does storytelling integrate with other marketing channels?"
+          answer="Storytelling should be the thread that connects all your marketing channels. We build narrative architectures that work across paid media, social content, email, and more. Each channel tells part of the story, and together they create a cohesive narrative experience. This integration is what makes storytelling so powerful—it's not just one campaign, it's the foundation for all your marketing."
+        />
+      </FAQsTwoColumnAccordion>
 
       {/* Call To Action */}
       <CallToActionSimple
         id="call-to-action"
-        headline="Ready to launch your website?"
+        headline="Ready to tell stories that convert?"
         subheadline={
           <p>
-            Browse our collection of professionally designed templates and find the perfect one for your business. All
-            templates are fully customizable and ready to deploy.
+            Let's create creative storytelling systems that resonate, connect, and drive action. Transform your marketing 
+            from interruption into invitation, and turn your audience into advocates.
           </p>
         }
         cta={
           <div className="flex items-center gap-4">
             <ButtonLink href="#" size="lg">
-              Browse templates
+              Get started
             </ButtonLink>
+
             <PlainButtonLink href="#" size="lg">
-              Book a demo <ChevronIcon />
+              Book a consultation <ChevronIcon />
             </PlainButtonLink>
           </div>
         }
@@ -557,4 +475,3 @@ export default function Page() {
     </>
   )
 }
-

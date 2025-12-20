@@ -1,42 +1,41 @@
-import { AnnouncementBadge } from '@/components/elements/announcement-badge'
 import { ButtonLink, PlainButtonLink } from '@/components/elements/button'
 import { Link } from '@/components/elements/link'
-import { Logo, LogoGrid } from '@/components/elements/logo-grid'
 import { Screenshot } from '@/components/elements/screenshot'
 import { ArrowNarrowRightIcon } from '@/components/icons/arrow-narrow-right-icon'
 import { ChevronIcon } from '@/components/icons/chevron-icon'
 import { Approach, ApproachItem, ApproachStage } from '@/components/sections/approach'
 import { CallToActionSimple } from '@/components/sections/call-to-action-simple'
-import {
-  Feature,
-  FeaturesStackedAlternatingWithDemos,
-} from '@/components/sections/features-stacked-alternating-with-demos'
-import { HeroCenteredWithDemo } from '@/components/sections/hero-centered-with-demo'
+import { FAQsTwoColumnAccordion, Faq } from '@/components/sections/faqs-two-column-accordion'
+import { Feature, FeaturesTwoColumnWithDemos } from '@/components/sections/features-two-column-with-demos'
+import { HeroLeftAlignedWithDemo } from '@/components/sections/hero-left-aligned-with-demo'
 import { Stat, StatsWithGraph } from '@/components/sections/stats-with-graph'
-import { TestimonialTwoColumnWithLargePhoto } from '@/components/sections/testimonial-two-column-with-large-photo'
+import { Testimonial, TestimonialThreeColumnGrid } from '@/components/sections/testimonials-three-column-grid'
 import Image from 'next/image'
 
 export default function Page() {
   return (
     <>
       {/* Hero */}
-      <HeroCenteredWithDemo
+      <HeroLeftAlignedWithDemo
         id="hero"
-        eyebrow={<AnnouncementBadge href="#" text="New: Custom website templates" cta="Learn more" />}
-        headline="Beautiful websites that convert visitors into customers."
+        headline="Landing Experiences"
         subheadline={
           <p>
-            Build stunning, high-performing websites with our collection of professionally designed templates. Every
-            template is optimized for conversion and built with modern web standards.
+            Create landing experiences that guide action. Landing experiences are about creating pages that guide visitors 
+            toward action. It&apos;s the system that removes friction, clarifies value, and makes it easy for qualified traffic 
+            to become customers. We build landing experiences that go beyond templates—they&apos;re comprehensive systems that 
+            understand user intent, remove obstacles, and create clear paths to conversion. When landing experiences are done 
+            right, they become a powerful acceleration tool that converts qualified traffic efficiently.
           </p>
         }
         cta={
           <div className="flex items-center gap-4">
             <ButtonLink href="#" size="lg">
-              Browse templates
+              Get started
             </ButtonLink>
+
             <PlainButtonLink href="#" size="lg">
-              See examples <ArrowNarrowRightIcon />
+              See how it works <ArrowNarrowRightIcon />
             </PlainButtonLink>
           </div>
         }
@@ -90,135 +89,25 @@ export default function Page() {
             </Screenshot>
           </>
         }
-        footer={
-          <LogoGrid>
-            <Logo>
-              <Image
-                src="/img/logos/9-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={51}
-                height={32}
-              />
-              <Image
-                src="/img/logos/9-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={51}
-                height={32}
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/10-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={70}
-                height={32}
-              />
-              <Image
-                src="/img/logos/10-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={70}
-                height={32}
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/11-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={100}
-                height={32}
-              />
-              <Image
-                src="/img/logos/11-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={100}
-                height={32}
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/12-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={85}
-                height={32}
-              />
-              <Image
-                src="/img/logos/12-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={85}
-                height={32}
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/13-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={75}
-                height={32}
-              />
-              <Image
-                src="/img/logos/13-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={75}
-                height={32}
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/8-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={85}
-                height={32}
-              />
-              <Image
-                src="/img/logos/8-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={85}
-                height={32}
-              />
-            </Logo>
-          </LogoGrid>
-        }
       />
 
       {/* Features */}
-      <FeaturesStackedAlternatingWithDemos
+      <FeaturesTwoColumnWithDemos
         id="features"
-        headline="Everything you need to build a stunning website."
+        eyebrow="How we build landing experiences"
+        headline="Experiences that guide visitors toward action"
         subheadline={
           <p>
-            Our templates come with everything you need to launch fast. Responsive design, SEO optimization, and
-            conversion-focused layouts built right in.
+            We build landing experiences that go beyond templates—they&apos;re comprehensive systems that understand user 
+            intent, remove obstacles, and create clear paths to conversion. Every element serves a purpose, every section 
+            guides action, and every interaction moves visitors closer to becoming customers.
           </p>
         }
         features={
           <>
             <Feature
-              headline="Responsive Design"
-              subheadline={
-                <p>
-                  Every template is fully responsive and looks perfect on desktop, tablet, and mobile devices. No
-                  additional work required.
-                </p>
-              }
-              cta={
-                <Link href="#">
-                  Learn more <ChevronIcon />
-                </Link>
-              }
               demo={
-                <Screenshot wallpaper="blue" placement="bottom-right">
+                <Screenshot wallpaper="purple" placement="bottom-right">
                   <Image
                     src="/img/screenshots/1-left-1000-top-800.webp"
                     alt=""
@@ -277,22 +166,25 @@ export default function Page() {
                   />
                 </Screenshot>
               }
-            />
-            <Feature
-              headline="SEO Optimized"
+              headline="Intent-Based Design"
               subheadline={
                 <p>
-                  Built with SEO best practices in mind. Clean code, fast loading times, and semantic HTML help your site
-                  rank higher in search results.
+                  Every visitor arrives with intent. We build landing experiences that recognize different types of intent 
+                  and guide visitors accordingly. Whether someone is researching, comparing, or ready to buy, the experience 
+                  adapts to their needs. This intent-based approach means visitors don&apos;t waste time on irrelevant information—they 
+                  get exactly what they need to move forward. When experiences are designed around intent, conversion rates 
+                  improve because visitors can easily achieve their goals.
                 </p>
               }
               cta={
                 <Link href="#">
-                  Learn more <ChevronIcon />
+                  Learn more <ArrowNarrowRightIcon />
                 </Link>
               }
+            />
+            <Feature
               demo={
-                <Screenshot wallpaper="purple" placement="top-left">
+                <Screenshot wallpaper="blue" placement="bottom-left">
                   <Image
                     src="/img/screenshots/1-right-1000-top-800.webp"
                     alt=""
@@ -351,93 +243,124 @@ export default function Page() {
                   />
                 </Screenshot>
               }
-            />
-            <Feature
-              headline="Conversion Focused"
+              headline="Friction Removal & Value Clarity"
               subheadline={
                 <p>
-                  Every element is designed to convert visitors into customers. Tested layouts, clear CTAs, and
-                  conversion-optimized forms.
+                  Great landing experiences remove friction and clarify value at every turn. We identify obstacles that slow 
+                  visitors down or prevent action, then systematically remove them. But we don&apos;t just remove friction—we also 
+                  make value obvious, so visitors understand what they&apos;re getting and why it matters. This combination of 
+                  friction removal and value clarity ensures visitors not only complete their goals but understand the value 
+                  they&apos;re receiving. When done right, landing experiences feel effortless and valuable, creating satisfaction 
+                  that builds trust and drives conversion.
                 </p>
               }
               cta={
                 <Link href="#">
-                  Learn more <ChevronIcon />
+                  Learn more <ArrowNarrowRightIcon />
                 </Link>
-              }
-              demo={
-                <Screenshot wallpaper="brown" placement="bottom-left">
-                  <Image
-                    src="/img/screenshots/1-left-1000-top-800.webp"
-                    alt=""
-                    className="bg-white/75 sm:hidden dark:hidden"
-                    width={1000}
-                    height={800}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1000-top-800.webp"
-                    alt=""
-                    width={1000}
-                    height={800}
-                    className="bg-black/75 not-dark:hidden sm:hidden"
-                  />
-                  <Image
-                    src="/img/screenshots/1-left-1800-top-660.webp"
-                    alt=""
-                    className="bg-white/75 max-sm:hidden lg:hidden dark:hidden"
-                    width={1800}
-                    height={660}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1800-top-660.webp"
-                    alt=""
-                    width={1800}
-                    height={660}
-                    className="bg-black/75 not-dark:hidden max-sm:hidden lg:hidden"
-                  />
-                  <Image
-                    src="/img/screenshots/1-left-1300-top-1300.webp"
-                    alt=""
-                    className="bg-white/75 max-lg:hidden xl:hidden dark:hidden"
-                    width={1300}
-                    height={1300}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1300-top-1300.webp"
-                    alt=""
-                    width={1300}
-                    height={1300}
-                    className="bg-black/75 not-dark:hidden max-lg:hidden xl:hidden"
-                  />
-                  <Image
-                    src="/img/screenshots/1-left-1800-top-1250.webp"
-                    alt=""
-                    className="bg-white/75 max-xl:hidden dark:hidden"
-                    width={1800}
-                    height={1250}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1800-top-1250.webp"
-                    alt=""
-                    width={1800}
-                    height={1250}
-                    className="bg-black/75 not-dark:hidden max-xl:hidden"
-                  />
-                </Screenshot>
               }
             />
           </>
         }
       />
 
+      {/* Stats */}
+      <StatsWithGraph
+        id="stats"
+        eyebrow="Proven results"
+        headline="Landing experiences that convert efficiently"
+        subheadline={
+          <p>
+            When landing experiences are built as comprehensive systems that understand intent and remove friction, conversion 
+            rates improve dramatically. Our intent-based design and friction removal create clear, easy paths to conversion.
+          </p>
+        }
+      >
+        <Stat stat="4.3x" text="Higher conversion rates for intent-based landing experiences vs. generic templates." />
+        <Stat stat="69%" text="Increase in conversions when friction is systematically removed from landing pages." />
+        <Stat stat="3.1x" text="Better task completion rates when value is clearly communicated upfront." />
+      </StatsWithGraph>
+
+      {/* Testimonials */}
+      <TestimonialThreeColumnGrid
+        id="testimonial"
+        headline="Landing experiences that transformed conversion"
+        subheadline={
+          <p>
+            See how systematic landing experience design has helped brands guide visitors toward action and improve conversion rates.
+          </p>
+        }
+      >
+        <Testimonial
+          quote={
+            <p>
+              Before working with Magnet, our landing pages felt generic and didn&apos;t convert well. The intent-based design they 
+              created recognizes different visitor types and guides them appropriately. Our conversion rates have more than 
+              quadrupled, and visitors actually complete the actions we want them to take.
+            </p>
+          }
+          img={
+            <Image
+              src="/img/avatars/10-size-160.webp"
+              alt=""
+              className="not-dark:bg-white/75 dark:bg-black/75"
+              width={160}
+              height={160}
+            />
+          }
+          name="Michael Chen"
+          byline="Head of Growth at ConvertLab"
+        />
+        <Testimonial
+          quote={
+            <p>
+              The friction removal work Magnet did was incredible. They identified obstacles we didn&apos;t even know existed and 
+              systematically removed them. The result is landing experiences that feel effortless. Visitors tell us it&apos;s the 
+              easiest signup process they&apos;ve ever experienced, and our conversion rates reflect that.
+            </p>
+          }
+          img={
+            <Image
+              src="/img/avatars/15-size-160.webp"
+              alt=""
+              className="not-dark:bg-white/75 dark:bg-black/75"
+              width={160}
+              height={160}
+            />
+          }
+          name="Sarah Johnson"
+          byline="VP of Marketing at FlowTech"
+        />
+        <Testimonial
+          quote={
+            <p>
+              Magnet&apos;s landing experience design transformed how visitors interact with our pages. Instead of a one-size-fits-all 
+              approach, we now have experiences that adapt to visitor intent. This has improved not just conversion rates, but visitor 
+              satisfaction. People can now easily find what they need and take action.
+            </p>
+          }
+          img={
+            <Image
+              src="/img/avatars/13-size-160.webp"
+              alt=""
+              className="not-dark:bg-white/75 dark:bg-black/75"
+              width={160}
+              height={160}
+            />
+          }
+          name="James Park"
+          byline="Director of UX at LandingCo"
+        />
+      </TestimonialThreeColumnGrid>
+
       {/* Approach */}
       <Approach
         id="approach"
-        eyebrow="Our Process"
-        headline="How we build websites that convert"
+        eyebrow="Our Method"
+        headline="How we build brands"
         subheadline={
           <p>
-            We follow a proven four-stage approach to create websites that drive real business results.
+            We follow a proven four-stage approach to create brands that drive real business results.
           </p>
         }
       >
@@ -495,61 +418,58 @@ export default function Page() {
         />
       </Approach>
 
-      {/* Stats */}
-      <StatsWithGraph
-        id="stats"
-        eyebrow="Trusted by thousands"
-        headline="Websites that perform."
-        subheadline={
-          <p>
-            Our templates power thousands of websites across industries. From startups to enterprise, businesses trust
-            our templates to deliver results.
-          </p>
-        }
-      >
-        <Stat stat="10K+" text="Websites launched using our templates." />
-        <Stat stat="95%" text="Customer satisfaction rate — our templates just work." />
-      </StatsWithGraph>
-
-      {/* Testimonial */}
-      <TestimonialTwoColumnWithLargePhoto
-        id="testimonial"
-        quote={
-          <p>
-            "We launched our new website in just one day using one of the templates. The design is beautiful, and we've
-            already seen a 40% increase in conversions. Couldn't be happier with the results."
-          </p>
-        }
-        img={
-          <Image
-            src="/img/avatars/10-size-160.webp"
-            alt=""
-            className="not-dark:bg-white/75 dark:bg-black/75"
-            width={160}
-            height={160}
-          />
-        }
-        name="Sarah Chen"
-        byline="Founder at TechFlow"
-      />
+      {/* FAQs */}
+      <FAQsTwoColumnAccordion id="faqs" headline="Questions about landing experiences">
+        <Faq
+          id="faq-1"
+          question="What's the difference between landing experiences and just landing pages?"
+          answer="Landing pages are static pages. Landing experiences are comprehensive systems that understand user intent, remove obstacles, and create clear paths to conversion. They adapt to different visitor types, provide personalized guidance, and systematically remove friction. It's not just about one page—it's about building a system that guides visitors from first touch to conversion."
+        />
+        <Faq
+          id="faq-2"
+          question="How do you identify visitor intent?"
+          answer="We identify visitor intent through a combination of analytics data, user research, and behavioral analysis. This includes understanding where visitors come from, what they're searching for, what content they engage with, and what actions they take. We then create experiences that match different types of intent—research, comparison, purchase—ensuring each visitor gets the right experience for their needs."
+        />
+        <Faq
+          id="faq-3"
+          question="What types of friction do you typically find and remove?"
+          answer="Common friction points include unclear value propositions, confusing navigation, too many choices, lack of trust signals, slow load times, unnecessary form fields, and unclear calls to action. We systematically identify all friction points through user research and analytics, then remove them one by one. The goal is to make the path to conversion as clear and easy as possible."
+        />
+        <Faq
+          id="faq-4"
+          question="How long does it take to see results from landing experience improvements?"
+          answer="You'll typically see improvements in conversion rates within the first month as friction is removed and intent-based design is implemented. The real impact—sustained higher conversion rates and better visitor satisfaction—builds over 2-3 months as the system matures and visitors adapt to the improved experience."
+        />
+        <Faq
+          id="faq-5"
+          question="Can landing experiences work for complex B2B sales processes?"
+          answer="Absolutely. In fact, landing experiences are especially valuable for complex B2B processes. We create experiences that guide visitors through research, evaluation, and decision stages, removing friction at each step. For B2B, this might include simplifying proposal requests, making demos easier to schedule, or creating clear paths for different buyer personas."
+        />
+        <Faq
+          id="faq-6"
+          question="How do you measure landing experience success?"
+          answer="We measure success through multiple metrics: conversion rates, task completion rates, time to conversion, visitor satisfaction scores, and ultimately, revenue. But the real measure is whether visitors can easily achieve their goals. We track both quantitative metrics and qualitative feedback to continuously improve the experience."
+        />
+      </FAQsTwoColumnAccordion>
 
       {/* Call To Action */}
       <CallToActionSimple
         id="call-to-action"
-        headline="Ready to launch your website?"
+        headline="Ready to build landing experiences that convert?"
         subheadline={
           <p>
-            Browse our collection of professionally designed templates and find the perfect one for your business. All
-            templates are fully customizable and ready to deploy.
+            Let&apos;s create landing experiences that guide action and remove friction. Build comprehensive systems that 
+            understand intent and create clear paths to conversion.
           </p>
         }
         cta={
           <div className="flex items-center gap-4">
             <ButtonLink href="#" size="lg">
-              Browse templates
+              Get started
             </ButtonLink>
+
             <PlainButtonLink href="#" size="lg">
-              Book a demo <ChevronIcon />
+              Book a consultation <ChevronIcon />
             </PlainButtonLink>
           </div>
         }
@@ -557,4 +477,3 @@ export default function Page() {
     </>
   )
 }
-

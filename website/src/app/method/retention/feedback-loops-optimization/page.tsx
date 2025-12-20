@@ -1,42 +1,41 @@
-import { AnnouncementBadge } from '@/components/elements/announcement-badge'
 import { ButtonLink, PlainButtonLink } from '@/components/elements/button'
 import { Link } from '@/components/elements/link'
-import { Logo, LogoGrid } from '@/components/elements/logo-grid'
 import { Screenshot } from '@/components/elements/screenshot'
 import { ArrowNarrowRightIcon } from '@/components/icons/arrow-narrow-right-icon'
 import { ChevronIcon } from '@/components/icons/chevron-icon'
 import { Approach, ApproachItem, ApproachStage } from '@/components/sections/approach'
 import { CallToActionSimple } from '@/components/sections/call-to-action-simple'
-import {
-  Feature,
-  FeaturesStackedAlternatingWithDemos,
-} from '@/components/sections/features-stacked-alternating-with-demos'
-import { HeroCenteredWithDemo } from '@/components/sections/hero-centered-with-demo'
+import { FAQsTwoColumnAccordion, Faq } from '@/components/sections/faqs-two-column-accordion'
+import { Feature, FeaturesTwoColumnWithDemos } from '@/components/sections/features-two-column-with-demos'
+import { HeroLeftAlignedWithDemo } from '@/components/sections/hero-left-aligned-with-demo'
 import { Stat, StatsWithGraph } from '@/components/sections/stats-with-graph'
-import { TestimonialTwoColumnWithLargePhoto } from '@/components/sections/testimonial-two-column-with-large-photo'
+import { Testimonial, TestimonialThreeColumnGrid } from '@/components/sections/testimonials-three-column-grid'
 import Image from 'next/image'
 
 export default function Page() {
   return (
     <>
       {/* Hero */}
-      <HeroCenteredWithDemo
+      <HeroLeftAlignedWithDemo
         id="hero"
-        eyebrow={<AnnouncementBadge href="#" text="New: Custom website templates" cta="Learn more" />}
-        headline="Beautiful websites that convert visitors into customers."
+        headline="Feedback Loops & Optimization"
         subheadline={
           <p>
-            Build stunning, high-performing websites with our collection of professionally designed templates. Every
-            template is optimized for conversion and built with modern web standards.
+            Continuously improve based on what customers tell you. Feedback loops & optimization is about creating systems that 
+            continuously improve based on customer feedback and data. It&apos;s the system that makes your retention efforts more 
+            effective over time. We build feedback loops & optimization systems that go beyond surveys—they&apos;re comprehensive 
+            frameworks that capture feedback at the right moments, analyze patterns, and implement improvements that drive better 
+            outcomes. When feedback loops & optimization are done right, they become a powerful retention tool that compounds over time.
           </p>
         }
         cta={
           <div className="flex items-center gap-4">
             <ButtonLink href="#" size="lg">
-              Browse templates
+              Get started
             </ButtonLink>
+
             <PlainButtonLink href="#" size="lg">
-              See examples <ArrowNarrowRightIcon />
+              See how it works <ArrowNarrowRightIcon />
             </PlainButtonLink>
           </div>
         }
@@ -90,135 +89,25 @@ export default function Page() {
             </Screenshot>
           </>
         }
-        footer={
-          <LogoGrid>
-            <Logo>
-              <Image
-                src="/img/logos/9-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={51}
-                height={32}
-              />
-              <Image
-                src="/img/logos/9-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={51}
-                height={32}
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/10-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={70}
-                height={32}
-              />
-              <Image
-                src="/img/logos/10-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={70}
-                height={32}
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/11-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={100}
-                height={32}
-              />
-              <Image
-                src="/img/logos/11-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={100}
-                height={32}
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/12-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={85}
-                height={32}
-              />
-              <Image
-                src="/img/logos/12-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={85}
-                height={32}
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/13-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={75}
-                height={32}
-              />
-              <Image
-                src="/img/logos/13-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={75}
-                height={32}
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/8-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={85}
-                height={32}
-              />
-              <Image
-                src="/img/logos/8-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={85}
-                height={32}
-              />
-            </Logo>
-          </LogoGrid>
-        }
       />
 
       {/* Features */}
-      <FeaturesStackedAlternatingWithDemos
+      <FeaturesTwoColumnWithDemos
         id="features"
-        headline="Everything you need to build a stunning website."
+        eyebrow="How we build feedback loops"
+        headline="Optimization systems that continuously improve"
         subheadline={
           <p>
-            Our templates come with everything you need to launch fast. Responsive design, SEO optimization, and
-            conversion-focused layouts built right in.
+            We build feedback loops & optimization systems that go beyond surveys—they&apos;re comprehensive frameworks that 
+            capture feedback at the right moments, analyze patterns, and implement improvements that drive better outcomes. Every 
+            loop is designed to make your retention efforts more effective over time.
           </p>
         }
         features={
           <>
             <Feature
-              headline="Responsive Design"
-              subheadline={
-                <p>
-                  Every template is fully responsive and looks perfect on desktop, tablet, and mobile devices. No
-                  additional work required.
-                </p>
-              }
-              cta={
-                <Link href="#">
-                  Learn more <ChevronIcon />
-                </Link>
-              }
               demo={
-                <Screenshot wallpaper="blue" placement="bottom-right">
+                <Screenshot wallpaper="purple" placement="bottom-right">
                   <Image
                     src="/img/screenshots/1-left-1000-top-800.webp"
                     alt=""
@@ -277,22 +166,25 @@ export default function Page() {
                   />
                 </Screenshot>
               }
-            />
-            <Feature
-              headline="SEO Optimized"
+              headline="Timely Feedback Capture"
               subheadline={
                 <p>
-                  Built with SEO best practices in mind. Clean code, fast loading times, and semantic HTML help your site
-                  rank higher in search results.
+                  Feedback captured at the right moments, not on arbitrary schedules. We build feedback loops that recognize when 
+                  customers are most likely to provide valuable feedback—after key interactions, at milestone moments, when they 
+                  experience value. This timely approach means feedback is more relevant and actionable because it&apos;s captured 
+                  when customers are engaged and have context. When feedback is timely, it provides insights that actually drive 
+                  improvements, making optimization more effective.
                 </p>
               }
               cta={
                 <Link href="#">
-                  Learn more <ChevronIcon />
+                  Learn more <ArrowNarrowRightIcon />
                 </Link>
               }
+            />
+            <Feature
               demo={
-                <Screenshot wallpaper="purple" placement="top-left">
+                <Screenshot wallpaper="blue" placement="bottom-left">
                   <Image
                     src="/img/screenshots/1-right-1000-top-800.webp"
                     alt=""
@@ -351,93 +243,123 @@ export default function Page() {
                   />
                 </Screenshot>
               }
-            />
-            <Feature
-              headline="Conversion Focused"
+              headline="Pattern Analysis & Implementation"
               subheadline={
                 <p>
-                  Every element is designed to convert visitors into customers. Tested layouts, clear CTAs, and
-                  conversion-optimized forms.
+                  Feedback analysis that identifies patterns and drives implementation. We build optimization systems that don&apos;t 
+                  just collect feedback—they analyze patterns, identify opportunities, and implement improvements systematically. 
+                  This pattern-based approach means optimization becomes proactive rather than reactive, addressing issues before 
+                  they become problems. When analysis drives implementation, feedback loops create continuous improvement that makes 
+                  retention efforts more effective over time.
                 </p>
               }
               cta={
                 <Link href="#">
-                  Learn more <ChevronIcon />
+                  Learn more <ArrowNarrowRightIcon />
                 </Link>
-              }
-              demo={
-                <Screenshot wallpaper="brown" placement="bottom-left">
-                  <Image
-                    src="/img/screenshots/1-left-1000-top-800.webp"
-                    alt=""
-                    className="bg-white/75 sm:hidden dark:hidden"
-                    width={1000}
-                    height={800}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1000-top-800.webp"
-                    alt=""
-                    width={1000}
-                    height={800}
-                    className="bg-black/75 not-dark:hidden sm:hidden"
-                  />
-                  <Image
-                    src="/img/screenshots/1-left-1800-top-660.webp"
-                    alt=""
-                    className="bg-white/75 max-sm:hidden lg:hidden dark:hidden"
-                    width={1800}
-                    height={660}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1800-top-660.webp"
-                    alt=""
-                    width={1800}
-                    height={660}
-                    className="bg-black/75 not-dark:hidden max-sm:hidden lg:hidden"
-                  />
-                  <Image
-                    src="/img/screenshots/1-left-1300-top-1300.webp"
-                    alt=""
-                    className="bg-white/75 max-lg:hidden xl:hidden dark:hidden"
-                    width={1300}
-                    height={1300}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1300-top-1300.webp"
-                    alt=""
-                    width={1300}
-                    height={1300}
-                    className="bg-black/75 not-dark:hidden max-lg:hidden xl:hidden"
-                  />
-                  <Image
-                    src="/img/screenshots/1-left-1800-top-1250.webp"
-                    alt=""
-                    className="bg-white/75 max-xl:hidden dark:hidden"
-                    width={1800}
-                    height={1250}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1800-top-1250.webp"
-                    alt=""
-                    width={1800}
-                    height={1250}
-                    className="bg-black/75 not-dark:hidden max-xl:hidden"
-                  />
-                </Screenshot>
               }
             />
           </>
         }
       />
 
+      {/* Stats */}
+      <StatsWithGraph
+        id="stats"
+        eyebrow="Proven results"
+        headline="Feedback loops that drive continuous improvement"
+        subheadline={
+          <p>
+            When feedback loops & optimization systems capture feedback at the right moments and implement improvements systematically, 
+            retention efforts become more effective over time. Our comprehensive approach creates continuous improvement that compounds.
+          </p>
+        }
+      >
+        <Stat stat="3.8x" text="Better retention rates when feedback loops drive continuous improvement vs. static retention efforts." />
+        <Stat stat="64%" text="Increase in optimization effectiveness when feedback is captured at the right moments." />
+        <Stat stat="2.7x" text="Faster improvement cycles when pattern analysis drives systematic implementation." />
+      </StatsWithGraph>
+
+      {/* Testimonials */}
+      <TestimonialThreeColumnGrid
+        id="testimonial"
+        headline="Feedback loops that transformed retention"
+        subheadline={
+          <p>
+            See how comprehensive feedback loops & optimization systems have helped brands continuously improve and drive better retention.
+          </p>
+        }
+      >
+        <Testimonial
+          quote={
+            <p>
+              Before working with Magnet, we collected feedback but didn&apos;t know what to do with it. The feedback loop system 
+              they built captures feedback at the right moments and analyzes patterns to identify opportunities. Now we&apos;re 
+              implementing improvements systematically, and our retention rates have improved dramatically.
+            </p>
+          }
+          img={
+            <Image
+              src="/img/avatars/10-size-160.webp"
+              alt=""
+              className="not-dark:bg-white/75 dark:bg-black/75"
+              width={160}
+              height={160}
+            />
+          }
+          name="Jennifer Park"
+          byline="Head of Customer Experience at ImproveCo"
+        />
+        <Testimonial
+          quote={
+            <p>
+              The timely feedback capture system Magnet created for us has been incredible. Instead of sending surveys on arbitrary 
+              schedules, we capture feedback when customers are engaged and have context. This has made our feedback much more 
+              relevant and actionable, and we&apos;re implementing improvements faster than ever.
+            </p>
+          }
+          img={
+            <Image
+              src="/img/avatars/15-size-160.webp"
+              alt=""
+              className="not-dark:bg-white/75 dark:bg-black/75"
+              width={160}
+              height={160}
+            />
+          }
+          name="Michael Chen"
+          byline="VP of Product at OptimizeLab"
+        />
+        <Testimonial
+          quote={
+            <p>
+              Magnet&apos;s feedback loops & optimization system transformed how we improve. The pattern analysis identifies 
+              opportunities we wouldn&apos;t have seen, and the systematic implementation means we&apos;re continuously getting better. 
+              Our retention efforts are more effective than ever, and customers are noticing the improvements.
+            </p>
+          }
+          img={
+            <Image
+              src="/img/avatars/13-size-160.webp"
+              alt=""
+              className="not-dark:bg-white/75 dark:bg-black/75"
+              width={160}
+              height={160}
+            />
+          }
+          name="Lisa Anderson"
+          byline="Director of Retention at FeedbackCo"
+        />
+      </TestimonialThreeColumnGrid>
+
       {/* Approach */}
       <Approach
         id="approach"
-        eyebrow="Our Process"
-        headline="How we build websites that convert"
+        eyebrow="Our Method"
+        headline="How we build brands"
         subheadline={
           <p>
-            We follow a proven four-stage approach to create websites that drive real business results.
+            We follow a proven four-stage approach to create brands that drive real business results.
           </p>
         }
       >
@@ -495,61 +417,58 @@ export default function Page() {
         />
       </Approach>
 
-      {/* Stats */}
-      <StatsWithGraph
-        id="stats"
-        eyebrow="Trusted by thousands"
-        headline="Websites that perform."
-        subheadline={
-          <p>
-            Our templates power thousands of websites across industries. From startups to enterprise, businesses trust
-            our templates to deliver results.
-          </p>
-        }
-      >
-        <Stat stat="10K+" text="Websites launched using our templates." />
-        <Stat stat="95%" text="Customer satisfaction rate — our templates just work." />
-      </StatsWithGraph>
-
-      {/* Testimonial */}
-      <TestimonialTwoColumnWithLargePhoto
-        id="testimonial"
-        quote={
-          <p>
-            "We launched our new website in just one day using one of the templates. The design is beautiful, and we've
-            already seen a 40% increase in conversions. Couldn't be happier with the results."
-          </p>
-        }
-        img={
-          <Image
-            src="/img/avatars/10-size-160.webp"
-            alt=""
-            className="not-dark:bg-white/75 dark:bg-black/75"
-            width={160}
-            height={160}
-          />
-        }
-        name="Sarah Chen"
-        byline="Founder at TechFlow"
-      />
+      {/* FAQs */}
+      <FAQsTwoColumnAccordion id="faqs" headline="Questions about feedback loops & optimization">
+        <Faq
+          id="faq-1"
+          question="What's the difference between feedback loops and just collecting feedback?"
+          answer="Collecting feedback is one-way—you ask, customers answer. Feedback loops are two-way systems that capture feedback, analyze patterns, implement improvements, and close the loop by showing customers their feedback led to changes. When feedback loops are done right, they create continuous improvement that makes retention efforts more effective over time."
+        />
+        <Faq
+          id="faq-2"
+          question="When are the right moments to capture feedback?"
+          answer="The right moments depend on your business, but typically include: after key interactions (purchases, support interactions, feature usage), at milestone moments (onboarding completion, first value realization), and when customers experience value. The key is capturing feedback when customers are engaged and have context, not on arbitrary schedules."
+        />
+        <Faq
+          id="faq-3"
+          question="How do you analyze feedback patterns?"
+          answer="We analyze feedback using a combination of quantitative analysis (sentiment analysis, topic modeling, trend identification) and qualitative analysis (thematic coding, pattern recognition, opportunity identification). The goal is identifying patterns that indicate opportunities for improvement, not just summarizing what customers said."
+        />
+        <Faq
+          id="faq-4"
+          question="How long does it take to see results from feedback loops?"
+          answer="You'll typically see improvements in feedback quality and relevance within the first month as timely capture is implemented. The real impact—systematic improvements, better retention, and continuous optimization—builds over 2-3 months as feedback loops mature and improvements compound."
+        />
+        <Faq
+          id="faq-5"
+          question="Can feedback loops work for different types of businesses?"
+          answer="Absolutely. Feedback loops can be adapted for SaaS products, services, physical products, and more. The key is understanding what feedback matters for your business and building systems that capture it at the right moments. We customize feedback loops to fit your business model and customer journey."
+        />
+        <Faq
+          id="faq-6"
+          question="How do you measure feedback loop effectiveness?"
+          answer="We measure success through multiple metrics: feedback response rates, feedback quality scores, improvement implementation rates, and ultimately, retention and customer satisfaction. But the real measure is whether feedback loops create continuous improvement that makes retention efforts more effective over time. We track both quantitative metrics and qualitative outcomes to continuously improve feedback systems."
+        />
+      </FAQsTwoColumnAccordion>
 
       {/* Call To Action */}
       <CallToActionSimple
         id="call-to-action"
-        headline="Ready to launch your website?"
+        headline="Ready to build feedback loops that drive improvement?"
         subheadline={
           <p>
-            Browse our collection of professionally designed templates and find the perfect one for your business. All
-            templates are fully customizable and ready to deploy.
+            Let&apos;s create feedback loops & optimization systems that continuously improve. Build comprehensive frameworks that 
+            capture feedback at the right moments and implement improvements systematically.
           </p>
         }
         cta={
           <div className="flex items-center gap-4">
             <ButtonLink href="#" size="lg">
-              Browse templates
+              Get started
             </ButtonLink>
+
             <PlainButtonLink href="#" size="lg">
-              Book a demo <ChevronIcon />
+              Book a consultation <ChevronIcon />
             </PlainButtonLink>
           </div>
         }
@@ -557,4 +476,3 @@ export default function Page() {
     </>
   )
 }
-

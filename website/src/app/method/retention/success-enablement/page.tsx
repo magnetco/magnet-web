@@ -1,42 +1,42 @@
-import { AnnouncementBadge } from '@/components/elements/announcement-badge'
 import { ButtonLink, PlainButtonLink } from '@/components/elements/button'
 import { Link } from '@/components/elements/link'
-import { Logo, LogoGrid } from '@/components/elements/logo-grid'
 import { Screenshot } from '@/components/elements/screenshot'
 import { ArrowNarrowRightIcon } from '@/components/icons/arrow-narrow-right-icon'
 import { ChevronIcon } from '@/components/icons/chevron-icon'
 import { Approach, ApproachItem, ApproachStage } from '@/components/sections/approach'
 import { CallToActionSimple } from '@/components/sections/call-to-action-simple'
-import {
-  Feature,
-  FeaturesStackedAlternatingWithDemos,
-} from '@/components/sections/features-stacked-alternating-with-demos'
-import { HeroCenteredWithDemo } from '@/components/sections/hero-centered-with-demo'
+import { FAQsTwoColumnAccordion, Faq } from '@/components/sections/faqs-two-column-accordion'
+import { Feature, FeaturesTwoColumnWithDemos } from '@/components/sections/features-two-column-with-demos'
+import { HeroLeftAlignedWithDemo } from '@/components/sections/hero-left-aligned-with-demo'
 import { Stat, StatsWithGraph } from '@/components/sections/stats-with-graph'
-import { TestimonialTwoColumnWithLargePhoto } from '@/components/sections/testimonial-two-column-with-large-photo'
+import { Testimonial, TestimonialThreeColumnGrid } from '@/components/sections/testimonials-three-column-grid'
 import Image from 'next/image'
 
 export default function Page() {
   return (
     <>
       {/* Hero */}
-      <HeroCenteredWithDemo
+      <HeroLeftAlignedWithDemo
         id="hero"
-        eyebrow={<AnnouncementBadge href="#" text="New: Custom website templates" cta="Learn more" />}
-        headline="Beautiful websites that convert visitors into customers."
+        headline="Success Enablement"
         subheadline={
           <p>
-            Build stunning, high-performing websites with our collection of professionally designed templates. Every
-            template is optimized for conversion and built with modern web standards.
+            Enable customers to succeed and grow. Success enablement is about giving customers everything they need to succeed 
+            with your product or service. It&apos;s the system that helps customers achieve their desired outcomes and creates 
+            advocates for your brand. We build success enablement systems that go beyond support—they&apos;re comprehensive 
+            frameworks that provide the right resources, the right guidance, and the right support at the right time. When 
+            success enablement is done right, it becomes a powerful retention tool that increases lifetime value and creates 
+            compounding growth.
           </p>
         }
         cta={
           <div className="flex items-center gap-4">
             <ButtonLink href="#" size="lg">
-              Browse templates
+              Get started
             </ButtonLink>
+
             <PlainButtonLink href="#" size="lg">
-              See examples <ArrowNarrowRightIcon />
+              See how it works <ArrowNarrowRightIcon />
             </PlainButtonLink>
           </div>
         }
@@ -90,135 +90,25 @@ export default function Page() {
             </Screenshot>
           </>
         }
-        footer={
-          <LogoGrid>
-            <Logo>
-              <Image
-                src="/img/logos/9-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={51}
-                height={32}
-              />
-              <Image
-                src="/img/logos/9-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={51}
-                height={32}
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/10-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={70}
-                height={32}
-              />
-              <Image
-                src="/img/logos/10-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={70}
-                height={32}
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/11-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={100}
-                height={32}
-              />
-              <Image
-                src="/img/logos/11-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={100}
-                height={32}
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/12-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={85}
-                height={32}
-              />
-              <Image
-                src="/img/logos/12-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={85}
-                height={32}
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/13-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={75}
-                height={32}
-              />
-              <Image
-                src="/img/logos/13-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={75}
-                height={32}
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/8-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={85}
-                height={32}
-              />
-              <Image
-                src="/img/logos/8-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={85}
-                height={32}
-              />
-            </Logo>
-          </LogoGrid>
-        }
       />
 
       {/* Features */}
-      <FeaturesStackedAlternatingWithDemos
+      <FeaturesTwoColumnWithDemos
         id="features"
-        headline="Everything you need to build a stunning website."
+        eyebrow="How we enable customer success"
+        headline="Success enablement systems that drive retention"
         subheadline={
           <p>
-            Our templates come with everything you need to launch fast. Responsive design, SEO optimization, and
-            conversion-focused layouts built right in.
+            We build success enablement systems that go beyond support—they&apos;re comprehensive frameworks that provide the 
+            right resources, the right guidance, and the right support at the right time. Every element is designed to help 
+            customers achieve their desired outcomes and create advocates for your brand.
           </p>
         }
         features={
           <>
             <Feature
-              headline="Responsive Design"
-              subheadline={
-                <p>
-                  Every template is fully responsive and looks perfect on desktop, tablet, and mobile devices. No
-                  additional work required.
-                </p>
-              }
-              cta={
-                <Link href="#">
-                  Learn more <ChevronIcon />
-                </Link>
-              }
               demo={
-                <Screenshot wallpaper="blue" placement="bottom-right">
+                <Screenshot wallpaper="purple" placement="bottom-right">
                   <Image
                     src="/img/screenshots/1-left-1000-top-800.webp"
                     alt=""
@@ -277,22 +167,25 @@ export default function Page() {
                   />
                 </Screenshot>
               }
-            />
-            <Feature
-              headline="SEO Optimized"
+              headline="Proactive Guidance & Resources"
               subheadline={
                 <p>
-                  Built with SEO best practices in mind. Clean code, fast loading times, and semantic HTML help your site
-                  rank higher in search results.
+                  Resources and guidance that appear when customers need them, not when they ask. We build success enablement 
+                  systems that understand where customers are in their journey and surface the right resources at the right 
+                  time. This proactive approach means customers don&apos;t have to search for help—they get exactly what they 
+                  need when they need it. When guidance is proactive, customers succeed faster because they have the right 
+                  support at every moment, creating satisfaction that builds loyalty and advocacy.
                 </p>
               }
               cta={
                 <Link href="#">
-                  Learn more <ChevronIcon />
+                  Learn more <ArrowNarrowRightIcon />
                 </Link>
               }
+            />
+            <Feature
               demo={
-                <Screenshot wallpaper="purple" placement="top-left">
+                <Screenshot wallpaper="blue" placement="bottom-left">
                   <Image
                     src="/img/screenshots/1-right-1000-top-800.webp"
                     alt=""
@@ -351,93 +244,124 @@ export default function Page() {
                   />
                 </Screenshot>
               }
-            />
-            <Feature
-              headline="Conversion Focused"
+              headline="Outcome-Focused Support"
               subheadline={
                 <p>
-                  Every element is designed to convert visitors into customers. Tested layouts, clear CTAs, and
-                  conversion-optimized forms.
+                  Support that focuses on outcomes, not just answers. We build success enablement systems that help customers 
+                  achieve their desired outcomes, not just solve immediate problems. This outcome-focused approach means support 
+                  guides customers toward success, not just fixes issues. When support is outcome-focused, customers see value 
+                  faster, which increases satisfaction, builds loyalty, and creates advocates who drive organic growth.
                 </p>
               }
               cta={
                 <Link href="#">
-                  Learn more <ChevronIcon />
+                  Learn more <ArrowNarrowRightIcon />
                 </Link>
-              }
-              demo={
-                <Screenshot wallpaper="brown" placement="bottom-left">
-                  <Image
-                    src="/img/screenshots/1-left-1000-top-800.webp"
-                    alt=""
-                    className="bg-white/75 sm:hidden dark:hidden"
-                    width={1000}
-                    height={800}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1000-top-800.webp"
-                    alt=""
-                    width={1000}
-                    height={800}
-                    className="bg-black/75 not-dark:hidden sm:hidden"
-                  />
-                  <Image
-                    src="/img/screenshots/1-left-1800-top-660.webp"
-                    alt=""
-                    className="bg-white/75 max-sm:hidden lg:hidden dark:hidden"
-                    width={1800}
-                    height={660}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1800-top-660.webp"
-                    alt=""
-                    width={1800}
-                    height={660}
-                    className="bg-black/75 not-dark:hidden max-sm:hidden lg:hidden"
-                  />
-                  <Image
-                    src="/img/screenshots/1-left-1300-top-1300.webp"
-                    alt=""
-                    className="bg-white/75 max-lg:hidden xl:hidden dark:hidden"
-                    width={1300}
-                    height={1300}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1300-top-1300.webp"
-                    alt=""
-                    width={1300}
-                    height={1300}
-                    className="bg-black/75 not-dark:hidden max-lg:hidden xl:hidden"
-                  />
-                  <Image
-                    src="/img/screenshots/1-left-1800-top-1250.webp"
-                    alt=""
-                    className="bg-white/75 max-xl:hidden dark:hidden"
-                    width={1800}
-                    height={1250}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1800-top-1250.webp"
-                    alt=""
-                    width={1800}
-                    height={1250}
-                    className="bg-black/75 not-dark:hidden max-xl:hidden"
-                  />
-                </Screenshot>
               }
             />
           </>
         }
       />
 
+      {/* Stats */}
+      <StatsWithGraph
+        id="stats"
+        eyebrow="Proven results"
+        headline="Success enablement that drives retention"
+        subheadline={
+          <p>
+            When success enablement systems provide proactive guidance and outcome-focused support, customer satisfaction increases 
+            and retention improves. Our comprehensive approach creates systems that help customers succeed and grow.
+          </p>
+        }
+      >
+        <Stat stat="4.0x" text="Higher customer satisfaction scores when success enablement is proactive vs. reactive." />
+        <Stat stat="65%" text="Increase in customer retention when support focuses on outcomes vs. just solving problems." />
+        <Stat stat="3.2x" text="Better customer lifetime value when success enablement helps customers achieve their goals." />
+      </StatsWithGraph>
+
+      {/* Testimonials */}
+      <TestimonialThreeColumnGrid
+        id="testimonial"
+        headline="Success enablement that transformed retention"
+        subheadline={
+          <p>
+            See how comprehensive success enablement systems have helped brands increase customer satisfaction and improve retention.
+          </p>
+        }
+      >
+        <Testimonial
+          quote={
+            <p>
+              Before working with Magnet, our customer success felt reactive—we&apos;d help when customers asked. The proactive 
+              guidance system they built surfaces resources exactly when customers need them, and the outcome-focused support 
+              means we&apos;re helping customers achieve their goals, not just solve problems. Our customer satisfaction scores 
+              have quadrupled.
+            </p>
+          }
+          img={
+            <Image
+              src="/img/avatars/10-size-160.webp"
+              alt=""
+              className="not-dark:bg-white/75 dark:bg-black/75"
+              width={160}
+              height={160}
+            />
+          }
+          name="Sarah Williams"
+          byline="Head of Customer Success at SuccessCo"
+        />
+        <Testimonial
+          quote={
+            <p>
+              The success enablement system Magnet created for us transformed how we support customers. Instead of waiting for 
+              customers to ask for help, we&apos;re proactively guiding them toward success. This has made our customers much 
+              more successful with our product, and they&apos;re becoming advocates who refer others. Our retention rates have 
+              never been higher.
+            </p>
+          }
+          img={
+            <Image
+              src="/img/avatars/15-size-160.webp"
+              alt=""
+              className="not-dark:bg-white/75 dark:bg-black/75"
+              width={160}
+              height={160}
+            />
+          }
+          name="James Rodriguez"
+          byline="VP of Customer Experience at EnableCo"
+        />
+        <Testimonial
+          quote={
+            <p>
+              Magnet&apos;s outcome-focused support approach changed everything. Instead of just solving problems, we&apos;re helping 
+              customers achieve their desired outcomes. This has increased customer satisfaction dramatically, and our customers 
+              are seeing value faster. The result is better retention and customers who actually advocate for our brand.
+            </p>
+          }
+          img={
+            <Image
+              src="/img/avatars/13-size-160.webp"
+              alt=""
+              className="not-dark:bg-white/75 dark:bg-black/75"
+              width={160}
+              height={160}
+            />
+          }
+          name="Emily Chen"
+          byline="Director of Customer Success at GrowthLab"
+        />
+      </TestimonialThreeColumnGrid>
+
       {/* Approach */}
       <Approach
         id="approach"
-        eyebrow="Our Process"
-        headline="How we build websites that convert"
+        eyebrow="Our Method"
+        headline="How we build brands"
         subheadline={
           <p>
-            We follow a proven four-stage approach to create websites that drive real business results.
+            We follow a proven four-stage approach to create brands that drive real business results.
           </p>
         }
       >
@@ -495,61 +419,58 @@ export default function Page() {
         />
       </Approach>
 
-      {/* Stats */}
-      <StatsWithGraph
-        id="stats"
-        eyebrow="Trusted by thousands"
-        headline="Websites that perform."
-        subheadline={
-          <p>
-            Our templates power thousands of websites across industries. From startups to enterprise, businesses trust
-            our templates to deliver results.
-          </p>
-        }
-      >
-        <Stat stat="10K+" text="Websites launched using our templates." />
-        <Stat stat="95%" text="Customer satisfaction rate — our templates just work." />
-      </StatsWithGraph>
-
-      {/* Testimonial */}
-      <TestimonialTwoColumnWithLargePhoto
-        id="testimonial"
-        quote={
-          <p>
-            "We launched our new website in just one day using one of the templates. The design is beautiful, and we've
-            already seen a 40% increase in conversions. Couldn't be happier with the results."
-          </p>
-        }
-        img={
-          <Image
-            src="/img/avatars/10-size-160.webp"
-            alt=""
-            className="not-dark:bg-white/75 dark:bg-black/75"
-            width={160}
-            height={160}
-          />
-        }
-        name="Sarah Chen"
-        byline="Founder at TechFlow"
-      />
+      {/* FAQs */}
+      <FAQsTwoColumnAccordion id="faqs" headline="Questions about success enablement">
+        <Faq
+          id="faq-1"
+          question="What's the difference between success enablement and customer support?"
+          answer="Customer support is reactive—it helps when customers ask. Success enablement is proactive—it provides resources and guidance before customers need to ask. Support solves problems; success enablement helps customers achieve outcomes. When success enablement is done right, customers succeed faster, which increases satisfaction, builds loyalty, and creates advocates."
+        />
+        <Faq
+          id="faq-2"
+          question="How do you make guidance proactive?"
+          answer="We build systems that understand where customers are in their journey and surface the right resources at the right time. This means resources appear when customers need them, not when they search for them. Proactive guidance recognizes milestones, identifies needs, and provides support before customers have to ask. This approach helps customers succeed faster and creates satisfaction that builds loyalty."
+        />
+        <Faq
+          id="faq-3"
+          question="What does outcome-focused support mean?"
+          answer="Outcome-focused support helps customers achieve their desired outcomes, not just solve immediate problems. Instead of just answering questions, we guide customers toward success. This means understanding what customers are trying to achieve and providing support that moves them closer to those goals. When support is outcome-focused, customers see value faster, which increases satisfaction and retention."
+        />
+        <Faq
+          id="faq-4"
+          question="How long does it take to see results from success enablement?"
+          answer="You'll typically see improvements in customer satisfaction and engagement within the first month as proactive guidance and outcome-focused support are implemented. The real impact—better retention, higher lifetime value, and customers who become advocates—builds over 2-3 months as customers succeed with your product and see the value."
+        />
+        <Faq
+          id="faq-5"
+          question="Can success enablement work for different types of products?"
+          answer="Absolutely. Success enablement can be adapted for SaaS products, services, physical products, and more. The key is understanding what success looks like for your customers and building systems that help them achieve those outcomes. We customize success enablement to fit your product and your customers' needs."
+        />
+        <Faq
+          id="faq-6"
+          question="How do you measure success enablement effectiveness?"
+          answer="We measure success through multiple metrics: customer satisfaction scores, time to value, feature adoption rates, retention rates, and ultimately, customer lifetime value. But the real measure is whether customers are achieving their desired outcomes and becoming advocates. We track both quantitative metrics and qualitative feedback to continuously improve success enablement systems."
+        />
+      </FAQsTwoColumnAccordion>
 
       {/* Call To Action */}
       <CallToActionSimple
         id="call-to-action"
-        headline="Ready to launch your website?"
+        headline="Ready to enable customer success?"
         subheadline={
           <p>
-            Browse our collection of professionally designed templates and find the perfect one for your business. All
-            templates are fully customizable and ready to deploy.
+            Let&apos;s create success enablement systems that drive retention and growth. Build comprehensive frameworks that 
+            provide the right resources, guidance, and support at the right time.
           </p>
         }
         cta={
           <div className="flex items-center gap-4">
             <ButtonLink href="#" size="lg">
-              Browse templates
+              Get started
             </ButtonLink>
+
             <PlainButtonLink href="#" size="lg">
-              Book a demo <ChevronIcon />
+              Book a consultation <ChevronIcon />
             </PlainButtonLink>
           </div>
         }
@@ -557,4 +478,3 @@ export default function Page() {
     </>
   )
 }
-

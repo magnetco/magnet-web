@@ -5,6 +5,7 @@ import { Container } from '../elements/container'
 import { Heading } from '../elements/heading'
 import { Text } from '../elements/text'
 import { CheckmarkIcon } from '../icons/checkmark-icon'
+import { HoverGradient } from '../elements/use-hover-gradient'
 
 export function Plan({
   name,
@@ -25,13 +26,13 @@ export function Plan({
   cta: ReactNode
 } & ComponentProps<'div'>) {
   return (
-    <div
+    <HoverGradient
       className={clsx(
         'flex flex-col justify-between gap-6 rounded-xl bg-olive-950/2.5 p-6 sm:items-start dark:bg-white/5',
         className,
       )}
     >
-      <div className="self-stretch">
+      <div className="relative z-10 self-stretch">
         <div className="flex items-center justify-between">
           {badge && (
             <div className="order-last inline-flex rounded-full bg-olive-950/10 px-2 text-xs/6 font-medium text-oxblood">
@@ -55,8 +56,8 @@ export function Plan({
           ))}
         </ul>
       </div>
-      {cta}
-    </div>
+      <div className="relative z-10">{cta}</div>
+    </HoverGradient>
   )
 }
 

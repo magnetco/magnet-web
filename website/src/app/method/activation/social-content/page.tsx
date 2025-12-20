@@ -1,42 +1,41 @@
-import { AnnouncementBadge } from '@/components/elements/announcement-badge'
 import { ButtonLink, PlainButtonLink } from '@/components/elements/button'
 import { Link } from '@/components/elements/link'
-import { Logo, LogoGrid } from '@/components/elements/logo-grid'
 import { Screenshot } from '@/components/elements/screenshot'
 import { ArrowNarrowRightIcon } from '@/components/icons/arrow-narrow-right-icon'
 import { ChevronIcon } from '@/components/icons/chevron-icon'
 import { Approach, ApproachItem, ApproachStage } from '@/components/sections/approach'
 import { CallToActionSimple } from '@/components/sections/call-to-action-simple'
-import {
-  Feature,
-  FeaturesStackedAlternatingWithDemos,
-} from '@/components/sections/features-stacked-alternating-with-demos'
-import { HeroCenteredWithDemo } from '@/components/sections/hero-centered-with-demo'
+import { FAQsTwoColumnAccordion, Faq } from '@/components/sections/faqs-two-column-accordion'
+import { Feature, FeaturesTwoColumnWithDemos } from '@/components/sections/features-two-column-with-demos'
+import { HeroLeftAlignedWithDemo } from '@/components/sections/hero-left-aligned-with-demo'
 import { Stat, StatsWithGraph } from '@/components/sections/stats-with-graph'
-import { TestimonialTwoColumnWithLargePhoto } from '@/components/sections/testimonial-two-column-with-large-photo'
+import { Testimonial, TestimonialThreeColumnGrid } from '@/components/sections/testimonials-three-column-grid'
 import Image from 'next/image'
 
 export default function Page() {
   return (
     <>
       {/* Hero */}
-      <HeroCenteredWithDemo
+      <HeroLeftAlignedWithDemo
         id="hero"
-        eyebrow={<AnnouncementBadge href="#" text="New: Custom website templates" cta="Learn more" />}
-        headline="Beautiful websites that convert visitors into customers."
+        headline="Social Content"
         subheadline={
           <p>
-            Build stunning, high-performing websites with our collection of professionally designed templates. Every
-            template is optimized for conversion and built with modern web standards.
+            Create content that engages, educates, and converts. Social content is about creating content that engages, educates, 
+            and converts. It&apos;s the system that builds awareness, trust, and relationships with your ideal customers. We build 
+            social content systems that go beyond posting—they&apos;re comprehensive strategies that align with how your audience 
+            consumes content, when they&apos;re most receptive, and what moves them to action. When social content is done right, 
+            it becomes a powerful activation channel that drives qualified traffic into your system.
           </p>
         }
         cta={
           <div className="flex items-center gap-4">
             <ButtonLink href="#" size="lg">
-              Browse templates
+              Get started
             </ButtonLink>
+
             <PlainButtonLink href="#" size="lg">
-              See examples <ArrowNarrowRightIcon />
+              See how it works <ArrowNarrowRightIcon />
             </PlainButtonLink>
           </div>
         }
@@ -90,135 +89,25 @@ export default function Page() {
             </Screenshot>
           </>
         }
-        footer={
-          <LogoGrid>
-            <Logo>
-              <Image
-                src="/img/logos/9-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={51}
-                height={32}
-              />
-              <Image
-                src="/img/logos/9-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={51}
-                height={32}
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/10-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={70}
-                height={32}
-              />
-              <Image
-                src="/img/logos/10-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={70}
-                height={32}
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/11-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={100}
-                height={32}
-              />
-              <Image
-                src="/img/logos/11-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={100}
-                height={32}
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/12-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={85}
-                height={32}
-              />
-              <Image
-                src="/img/logos/12-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={85}
-                height={32}
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/13-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={75}
-                height={32}
-              />
-              <Image
-                src="/img/logos/13-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={75}
-                height={32}
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/8-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={85}
-                height={32}
-              />
-              <Image
-                src="/img/logos/8-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={85}
-                height={32}
-              />
-            </Logo>
-          </LogoGrid>
-        }
       />
 
       {/* Features */}
-      <FeaturesStackedAlternatingWithDemos
+      <FeaturesTwoColumnWithDemos
         id="features"
-        headline="Everything you need to build a stunning website."
+        eyebrow="How we build social content"
+        headline="Content systems that engage and convert"
         subheadline={
           <p>
-            Our templates come with everything you need to launch fast. Responsive design, SEO optimization, and
-            conversion-focused layouts built right in.
+            We build social content systems that go beyond posting—they&apos;re comprehensive strategies that align with how your 
+            audience consumes content, when they&apos;re most receptive, and what moves them to action. Every piece of content serves 
+            a purpose, builds relationships, and guides audiences toward engagement.
           </p>
         }
         features={
           <>
             <Feature
-              headline="Responsive Design"
-              subheadline={
-                <p>
-                  Every template is fully responsive and looks perfect on desktop, tablet, and mobile devices. No
-                  additional work required.
-                </p>
-              }
-              cta={
-                <Link href="#">
-                  Learn more <ChevronIcon />
-                </Link>
-              }
               demo={
-                <Screenshot wallpaper="blue" placement="bottom-right">
+                <Screenshot wallpaper="purple" placement="bottom-right">
                   <Image
                     src="/img/screenshots/1-left-1000-top-800.webp"
                     alt=""
@@ -277,22 +166,25 @@ export default function Page() {
                   />
                 </Screenshot>
               }
-            />
-            <Feature
-              headline="SEO Optimized"
+              headline="Audience-Aligned Content Strategy"
               subheadline={
                 <p>
-                  Built with SEO best practices in mind. Clean code, fast loading times, and semantic HTML help your site
-                  rank higher in search results.
+                  Content that aligns with how your audience consumes content, not how you want to create it. We build social 
+                  content strategies that understand when your audience is most receptive, what formats they prefer, and what 
+                  moves them to action. This audience-aligned approach means content performs better because it&apos;s designed for 
+                  how audiences actually consume content, not arbitrary posting schedules. When content is audience-aligned, it 
+                  builds relationships and drives engagement because it meets audiences where they are.
                 </p>
               }
               cta={
                 <Link href="#">
-                  Learn more <ChevronIcon />
+                  Learn more <ArrowNarrowRightIcon />
                 </Link>
               }
+            />
+            <Feature
               demo={
-                <Screenshot wallpaper="purple" placement="top-left">
+                <Screenshot wallpaper="blue" placement="bottom-left">
                   <Image
                     src="/img/screenshots/1-right-1000-top-800.webp"
                     alt=""
@@ -351,93 +243,123 @@ export default function Page() {
                   />
                 </Screenshot>
               }
-            />
-            <Feature
-              headline="Conversion Focused"
+              headline="Engagement-Focused Content Creation"
               subheadline={
                 <p>
-                  Every element is designed to convert visitors into customers. Tested layouts, clear CTAs, and
-                  conversion-optimized forms.
+                  Content that engages, educates, and converts, not just posts. We build social content systems that create content 
+                  with purpose—every piece serves a role in building awareness, trust, or relationships. This engagement-focused approach 
+                  means content drives action because it&apos;s designed to move audiences through a journey, not just fill a feed. 
+                  When content is engagement-focused, it builds relationships and drives qualified traffic because it provides value 
+                  that audiences want to engage with.
                 </p>
               }
               cta={
                 <Link href="#">
-                  Learn more <ChevronIcon />
+                  Learn more <ArrowNarrowRightIcon />
                 </Link>
-              }
-              demo={
-                <Screenshot wallpaper="brown" placement="bottom-left">
-                  <Image
-                    src="/img/screenshots/1-left-1000-top-800.webp"
-                    alt=""
-                    className="bg-white/75 sm:hidden dark:hidden"
-                    width={1000}
-                    height={800}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1000-top-800.webp"
-                    alt=""
-                    width={1000}
-                    height={800}
-                    className="bg-black/75 not-dark:hidden sm:hidden"
-                  />
-                  <Image
-                    src="/img/screenshots/1-left-1800-top-660.webp"
-                    alt=""
-                    className="bg-white/75 max-sm:hidden lg:hidden dark:hidden"
-                    width={1800}
-                    height={660}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1800-top-660.webp"
-                    alt=""
-                    width={1800}
-                    height={660}
-                    className="bg-black/75 not-dark:hidden max-sm:hidden lg:hidden"
-                  />
-                  <Image
-                    src="/img/screenshots/1-left-1300-top-1300.webp"
-                    alt=""
-                    className="bg-white/75 max-lg:hidden xl:hidden dark:hidden"
-                    width={1300}
-                    height={1300}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1300-top-1300.webp"
-                    alt=""
-                    width={1300}
-                    height={1300}
-                    className="bg-black/75 not-dark:hidden max-lg:hidden xl:hidden"
-                  />
-                  <Image
-                    src="/img/screenshots/1-left-1800-top-1250.webp"
-                    alt=""
-                    className="bg-white/75 max-xl:hidden dark:hidden"
-                    width={1800}
-                    height={1250}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1800-top-1250.webp"
-                    alt=""
-                    width={1800}
-                    height={1250}
-                    className="bg-black/75 not-dark:hidden max-xl:hidden"
-                  />
-                </Screenshot>
               }
             />
           </>
         }
       />
 
+      {/* Stats */}
+      <StatsWithGraph
+        id="stats"
+        eyebrow="Proven results"
+        headline="Social content that drives engagement and traffic"
+        subheadline={
+          <p>
+            When social content systems align with audience behavior and focus on engagement, they build awareness, trust, and 
+            relationships that drive qualified traffic. Our comprehensive approach creates content that performs.
+          </p>
+        }
+      >
+        <Stat stat="4.3x" text="Higher engagement rates when content aligns with audience behavior vs. arbitrary posting schedules." />
+        <Stat stat="71%" text="Increase in qualified traffic when content is engagement-focused vs. just promotional." />
+        <Stat stat="3.0x" text="Better brand awareness when social content builds relationships vs. just broadcasting messages." />
+      </StatsWithGraph>
+
+      {/* Testimonials */}
+      <TestimonialThreeColumnGrid
+        id="testimonial"
+        headline="Social content that transformed activation"
+        subheadline={
+          <p>
+            See how comprehensive social content systems have helped brands build awareness, trust, and relationships that drive qualified traffic.
+          </p>
+        }
+      >
+        <Testimonial
+          quote={
+            <p>
+              Before working with Magnet, our social content felt like we were just posting to post. The audience-aligned strategy 
+              they created understands when our audience is most receptive and what moves them to action. Our engagement rates have 
+              quadrupled, and we&apos;re driving much more qualified traffic.
+            </p>
+          }
+          img={
+            <Image
+              src="/img/avatars/10-size-160.webp"
+              alt=""
+              className="not-dark:bg-white/75 dark:bg-black/75"
+              width={160}
+              height={160}
+            />
+          }
+          name="Amanda Rodriguez"
+          byline="Head of Social Media at EngageCo"
+        />
+        <Testimonial
+          quote={
+            <p>
+              The engagement-focused content system Magnet built for us has been incredible. Instead of just posting, we&apos;re creating 
+              content with purpose that builds relationships. This has made our social presence much more effective, and we&apos;re seeing 
+              real results in terms of awareness and qualified traffic.
+            </p>
+          }
+          img={
+            <Image
+              src="/img/avatars/15-size-160.webp"
+              alt=""
+              className="not-dark:bg-white/75 dark:bg-black/75"
+              width={160}
+              height={160}
+            />
+          }
+          name="Kevin Park"
+          byline="VP of Marketing at ContentLab"
+        />
+        <Testimonial
+          quote={
+            <p>
+              Magnet&apos;s social content strategy transformed how we approach social media. The audience-aligned approach means our 
+              content performs better because it&apos;s designed for how audiences actually consume content. The engagement-focused 
+              creation means every piece serves a purpose. Our social presence is now a powerful activation channel.
+            </p>
+          }
+          img={
+            <Image
+              src="/img/avatars/13-size-160.webp"
+              alt=""
+              className="not-dark:bg-white/75 dark:bg-black/75"
+              width={160}
+              height={160}
+            />
+          }
+          name="Sarah Kim"
+          byline="Director of Social at SocialCo"
+        />
+      </TestimonialThreeColumnGrid>
+
       {/* Approach */}
       <Approach
         id="approach"
-        eyebrow="Our Process"
-        headline="How we build websites that convert"
+        eyebrow="Our Method"
+        headline="How we build brands"
         subheadline={
           <p>
-            We follow a proven four-stage approach to create websites that drive real business results.
+            We follow a proven four-stage approach to create brands that drive real business results.
           </p>
         }
       >
@@ -495,61 +417,58 @@ export default function Page() {
         />
       </Approach>
 
-      {/* Stats */}
-      <StatsWithGraph
-        id="stats"
-        eyebrow="Trusted by thousands"
-        headline="Websites that perform."
-        subheadline={
-          <p>
-            Our templates power thousands of websites across industries. From startups to enterprise, businesses trust
-            our templates to deliver results.
-          </p>
-        }
-      >
-        <Stat stat="10K+" text="Websites launched using our templates." />
-        <Stat stat="95%" text="Customer satisfaction rate — our templates just work." />
-      </StatsWithGraph>
-
-      {/* Testimonial */}
-      <TestimonialTwoColumnWithLargePhoto
-        id="testimonial"
-        quote={
-          <p>
-            "We launched our new website in just one day using one of the templates. The design is beautiful, and we've
-            already seen a 40% increase in conversions. Couldn't be happier with the results."
-          </p>
-        }
-        img={
-          <Image
-            src="/img/avatars/10-size-160.webp"
-            alt=""
-            className="not-dark:bg-white/75 dark:bg-black/75"
-            width={160}
-            height={160}
-          />
-        }
-        name="Sarah Chen"
-        byline="Founder at TechFlow"
-      />
+      {/* FAQs */}
+      <FAQsTwoColumnAccordion id="faqs" headline="Questions about social content">
+        <Faq
+          id="faq-1"
+          question="What's the difference between social content and just posting?"
+          answer="Posting is one-way broadcasting. Social content is comprehensive strategies that align with how audiences consume content, when they're most receptive, and what moves them to action. Content systems create content with purpose—every piece serves a role in building awareness, trust, or relationships. When social content is done right, it builds relationships and drives qualified traffic."
+        />
+        <Faq
+          id="faq-2"
+          question="How do you align content with audience behavior?"
+          answer="We analyze when your audience is most active, what formats they prefer, what content they engage with, and what moves them to action. Then we build content strategies that align with these behaviors—posting when audiences are receptive, using formats they prefer, and creating content that drives engagement. This audience-aligned approach means content performs better because it's designed for how audiences actually consume content."
+        />
+        <Faq
+          id="faq-3"
+          question="What makes content engagement-focused?"
+          answer="Engagement-focused content serves a purpose—it builds awareness, educates, entertains, or moves audiences toward action. Every piece of content is designed to drive engagement, not just fill a feed. This means content provides value that audiences want to engage with, creating relationships that drive qualified traffic."
+        />
+        <Faq
+          id="faq-4"
+          question="How long does it take to see results from social content?"
+          answer="You'll typically see improvements in engagement rates within the first month as audience-aligned strategies are implemented. The real impact—brand awareness, trust, relationships, and qualified traffic—builds over 2-3 months as content systems mature and audiences engage more consistently."
+        />
+        <Faq
+          id="faq-5"
+          question="Can social content work for B2B companies?"
+          answer="Absolutely. B2B social content is especially valuable because it builds thought leadership, facilitates professional relationships, and drives qualified leads. We build B2B social content systems that align with how professionals consume content, when they're most receptive, and what moves them to engage. B2B social content often becomes a competitive advantage."
+        />
+        <Faq
+          id="faq-6"
+          question="How do you measure social content success?"
+          answer="We measure success through multiple metrics: engagement rates, reach, brand awareness, website traffic, lead generation, and ultimately, revenue. But the real measure is whether social content builds relationships and drives qualified traffic. We track both quantitative metrics and qualitative outcomes to continuously improve content systems."
+        />
+      </FAQsTwoColumnAccordion>
 
       {/* Call To Action */}
       <CallToActionSimple
         id="call-to-action"
-        headline="Ready to launch your website?"
+        headline="Ready to create social content that engages?"
         subheadline={
           <p>
-            Browse our collection of professionally designed templates and find the perfect one for your business. All
-            templates are fully customizable and ready to deploy.
+            Let&apos;s create social content systems that drive activation. Build comprehensive strategies that align with audience 
+            behavior and focus on engagement.
           </p>
         }
         cta={
           <div className="flex items-center gap-4">
             <ButtonLink href="#" size="lg">
-              Browse templates
+              Get started
             </ButtonLink>
+
             <PlainButtonLink href="#" size="lg">
-              Book a demo <ChevronIcon />
+              Book a consultation <ChevronIcon />
             </PlainButtonLink>
           </div>
         }
@@ -557,4 +476,3 @@ export default function Page() {
     </>
   )
 }
-

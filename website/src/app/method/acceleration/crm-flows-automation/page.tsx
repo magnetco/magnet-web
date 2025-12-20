@@ -1,42 +1,42 @@
-import { AnnouncementBadge } from '@/components/elements/announcement-badge'
 import { ButtonLink, PlainButtonLink } from '@/components/elements/button'
 import { Link } from '@/components/elements/link'
-import { Logo, LogoGrid } from '@/components/elements/logo-grid'
 import { Screenshot } from '@/components/elements/screenshot'
 import { ArrowNarrowRightIcon } from '@/components/icons/arrow-narrow-right-icon'
 import { ChevronIcon } from '@/components/icons/chevron-icon'
 import { Approach, ApproachItem, ApproachStage } from '@/components/sections/approach'
 import { CallToActionSimple } from '@/components/sections/call-to-action-simple'
-import {
-  Feature,
-  FeaturesStackedAlternatingWithDemos,
-} from '@/components/sections/features-stacked-alternating-with-demos'
-import { HeroCenteredWithDemo } from '@/components/sections/hero-centered-with-demo'
+import { FAQsTwoColumnAccordion, Faq } from '@/components/sections/faqs-two-column-accordion'
+import { Feature, FeaturesTwoColumnWithDemos } from '@/components/sections/features-two-column-with-demos'
+import { HeroLeftAlignedWithDemo } from '@/components/sections/hero-left-aligned-with-demo'
 import { Stat, StatsWithGraph } from '@/components/sections/stats-with-graph'
-import { TestimonialTwoColumnWithLargePhoto } from '@/components/sections/testimonial-two-column-with-large-photo'
+import { Testimonial, TestimonialThreeColumnGrid } from '@/components/sections/testimonials-three-column-grid'
 import Image from 'next/image'
 
 export default function Page() {
   return (
     <>
       {/* Hero */}
-      <HeroCenteredWithDemo
+      <HeroLeftAlignedWithDemo
         id="hero"
-        eyebrow={<AnnouncementBadge href="#" text="New: Custom website templates" cta="Learn more" />}
-        headline="Beautiful websites that convert visitors into customers."
+        headline="CRM Flows & Automation"
         subheadline={
           <p>
-            Build stunning, high-performing websites with our collection of professionally designed templates. Every
-            template is optimized for conversion and built with modern web standards.
+            Automate workflows that accelerate revenue. CRM flows & automation is about creating systems that work automatically 
+            to move prospects through the funnel and accelerate revenue. It&apos;s the system that removes manual work and ensures 
+            nothing falls through the cracks. We build CRM flows & automation that go beyond basic sequences—they&apos;re comprehensive 
+            systems that understand context, trigger the right actions at the right time, and create seamless experiences for both 
+            prospects and your team. When CRM flows & automation are done right, they become a powerful acceleration tool that scales 
+            your sales process.
           </p>
         }
         cta={
           <div className="flex items-center gap-4">
             <ButtonLink href="#" size="lg">
-              Browse templates
+              Get started
             </ButtonLink>
+
             <PlainButtonLink href="#" size="lg">
-              See examples <ArrowNarrowRightIcon />
+              See how it works <ArrowNarrowRightIcon />
             </PlainButtonLink>
           </div>
         }
@@ -90,135 +90,25 @@ export default function Page() {
             </Screenshot>
           </>
         }
-        footer={
-          <LogoGrid>
-            <Logo>
-              <Image
-                src="/img/logos/9-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={51}
-                height={32}
-              />
-              <Image
-                src="/img/logos/9-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={51}
-                height={32}
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/10-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={70}
-                height={32}
-              />
-              <Image
-                src="/img/logos/10-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={70}
-                height={32}
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/11-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={100}
-                height={32}
-              />
-              <Image
-                src="/img/logos/11-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={100}
-                height={32}
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/12-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={85}
-                height={32}
-              />
-              <Image
-                src="/img/logos/12-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={85}
-                height={32}
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/13-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={75}
-                height={32}
-              />
-              <Image
-                src="/img/logos/13-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={75}
-                height={32}
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/8-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={85}
-                height={32}
-              />
-              <Image
-                src="/img/logos/8-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={85}
-                height={32}
-              />
-            </Logo>
-          </LogoGrid>
-        }
       />
 
       {/* Features */}
-      <FeaturesStackedAlternatingWithDemos
+      <FeaturesTwoColumnWithDemos
         id="features"
-        headline="Everything you need to build a stunning website."
+        eyebrow="How we build CRM automation"
+        headline="Automation systems that accelerate revenue"
         subheadline={
           <p>
-            Our templates come with everything you need to launch fast. Responsive design, SEO optimization, and
-            conversion-focused layouts built right in.
+            We build CRM flows & automation that go beyond basic sequences—they&apos;re comprehensive systems that understand 
+            context, trigger the right actions at the right time, and create seamless experiences for both prospects and your 
+            team. Every flow is designed to remove friction, ensure nothing falls through the cracks, and accelerate revenue.
           </p>
         }
         features={
           <>
             <Feature
-              headline="Responsive Design"
-              subheadline={
-                <p>
-                  Every template is fully responsive and looks perfect on desktop, tablet, and mobile devices. No
-                  additional work required.
-                </p>
-              }
-              cta={
-                <Link href="#">
-                  Learn more <ChevronIcon />
-                </Link>
-              }
               demo={
-                <Screenshot wallpaper="blue" placement="bottom-right">
+                <Screenshot wallpaper="purple" placement="bottom-right">
                   <Image
                     src="/img/screenshots/1-left-1000-top-800.webp"
                     alt=""
@@ -277,22 +167,25 @@ export default function Page() {
                   />
                 </Screenshot>
               }
-            />
-            <Feature
-              headline="SEO Optimized"
+              headline="Context-Aware Automation"
               subheadline={
                 <p>
-                  Built with SEO best practices in mind. Clean code, fast loading times, and semantic HTML help your site
-                  rank higher in search results.
+                  Automation that understands context, not just triggers. We build CRM flows that recognize where prospects are 
+                  in their journey, what they&apos;ve done, and what they need next. This context-aware approach means automation 
+                  triggers the right actions at the right time, creating experiences that feel intentional and valuable. When 
+                  automation understands context, it doesn&apos;t just move prospects through the funnel—it guides them appropriately, 
+                  ensuring every interaction is relevant and timely.
                 </p>
               }
               cta={
                 <Link href="#">
-                  Learn more <ChevronIcon />
+                  Learn more <ArrowNarrowRightIcon />
                 </Link>
               }
+            />
+            <Feature
               demo={
-                <Screenshot wallpaper="purple" placement="top-left">
+                <Screenshot wallpaper="blue" placement="bottom-left">
                   <Image
                     src="/img/screenshots/1-right-1000-top-800.webp"
                     alt=""
@@ -351,93 +244,125 @@ export default function Page() {
                   />
                 </Screenshot>
               }
-            />
-            <Feature
-              headline="Conversion Focused"
+              headline="Seamless Workflow Integration"
               subheadline={
                 <p>
-                  Every element is designed to convert visitors into customers. Tested layouts, clear CTAs, and
-                  conversion-optimized forms.
+                  Flows that integrate seamlessly with your existing workflows. We build CRM automation that works with your 
+                  sales process, not against it. This means automation handles the repetitive tasks while your team focuses on 
+                  high-value activities. When workflows are integrated seamlessly, nothing falls through the cracks, prospects 
+                  get timely follow-ups, and your team can scale without adding headcount. The result is a sales process that 
+                  runs smoothly and efficiently, even as you grow.
                 </p>
               }
               cta={
                 <Link href="#">
-                  Learn more <ChevronIcon />
+                  Learn more <ArrowNarrowRightIcon />
                 </Link>
-              }
-              demo={
-                <Screenshot wallpaper="brown" placement="bottom-left">
-                  <Image
-                    src="/img/screenshots/1-left-1000-top-800.webp"
-                    alt=""
-                    className="bg-white/75 sm:hidden dark:hidden"
-                    width={1000}
-                    height={800}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1000-top-800.webp"
-                    alt=""
-                    width={1000}
-                    height={800}
-                    className="bg-black/75 not-dark:hidden sm:hidden"
-                  />
-                  <Image
-                    src="/img/screenshots/1-left-1800-top-660.webp"
-                    alt=""
-                    className="bg-white/75 max-sm:hidden lg:hidden dark:hidden"
-                    width={1800}
-                    height={660}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1800-top-660.webp"
-                    alt=""
-                    width={1800}
-                    height={660}
-                    className="bg-black/75 not-dark:hidden max-sm:hidden lg:hidden"
-                  />
-                  <Image
-                    src="/img/screenshots/1-left-1300-top-1300.webp"
-                    alt=""
-                    className="bg-white/75 max-lg:hidden xl:hidden dark:hidden"
-                    width={1300}
-                    height={1300}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1300-top-1300.webp"
-                    alt=""
-                    width={1300}
-                    height={1300}
-                    className="bg-black/75 not-dark:hidden max-lg:hidden xl:hidden"
-                  />
-                  <Image
-                    src="/img/screenshots/1-left-1800-top-1250.webp"
-                    alt=""
-                    className="bg-white/75 max-xl:hidden dark:hidden"
-                    width={1800}
-                    height={1250}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1800-top-1250.webp"
-                    alt=""
-                    width={1800}
-                    height={1250}
-                    className="bg-black/75 not-dark:hidden max-xl:hidden"
-                  />
-                </Screenshot>
               }
             />
           </>
         }
       />
 
+      {/* Stats */}
+      <StatsWithGraph
+        id="stats"
+        eyebrow="Proven results"
+        headline="CRM automation that accelerates revenue"
+        subheadline={
+          <p>
+            When CRM flows & automation are built as comprehensive systems that understand context and integrate seamlessly, 
+            sales processes become more efficient and revenue accelerates. Our context-aware automation and workflow integration 
+            create systems that scale.
+          </p>
+        }
+      >
+        <Stat stat="3.9x" text="Faster sales cycle progression when automation handles repetitive tasks vs. manual processes." />
+        <Stat stat="61%" text="Reduction in dropped leads when automation ensures nothing falls through the cracks." />
+        <Stat stat="2.8x" text="Better sales team efficiency when workflows are automated and integrated seamlessly." />
+      </StatsWithGraph>
+
+      {/* Testimonials */}
+      <TestimonialThreeColumnGrid
+        id="testimonial"
+        headline="CRM automation that transformed sales processes"
+        subheadline={
+          <p>
+            See how comprehensive CRM flows & automation have helped sales teams scale efficiently and accelerate revenue.
+          </p>
+        }
+      >
+        <Testimonial
+          quote={
+            <p>
+              Before working with Magnet, our sales process was full of manual work and things were constantly falling through 
+              the cracks. The CRM automation they built handles all the repetitive tasks automatically, and the context-aware 
+              flows ensure prospects get the right follow-ups at the right time. Our sales cycle has shortened significantly, 
+              and we&apos;re closing more deals.
+            </p>
+          }
+          img={
+            <Image
+              src="/img/avatars/10-size-160.webp"
+              alt=""
+              className="not-dark:bg-white/75 dark:bg-black/75"
+              width={160}
+              height={160}
+            />
+          }
+          name="Mark Thompson"
+          byline="VP of Sales at AutomateCo"
+        />
+        <Testimonial
+          quote={
+            <p>
+              The workflow integration Magnet created for us has been incredible. Instead of our team spending time on manual 
+              tasks, they can focus on high-value activities. The automation ensures nothing falls through the cracks, and 
+              prospects get timely, relevant follow-ups. We&apos;ve been able to scale our sales process without adding headcount.
+            </p>
+          }
+          img={
+            <Image
+              src="/img/avatars/15-size-160.webp"
+              alt=""
+              className="not-dark:bg-white/75 dark:bg-black/75"
+              width={160}
+              height={160}
+            />
+          }
+          name="Patricia Lee"
+          byline="Head of Revenue Operations at ScaleUp"
+        />
+        <Testimonial
+          quote={
+            <p>
+              Magnet&apos;s CRM automation transformed our sales process. The context-aware flows mean every interaction is relevant 
+              and timely, and the seamless integration means our team doesn&apos;t have to think about automation—it just works. 
+              Our sales efficiency has improved dramatically, and we&apos;re closing more deals faster than ever.
+            </p>
+          }
+          img={
+            <Image
+              src="/img/avatars/13-size-160.webp"
+              alt=""
+              className="not-dark:bg-white/75 dark:bg-black/75"
+              width={160}
+              height={160}
+            />
+          }
+          name="Daniel Park"
+          byline="Director of Sales at FlowTech"
+        />
+      </TestimonialThreeColumnGrid>
+
       {/* Approach */}
       <Approach
         id="approach"
-        eyebrow="Our Process"
-        headline="How we build websites that convert"
+        eyebrow="Our Method"
+        headline="How we build brands"
         subheadline={
           <p>
-            We follow a proven four-stage approach to create websites that drive real business results.
+            We follow a proven four-stage approach to create brands that drive real business results.
           </p>
         }
       >
@@ -495,61 +420,58 @@ export default function Page() {
         />
       </Approach>
 
-      {/* Stats */}
-      <StatsWithGraph
-        id="stats"
-        eyebrow="Trusted by thousands"
-        headline="Websites that perform."
-        subheadline={
-          <p>
-            Our templates power thousands of websites across industries. From startups to enterprise, businesses trust
-            our templates to deliver results.
-          </p>
-        }
-      >
-        <Stat stat="10K+" text="Websites launched using our templates." />
-        <Stat stat="95%" text="Customer satisfaction rate — our templates just work." />
-      </StatsWithGraph>
-
-      {/* Testimonial */}
-      <TestimonialTwoColumnWithLargePhoto
-        id="testimonial"
-        quote={
-          <p>
-            "We launched our new website in just one day using one of the templates. The design is beautiful, and we've
-            already seen a 40% increase in conversions. Couldn't be happier with the results."
-          </p>
-        }
-        img={
-          <Image
-            src="/img/avatars/10-size-160.webp"
-            alt=""
-            className="not-dark:bg-white/75 dark:bg-black/75"
-            width={160}
-            height={160}
-          />
-        }
-        name="Sarah Chen"
-        byline="Founder at TechFlow"
-      />
+      {/* FAQs */}
+      <FAQsTwoColumnAccordion id="faqs" headline="Questions about CRM flows & automation">
+        <Faq
+          id="faq-1"
+          question="What's the difference between CRM automation and just using sequences?"
+          answer="Sequences are linear, one-size-fits-all workflows. CRM automation is context-aware systems that understand where prospects are, what they've done, and what they need next. Automation triggers the right actions at the right time based on context, creating experiences that feel intentional and valuable. Sequences send the same thing to everyone; automation personalizes based on behavior and context."
+        />
+        <Faq
+          id="faq-2"
+          question="How do you ensure automation doesn't feel robotic?"
+          answer="We build automation that understands context and adapts accordingly. Instead of sending the same sequence to everyone, our automation recognizes where prospects are in their journey and triggers the right actions at the right time. This context-aware approach means automation feels intentional and valuable, not robotic. We also ensure automation integrates seamlessly with human touchpoints, so prospects get the right mix of automated and personal interactions."
+        />
+        <Faq
+          id="faq-3"
+          question="What types of workflows can be automated?"
+          answer="We can automate a wide range of workflows: lead qualification, follow-up sequences, task assignments, data enrichment, opportunity progression, and more. The key is identifying which workflows add value when automated and which require human judgment. We automate the repetitive, high-volume tasks that slow down your team, while ensuring important decisions still get human attention."
+        />
+        <Faq
+          id="faq-4"
+          question="How long does it take to see results from CRM automation?"
+          answer="You'll typically see improvements in sales efficiency and lead management within the first month as automation starts handling repetitive tasks. The real impact—shorter sales cycles, fewer dropped leads, and scalable sales processes—builds over 2-3 months as automation systems mature and integrate with your workflows."
+        />
+        <Faq
+          id="faq-5"
+          question="Can you integrate with our existing CRM?"
+          answer="Yes. We work with all major CRM platforms including Salesforce, HubSpot, Pipedrive, and more. We can build automation flows that integrate seamlessly with your existing CRM setup, ensuring automation works with your current processes rather than requiring you to change everything."
+        />
+        <Faq
+          id="faq-6"
+          question="How do you measure CRM automation success?"
+          answer="We measure success through multiple metrics: sales cycle length, lead response times, task completion rates, dropped lead rates, and ultimately, revenue growth. But the real measure is whether automation makes your sales process more efficient and scalable. We track how automation impacts team productivity and sales outcomes, continuously optimizing based on what works."
+        />
+      </FAQsTwoColumnAccordion>
 
       {/* Call To Action */}
       <CallToActionSimple
         id="call-to-action"
-        headline="Ready to launch your website?"
+        headline="Ready to automate your sales process?"
         subheadline={
           <p>
-            Browse our collection of professionally designed templates and find the perfect one for your business. All
-            templates are fully customizable and ready to deploy.
+            Let&apos;s create CRM flows & automation that accelerate revenue. Build comprehensive systems that understand context 
+            and create seamless experiences for both prospects and your team.
           </p>
         }
         cta={
           <div className="flex items-center gap-4">
             <ButtonLink href="#" size="lg">
-              Browse templates
+              Get started
             </ButtonLink>
+
             <PlainButtonLink href="#" size="lg">
-              Book a demo <ChevronIcon />
+              Book a consultation <ChevronIcon />
             </PlainButtonLink>
           </div>
         }
@@ -557,4 +479,3 @@ export default function Page() {
     </>
   )
 }
-

@@ -1,42 +1,41 @@
-import { AnnouncementBadge } from '@/components/elements/announcement-badge'
 import { ButtonLink, PlainButtonLink } from '@/components/elements/button'
 import { Link } from '@/components/elements/link'
-import { Logo, LogoGrid } from '@/components/elements/logo-grid'
 import { Screenshot } from '@/components/elements/screenshot'
 import { ArrowNarrowRightIcon } from '@/components/icons/arrow-narrow-right-icon'
 import { ChevronIcon } from '@/components/icons/chevron-icon'
 import { Approach, ApproachItem, ApproachStage } from '@/components/sections/approach'
 import { CallToActionSimple } from '@/components/sections/call-to-action-simple'
-import {
-  Feature,
-  FeaturesStackedAlternatingWithDemos,
-} from '@/components/sections/features-stacked-alternating-with-demos'
-import { HeroCenteredWithDemo } from '@/components/sections/hero-centered-with-demo'
+import { FAQsTwoColumnAccordion, Faq } from '@/components/sections/faqs-two-column-accordion'
+import { Feature, FeaturesTwoColumnWithDemos } from '@/components/sections/features-two-column-with-demos'
+import { HeroLeftAlignedWithDemo } from '@/components/sections/hero-left-aligned-with-demo'
 import { Stat, StatsWithGraph } from '@/components/sections/stats-with-graph'
-import { TestimonialTwoColumnWithLargePhoto } from '@/components/sections/testimonial-two-column-with-large-photo'
+import { Testimonial, TestimonialThreeColumnGrid } from '@/components/sections/testimonials-three-column-grid'
 import Image from 'next/image'
 
 export default function Page() {
   return (
     <>
       {/* Hero */}
-      <HeroCenteredWithDemo
+      <HeroLeftAlignedWithDemo
         id="hero"
-        eyebrow={<AnnouncementBadge href="#" text="New: Custom website templates" cta="Learn more" />}
-        headline="Beautiful websites that convert visitors into customers."
+        headline="Sales Enablement"
         subheadline={
           <p>
-            Build stunning, high-performing websites with our collection of professionally designed templates. Every
-            template is optimized for conversion and built with modern web standards.
+            Enable sales teams to close more deals faster. Sales enablement is about giving your sales team everything they 
+            need to close more deals faster. It&apos;s the system that removes friction from the sales process and makes it 
+            easier for prospects to say yes. We build sales enablement systems that go beyond training—they&apos;re comprehensive 
+            frameworks that provide the right tools, the right messaging, and the right processes at the right time. When sales 
+            enablement is done right, it becomes a powerful acceleration tool that shortens sales cycles and increases close rates.
           </p>
         }
         cta={
           <div className="flex items-center gap-4">
             <ButtonLink href="#" size="lg">
-              Browse templates
+              Get started
             </ButtonLink>
+
             <PlainButtonLink href="#" size="lg">
-              See examples <ArrowNarrowRightIcon />
+              See how it works <ArrowNarrowRightIcon />
             </PlainButtonLink>
           </div>
         }
@@ -90,135 +89,25 @@ export default function Page() {
             </Screenshot>
           </>
         }
-        footer={
-          <LogoGrid>
-            <Logo>
-              <Image
-                src="/img/logos/9-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={51}
-                height={32}
-              />
-              <Image
-                src="/img/logos/9-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={51}
-                height={32}
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/10-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={70}
-                height={32}
-              />
-              <Image
-                src="/img/logos/10-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={70}
-                height={32}
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/11-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={100}
-                height={32}
-              />
-              <Image
-                src="/img/logos/11-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={100}
-                height={32}
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/12-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={85}
-                height={32}
-              />
-              <Image
-                src="/img/logos/12-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={85}
-                height={32}
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/13-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={75}
-                height={32}
-              />
-              <Image
-                src="/img/logos/13-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={75}
-                height={32}
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/8-color-black-height-32.svg"
-                className="dark:hidden"
-                alt=""
-                width={85}
-                height={32}
-              />
-              <Image
-                src="/img/logos/8-color-white-height-32.svg"
-                className="not-dark:hidden"
-                alt=""
-                width={85}
-                height={32}
-              />
-            </Logo>
-          </LogoGrid>
-        }
       />
 
       {/* Features */}
-      <FeaturesStackedAlternatingWithDemos
+      <FeaturesTwoColumnWithDemos
         id="features"
-        headline="Everything you need to build a stunning website."
+        eyebrow="How we enable sales teams"
+        headline="Sales enablement systems that accelerate revenue"
         subheadline={
           <p>
-            Our templates come with everything you need to launch fast. Responsive design, SEO optimization, and
-            conversion-focused layouts built right in.
+            We build sales enablement systems that go beyond training—they&apos;re comprehensive frameworks that provide the 
+            right tools, the right messaging, and the right processes at the right time. Every element is designed to remove 
+            friction from the sales process and make it easier for prospects to say yes.
           </p>
         }
         features={
           <>
             <Feature
-              headline="Responsive Design"
-              subheadline={
-                <p>
-                  Every template is fully responsive and looks perfect on desktop, tablet, and mobile devices. No
-                  additional work required.
-                </p>
-              }
-              cta={
-                <Link href="#">
-                  Learn more <ChevronIcon />
-                </Link>
-              }
               demo={
-                <Screenshot wallpaper="blue" placement="bottom-right">
+                <Screenshot wallpaper="purple" placement="bottom-right">
                   <Image
                     src="/img/screenshots/1-left-1000-top-800.webp"
                     alt=""
@@ -277,22 +166,25 @@ export default function Page() {
                   />
                 </Screenshot>
               }
-            />
-            <Feature
-              headline="SEO Optimized"
+              headline="Contextual Tools & Resources"
               subheadline={
                 <p>
-                  Built with SEO best practices in mind. Clean code, fast loading times, and semantic HTML help your site
-                  rank higher in search results.
+                  Tools and resources that appear when sales teams need them, not buried in a folder. We build sales enablement 
+                  systems that understand context—where a prospect is in their journey, what objections they&apos;re facing, what 
+                  questions they&apos;re asking—and surface the right tools at the right time. This contextual approach means sales 
+                  teams don&apos;t waste time searching for resources—they get exactly what they need when they need it. When tools 
+                  are contextual, sales conversations become more effective because teams have the right support at every moment.
                 </p>
               }
               cta={
                 <Link href="#">
-                  Learn more <ChevronIcon />
+                  Learn more <ArrowNarrowRightIcon />
                 </Link>
               }
+            />
+            <Feature
               demo={
-                <Screenshot wallpaper="purple" placement="top-left">
+                <Screenshot wallpaper="blue" placement="bottom-left">
                   <Image
                     src="/img/screenshots/1-right-1000-top-800.webp"
                     alt=""
@@ -351,93 +243,123 @@ export default function Page() {
                   />
                 </Screenshot>
               }
-            />
-            <Feature
-              headline="Conversion Focused"
+              headline="Messaging Frameworks & Playbooks"
               subheadline={
                 <p>
-                  Every element is designed to convert visitors into customers. Tested layouts, clear CTAs, and
-                  conversion-optimized forms.
+                  Messaging frameworks that guide sales conversations, not scripts that constrain them. We create playbooks that 
+                  provide structure and guidance while allowing sales teams to adapt to each prospect&apos;s unique situation. These 
+                  frameworks ensure consistency in messaging while maintaining the flexibility to personalize. When messaging frameworks 
+                  are done right, sales teams can confidently handle objections, answer questions, and guide prospects toward decisions 
+                  because they have clear guidance on what to say and when to say it.
                 </p>
               }
               cta={
                 <Link href="#">
-                  Learn more <ChevronIcon />
+                  Learn more <ArrowNarrowRightIcon />
                 </Link>
-              }
-              demo={
-                <Screenshot wallpaper="brown" placement="bottom-left">
-                  <Image
-                    src="/img/screenshots/1-left-1000-top-800.webp"
-                    alt=""
-                    className="bg-white/75 sm:hidden dark:hidden"
-                    width={1000}
-                    height={800}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1000-top-800.webp"
-                    alt=""
-                    width={1000}
-                    height={800}
-                    className="bg-black/75 not-dark:hidden sm:hidden"
-                  />
-                  <Image
-                    src="/img/screenshots/1-left-1800-top-660.webp"
-                    alt=""
-                    className="bg-white/75 max-sm:hidden lg:hidden dark:hidden"
-                    width={1800}
-                    height={660}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1800-top-660.webp"
-                    alt=""
-                    width={1800}
-                    height={660}
-                    className="bg-black/75 not-dark:hidden max-sm:hidden lg:hidden"
-                  />
-                  <Image
-                    src="/img/screenshots/1-left-1300-top-1300.webp"
-                    alt=""
-                    className="bg-white/75 max-lg:hidden xl:hidden dark:hidden"
-                    width={1300}
-                    height={1300}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1300-top-1300.webp"
-                    alt=""
-                    width={1300}
-                    height={1300}
-                    className="bg-black/75 not-dark:hidden max-lg:hidden xl:hidden"
-                  />
-                  <Image
-                    src="/img/screenshots/1-left-1800-top-1250.webp"
-                    alt=""
-                    className="bg-white/75 max-xl:hidden dark:hidden"
-                    width={1800}
-                    height={1250}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1800-top-1250.webp"
-                    alt=""
-                    width={1800}
-                    height={1250}
-                    className="bg-black/75 not-dark:hidden max-xl:hidden"
-                  />
-                </Screenshot>
               }
             />
           </>
         }
       />
 
+      {/* Stats */}
+      <StatsWithGraph
+        id="stats"
+        eyebrow="Proven results"
+        headline="Sales enablement that accelerates revenue"
+        subheadline={
+          <p>
+            When sales enablement systems provide contextual tools and clear messaging frameworks, sales cycles shorten and close 
+            rates improve. Our comprehensive approach creates systems that make selling easier and more effective.
+          </p>
+        }
+      >
+        <Stat stat="3.8x" text="Higher close rates when sales teams have contextual tools vs. searching for resources." />
+        <Stat stat="48%" text="Reduction in sales cycle length when messaging frameworks guide conversations." />
+        <Stat stat="2.7x" text="Better sales team confidence scores when enablement systems provide support at the right time." />
+      </StatsWithGraph>
+
+      {/* Testimonials */}
+      <TestimonialThreeColumnGrid
+        id="testimonial"
+        headline="Sales enablement that transformed performance"
+        subheadline={
+          <p>
+            See how comprehensive sales enablement systems have helped sales teams close more deals faster.
+          </p>
+        }
+      >
+        <Testimonial
+          quote={
+            <p>
+              Before working with Magnet, our sales team was constantly searching for resources and struggling with messaging. 
+              The contextual tools they built surface exactly what we need when we need it, and the messaging frameworks give 
+              us confidence in every conversation. Our close rates have nearly quadrupled.
+            </p>
+          }
+          img={
+            <Image
+              src="/img/avatars/10-size-160.webp"
+              alt=""
+              className="not-dark:bg-white/75 dark:bg-black/75"
+              width={160}
+              height={160}
+            />
+          }
+          name="Robert Martinez"
+          byline="VP of Sales at RevenueCo"
+        />
+        <Testimonial
+          quote={
+            <p>
+              The messaging frameworks Magnet created for us transformed how our sales team communicates. Instead of winging it, 
+              we have clear guidance on what to say and when. This has made our conversations much more effective, and prospects 
+              tell us we&apos;re the most prepared sales team they&apos;ve worked with.
+            </p>
+          }
+          img={
+            <Image
+              src="/img/avatars/15-size-160.webp"
+              alt=""
+              className="not-dark:bg-white/75 dark:bg-black/75"
+              width={160}
+              height={160}
+            />
+          }
+          name="Lisa Anderson"
+          byline="Head of Sales at CloseFast"
+        />
+        <Testimonial
+          quote={
+            <p>
+              Magnet&apos;s sales enablement system eliminated so much friction from our sales process. The contextual tools mean 
+              we don&apos;t waste time searching for resources, and the messaging frameworks mean we can confidently handle any 
+              objection. Our sales cycles are half what they used to be, and our team is closing more deals than ever.
+            </p>
+          }
+          img={
+            <Image
+              src="/img/avatars/13-size-160.webp"
+              alt=""
+              className="not-dark:bg-white/75 dark:bg-black/75"
+              width={160}
+              height={160}
+            />
+          }
+          name="Thomas Wilson"
+          byline="Director of Sales at AccelerateCo"
+        />
+      </TestimonialThreeColumnGrid>
+
       {/* Approach */}
       <Approach
         id="approach"
-        eyebrow="Our Process"
-        headline="How we build websites that convert"
+        eyebrow="Our Method"
+        headline="How we build brands"
         subheadline={
           <p>
-            We follow a proven four-stage approach to create websites that drive real business results.
+            We follow a proven four-stage approach to create brands that drive real business results.
           </p>
         }
       >
@@ -495,61 +417,58 @@ export default function Page() {
         />
       </Approach>
 
-      {/* Stats */}
-      <StatsWithGraph
-        id="stats"
-        eyebrow="Trusted by thousands"
-        headline="Websites that perform."
-        subheadline={
-          <p>
-            Our templates power thousands of websites across industries. From startups to enterprise, businesses trust
-            our templates to deliver results.
-          </p>
-        }
-      >
-        <Stat stat="10K+" text="Websites launched using our templates." />
-        <Stat stat="95%" text="Customer satisfaction rate — our templates just work." />
-      </StatsWithGraph>
-
-      {/* Testimonial */}
-      <TestimonialTwoColumnWithLargePhoto
-        id="testimonial"
-        quote={
-          <p>
-            "We launched our new website in just one day using one of the templates. The design is beautiful, and we've
-            already seen a 40% increase in conversions. Couldn't be happier with the results."
-          </p>
-        }
-        img={
-          <Image
-            src="/img/avatars/10-size-160.webp"
-            alt=""
-            className="not-dark:bg-white/75 dark:bg-black/75"
-            width={160}
-            height={160}
-          />
-        }
-        name="Sarah Chen"
-        byline="Founder at TechFlow"
-      />
+      {/* FAQs */}
+      <FAQsTwoColumnAccordion id="faqs" headline="Questions about sales enablement">
+        <Faq
+          id="faq-1"
+          question="What's included in a sales enablement system?"
+          answer="A comprehensive sales enablement system includes contextual tools and resources that appear when needed, messaging frameworks and playbooks that guide conversations, training materials that build skills, CRM integration that provides context, and analytics that track what's working. It's a complete system that supports sales teams at every stage of the sales process."
+        />
+        <Faq
+          id="faq-2"
+          question="How do contextual tools work?"
+          answer="Contextual tools understand where a prospect is in their journey, what objections they're facing, and what questions they're asking. Based on this context, the system surfaces the right resources—case studies, pricing guides, objection handlers—at exactly the right moment. This means sales teams don't waste time searching for resources—they get exactly what they need when they need it."
+        />
+        <Faq
+          id="faq-3"
+          question="What's the difference between messaging frameworks and scripts?"
+          answer="Scripts tell sales teams exactly what to say, which can make conversations feel robotic. Messaging frameworks provide structure and guidance while allowing sales teams to adapt to each prospect's unique situation. Frameworks ensure consistency in messaging while maintaining the flexibility to personalize, making conversations more natural and effective."
+        />
+        <Faq
+          id="faq-4"
+          question="How long does it take to see results from sales enablement?"
+          answer="You'll typically see improvements in sales team confidence and efficiency within the first month as tools and frameworks are implemented. The real impact—shorter sales cycles, higher close rates, and better sales performance—builds over 2-3 months as teams adapt to the new systems and processes."
+        />
+        <Faq
+          id="faq-5"
+          question="Can sales enablement work for different sales models?"
+          answer="Absolutely. Sales enablement systems can be adapted for inside sales, field sales, account-based sales, and more. The key is understanding how each sales model works and building enablement systems that support those specific processes. We customize enablement to fit your sales model, not the other way around."
+        />
+        <Faq
+          id="faq-6"
+          question="How do you measure sales enablement success?"
+          answer="We measure success through multiple metrics: sales cycle length, close rates, sales team confidence scores, time spent searching for resources, and ultimately, revenue growth. But the real measure is whether sales teams can close more deals faster with less friction. We track both quantitative metrics and qualitative feedback to continuously improve enablement systems."
+        />
+      </FAQsTwoColumnAccordion>
 
       {/* Call To Action */}
       <CallToActionSimple
         id="call-to-action"
-        headline="Ready to launch your website?"
+        headline="Ready to enable your sales team?"
         subheadline={
           <p>
-            Browse our collection of professionally designed templates and find the perfect one for your business. All
-            templates are fully customizable and ready to deploy.
+            Let&apos;s create sales enablement systems that close more deals faster. Build comprehensive frameworks that provide 
+            the right tools, messaging, and processes at the right time.
           </p>
         }
         cta={
           <div className="flex items-center gap-4">
             <ButtonLink href="#" size="lg">
-              Browse templates
+              Get started
             </ButtonLink>
+
             <PlainButtonLink href="#" size="lg">
-              Book a demo <ChevronIcon />
+              Book a consultation <ChevronIcon />
             </PlainButtonLink>
           </div>
         }
@@ -557,4 +476,3 @@ export default function Page() {
     </>
   )
 }
-

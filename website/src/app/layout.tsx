@@ -82,6 +82,7 @@ export default function RootLayout({
               <>
                 <NavbarLink href="/websites">Websites</NavbarLink>
                 <NavbarLink href="/branding">Branding</NavbarLink>
+                <NavbarLink href="/search">Search</NavbarLink>
                 <NavbarLink href="/ads">Ads</NavbarLink>
                 <NavbarLink href="#" className="sm:hidden">
                   Log in
@@ -117,27 +118,23 @@ export default function RootLayout({
             }
             links={
               <>
-                <FooterCategory title="Product">
-                  <FooterLink href="#">Features</FooterLink>
-                  <FooterLink href="/pricing">Pricing</FooterLink>
-                  <FooterLink href="#">Integrations</FooterLink>
+                <FooterCategory title="Services">
+                  <FooterLink href="/websites">Websites</FooterLink>
+                  <FooterLink href="/branding">Branding</FooterLink>
+                  <FooterLink href="/search">Search</FooterLink>
+                  <FooterLink href="/ads">Ads</FooterLink>
+                </FooterCategory>
+                <FooterCategory title="Method">
+                  <FooterLink href="#">Foundation</FooterLink>
+                  <FooterLink href="#">Activation</FooterLink>
+                  <FooterLink href="#">Acceleration</FooterLink>
+                  <FooterLink href="#">Retention</FooterLink>
                 </FooterCategory>
                 <FooterCategory title="Company">
                   <FooterLink href="/about">About</FooterLink>
+                  <FooterLink href="/pricing">Pricing</FooterLink>
                   <FooterLink href="#">Careers</FooterLink>
-                  <FooterLink href="#">Blog</FooterLink>
-                  <FooterLink href="#">Press Kit</FooterLink>
-                </FooterCategory>
-                <FooterCategory title="Resources">
-                  <FooterLink href="#">Help Center</FooterLink>
-                  <FooterLink href="#">API Docs</FooterLink>
-                  <FooterLink href="#">Status</FooterLink>
-                  <FooterLink href="#">Contact</FooterLink>
-                </FooterCategory>
-                <FooterCategory title="Legal">
-                  <FooterLink href="/privacy-policy">Privacy Policy</FooterLink>
-                  <FooterLink href="#">Terms of Service</FooterLink>
-                  <FooterLink href="#">Security</FooterLink>
+                  <FooterLink href="/privacy-policy">Privacy</FooterLink>
                 </FooterCategory>
               </>
             }

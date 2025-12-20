@@ -49,6 +49,7 @@
     --navbar-bg: #F5F7F7;
     --scroll-padding-top: 0;
     scroll-padding-top: var(--scroll-padding-top);
+    scroll-behavior: smooth;
   }
 
   body {

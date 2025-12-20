@@ -23,13 +23,13 @@ export default function Page() {
       <HeroWithDemoOnBackground
         id="hero"
         eyebrow={
-          <AnnouncementBadge href="#" text="New: AI-powered ad creation" cta="Learn more" variant="overlay" />
+          <AnnouncementBadge href="#" text="New: AI-powered SEO optimization" cta="Learn more" variant="overlay" />
         }
-        headline="Create ads that convert and drive real results."
+        headline="Dominate search results with intelligent marketing."
         subheadline={
           <p>
-            Design high-performing ads for social media, search, and display. Our platform helps you create, test, and
-            optimize ads that actually drive conversions.
+            Harness the power of SEO, LLMs, and search marketing to drive organic traffic and boost your visibility. Advanced
+            keyword research, content optimization, and AI-driven strategies all in one platform.
           </p>
         }
         cta={
@@ -38,7 +38,7 @@ export default function Page() {
             variant="overlay"
             cta={
               <>
-                Start creating <ArrowNarrowRightIcon />
+                Get started <ArrowNarrowRightIcon />
               </>
             }
           />
@@ -194,11 +194,11 @@ export default function Page() {
       {/* Features */}
       <Features
         id="features"
-        headline="Everything you need to create high-performing ads."
+        headline="Everything you need to dominate search results."
         subheadline={
           <p>
-            From design to optimization, our platform provides all the tools you need to create ads that convert and
-            drive real business results.
+            From SEO optimization to AI-powered content strategies, we provide all the tools and resources you need to improve
+            your search rankings and drive qualified organic traffic.
           </p>
         }
         cta={
@@ -255,8 +255,8 @@ export default function Page() {
                   />
                 </Screenshot>
               }
-              headline="Ad Templates"
-              subheadline={<p>Hundreds of professionally designed ad templates for every platform and campaign type.</p>}
+              headline="SEO Optimization"
+              subheadline={<p>Advanced SEO tools that help you rank higher in search results and attract more organic traffic.</p>}
             />
             <FeatureThreeColumnWithDemos
               demo={
@@ -305,8 +305,8 @@ export default function Page() {
                   />
                 </Screenshot>
               }
-              headline="A/B Testing"
-              subheadline={<p>Test different ad variations to find what works best and optimize your conversion rates.</p>}
+              headline="LLM-Powered Content"
+              subheadline={<p>Leverage large language models to create optimized, engaging content that search engines love.</p>}
             />
             <FeatureThreeColumnWithDemos
               demo={
@@ -355,8 +355,8 @@ export default function Page() {
                   />
                 </Screenshot>
               }
-              headline="Performance Analytics"
-              subheadline={<p>Track ad performance with detailed analytics and insights to optimize your campaigns.</p>}
+              headline="Keyword Research"
+              subheadline={<p>Comprehensive keyword research tools that identify high-value opportunities to improve your rankings.</p>}
             />
           </>
         }
@@ -366,10 +366,10 @@ export default function Page() {
       <Approach
         id="approach"
         eyebrow="Our Process"
-        headline="How we create ads that convert"
+        headline="How we optimize search performance"
         subheadline={
           <p>
-            We follow a proven four-stage approach to create ads that drive real business results.
+            We follow a proven four-stage approach to improve search rankings and drive organic traffic that converts.
           </p>
         }
       >
@@ -378,11 +378,11 @@ export default function Page() {
           description="Build the strategic, narrative, and technical infrastructure for growth."
           items={
             <>
-              <ApproachItem href="/method/foundation/brand-architecture">Brand Architecture</ApproachItem>
-              <ApproachItem href="/method/foundation/messaging-system">Messaging System</ApproachItem>
-              <ApproachItem href="/method/foundation/digital-experience">Digital Experience</ApproachItem>
-              <ApproachItem href="/method/foundation/conversion-architecture">Conversion Architecture</ApproachItem>
-              <ApproachItem href="/method/foundation/data-analytics-setup">Data & Analytics Setup</ApproachItem>
+              <ApproachItem>Technical SEO Audit</ApproachItem>
+              <ApproachItem>Keyword Strategy</ApproachItem>
+              <ApproachItem>Content Architecture</ApproachItem>
+              <ApproachItem>Site Structure Optimization</ApproachItem>
+              <ApproachItem>Analytics & Tracking Setup</ApproachItem>
             </>
           }
         />
@@ -391,11 +391,11 @@ export default function Page() {
           description="Turn on demand to attract qualified traffic into the system."
           items={
             <>
-              <ApproachItem href="/method/activation/paid-media">Paid Media</ApproachItem>
-              <ApproachItem href="/method/activation/search-marketing">Search Marketing</ApproachItem>
-              <ApproachItem href="/method/activation/social-content">Social Content</ApproachItem>
-              <ApproachItem href="/method/activation/creative-storytelling">Creative Storytelling</ApproachItem>
-              <ApproachItem href="/method/activation/partnerships">Partnerships</ApproachItem>
+              <ApproachItem>Content Creation & Optimization</ApproachItem>
+              <ApproachItem>LLM-Powered Content Strategy</ApproachItem>
+              <ApproachItem>Link Building Campaigns</ApproachItem>
+              <ApproachItem>Local SEO Optimization</ApproachItem>
+              <ApproachItem>Search Marketing Campaigns</ApproachItem>
             </>
           }
         />
@@ -404,11 +404,11 @@ export default function Page() {
           description="Targeted acquisition using ICP insight for efficient, scalable demand."
           items={
             <>
-              <ApproachItem href="/method/acceleration/offers-packaging">Offers & Packaging</ApproachItem>
-              <ApproachItem href="/method/acceleration/landing-experiences">Landing Experiences</ApproachItem>
-              <ApproachItem href="/method/acceleration/sales-enablement">Sales Enablement</ApproachItem>
-              <ApproachItem href="/method/acceleration/crm-flows-automation">CRM Flows & Automation</ApproachItem>
-              <ApproachItem href="/method/acceleration/attribution-measurement">Attribution & Measurement</ApproachItem>
+              <ApproachItem>Advanced Keyword Targeting</ApproachItem>
+              <ApproachItem>Conversion-Focused Landing Pages</ApproachItem>
+              <ApproachItem>Content Performance Analysis</ApproachItem>
+              <ApproachItem>Automated SEO Workflows</ApproachItem>
+              <ApproachItem>Rank Tracking & Reporting</ApproachItem>
             </>
           }
         />
@@ -417,11 +417,11 @@ export default function Page() {
           description="Improved acquisition efficiency, conversion and revenue throughput."
           items={
             <>
-              <ApproachItem href="/method/retention/lifecycle-email">Lifecycle Email</ApproachItem>
-              <ApproachItem href="/method/retention/success-enablement">Success Enablement</ApproachItem>
-              <ApproachItem href="/method/retention/community-brand-systems">Community & Brand Systems</ApproachItem>
-              <ApproachItem href="/method/retention/feedback-loops-optimization">Feedback Loops & Optimization</ApproachItem>
-              <ApproachItem href="/method/retention/predictive-intelligence">Predictive Intelligence</ApproachItem>
+              <ApproachItem>Ongoing Content Updates</ApproachItem>
+              <ApproachItem>Performance Monitoring</ApproachItem>
+              <ApproachItem>Algorithm Adaptation</ApproachItem>
+              <ApproachItem>Continuous Optimization</ApproachItem>
+              <ApproachItem>AI-Driven Insights</ApproachItem>
             </>
           }
         />
@@ -431,16 +431,16 @@ export default function Page() {
       <StatsWithGraph
         id="stats"
         eyebrow="Proven results"
-        headline="Ads that drive conversions."
+        headline="Search marketing that drives traffic."
         subheadline={
           <p>
-            Our ad creation platform helps businesses of all sizes create high-performing ads that drive real results and
-            maximize ROI.
+            Thousands of companies trust our search marketing services to improve their rankings, increase organic traffic, and
+            drive business growth.
           </p>
         }
       >
-        <Stat stat="50K+" text="Ads created using our platform." />
-        <Stat stat="3.2x" text="Average ROI improvement for our customers." />
+        <Stat stat="10K+" text="Websites optimized using our SEO platform." />
+        <Stat stat="250%" text="Average organic traffic increase for our clients." />
       </StatsWithGraph>
 
       {/* Testimonial */}
@@ -448,8 +448,8 @@ export default function Page() {
         id="testimonial"
         quote={
           <p>
-            "Since using this platform, our ad conversion rates have increased by 40%. The templates are beautiful, and
-            the A/B testing features have been invaluable in optimizing our campaigns. Highly recommend!"
+            "The search marketing strategy we implemented has transformed our online presence. Our organic traffic has tripled,
+            and we're ranking on the first page for all our target keywords. The LLM-powered content tools have been a game-changer."
           </p>
         }
         img={
@@ -461,31 +461,31 @@ export default function Page() {
             height={160}
           />
         }
-        name="Rachel Kim"
-        byline="Marketing Director at GrowthLab"
+        name="Sarah Chen"
+        byline="Marketing Director at TechFlow"
       />
 
       {/* FAQs */}
       <FAQsTwoColumnAccordion id="faqs" headline="Questions & Answers">
         <Faq
           id="faq-1"
-          question="Which ad platforms are supported?"
-          answer="We support all major ad platforms including Facebook, Instagram, Google Ads, LinkedIn, Twitter, and TikTok. Our templates are optimized for each platform's specific requirements."
+          question="What's included in a search marketing package?"
+          answer="Our search marketing packages include comprehensive SEO audits, keyword research, content optimization, LLM-powered content creation, technical SEO improvements, and ongoing performance monitoring. Higher tier packages include advanced analytics, link building, and dedicated account management."
         />
         <Faq
           id="faq-2"
-          question="Can I customize the ad templates?"
-          answer="Absolutely! All templates are fully customizable. You can change colors, fonts, images, copy, and layouts to match your brand and campaign goals."
+          question="How long does it take to see SEO results?"
+          answer="SEO is a long-term strategy, and results typically start appearing within 3-6 months. However, technical improvements and initial optimizations can show impact within 4-8 weeks. We provide regular reporting so you can track progress along the way."
         />
         <Faq
           id="faq-3"
-          question="How does A/B testing work?"
-          answer="Our platform makes it easy to create multiple ad variations and test them against each other. You can track performance metrics and automatically optimize based on which ads perform best."
+          question="How do LLMs help with search marketing?"
+          answer="Large language models help us create high-quality, SEO-optimized content at scale. They assist with keyword research, content ideation, optimization suggestions, and generating content that matches search intent while maintaining quality and relevance."
         />
         <Faq
           id="faq-4"
-          question="Do you provide analytics and reporting?"
-          answer="Yes, our platform includes comprehensive analytics and reporting features. Track impressions, clicks, conversions, and ROI all in one dashboard."
+          question="Do you offer ongoing search marketing support?"
+          answer="Yes, we offer ongoing support packages that include regular content updates, performance monitoring, algorithm adaptation, continuous optimization, and monthly strategy reviews to ensure your search rankings continue to improve over time."
         />
       </FAQsTwoColumnAccordion>
 
@@ -497,54 +497,54 @@ export default function Page() {
           <>
             <Plan
               name="Starter"
-              price="$49"
+              price="$499"
               period="/mo"
-              subheadline={<p>Perfect for small businesses getting started with ads</p>}
-              features={['50 ad templates', 'Basic A/B testing', 'Performance analytics', 'Email support', '1 user']}
+              subheadline={<p>Perfect for small businesses getting started with SEO</p>}
+              features={['SEO audit & strategy', 'Keyword research', 'Basic content optimization', 'Monthly reporting', 'Email support']}
               cta={
                 <SoftButtonLink href="#" size="lg">
-                  Start free trial
+                  Get started
                 </SoftButtonLink>
               }
             />
             <Plan
               name="Professional"
-              price="$149"
+              price="$1,499"
               period="/mo"
-              subheadline={<p>For growing businesses running multiple campaigns</p>}
+              subheadline={<p>Comprehensive search marketing for growing businesses</p>}
               badge="Most popular"
               features={[
                 'Everything in Starter',
-                'Unlimited ad templates',
-                'Advanced A/B testing',
-                'Custom ad creation',
+                'LLM-powered content creation',
+                'Advanced keyword targeting',
+                'Link building campaigns',
+                'Technical SEO optimization',
                 'Priority support',
-                '5 users',
-                'API access',
+                'Dedicated account manager',
               ]}
               cta={
                 <ButtonLink href="#" size="lg">
-                  Start free trial
+                  Get started
                 </ButtonLink>
               }
             />
             <Plan
               name="Enterprise"
-              price="$499"
+              price="$3,999"
               period="/mo"
-              subheadline={<p>For agencies and large teams managing multiple clients</p>}
+              subheadline={<p>Complete search marketing solution for established companies</p>}
               features={[
                 'Everything in Professional',
-                'White-label options',
-                'Custom integrations',
-                'Dedicated account manager',
-                'Advanced analytics',
-                'Unlimited users',
-                'SLA guarantee',
+                'Custom SEO strategy',
+                'Unlimited content creation',
+                'Advanced analytics & reporting',
+                'Multi-site management',
+                'White-label reporting',
+                '24/7 priority support',
               ]}
               cta={
                 <SoftButtonLink href="#" size="lg">
-                  Start free trial
+                  Get started
                 </SoftButtonLink>
               }
             />
@@ -555,21 +555,21 @@ export default function Page() {
       {/* Call To Action */}
       <CallToActionSimple
         id="call-to-action"
-        headline="Ready to create ads that convert?"
+        headline="Ready to dominate search results?"
         subheadline={
           <p>
-            Join thousands of businesses using our platform to create high-performing ads that drive real results and
-            maximize ROI.
+            Join thousands of companies using our search marketing services to improve their rankings, increase organic traffic,
+            and drive business growth.
           </p>
         }
         cta={
           <div className="flex items-center gap-4">
             <ButtonLink href="#" size="lg">
-              Start free trial
+              Get started
             </ButtonLink>
 
             <PlainButtonLink href="#" size="lg">
-              Book a demo <ChevronIcon />
+              Book a consultation <ChevronIcon />
             </PlainButtonLink>
           </div>
         }
