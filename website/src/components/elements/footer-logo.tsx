@@ -3,7 +3,7 @@ import type { ComponentProps } from 'react'
 
 export function FooterLogo({ className, ...props }: ComponentProps<'div'>) {
   return (
-    <div className={clsx('flex items-center gap-4', className)} {...props}>
+    <div className={clsx('flex items-start justify-start gap-4', className)} {...props}>
       {/* Icon */}
       <div className="flex items-center justify-center flex-shrink-0" style={{ height: '27px' }}>
         <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-ember" style={{ display: 'block' }}>

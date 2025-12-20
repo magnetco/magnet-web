@@ -127,7 +127,7 @@ export default function RootLayout({
                 </FooterCategory>
               </>
             }
-            fineprint="© 2025 Oatmeal, Inc."
+            fineprint="© 2025 Magnet Co, LLC"
             socialLinks={
               <SocialLink href="https://www.linkedin.com/company/magnet-co" name="LinkedIn">
                 <LinkedInIcon />

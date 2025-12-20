@@ -162,7 +162,7 @@ export function InteractiveCard({
       className={clsx(
         'group relative overflow-hidden rounded-xl bg-olive-950/2.5 p-8 transition-all duration-300',
         'hover:bg-olive-950/5',
-        'min-h-[400px] flex flex-col',
+        'h-full flex flex-col',
         'items-start justify-start',
         className
       )}
@@ -207,14 +207,13 @@ export function InteractiveCard({
             {/* Fill circle that grows from bottom - using clip-path to maintain circle shape */}
             <div
               ref={buttonFillRef}
-              className="absolute inset-0 rounded-full bg-ember"
+              className="absolute inset-0 z-[1] rounded-full bg-ember"
               style={{
                 clipPath: 'inset(100% 0% 0% 0%)',
-                zIndex: 1,
               }}
             />
-            {/* Icon on top of fill - monotone by default, ember on hover */}
-            <ArrowNarrowRightIcon className="relative size-5 text-oxblood transition-colors duration-300 group-hover:text-ember" style={{ zIndex: 20, position: 'relative' }} />
+            {/* Icon on top of fill - monotone by default, frost on hover */}
+            <ArrowNarrowRightIcon className="absolute top-1/2 left-1/2 z-[2] -translate-x-1/2 -translate-y-1/2 size-5 text-oxblood transition-colors duration-300 group-hover:text-frost" />
           </div>
         </div>
       </div>
