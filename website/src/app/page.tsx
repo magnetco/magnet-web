@@ -9,9 +9,14 @@ import { CallToActionSimple } from '@/components/sections/call-to-action-simple'
 import { FAQsTwoColumnAccordion, Faq } from '@/components/sections/faqs-two-column-accordion'
 import { Feature, FeaturesTwoColumnWithDemos } from '@/components/sections/features-two-column-with-demos'
 import { HeroLeftAlignedWithDemo } from '@/components/sections/hero-left-aligned-with-demo'
+import { InteractiveCardsGrid } from '@/components/sections/interactive-cards-grid'
 import { Plan, PricingMultiTier } from '@/components/sections/pricing-multi-tier'
 import { Stat, StatsWithGraph } from '@/components/sections/stats-with-graph'
 import { Testimonial, TestimonialThreeColumnGrid } from '@/components/sections/testimonials-three-column-grid'
+import { RollingFundsIcon } from '@/components/icons/rolling-funds-icon'
+import { ScoutFundsIcon } from '@/components/icons/scout-funds-icon'
+import { SPVsIcon } from '@/components/icons/spvs-icon'
+import { VentureFundsIcon } from '@/components/icons/venture-funds-icon'
 import Image from 'next/image'
 
 export default function Page() {
@@ -350,6 +355,45 @@ export default function Page() {
             />
           </>
         }
+      />
+      {/* Interactive Cards */}
+      <InteractiveCardsGrid
+        id="services"
+        headline="Access customized, full-service support for every investment vehicle"
+        cards={[
+          {
+            title: 'Venture Funds',
+            icon: <VentureFundsIcon />,
+            description: (
+              <p>Raise capital, close deals, and manage your portfolio, while we handle your overhead and back-office.</p>
+            ),
+            href: '#',
+          },
+          {
+            title: 'Rolling Funds',
+            icon: <RollingFundsIcon />,
+            description: (
+              <p>Fundraise continuously. LPs subscribe quarterly to Rolling Funds®, so you can regularly accept capital.</p>
+            ),
+            href: '#',
+          },
+          {
+            title: 'Scout Funds',
+            icon: <ScoutFundsIcon />,
+            description: (
+              <p>Grow your scout program, expand your network, and increase deal flow—with no extra back-office burden.</p>
+            ),
+            href: '#',
+          },
+          {
+            title: 'SPVs',
+            icon: <SPVsIcon />,
+            description: (
+              <p>Raise privately on a deal-by-deal basis with proven SPV infrastructure.</p>
+            ),
+            href: '#',
+          },
+        ]}
       />
       {/* Stats */}
       <StatsWithGraph
