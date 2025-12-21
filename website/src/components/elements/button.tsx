@@ -29,7 +29,7 @@ export function Button({
       ref={elementRef}
       type={type}
       className={clsx(
-        'group relative inline-flex shrink-0 items-center justify-center gap-1 rounded-full text-sm/7 font-medium overflow-visible',
+        'group relative inline-flex shrink-0 cursor-pointer items-center justify-center gap-1 rounded-full text-sm/7 font-medium overflow-visible',
         color === 'dark/light' &&
           'bg-olive-950 text-white dark:bg-olive-300 dark:text-olive-950',
         color === 'light' && 'bg-white text-olive-950 dark:bg-olive-100',
@@ -83,7 +83,7 @@ export function ButtonLink({
       ref={elementRef}
       href={href}
       className={clsx(
-        'group relative inline-flex shrink-0 items-center justify-center gap-1 rounded-full text-sm/7 font-medium overflow-visible',
+        'group relative inline-flex shrink-0 cursor-pointer items-center justify-center gap-1 rounded-full text-sm/7 font-medium overflow-visible',
         color === 'dark/light' &&
           'bg-olive-950 text-white dark:bg-olive-300 dark:text-olive-950',
         color === 'light' && 'bg-white text-olive-950 dark:bg-olive-100',
@@ -133,7 +133,7 @@ export function SoftButton({
       ref={elementRef}
       type={type}
       className={clsx(
-        'group relative inline-flex shrink-0 items-center justify-center gap-1 rounded-full bg-oxblood/10 text-sm/7 font-medium text-oxblood transition-colors duration-300 group-hover:text-[var(--color-ember)] dark:bg-white/10 dark:text-coral overflow-visible',
+        'group relative inline-flex shrink-0 cursor-pointer items-center justify-center gap-1 rounded-full bg-oxblood/10 text-sm/7 font-medium text-oxblood transition-colors duration-300 group-hover:text-[var(--color-ember)] dark:bg-white/10 dark:text-coral overflow-visible',
         sizes[size],
         className,
       )}
@@ -177,7 +177,7 @@ export function SoftButtonLink({
       ref={elementRef}
       href={href}
       className={clsx(
-        'group relative inline-flex shrink-0 items-center justify-center gap-1 rounded-full bg-oxblood/10 text-sm/7 font-medium text-oxblood transition-colors duration-300 group-hover:text-[var(--color-ember)] dark:bg-white/10 dark:text-coral overflow-visible',
+        'group relative inline-flex shrink-0 cursor-pointer items-center justify-center gap-1 rounded-full bg-oxblood/10 text-sm/7 font-medium text-oxblood transition-colors duration-300 group-hover:text-[var(--color-ember)] dark:bg-white/10 dark:text-coral overflow-visible',
         sizes[size],
         className,
       )}
@@ -222,7 +222,7 @@ export function PlainButton({
       ref={elementRef}
       type={type}
       className={clsx(
-        'group relative inline-flex shrink-0 items-center justify-center gap-2 rounded-full text-sm/7 font-medium overflow-visible',
+        'group relative inline-flex shrink-0 cursor-pointer items-center justify-center gap-2 rounded-full text-sm/7 font-medium overflow-visible',
         color === 'dark/light' && 'text-oxblood transition-colors duration-300 group-hover:text-[var(--color-ember)] dark:text-coral',
         color === 'light' && 'text-white',
         sizes[size],
@@ -274,7 +274,7 @@ export function PlainButtonLink({
       ref={elementRef}
       href={href}
       className={clsx(
-        'group relative inline-flex shrink-0 items-center justify-center gap-2 rounded-full text-sm/7 font-medium overflow-visible',
+        'group relative inline-flex shrink-0 cursor-pointer items-center justify-center gap-2 rounded-full text-sm/7 font-medium overflow-visible',
         color === 'dark/light' && 'text-oxblood transition-colors duration-300 group-hover:text-[var(--color-ember)] dark:text-coral',
         color === 'light' && 'text-white',
         sizes[size],

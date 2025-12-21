@@ -79,7 +79,7 @@ export function LoginForm() {
           </div>
           <button
             onClick={handleReset}
-            className="text-sm font-medium text-oxblood underline transition-colors hover:text-ember dark:text-coral dark:hover:text-ember"
+            className="cursor-pointer text-sm font-medium text-oxblood underline transition-colors hover:text-ember dark:text-coral dark:hover:text-ember"
           >
             Send another link
           </button>

@@ -61,7 +61,7 @@ export function FilterDropdown({
         type="button"
         onClick={() => setIsOpen(!isOpen)}
         className={clsx(
-          'flex w-full items-center justify-between gap-2 rounded-lg border px-4 py-3 text-left transition-colors',
+          'flex w-full cursor-pointer items-center justify-between gap-2 rounded-lg border px-4 py-3 text-left transition-colors',
           isOpen
             ? 'border-oxblood dark:border-ember'
             : 'border-oxblood/20 dark:border-white/20',
@@ -94,7 +94,7 @@ export function FilterDropdown({
                   setIsOpen(false)
                 }}
                 className={clsx(
-                  'w-full px-4 py-2 text-left text-sm/7 transition-colors first:rounded-t-lg last:rounded-b-lg',
+                  'w-full cursor-pointer px-4 py-2 text-left text-sm/7 transition-colors first:rounded-t-lg last:rounded-b-lg',
                   option.value === value
                     ? 'bg-oxblood/10 text-oxblood dark:bg-white/10 dark:text-coral'
                     : 'text-oxblood hover:bg-oxblood/5 dark:text-coral dark:hover:bg-white/5',

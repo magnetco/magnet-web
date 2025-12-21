@@ -63,7 +63,7 @@ export function NavbarWithLinksActionsAndCenteredLogo({
               command="show-modal"
               commandfor="mobile-menu"
               aria-label="Toggle menu"
-              className="inline-flex rounded-full p-1.5 text-oxblood hover:bg-oxblood/10 lg:hidden"
+              className="inline-flex cursor-pointer rounded-full p-1.5 text-oxblood hover:bg-oxblood/10 lg:hidden"
             >
               <svg viewBox="0 0 24 24" fill="currentColor" className="size-6">
                 <path
@@ -87,7 +87,7 @@ export function NavbarWithLinksActionsAndCenteredLogo({
                   command="close"
                   commandfor="mobile-menu"
                   aria-label="Toggle menu"
-                  className="inline-flex rounded-full p-1.5 text-oxblood hover:bg-oxblood/10"
+                  className="inline-flex cursor-pointer rounded-full p-1.5 text-oxblood hover:bg-oxblood/10"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

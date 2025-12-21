@@ -81,7 +81,7 @@ export function JobDetail({
                 </ButtonLink>
                 <button
                   type="button"
-                  className="flex items-center justify-center gap-2 rounded-lg border border-oxblood/20 p-3 text-oxblood transition-colors hover:bg-oxblood/5 dark:border-white/20 dark:text-coral dark:hover:bg-white/5"
+                  className="flex cursor-pointer items-center justify-center gap-2 rounded-lg border border-oxblood/20 p-3 text-oxblood transition-colors hover:bg-oxblood/5 dark:border-white/20 dark:text-coral dark:hover:bg-white/5"
                   onClick={() => {
                     if (typeof window !== 'undefined') {
                       navigator.clipboard.writeText(window.location.href)

@@ -93,7 +93,7 @@ export function PricingHeroMultiTier<T extends string>({
                 <button
                   key={option}
                   type="button"
-                  className="rounded-full px-4 py-1 text-sm/7 font-medium text-oxblood"
+                  className="cursor-pointer rounded-full px-4 py-1 text-sm/7 font-medium text-oxblood"
                 >
                   {option}
                 </button>

@@ -70,7 +70,7 @@ export function NewsletterForm({
         <button
           type="submit"
           aria-label="Subscribe"
-          className="relative inline-flex size-7 items-center justify-center rounded-full after:absolute after:-inset-2 hover:bg-coral/10 after:pointer-fine:hidden text-coral"
+          className="relative inline-flex size-7 cursor-pointer items-center justify-center rounded-full after:absolute after:-inset-2 hover:bg-coral/10 after:pointer-fine:hidden text-coral"
         >
           <ArrowNarrowRightIcon />
         </button>

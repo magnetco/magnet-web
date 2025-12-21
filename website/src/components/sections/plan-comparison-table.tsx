@@ -112,7 +112,7 @@ export function PlanComparisonTable<const Plan extends string>({
                 <button
                   key={plan}
                   type="button"
-                  className="relative -mb-px flex-1 border-b border-b-transparent px-2 py-6 text-sm/5 font-medium text-olive-500 aria-selected:border-olive-950 aria-selected:text-oxblood"
+                  className="relative -mb-px flex-1 cursor-pointer border-b border-b-transparent px-2 py-6 text-sm/5 font-medium text-olive-500 aria-selected:border-olive-950 aria-selected:text-oxblood"
                 >
                   {plan}
                 </button>
