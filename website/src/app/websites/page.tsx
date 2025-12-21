@@ -516,15 +516,15 @@ export default function Page() {
         id="testimonial"
         quote={
           <p>
-            "We launched our new website in just one day using one of the templates. The design is beautiful, and we've
-            already seen a 40% increase in conversions. Couldn't be happier with the results."
+            We launched our new website in just one day using one of the templates. The design is beautiful, and we've
+            already seen a 40% increase in conversions. Couldn't be happier with the results.
           </p>
         }
         img={
           <Image
-            src="/img/avatars/10-size-160.webp"
+            src="/img/quote-2.webp"
             alt=""
-            className="not-dark:bg-white/75 dark:bg-black/75"
+            className="not-dark:bg-white/75 dark:bg-black/75 w-full"
             width={160}
             height={160}
           />

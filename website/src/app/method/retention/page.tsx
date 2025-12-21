@@ -1,43 +1,432 @@
+import { AnnouncementBadge } from '@/components/elements/announcement-badge'
 import { ButtonLink, PlainButtonLink } from '@/components/elements/button'
+import { Link } from '@/components/elements/link'
+import { Logo, LogoGrid } from '@/components/elements/logo-grid'
+import { Screenshot } from '@/components/elements/screenshot'
+import { ArrowNarrowRightIcon } from '@/components/icons/arrow-narrow-right-icon'
 import { ChevronIcon } from '@/components/icons/chevron-icon'
 import { Approach, ApproachItem, ApproachStage } from '@/components/sections/approach'
 import { CallToActionSimple } from '@/components/sections/call-to-action-simple'
-import { DocumentCentered } from '@/components/sections/document-centered'
-import { HeroSimpleCentered } from '@/components/sections/hero-simple-centered'
+import {
+  Feature,
+  FeaturesStackedAlternatingWithDemos,
+} from '@/components/sections/features-stacked-alternating-with-demos'
+import { HeroCenteredWithDemo } from '@/components/sections/hero-centered-with-demo'
+import Image from 'next/image'
 
 export default function Page() {
   return (
     <>
       {/* Hero */}
-      <HeroSimpleCentered
+      <HeroCenteredWithDemo
         id="hero"
-        headline="Retention"
+        eyebrow={<AnnouncementBadge href="#" text="Our Method" cta="Learn more" />}
+        headline="Retain and grow customer value over time."
         subheadline={
           <p>
-            Improved acquisition efficiency, conversion and revenue throughput.
+            Retention improves acquisition efficiency, conversion, and revenue throughput. Focus on lifecycle email,
+            success enablement, community & brand systems, feedback loops & optimization, and predictive intelligence.
           </p>
+        }
+        cta={
+          <div className="flex items-center gap-4">
+            <ButtonLink href="#" size="lg">
+              Get started
+            </ButtonLink>
+            <PlainButtonLink href="#" size="lg">
+              See examples <ArrowNarrowRightIcon />
+            </PlainButtonLink>
+          </div>
+        }
+        demo={
+          <>
+            <Screenshot className="rounded-md lg:hidden" wallpaper="green" placement="bottom-right">
+              <Image
+                src="/img/screenshots/1-left-1670-top-1408.webp"
+                alt=""
+                width={1670}
+                height={1408}
+                className="bg-white/75 md:hidden dark:hidden"
+              />
+              <Image
+                src="/img/screenshots/1-color-olive-left-1670-top-1408.webp"
+                alt=""
+                width={1670}
+                height={1408}
+                className="bg-black/75 not-dark:hidden md:hidden"
+              />
+              <Image
+                src="/img/screenshots/1-left-2000-top-1408.webp"
+                alt=""
+                width={2000}
+                height={1408}
+                className="bg-white/75 max-md:hidden dark:hidden"
+              />
+              <Image
+                src="/img/screenshots/1-color-olive-left-2000-top-1408.webp"
+                alt=""
+                width={2000}
+                height={1408}
+                className="bg-black/75 not-dark:hidden max-md:hidden"
+              />
+            </Screenshot>
+            <Screenshot className="rounded-lg max-lg:hidden" wallpaper="green" placement="bottom">
+              <Image
+                src="/img/screenshots/1.webp"
+                alt=""
+                className="bg-white/75 dark:hidden"
+                width={3440}
+                height={1990}
+              />
+              <Image
+                className="bg-black/75 not-dark:hidden"
+                src="/img/screenshots/1-color-olive.webp"
+                alt=""
+                width={3440}
+                height={1990}
+              />
+            </Screenshot>
+          </>
+        }
+        footer={
+          <LogoGrid>
+            <Logo>
+              <Image
+                src="/img/logos/9-color-black-height-32.svg"
+                className="dark:hidden"
+                alt=""
+                width={51}
+                height={32}
+              />
+              <Image
+                src="/img/logos/9-color-white-height-32.svg"
+                className="not-dark:hidden"
+                alt=""
+                width={51}
+                height={32}
+              />
+            </Logo>
+            <Logo>
+              <Image
+                src="/img/logos/10-color-black-height-32.svg"
+                className="dark:hidden"
+                alt=""
+                width={70}
+                height={32}
+              />
+              <Image
+                src="/img/logos/10-color-white-height-32.svg"
+                className="not-dark:hidden"
+                alt=""
+                width={70}
+                height={32}
+              />
+            </Logo>
+            <Logo>
+              <Image
+                src="/img/logos/11-color-black-height-32.svg"
+                className="dark:hidden"
+                alt=""
+                width={100}
+                height={32}
+              />
+              <Image
+                src="/img/logos/11-color-white-height-32.svg"
+                className="not-dark:hidden"
+                alt=""
+                width={100}
+                height={32}
+              />
+            </Logo>
+            <Logo>
+              <Image
+                src="/img/logos/12-color-black-height-32.svg"
+                className="dark:hidden"
+                alt=""
+                width={85}
+                height={32}
+              />
+              <Image
+                src="/img/logos/12-color-white-height-32.svg"
+                className="not-dark:hidden"
+                alt=""
+                width={85}
+                height={32}
+              />
+            </Logo>
+            <Logo>
+              <Image
+                src="/img/logos/13-color-black-height-32.svg"
+                className="dark:hidden"
+                alt=""
+                width={75}
+                height={32}
+              />
+              <Image
+                src="/img/logos/13-color-white-height-32.svg"
+                className="not-dark:hidden"
+                alt=""
+                width={75}
+                height={32}
+              />
+            </Logo>
+            <Logo>
+              <Image
+                src="/img/logos/8-color-black-height-32.svg"
+                className="dark:hidden"
+                alt=""
+                width={85}
+                height={32}
+              />
+              <Image
+                src="/img/logos/8-color-white-height-32.svg"
+                className="not-dark:hidden"
+                alt=""
+                width={85}
+                height={32}
+              />
+            </Logo>
+          </LogoGrid>
         }
       />
 
-      {/* Content */}
-      <DocumentCentered
-        id="content"
-        headline="Retaining and growing customer value"
-      >
-        <p>
-          Retention is about improving acquisition efficiency, conversion, and revenue throughput. It's the stage 
-          where you focus on lifecycle email, success enablement, community & brand systems, feedback loops & 
-          optimization, and predictive intelligence.
-        </p>
-        <p>
-          The goal is to create systems that not only acquire customers but keep them, grow them, and turn them into 
-          advocates. We build retention systems that feel timely and personal, not automated and generic.
-        </p>
-        <p>
-          When retention is done right, you're not just maintaining customers—you're building a system that improves 
-          acquisition efficiency, increases lifetime value, and creates a compounding effect on your growth.
-        </p>
-      </DocumentCentered>
+      {/* Features */}
+      <FeaturesStackedAlternatingWithDemos
+        id="features"
+        headline="Everything you need to retain and grow customer value."
+        subheadline={
+          <p>
+            Retention components work together to create systems that not only acquire customers but keep them, grow
+            them, and turn them into advocates.
+          </p>
+        }
+        features={
+          <>
+            <Feature
+              headline="Lifecycle Email"
+              subheadline={
+                <p>
+                  Create email systems that feel timely and personal, not automated and generic. Build lifecycle
+                  campaigns that guide customers through their journey and drive engagement.
+                </p>
+              }
+              cta={
+                <Link href="/method/retention/lifecycle-email">
+                  Learn more <ChevronIcon />
+                </Link>
+              }
+              demo={
+                <Screenshot wallpaper="blue" placement="bottom-right">
+                  <Image
+                    src="/img/screenshots/1-left-1000-top-800.webp"
+                    alt=""
+                    className="bg-white/75 sm:hidden dark:hidden"
+                    width={1000}
+                    height={800}
+                  />
+                  <Image
+                    src="/img/screenshots/1-color-olive-left-1000-top-800.webp"
+                    alt=""
+                    width={1000}
+                    height={800}
+                    className="bg-black/75 not-dark:hidden sm:hidden"
+                  />
+                  <Image
+                    src="/img/screenshots/1-left-1800-top-660.webp"
+                    alt=""
+                    className="bg-white/75 max-sm:hidden lg:hidden dark:hidden"
+                    width={1800}
+                    height={660}
+                  />
+                  <Image
+                    src="/img/screenshots/1-color-olive-left-1800-top-660.webp"
+                    alt=""
+                    width={1800}
+                    height={660}
+                    className="bg-black/75 not-dark:hidden max-sm:hidden lg:hidden"
+                  />
+                  <Image
+                    src="/img/screenshots/1-left-1300-top-1300.webp"
+                    alt=""
+                    className="bg-white/75 max-lg:hidden xl:hidden dark:hidden"
+                    width={1300}
+                    height={1300}
+                  />
+                  <Image
+                    src="/img/screenshots/1-color-olive-left-1300-top-1300.webp"
+                    alt=""
+                    width={1300}
+                    height={1300}
+                    className="bg-black/75 not-dark:hidden max-lg:hidden xl:hidden"
+                  />
+                  <Image
+                    src="/img/screenshots/1-left-1800-top-1250.webp"
+                    alt=""
+                    className="bg-white/75 max-xl:hidden dark:hidden"
+                    width={1800}
+                    height={1250}
+                  />
+                  <Image
+                    src="/img/screenshots/1-color-olive-left-1800-top-1250.webp"
+                    alt=""
+                    width={1800}
+                    height={1250}
+                    className="bg-black/75 not-dark:hidden max-xl:hidden"
+                  />
+                </Screenshot>
+              }
+            />
+            <Feature
+              headline="Success Enablement"
+              subheadline={
+                <p>
+                  Build systems that help customers succeed and achieve their goals. Create enablement programs that
+                  drive adoption, engagement, and value realization.
+                </p>
+              }
+              cta={
+                <Link href="/method/retention/success-enablement">
+                  Learn more <ChevronIcon />
+                </Link>
+              }
+              demo={
+                <Screenshot wallpaper="purple" placement="top-left">
+                  <Image
+                    src="/img/screenshots/1-right-1000-top-800.webp"
+                    alt=""
+                    className="bg-white/75 sm:hidden dark:hidden"
+                    width={1000}
+                    height={800}
+                  />
+                  <Image
+                    src="/img/screenshots/1-color-olive-right-1000-top-800.webp"
+                    alt=""
+                    width={1000}
+                    height={800}
+                    className="bg-black/75 not-dark:hidden sm:hidden"
+                  />
+                  <Image
+                    src="/img/screenshots/1-right-1800-top-660.webp"
+                    alt=""
+                    className="bg-white/75 max-sm:hidden lg:hidden dark:hidden"
+                    width={1800}
+                    height={660}
+                  />
+                  <Image
+                    src="/img/screenshots/1-color-olive-right-1800-top-660.webp"
+                    alt=""
+                    width={1800}
+                    height={660}
+                    className="bg-black/75 not-dark:hidden max-sm:hidden lg:hidden"
+                  />
+                  <Image
+                    src="/img/screenshots/1-right-1300-top-1300.webp"
+                    alt=""
+                    className="bg-white/75 max-lg:hidden xl:hidden dark:hidden"
+                    width={1300}
+                    height={1300}
+                  />
+                  <Image
+                    src="/img/screenshots/1-color-olive-right-1300-top-1300.webp"
+                    alt=""
+                    width={1300}
+                    height={1300}
+                    className="bg-black/75 not-dark:hidden max-lg:hidden xl:hidden"
+                  />
+                  <Image
+                    src="/img/screenshots/1-right-1800-top-1250.webp"
+                    alt=""
+                    className="bg-white/75 max-xl:hidden dark:hidden"
+                    width={1800}
+                    height={1250}
+                  />
+                  <Image
+                    src="/img/screenshots/1-color-olive-right-1800-top-1250.webp"
+                    alt=""
+                    width={1800}
+                    height={1250}
+                    className="bg-black/75 not-dark:hidden max-xl:hidden"
+                  />
+                </Screenshot>
+              }
+            />
+            <Feature
+              headline="Predictive Intelligence"
+              subheadline={
+                <p>
+                  Use data and intelligence to predict customer behavior and proactively address needs. Build systems
+                  that improve acquisition efficiency and increase lifetime value.
+                </p>
+              }
+              cta={
+                <Link href="/method/retention/predictive-intelligence">
+                  Learn more <ChevronIcon />
+                </Link>
+              }
+              demo={
+                <Screenshot wallpaper="brown" placement="bottom-left">
+                  <Image
+                    src="/img/screenshots/1-left-1000-top-800.webp"
+                    alt=""
+                    className="bg-white/75 sm:hidden dark:hidden"
+                    width={1000}
+                    height={800}
+                  />
+                  <Image
+                    src="/img/screenshots/1-color-olive-left-1000-top-800.webp"
+                    alt=""
+                    width={1000}
+                    height={800}
+                    className="bg-black/75 not-dark:hidden sm:hidden"
+                  />
+                  <Image
+                    src="/img/screenshots/1-left-1800-top-660.webp"
+                    alt=""
+                    className="bg-white/75 max-sm:hidden lg:hidden dark:hidden"
+                    width={1800}
+                    height={660}
+                  />
+                  <Image
+                    src="/img/screenshots/1-color-olive-left-1800-top-660.webp"
+                    alt=""
+                    width={1800}
+                    height={660}
+                    className="bg-black/75 not-dark:hidden max-sm:hidden lg:hidden"
+                  />
+                  <Image
+                    src="/img/screenshots/1-left-1300-top-1300.webp"
+                    alt=""
+                    className="bg-white/75 max-lg:hidden xl:hidden dark:hidden"
+                    width={1300}
+                    height={1300}
+                  />
+                  <Image
+                    src="/img/screenshots/1-color-olive-left-1300-top-1300.webp"
+                    alt=""
+                    width={1300}
+                    height={1300}
+                    className="bg-black/75 not-dark:hidden max-lg:hidden xl:hidden"
+                  />
+                  <Image
+                    src="/img/screenshots/1-left-1800-top-1250.webp"
+                    alt=""
+                    className="bg-white/75 max-xl:hidden dark:hidden"
+                    width={1800}
+                    height={1250}
+                  />
+                  <Image
+                    src="/img/screenshots/1-color-olive-left-1800-top-1250.webp"
+                    alt=""
+                    width={1800}
+                    height={1250}
+                    className="bg-black/75 not-dark:hidden max-xl:hidden"
+                  />
+                </Screenshot>
+              }
+            />
+          </>
+        }
+      />
 
       {/* Approach */}
       <Approach
@@ -128,4 +517,3 @@ export default function Page() {
     </>
   )
 }
-

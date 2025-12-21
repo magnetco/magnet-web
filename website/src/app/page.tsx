@@ -11,13 +11,12 @@ import { Feature, FeaturesTwoColumnWithDemos } from '@/components/sections/featu
 import { HeroLeftAlignedWithDemo } from '@/components/sections/hero-left-aligned-with-demo'
 import { InteractiveCardsGrid } from '@/components/sections/interactive-cards-grid'
 import { Plan, PricingMultiTier } from '@/components/sections/pricing-multi-tier'
-import { PerformanceWithStatsAndTestimonials } from '@/components/sections/performance-with-stats-and-testimonials'
 import { Stat, StatsWithGraph } from '@/components/sections/stats-with-graph'
 import { Testimonial, TestimonialThreeColumnGrid } from '@/components/sections/testimonials-three-column-grid'
-import { RollingFundsIcon } from '@/components/icons/rolling-funds-icon'
-import { ScoutFundsIcon } from '@/components/icons/scout-funds-icon'
-import { SPVsIcon } from '@/components/icons/spvs-icon'
-import { VentureFundsIcon } from '@/components/icons/venture-funds-icon'
+import { SparklesIcon } from '@/components/icons/sparkles-icon'
+import { CodeSquareIcon } from '@/components/icons/code-square-icon'
+import { MagnifyingGlassIcon } from '@/components/icons/magnifying-glass-icon'
+import { TargetIcon } from '@/components/icons/target-icon'
 import Image from 'next/image'
 
 export default function Page() {
@@ -363,39 +362,40 @@ export default function Page() {
       {/* Interactive Cards */}
       <InteractiveCardsGrid
         id="services"
+        eyebrow="Solutions"
         headline="Access customized, full-service support for every investment vehicle"
         cards={[
           {
-            title: 'Venture Funds',
-            icon: <VentureFundsIcon />,
+            title: 'Branding',
+            icon: <SparklesIcon className="size-10" />,
             description: (
-              <p>Raise capital, close deals, and manage your portfolio, while we handle your overhead and back-office.</p>
+              <p>Clarify your story and stand out in the market with advanced strategic precision.</p>
             ),
-            href: '#',
+            href: '/branding',
           },
           {
-            title: 'Rolling Funds',
-            icon: <RollingFundsIcon />,
+            title: 'Websites',
+            icon: <CodeSquareIcon className="size-10" />,
             description: (
-              <p>Fundraise continuously. LPs subscribe quarterly to Rolling Funds®, so you can regularly accept capital.</p>
+              <p>Design frictionless digital journeys that consistently convert higher-quality buyers.</p>
             ),
-            href: '#',
+            href: '/websites',
           },
           {
-            title: 'Scout Funds',
-            icon: <ScoutFundsIcon />,
+            title: 'Search Marketing',
+            icon: <MagnifyingGlassIcon className="size-10" />,
             description: (
-              <p>Grow your scout program, expand your network, and increase deal flow—with no extra back-office burden.</p>
+              <p>Build fast, scalable search systems that reliably power sustainable long-term growth.</p>
             ),
-            href: '#',
+            href: '/search',
           },
           {
-            title: 'SPVs',
-            icon: <SPVsIcon />,
+            title: 'Paid Ads',
+            icon: <TargetIcon className="size-10" />,
             description: (
-              <p>Raise privately on a deal-by-deal basis with proven SPV infrastructure.</p>
+              <p>Increase qualified demand through highly targeted, high-intent acquisition campaigns.</p>
             ),
-            href: '#',
+            href: '/ads',
           },
         ]}
       />
@@ -415,46 +415,6 @@ export default function Page() {
         <Stat stat="2M+" text="Emails manually processed every week across thousands of teams." />
         <Stat stat="99.98%" text="Uptime — because your customers never stop complaining." />
       </StatsWithGraph>
-      {/* Performance Section */}
-      <PerformanceWithStatsAndTestimonials
-        id="performance"
-        eyebrow="Performance"
-        headline="A partnership built to scale with you"
-        stats={[
-          { value: '$80.6B+', label: 'Capital moved on our ledger' },
-          { value: '25K', label: 'Funds and syndicates supported' },
-          { value: '72K+', label: 'Active investors' },
-        ]}
-        testimonials={[
-          {
-            quote: (
-              <p>
-                For Fund II, we transitioned to a traditional closed-end fund with institutional support. This allowed
-                us to be more intentional about our portfolio construction—how many deals we're doing, our check sizes,
-                and the overall fund size. We worked closely with AngelList throughout this transition, and their team
-                was incredible in supporting us.
-              </p>
-            ),
-            name: 'Paul Irving',
-            title: 'Partner & Platform Director',
-            company: 'GTMfund',
-            image: '/img/quote-1.webp',
-          },
-          {
-            quote: (
-              <p>
-                One of the most valuable aspects of AngelList's service is their responsive team of experts, who are
-                always available to address our questions and concerns promptly. This proactive support has not only saved
-                us significant costs but also enabled us to build stronger relationships with our LPs.
-              </p>
-            ),
-            name: 'Erika Lucas',
-            title: 'General Partner',
-            company: 'VEST Her Ventures',
-            image: '/img/quote-2.webp',
-          },
-        ]}
-      />
       {/* Testimonial */}
       <TestimonialThreeColumnGrid
         id="testimonial"

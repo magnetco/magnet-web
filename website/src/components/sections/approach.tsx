@@ -31,21 +31,15 @@ export function ApproachItem({
   href,
   ...props 
 }: { href?: string } & ComponentProps<'li'>) {
-  const content = (
-    <>
-      <Bullet className="mt-[2px] shrink-0" />
-      <span className="flex-1 leading-7">{children}</span>
-    </>
-  )
-
   return (
-    <li className="flex gap-2.5 text-sm leading-7" {...props}>
+    <li className="flex items-start gap-2.5 text-sm leading-7" {...props}>
+      <Bullet className="mt-[11px] shrink-0" />
       {href ? (
-        <Link href={href} className="flex gap-2.5">
-          {content}
+        <Link href={href} className="leading-7">
+          {children}
         </Link>
       ) : (
-        content
+        <span className="leading-7">{children}</span>
       )}
     </li>
   )

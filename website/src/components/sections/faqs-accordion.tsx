@@ -22,7 +22,7 @@ export function Faq({
         id={`${id}-question`}
         command="--toggle"
         commandfor={`${id}-answer`}
-        className="flex w-full items-start justify-between gap-6 py-4 text-left text-base/7 text-oxblood dark:text-ember"
+        className="flex w-full cursor-pointer items-start justify-between gap-6 py-4 text-left text-base/7 text-oxblood dark:text-ember"
       >
         {question}
         <div className="relative h-lh w-lh shrink-0">

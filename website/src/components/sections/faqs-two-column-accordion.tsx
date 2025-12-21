@@ -28,14 +28,13 @@ export function Faq({
     const button = buttonRef.current
     if (!disclosure || !content) return
 
-    // Disable CSS transitions and set initial state
-    gsap.set(disclosure, {
-      height: 0,
-      opacity: 0,
-      overflow: 'hidden',
-      maxHeight: 'none', // Override CSS max-height
-      transition: 'none', // Disable CSS transitions
-    })
+    // Disable CSS transitions via inline style to override CSS
+    // Use height instead of max-height to avoid CSS conflicts
+    disclosure.style.transition = 'none'
+    disclosure.style.height = '0px'
+    disclosure.style.maxHeight = 'none' // Override CSS max-height
+    disclosure.style.opacity = '0'
+    disclosure.style.overflow = 'hidden'
 
     const updateAriaExpanded = (isOpen: boolean) => {
       if (button) {
@@ -47,24 +46,54 @@ export function Faq({
       const isOpen = disclosure.hasAttribute('open') && !disclosure.hasAttribute('hidden')
       updateAriaExpanded(isOpen)
       
+      // Always disable CSS transitions during animation
+      disclosure.style.transition = 'none'
+      
       if (isOpen) {
-        // Opening: temporarily set to auto to measure, then animate
-        gsap.set(disclosure, { height: 'auto' })
-        const height = disclosure.offsetHeight
-        gsap.set(disclosure, { height: 0 })
+        // Opening: immediately set to 0 to prevent CSS from showing it
+        disclosure.style.height = '0px'
+        disclosure.style.maxHeight = 'none' // Override CSS
+        disclosure.style.opacity = '0'
+        disclosure.style.overflow = 'hidden'
         
+        // Force reflow to ensure 0px is applied
+        void disclosure.offsetHeight
+        
+        // Temporarily set height to auto to measure natural height
+        disclosure.style.height = 'auto'
+        void disclosure.offsetHeight
+        
+        // Measure the natural height
+        const targetHeight = disclosure.offsetHeight
+        
+        // Reset to 0 before animating
+        disclosure.style.height = '0px'
+        
+        // Force another reflow to ensure 0px is applied
+        void disclosure.offsetHeight
+        
+        // Animate to target height using height (not max-height to avoid CSS conflicts)
         gsap.to(disclosure, {
-          height: height,
+          height: `${targetHeight}px`,
           opacity: 1,
           duration: 0.3,
           ease: 'power2.out',
+          onComplete: () => {
+            // After animation, set to auto to allow content changes
+            disclosure.style.height = 'auto'
+          }
         })
       } else {
         // Closing: get current height first, then animate to 0
         const currentHeight = disclosure.offsetHeight
         if (currentHeight > 0) {
+          // Ensure we're using height, not max-height
+          disclosure.style.height = `${currentHeight}px`
+          disclosure.style.maxHeight = 'none'
+          void disclosure.offsetHeight
+          
           gsap.to(disclosure, {
-            height: 0,
+            height: '0px',
             opacity: 0,
             duration: 0.3,
             ease: 'power2.in',
@@ -77,9 +106,14 @@ export function Faq({
     const observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
         if (mutation.type === 'attributes' && (mutation.attributeName === 'open' || mutation.attributeName === 'hidden')) {
-          // Small delay to ensure DOM has updated
+          // Immediately disable CSS transitions to prevent CSS from applying
+          disclosure.style.transition = 'none'
+          
+          // Use double RAF to ensure we catch it before CSS applies
           requestAnimationFrame(() => {
-            animateToggle()
+            requestAnimationFrame(() => {
+              animateToggle()
+            })
           })
         }
       })
@@ -94,9 +128,10 @@ export function Faq({
     const isInitiallyOpen = disclosure.hasAttribute('open') && !disclosure.hasAttribute('hidden')
     updateAriaExpanded(isInitiallyOpen)
     if (isInitiallyOpen) {
-      gsap.set(disclosure, { height: 'auto' })
-      const height = disclosure.offsetHeight
-      gsap.set(disclosure, { height: height, opacity: 1, maxHeight: 'none', transition: 'none' })
+      disclosure.style.height = 'auto'
+      disclosure.style.maxHeight = 'none'
+      disclosure.style.opacity = '1'
+      disclosure.style.transition = 'none'
     }
 
     return () => {
@@ -113,7 +148,7 @@ export function Faq({
         command="--toggle"
         commandfor={`${id}-answer`}
         aria-expanded="false"
-        className="flex w-full items-start justify-between gap-6 py-4 text-left text-base/7 text-oxblood dark:text-ember"
+        className="flex w-full cursor-pointer items-start justify-between gap-6 py-4 text-left text-base/7 text-oxblood dark:text-ember"
       >
         {question}
         <div className="relative h-lh w-lh shrink-0">
@@ -126,7 +161,7 @@ export function Faq({
         id={`${id}-answer`}
         hidden
         className="-mt-2 flex flex-col gap-2 pr-12 pb-4 text-sm/7 text-oxblood dark:text-coral"
-        style={{ maxHeight: 'none', transition: 'none' }}
+        style={{ maxHeight: 'none', transition: 'none', height: 'auto' }}
       >
         <div ref={contentRef}>{answer}</div>
       </ElDisclosure>

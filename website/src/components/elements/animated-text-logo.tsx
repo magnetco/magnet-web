@@ -5,11 +5,24 @@ import { gsap } from 'gsap'
 import { useCallback, useEffect, useRef } from 'react'
 import type { ComponentProps } from 'react'
 
-export function AnimatedTextLogo({ className, ...props }: ComponentProps<'div'>) {
+export function AnimatedTextLogo({ 
+  className, 
+  fillMaskRef: externalFillMaskRef,
+  fillGroupsRef: externalFillGroupsRef,
+  ...props 
+}: ComponentProps<'div'> & {
+  fillMaskRef?: React.RefObject<SVGRectElement>
+  fillGroupsRef?: React.RefObject<(SVGGElement | null)[]>
+}) {
   const svgRef = useRef<SVGSVGElement>(null)
+  const containerRef = useRef<HTMLDivElement>(null)
   const groupsRef = useRef<SVGGElement[]>([])
   const clipPathsRef = useRef<SVGRectElement[]>([])
   const pathsRef = useRef<SVGPathElement[]>([])
+  const internalFillMaskRef = useRef<SVGRectElement>(null)
+  const internalFillGroupsRef = useRef<(SVGGElement | null)[]>([])
+  const fillMaskRef = externalFillMaskRef || internalFillMaskRef
+  const fillGroupsRef = externalFillGroupsRef || internalFillGroupsRef
   const hasAnimatedRef = useRef(false)
 
   const animateLogo = useCallback(() => {
@@ -118,6 +131,66 @@ export function AnimatedTextLogo({ className, ...props }: ComponentProps<'div'>)
     }
   }, [animateLogo])
 
+  // Hover fill animation (only if not using external refs)
+  useEffect(() => {
+    if (externalFillMaskRef || externalFillGroupsRef) return // Skip if external refs provided
+    
+    const container = containerRef.current
+    if (!container) return
+
+    const handleMouseEnter = () => {
+      if (!fillMaskRef.current) return
+      
+      gsap.to(fillMaskRef.current, {
+        width: 99,
+        duration: 0.4,
+        ease: 'power2.out',
+      })
+      
+      // Fade in ember fill groups
+      const groups = fillGroupsRef.current
+      groups.forEach((group) => {
+        if (group) {
+          gsap.to(group, {
+            opacity: 1,
+            duration: 0.3,
+            ease: 'power2.out',
+          })
+        }
+      })
+    }
+
+    const handleMouseLeave = () => {
+      if (!fillMaskRef.current) return
+      
+      gsap.to(fillMaskRef.current, {
+        width: 0,
+        duration: 0.4,
+        ease: 'power2.in',
+      })
+      
+      // Fade out ember fill groups
+      const groups = fillGroupsRef.current
+      groups.forEach((group) => {
+        if (group) {
+          gsap.to(group, {
+            opacity: 0,
+            duration: 0.3,
+            ease: 'power2.in',
+          })
+        }
+      })
+    }
+
+    container.addEventListener('mouseenter', handleMouseEnter)
+    container.addEventListener('mouseleave', handleMouseLeave)
+
+    return () => {
+      container.removeEventListener('mouseenter', handleMouseEnter)
+      container.removeEventListener('mouseleave', handleMouseLeave)
+    }
+  }, [externalFillMaskRef, externalFillGroupsRef])
+
   // Character paths
   const characters = [
     { d: 'M9.48 21L9.51 20.37L18.21 0H21.54V0.630001L12.84 21H9.48ZM0 21V0H3.45V21H0ZM9.51 21L0.78 0.630001V0H4.14L12.84 20.37V21H9.51ZM18.87 21V0H22.32V21H18.87Z' },
@@ -129,7 +202,11 @@ export function AnimatedTextLogo({ className, ...props }: ComponentProps<'div'>)
   ]
 
   return (
-    <div className={clsx('flex items-center justify-center', className)} {...props}>
+    <div 
+      ref={containerRef}
+      className={clsx('flex items-center justify-center', className)} 
+      {...props}
+    >
       <svg
         ref={svgRef}
         width="99"
@@ -153,7 +230,18 @@ export function AnimatedTextLogo({ className, ...props }: ComponentProps<'div'>)
               />
             </clipPath>
           ))}
+          {/* Mask for hover fill effect */}
+          <clipPath id="hover-fill-mask">
+            <rect
+              ref={fillMaskRef}
+              x="0"
+              y="0"
+              width="0"
+              height="27"
+            />
+          </clipPath>
         </defs>
+        {/* Base text (oxblood) */}
         {characters.map((char, index) => (
           <g
             key={`char-${index}`}
@@ -168,6 +256,24 @@ export function AnimatedTextLogo({ className, ...props }: ComponentProps<'div'>)
               }}
               d={char.d}
               fill="currentColor"
+            />
+          </g>
+        ))}
+        {/* Hover fill (ember) - revealed left to right */}
+        {characters.map((char, index) => (
+          <g
+            key={`fill-${index}`}
+            ref={(el) => {
+              if (el && fillGroupsRef.current) {
+                fillGroupsRef.current[index] = el
+              }
+            }}
+            clipPath="url(#hover-fill-mask)"
+            style={{ opacity: 0 }}
+          >
+            <path
+              d={char.d}
+              fill="var(--color-ember)"
             />
           </g>
         ))}

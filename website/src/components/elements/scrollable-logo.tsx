@@ -2,13 +2,17 @@
 
 import { clsx } from 'clsx/lite'
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import type { ComponentProps } from 'react'
+import { gsap } from 'gsap'
 import { AnimatedTextLogo } from './animated-text-logo'
 
 export function ScrollableLogo({ className, href, ...props }: { href: string } & Omit<ComponentProps<'a'>, 'href'>) {
   const [isScrolled, setIsScrolled] = useState(false)
   const [scrollProgress, setScrollProgress] = useState(0)
+  const fillMaskRef = useRef<SVGRectElement>(null)
+  const fillGroupsRef = useRef<(SVGGElement | null)[]>([])
+  const linkRef = useRef<HTMLAnchorElement>(null)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -55,14 +59,73 @@ export function ScrollableLogo({ className, href, ...props }: { href: string } &
   const arrow3Fill = getArrowFill(2) // 50-75%
   const arrow4Fill = getArrowFill(3) // 75-100%
 
+  // Hover fill animation for text logo
+  useEffect(() => {
+    const link = linkRef.current
+    if (!link || isScrolled) return
+
+    const handleMouseEnter = () => {
+      if (!fillMaskRef.current) return
+      
+      gsap.to(fillMaskRef.current, {
+        width: 99,
+        duration: 0.4,
+        ease: 'power2.out',
+      })
+      
+      // Fade in ember fill groups
+      fillGroupsRef.current.forEach((group) => {
+        if (group) {
+          gsap.to(group, {
+            opacity: 1,
+            duration: 0.3,
+            ease: 'power2.out',
+          })
+        }
+      })
+    }
+
+    const handleMouseLeave = () => {
+      if (!fillMaskRef.current) return
+      
+      gsap.to(fillMaskRef.current, {
+        width: 0,
+        duration: 0.4,
+        ease: 'power2.in',
+      })
+      
+      // Fade out ember fill groups
+      fillGroupsRef.current.forEach((group) => {
+        if (group) {
+          gsap.to(group, {
+            opacity: 0,
+            duration: 0.3,
+            ease: 'power2.in',
+          })
+        }
+      })
+    }
+
+    link.addEventListener('mouseenter', handleMouseEnter)
+    link.addEventListener('mouseleave', handleMouseLeave)
+
+    return () => {
+      link.removeEventListener('mouseenter', handleMouseEnter)
+      link.removeEventListener('mouseleave', handleMouseLeave)
+    }
+  }, [isScrolled])
+
   return (
     <Link
+      ref={linkRef}
       href={href}
       {...props}
       className={clsx('relative inline-flex items-center justify-center w-[99px] h-[27px]', className)}
     >
       {/* Text Logo - visible when not scrolled */}
       <AnimatedTextLogo
+        fillMaskRef={fillMaskRef}
+        fillGroupsRef={fillGroupsRef}
         className={clsx(
           'absolute inset-0 flex items-center justify-center transition-opacity duration-300 ease-in-out text-oxblood dark:text-ember',
           isScrolled ? 'opacity-0 pointer-events-none' : 'opacity-100',

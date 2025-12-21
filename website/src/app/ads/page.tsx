@@ -1,6 +1,5 @@
 import { AnnouncementBadge } from '@/components/elements/announcement-badge'
 import { ButtonLink, PlainButtonLink, SoftButtonLink } from '@/components/elements/button'
-import { EmailSignupForm } from '@/components/elements/email-signup-form'
 import { Link } from '@/components/elements/link'
 import { Logo, LogoGrid } from '@/components/elements/logo-grid'
 import { Screenshot } from '@/components/elements/screenshot'
@@ -10,7 +9,7 @@ import { Approach, ApproachItem, ApproachStage } from '@/components/sections/app
 import { CallToActionSimple } from '@/components/sections/call-to-action-simple'
 import { FAQsTwoColumnAccordion, Faq } from '@/components/sections/faqs-two-column-accordion'
 import { FeatureThreeColumnWithDemos, Features } from '@/components/sections/features-three-column-with-demos'
-import { HeroWithDemoOnBackground } from '@/components/sections/hero-with-demo-on-background'
+import { HeroCenteredWithDemo } from '@/components/sections/hero-centered-with-demo'
 import { Plan, PricingMultiTier } from '@/components/sections/pricing-multi-tier'
 import { Stat, StatsWithGraph } from '@/components/sections/stats-with-graph'
 import { TestimonialLargeQuote } from '@/components/sections/testimonial-with-large-quote'
@@ -20,11 +19,9 @@ export default function Page() {
   return (
     <>
       {/* Hero */}
-      <HeroWithDemoOnBackground
+      <HeroCenteredWithDemo
         id="hero"
-        eyebrow={
-          <AnnouncementBadge href="#" text="New: AI-powered ad creation" cta="Learn more" variant="overlay" />
-        }
+        eyebrow={<AnnouncementBadge href="#" text="New: AI-powered ad creation" cta="Learn more" />}
         headline="Create ads that convert and drive real results."
         subheadline={
           <p>
@@ -33,60 +30,63 @@ export default function Page() {
           </p>
         }
         cta={
-          <EmailSignupForm
-            className="max-w-full"
-            variant="overlay"
-            cta={
-              <>
-                Start creating <ArrowNarrowRightIcon />
-              </>
-            }
-          />
+          <div className="flex items-center gap-4">
+            <ButtonLink href="#" size="lg">
+              Start creating
+            </ButtonLink>
+            <PlainButtonLink href="#" size="lg">
+              See examples <ArrowNarrowRightIcon />
+            </PlainButtonLink>
+          </div>
         }
         demo={
           <>
-            <Image
-              className="bg-white/75 md:hidden dark:hidden"
-              src="/img/screenshots/1.webp"
-              alt=""
-              width={3440}
-              height={1500}
-            />
-            <Image
-              className="bg-black/75 not-dark:hidden md:hidden"
-              src="/img/screenshots/1-color-olive.webp"
-              alt=""
-              width={3440}
-              height={1500}
-            />
-            <Image
-              className="bg-white/75 max-md:hidden lg:hidden dark:hidden"
-              src="/img/screenshots/1.webp"
-              alt=""
-              width={3440}
-              height={1500}
-            />
-            <Image
-              className="bg-black/75 not-dark:hidden max-md:hidden lg:hidden"
-              src="/img/screenshots/1-color-olive.webp"
-              alt=""
-              width={3440}
-              height={1500}
-            />
-            <Image
-              className="bg-white/75 max-lg:hidden dark:hidden"
-              src="/img/screenshots/1.webp"
-              alt=""
-              width={3440}
-              height={1500}
-            />
-            <Image
-              className="bg-black/75 not-dark:hidden max-lg:hidden"
-              src="/img/screenshots/1-color-olive.webp"
-              alt=""
-              width={3440}
-              height={1500}
-            />
+            <Screenshot className="rounded-md lg:hidden" wallpaper="green" placement="bottom-right">
+              <Image
+                src="/img/screenshots/1-left-1670-top-1408.webp"
+                alt=""
+                width={1670}
+                height={1408}
+                className="bg-white/75 md:hidden dark:hidden"
+              />
+              <Image
+                src="/img/screenshots/1-color-olive-left-1670-top-1408.webp"
+                alt=""
+                width={1670}
+                height={1408}
+                className="bg-black/75 not-dark:hidden md:hidden"
+              />
+              <Image
+                src="/img/screenshots/1-left-2000-top-1408.webp"
+                alt=""
+                width={2000}
+                height={1408}
+                className="bg-white/75 max-md:hidden dark:hidden"
+              />
+              <Image
+                src="/img/screenshots/1-color-olive-left-2000-top-1408.webp"
+                alt=""
+                width={2000}
+                height={1408}
+                className="bg-black/75 not-dark:hidden max-md:hidden"
+              />
+            </Screenshot>
+            <Screenshot className="rounded-lg max-lg:hidden" wallpaper="green" placement="bottom">
+              <Image
+                src="/img/screenshots/1.webp"
+                alt=""
+                className="bg-white/75 dark:hidden"
+                width={3440}
+                height={1990}
+              />
+              <Image
+                className="bg-black/75 not-dark:hidden"
+                src="/img/screenshots/1-color-olive.webp"
+                alt=""
+                width={3440}
+                height={1990}
+              />
+            </Screenshot>
           </>
         }
         footer={
@@ -448,8 +448,8 @@ export default function Page() {
         id="testimonial"
         quote={
           <p>
-            "Since using this platform, our ad conversion rates have increased by 40%. The templates are beautiful, and
-            the A/B testing features have been invaluable in optimizing our campaigns. Highly recommend!"
+            Since using this platform, our ad conversion rates have increased by 40%. The templates are beautiful, and
+            the A/B testing features have been invaluable in optimizing our campaigns. Highly recommend!
           </p>
         }
         img={

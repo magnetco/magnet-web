@@ -1,44 +1,433 @@
+import { AnnouncementBadge } from '@/components/elements/announcement-badge'
 import { ButtonLink, PlainButtonLink } from '@/components/elements/button'
+import { Link } from '@/components/elements/link'
+import { Logo, LogoGrid } from '@/components/elements/logo-grid'
+import { Screenshot } from '@/components/elements/screenshot'
+import { ArrowNarrowRightIcon } from '@/components/icons/arrow-narrow-right-icon'
 import { ChevronIcon } from '@/components/icons/chevron-icon'
 import { Approach, ApproachItem, ApproachStage } from '@/components/sections/approach'
 import { CallToActionSimple } from '@/components/sections/call-to-action-simple'
-import { DocumentCentered } from '@/components/sections/document-centered'
-import { HeroSimpleCentered } from '@/components/sections/hero-simple-centered'
+import {
+  Feature,
+  FeaturesStackedAlternatingWithDemos,
+} from '@/components/sections/features-stacked-alternating-with-demos'
+import { HeroCenteredWithDemo } from '@/components/sections/hero-centered-with-demo'
+import Image from 'next/image'
 
 export default function Page() {
   return (
     <>
       {/* Hero */}
-      <HeroSimpleCentered
+      <HeroCenteredWithDemo
         id="hero"
-        headline="Acceleration"
+        eyebrow={<AnnouncementBadge href="#" text="Our Method" cta="Learn more" />}
+        headline="Convert qualified traffic into customers efficiently and at scale."
         subheadline={
           <p>
-            Targeted acquisition using ICP insight for efficient, scalable demand.
+            Acceleration is where qualified traffic becomes customers. Use ICP insight to create efficient, scalable
+            demand through offers & packaging, landing experiences, sales enablement, CRM flows & automation, and
+            attribution & measurement.
           </p>
+        }
+        cta={
+          <div className="flex items-center gap-4">
+            <ButtonLink href="#" size="lg">
+              Get started
+            </ButtonLink>
+            <PlainButtonLink href="#" size="lg">
+              See examples <ArrowNarrowRightIcon />
+            </PlainButtonLink>
+          </div>
+        }
+        demo={
+          <>
+            <Screenshot className="rounded-md lg:hidden" wallpaper="green" placement="bottom-right">
+              <Image
+                src="/img/screenshots/1-left-1670-top-1408.webp"
+                alt=""
+                width={1670}
+                height={1408}
+                className="bg-white/75 md:hidden dark:hidden"
+              />
+              <Image
+                src="/img/screenshots/1-color-olive-left-1670-top-1408.webp"
+                alt=""
+                width={1670}
+                height={1408}
+                className="bg-black/75 not-dark:hidden md:hidden"
+              />
+              <Image
+                src="/img/screenshots/1-left-2000-top-1408.webp"
+                alt=""
+                width={2000}
+                height={1408}
+                className="bg-white/75 max-md:hidden dark:hidden"
+              />
+              <Image
+                src="/img/screenshots/1-color-olive-left-2000-top-1408.webp"
+                alt=""
+                width={2000}
+                height={1408}
+                className="bg-black/75 not-dark:hidden max-md:hidden"
+              />
+            </Screenshot>
+            <Screenshot className="rounded-lg max-lg:hidden" wallpaper="green" placement="bottom">
+              <Image
+                src="/img/screenshots/1.webp"
+                alt=""
+                className="bg-white/75 dark:hidden"
+                width={3440}
+                height={1990}
+              />
+              <Image
+                className="bg-black/75 not-dark:hidden"
+                src="/img/screenshots/1-color-olive.webp"
+                alt=""
+                width={3440}
+                height={1990}
+              />
+            </Screenshot>
+          </>
+        }
+        footer={
+          <LogoGrid>
+            <Logo>
+              <Image
+                src="/img/logos/9-color-black-height-32.svg"
+                className="dark:hidden"
+                alt=""
+                width={51}
+                height={32}
+              />
+              <Image
+                src="/img/logos/9-color-white-height-32.svg"
+                className="not-dark:hidden"
+                alt=""
+                width={51}
+                height={32}
+              />
+            </Logo>
+            <Logo>
+              <Image
+                src="/img/logos/10-color-black-height-32.svg"
+                className="dark:hidden"
+                alt=""
+                width={70}
+                height={32}
+              />
+              <Image
+                src="/img/logos/10-color-white-height-32.svg"
+                className="not-dark:hidden"
+                alt=""
+                width={70}
+                height={32}
+              />
+            </Logo>
+            <Logo>
+              <Image
+                src="/img/logos/11-color-black-height-32.svg"
+                className="dark:hidden"
+                alt=""
+                width={100}
+                height={32}
+              />
+              <Image
+                src="/img/logos/11-color-white-height-32.svg"
+                className="not-dark:hidden"
+                alt=""
+                width={100}
+                height={32}
+              />
+            </Logo>
+            <Logo>
+              <Image
+                src="/img/logos/12-color-black-height-32.svg"
+                className="dark:hidden"
+                alt=""
+                width={85}
+                height={32}
+              />
+              <Image
+                src="/img/logos/12-color-white-height-32.svg"
+                className="not-dark:hidden"
+                alt=""
+                width={85}
+                height={32}
+              />
+            </Logo>
+            <Logo>
+              <Image
+                src="/img/logos/13-color-black-height-32.svg"
+                className="dark:hidden"
+                alt=""
+                width={75}
+                height={32}
+              />
+              <Image
+                src="/img/logos/13-color-white-height-32.svg"
+                className="not-dark:hidden"
+                alt=""
+                width={75}
+                height={32}
+              />
+            </Logo>
+            <Logo>
+              <Image
+                src="/img/logos/8-color-black-height-32.svg"
+                className="dark:hidden"
+                alt=""
+                width={85}
+                height={32}
+              />
+              <Image
+                src="/img/logos/8-color-white-height-32.svg"
+                className="not-dark:hidden"
+                alt=""
+                width={85}
+                height={32}
+              />
+            </Logo>
+          </LogoGrid>
         }
       />
 
-      {/* Content */}
-      <DocumentCentered
-        id="content"
-        headline="Accelerating conversion and revenue"
-      >
-        <p>
-          Acceleration is where qualified traffic becomes customers. It's about targeted acquisition using ICP insight 
-          to create efficient, scalable demand. This stage focuses on offers & packaging, landing experiences, sales 
-          enablement, CRM flows & automation, and attribution & measurement.
-        </p>
-        <p>
-          The goal is to remove friction from the buying process while making it easier for your ideal customers to 
-          say yes. We design offers that clarify decisions, create landing experiences that guide action, and build 
-          systems that enable sales teams to close more deals faster.
-        </p>
-        <p>
-          When acceleration is done right, you're not just converting leads—you're building a system that makes buying 
-          feel like progress, not negotiation.
-        </p>
-      </DocumentCentered>
+      {/* Features */}
+      <FeaturesStackedAlternatingWithDemos
+        id="features"
+        headline="Everything you need to accelerate conversion."
+        subheadline={
+          <p>
+            Acceleration components work together to convert qualified traffic into customers efficiently and remove
+            friction from the buying process.
+          </p>
+        }
+        features={
+          <>
+            <Feature
+              headline="Offers & Packaging"
+              subheadline={
+                <p>
+                  Design offers that clarify decisions and make it easier for ideal customers to say yes. Create
+                  packaging that communicates value clearly and removes buying friction.
+                </p>
+              }
+              cta={
+                <Link href="/method/acceleration/offers-packaging">
+                  Learn more <ChevronIcon />
+                </Link>
+              }
+              demo={
+                <Screenshot wallpaper="blue" placement="bottom-right">
+                  <Image
+                    src="/img/screenshots/1-left-1000-top-800.webp"
+                    alt=""
+                    className="bg-white/75 sm:hidden dark:hidden"
+                    width={1000}
+                    height={800}
+                  />
+                  <Image
+                    src="/img/screenshots/1-color-olive-left-1000-top-800.webp"
+                    alt=""
+                    width={1000}
+                    height={800}
+                    className="bg-black/75 not-dark:hidden sm:hidden"
+                  />
+                  <Image
+                    src="/img/screenshots/1-left-1800-top-660.webp"
+                    alt=""
+                    className="bg-white/75 max-sm:hidden lg:hidden dark:hidden"
+                    width={1800}
+                    height={660}
+                  />
+                  <Image
+                    src="/img/screenshots/1-color-olive-left-1800-top-660.webp"
+                    alt=""
+                    width={1800}
+                    height={660}
+                    className="bg-black/75 not-dark:hidden max-sm:hidden lg:hidden"
+                  />
+                  <Image
+                    src="/img/screenshots/1-left-1300-top-1300.webp"
+                    alt=""
+                    className="bg-white/75 max-lg:hidden xl:hidden dark:hidden"
+                    width={1300}
+                    height={1300}
+                  />
+                  <Image
+                    src="/img/screenshots/1-color-olive-left-1300-top-1300.webp"
+                    alt=""
+                    width={1300}
+                    height={1300}
+                    className="bg-black/75 not-dark:hidden max-lg:hidden xl:hidden"
+                  />
+                  <Image
+                    src="/img/screenshots/1-left-1800-top-1250.webp"
+                    alt=""
+                    className="bg-white/75 max-xl:hidden dark:hidden"
+                    width={1800}
+                    height={1250}
+                  />
+                  <Image
+                    src="/img/screenshots/1-color-olive-left-1800-top-1250.webp"
+                    alt=""
+                    width={1800}
+                    height={1250}
+                    className="bg-black/75 not-dark:hidden max-xl:hidden"
+                  />
+                </Screenshot>
+              }
+            />
+            <Feature
+              headline="Landing Experiences"
+              subheadline={
+                <p>
+                  Create landing experiences that guide action and remove friction. Design pages that make buying feel
+                  like progress, not negotiation.
+                </p>
+              }
+              cta={
+                <Link href="/method/acceleration/landing-experiences">
+                  Learn more <ChevronIcon />
+                </Link>
+              }
+              demo={
+                <Screenshot wallpaper="purple" placement="top-left">
+                  <Image
+                    src="/img/screenshots/1-right-1000-top-800.webp"
+                    alt=""
+                    className="bg-white/75 sm:hidden dark:hidden"
+                    width={1000}
+                    height={800}
+                  />
+                  <Image
+                    src="/img/screenshots/1-color-olive-right-1000-top-800.webp"
+                    alt=""
+                    width={1000}
+                    height={800}
+                    className="bg-black/75 not-dark:hidden sm:hidden"
+                  />
+                  <Image
+                    src="/img/screenshots/1-right-1800-top-660.webp"
+                    alt=""
+                    className="bg-white/75 max-sm:hidden lg:hidden dark:hidden"
+                    width={1800}
+                    height={660}
+                  />
+                  <Image
+                    src="/img/screenshots/1-color-olive-right-1800-top-660.webp"
+                    alt=""
+                    width={1800}
+                    height={660}
+                    className="bg-black/75 not-dark:hidden max-sm:hidden lg:hidden"
+                  />
+                  <Image
+                    src="/img/screenshots/1-right-1300-top-1300.webp"
+                    alt=""
+                    className="bg-white/75 max-lg:hidden xl:hidden dark:hidden"
+                    width={1300}
+                    height={1300}
+                  />
+                  <Image
+                    src="/img/screenshots/1-color-olive-right-1300-top-1300.webp"
+                    alt=""
+                    width={1300}
+                    height={1300}
+                    className="bg-black/75 not-dark:hidden max-lg:hidden xl:hidden"
+                  />
+                  <Image
+                    src="/img/screenshots/1-right-1800-top-1250.webp"
+                    alt=""
+                    className="bg-white/75 max-xl:hidden dark:hidden"
+                    width={1800}
+                    height={1250}
+                  />
+                  <Image
+                    src="/img/screenshots/1-color-olive-right-1800-top-1250.webp"
+                    alt=""
+                    width={1800}
+                    height={1250}
+                    className="bg-black/75 not-dark:hidden max-xl:hidden"
+                  />
+                </Screenshot>
+              }
+            />
+            <Feature
+              headline="Sales Enablement"
+              subheadline={
+                <p>
+                  Build systems that enable sales teams to close more deals faster. Create tools, processes, and
+                  resources that make selling easier and more effective.
+                </p>
+              }
+              cta={
+                <Link href="/method/acceleration/sales-enablement">
+                  Learn more <ChevronIcon />
+                </Link>
+              }
+              demo={
+                <Screenshot wallpaper="brown" placement="bottom-left">
+                  <Image
+                    src="/img/screenshots/1-left-1000-top-800.webp"
+                    alt=""
+                    className="bg-white/75 sm:hidden dark:hidden"
+                    width={1000}
+                    height={800}
+                  />
+                  <Image
+                    src="/img/screenshots/1-color-olive-left-1000-top-800.webp"
+                    alt=""
+                    width={1000}
+                    height={800}
+                    className="bg-black/75 not-dark:hidden sm:hidden"
+                  />
+                  <Image
+                    src="/img/screenshots/1-left-1800-top-660.webp"
+                    alt=""
+                    className="bg-white/75 max-sm:hidden lg:hidden dark:hidden"
+                    width={1800}
+                    height={660}
+                  />
+                  <Image
+                    src="/img/screenshots/1-color-olive-left-1800-top-660.webp"
+                    alt=""
+                    width={1800}
+                    height={660}
+                    className="bg-black/75 not-dark:hidden max-sm:hidden lg:hidden"
+                  />
+                  <Image
+                    src="/img/screenshots/1-left-1300-top-1300.webp"
+                    alt=""
+                    className="bg-white/75 max-lg:hidden xl:hidden dark:hidden"
+                    width={1300}
+                    height={1300}
+                  />
+                  <Image
+                    src="/img/screenshots/1-color-olive-left-1300-top-1300.webp"
+                    alt=""
+                    width={1300}
+                    height={1300}
+                    className="bg-black/75 not-dark:hidden max-lg:hidden xl:hidden"
+                  />
+                  <Image
+                    src="/img/screenshots/1-left-1800-top-1250.webp"
+                    alt=""
+                    className="bg-white/75 max-xl:hidden dark:hidden"
+                    width={1800}
+                    height={1250}
+                  />
+                  <Image
+                    src="/img/screenshots/1-color-olive-left-1800-top-1250.webp"
+                    alt=""
+                    width={1800}
+                    height={1250}
+                    className="bg-black/75 not-dark:hidden max-xl:hidden"
+                  />
+                </Screenshot>
+              }
+            />
+          </>
+        }
+      />
 
       {/* Approach */}
       <Approach
@@ -129,4 +518,3 @@ export default function Page() {
     </>
   )
 }
-

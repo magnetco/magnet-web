@@ -84,7 +84,7 @@ export default function RootLayout({
                 <NavbarLink href="/branding">Branding</NavbarLink>
                 <NavbarLink href="/search">Search</NavbarLink>
                 <NavbarLink href="/ads">Ads</NavbarLink>
-                <NavbarLink href="#" className="sm:hidden">
+                <NavbarLink href="/login" className="sm:hidden">
                   Log in
                 </NavbarLink>
               </>
@@ -92,7 +92,7 @@ export default function RootLayout({
             logo={<ScrollableLogo href="/" />}
             actions={
               <>
-                <PlainButtonLink href="#" className="max-sm:hidden">
+                <PlainButtonLink href="/login" className="max-sm:hidden">
                   Log in
                 </PlainButtonLink>
                 <ButtonLink href="#">Get started</ButtonLink>
@@ -114,10 +114,10 @@ export default function RootLayout({
                   <FooterLink href="/ads">Ads</FooterLink>
                 </FooterCategory>
                 <FooterCategory title="Method">
-                  <FooterLink href="#">Foundation</FooterLink>
-                  <FooterLink href="#">Activation</FooterLink>
-                  <FooterLink href="#">Acceleration</FooterLink>
-                  <FooterLink href="#">Retention</FooterLink>
+                  <FooterLink href="/method/foundation">Foundation</FooterLink>
+                  <FooterLink href="/method/activation">Activation</FooterLink>
+                  <FooterLink href="/method/acceleration">Acceleration</FooterLink>
+                  <FooterLink href="/method/retention">Retention</FooterLink>
                 </FooterCategory>
                 <FooterCategory title="Company">
                   <FooterLink href="/about">About</FooterLink>

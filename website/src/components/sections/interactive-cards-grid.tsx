@@ -7,7 +7,7 @@ import { Eyebrow } from '@/components/elements/eyebrow'
 import { Subheading } from '@/components/elements/subheading'
 import { Text } from '@/components/elements/text'
 import type { ComponentProps, ReactNode } from 'react'
-import { useEffect, useRef } from 'react'
+import { useCallback, useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 
 export interface InteractiveCard {
@@ -30,6 +30,7 @@ export function InteractiveCard({
   const buttonRef = useRef<HTMLDivElement>(null)
   const buttonFillRef = useRef<HTMLDivElement>(null)
   const descriptionRef = useRef<HTMLDivElement>(null)
+  const hideDescriptionRef = useRef<(() => void) | null>(null)
 
   useEffect(() => {
     const card = cardRef.current
@@ -141,9 +142,18 @@ export function InteractiveCard({
           marginBottom: 0,
           duration: 0.3,
           ease: 'power2.in',
+          onComplete: () => {
+            // Ensure it's hidden even if animation is interrupted
+            description.style.opacity = '0'
+            description.style.height = '0px'
+            description.style.marginBottom = '0px'
+          },
         })
       }
     }
+    
+    // Store the hide function in a ref so it can be called from React handler
+    hideDescriptionRef.current = handleMouseLeave
 
     card.addEventListener('mousemove', handleMouseMove)
     card.addEventListener('mouseenter', handleMouseEnter)
@@ -156,13 +166,21 @@ export function InteractiveCard({
     }
   }, [description])
 
+  // React handler for mouse leave as backup
+  const handleReactMouseLeave = () => {
+    if (hideDescriptionRef.current) {
+      hideDescriptionRef.current()
+    }
+  }
+
   const content = (
     <div
       ref={cardRef}
+      onMouseLeave={handleReactMouseLeave}
       className={clsx(
         'group relative overflow-hidden rounded-xl bg-olive-950/2.5 p-8 transition-all duration-300',
         'hover:bg-olive-950/5',
-        'h-full flex flex-col',
+        'min-h-[380px] h-full flex flex-col',
         'items-start justify-start',
         className
       )}
@@ -178,9 +196,9 @@ export function InteractiveCard({
       />
 
       {/* Content */}
-      <div className="relative z-10 flex h-full flex-col">
+      <div className="relative z-10 flex h-full flex-col" style={{ height: '100%' }}>
         {/* Icon at top */}
-        {icon && <div className="mb-4 text-oxblood">{icon}</div>}
+        {icon && <div className="mb-4 text-oxblood size-10 flex items-center">{icon}</div>}
         {/* Description only shows on hover - positioned after icon */}
         {description && (
           <div
@@ -198,7 +216,7 @@ export function InteractiveCard({
         )}
         {/* Title and button at bottom - always at bottom */}
         <div className="mt-auto flex items-center justify-between pt-6">
-          <h3 className="text-base/8 font-medium text-oxblood">{title}</h3>
+          <h3 className="text-base/8 font-medium text-oxblood group-hover:text-ember transition-colors duration-200">{title}</h3>
           {/* Circular button with fill animation - monotone by default */}
           <div
             ref={buttonRef}
