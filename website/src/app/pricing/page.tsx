@@ -13,60 +13,60 @@ function plans(option: string) {
     <>
       <Plan
         name="Starter"
-        price={option === 'Monthly' ? '$12' : '$120'}
+        price={option === 'Monthly' ? '$5K' : '$50K'}
         period={option === 'Monthly' ? '/month' : '/year'}
-        subheadline={<p>Small teams getting started with shared inboxes</p>}
+        subheadline={<p>Emerging brands ready to build their foundation</p>}
         features={[
-          'Shared inbox for up to 2 mailboxes',
-          'Tagging & assignment',
-          'Private notes',
-          'Automatic replies',
+          'Brand strategy & positioning',
+          'Website design & development',
+          'Basic SEO setup',
+          'Monthly performance reporting',
           'Email support',
         ]}
         cta={
           <SoftButtonLink href="#" size="lg">
-            Start free trial
+            Get started
           </SoftButtonLink>
         }
       />
       <Plan
         name="Growth"
-        price={option === 'Monthly' ? '$49' : '$490'}
+        price={option === 'Monthly' ? '$15K' : '$150K'}
         period={option === 'Monthly' ? '/month' : '/year'}
-        subheadline={<p>Growing teams needing collaboration and insights</p>}
+        subheadline={<p>Scaling brands needing comprehensive marketing</p>}
         badge="Most popular"
         features={[
           'Everything in Starter',
-          'Inbox Agent',
-          'Unlimited mailboxes',
-          'Collision detection',
-          'Snippets and templates',
-          'Reporting dashboard',
-          'Slack integration',
+          'Search marketing program',
+          'Paid advertising campaigns',
+          'Content strategy & creation',
+          'Advanced analytics & attribution',
+          'Dedicated account manager',
+          'Quarterly strategy reviews',
         ]}
         cta={
           <ButtonLink href="#" size="lg">
-            Start free trial
+            Get started
           </ButtonLink>
         }
       />
       <Plan
-        name="Pro"
-        price={option === 'Monthly' ? '$299' : '$2990'}
-        period={option === 'Monthly' ? '/month' : '/year'}
-        subheadline={<p>Support-focused organizations and larger teams</p>}
+        name="Enterprise"
+        price="Custom"
+        period=""
+        subheadline={<p>Large organizations requiring full-service support</p>}
         features={[
           'Everything in Growth',
-          'Custom roles & permissions',
-          'Automation engine',
-          'API access',
-          'SLA tracking',
-          'SSO support',
-          'SOC 2 compliance',
+          'Custom marketing systems',
+          'Multi-channel campaign management',
+          'Advanced data analytics',
+          'Dedicated team',
+          'Priority support',
+          'Custom integrations',
         ]}
         cta={
           <SoftButtonLink href="#" size="lg">
-            Start free trial
+            Contact sales
           </SoftButtonLink>
         }
       />
@@ -83,8 +83,8 @@ export default function Page() {
         headline="Pricing"
         subheadline={
           <p>
-            Simplify your shared inbox, collaborate effortlessly, and give every customer a reply that feels personal,
-            even if it was written by a bot.
+            Build a brand that stands out, create websites that convert, and launch campaigns that drive real results —
+            all backed by data-driven strategy and proven methodologies.
           </p>
         }
         options={['Monthly', 'Yearly']}
@@ -193,89 +193,81 @@ export default function Page() {
       {/* Plan Comparison Table */}
       <PlanComparisonTable
         id="pricing"
-        plans={['Starter', 'Growth', 'Pro']}
+        plans={['Starter', 'Growth', 'Enterprise']}
         features={[
           {
-            title: 'Collaboration',
+            title: 'Branding & Strategy',
             features: [
               {
-                name: 'Shared inboxes',
-                value: { Starter: '2', Growth: 'Unlimited', Pro: 'Unlimited' },
+                name: 'Brand strategy & positioning',
+                value: { Starter: true, Growth: true, Enterprise: true },
               },
-              { name: 'Private notes', value: true },
-              { name: 'Tagging & assignment', value: true },
+              { name: 'Visual identity design', value: { Starter: true, Growth: true, Enterprise: true } },
+              { name: 'Brand guidelines', value: { Starter: 'Basic', Growth: true, Enterprise: true } },
               {
-                name: 'Collision detection',
-                value: { Starter: false, Growth: true, Pro: true },
-              },
-              {
-                name: 'Real-time activity indicators',
-                value: { Starter: false, Growth: true, Pro: true },
+                name: 'Messaging framework',
+                value: { Starter: false, Growth: true, Enterprise: true },
               },
               {
-                name: 'Internal chat',
-                value: { Starter: false, Growth: true, Pro: true },
+                name: 'Custom brand system',
+                value: { Starter: false, Growth: false, Enterprise: true },
               },
             ],
           },
           {
-            title: 'Automation',
+            title: 'Websites & Development',
             features: [
-              { name: 'Automatic replies', value: true },
+              { name: 'Website design & development', value: { Starter: true, Growth: true, Enterprise: true } },
               {
-                name: 'Inbox Agent',
-                value: { Starter: false, Growth: true, Pro: true },
+                name: 'Conversion optimization',
+                value: { Starter: false, Growth: true, Enterprise: true },
               },
               {
-                name: 'Automation engine',
-                value: { Starter: false, Growth: true, Pro: true },
+                name: 'Advanced integrations',
+                value: { Starter: false, Growth: true, Enterprise: true },
               },
               {
-                name: 'Snippets and templates',
-                value: { Starter: false, Growth: true, Pro: true },
-              },
-              {
-                name: 'SLA tracking',
-                value: { Starter: false, Growth: false, Pro: true },
+                name: 'Custom functionality',
+                value: { Starter: false, Growth: false, Enterprise: true },
               },
             ],
           },
           {
-            title: 'Team Management',
+            title: 'Marketing Programs',
             features: [
               {
-                name: 'Unlimited users',
-                value: { Starter: 'Up to 5', Growth: true, Pro: true },
+                name: 'Search marketing (SEO)',
+                value: { Starter: 'Basic', Growth: true, Enterprise: true },
               },
               {
-                name: 'Reporting dashboard',
-                value: { Starter: false, Growth: true, Pro: true },
+                name: 'Paid advertising',
+                value: { Starter: false, Growth: true, Enterprise: true },
               },
               {
-                name: 'Slack integration',
-                value: { Starter: false, Growth: true, Pro: true },
+                name: 'Content strategy',
+                value: { Starter: false, Growth: true, Enterprise: true },
               },
               {
-                name: 'Roles & permissions',
-                value: { Starter: false, Growth: false, Pro: true },
-              },
-              {
-                name: 'SSO support',
-                value: { Starter: false, Growth: false, Pro: true },
+                name: 'Multi-channel campaigns',
+                value: { Starter: false, Growth: false, Enterprise: true },
               },
             ],
           },
           {
-            title: 'Support',
+            title: 'Analytics & Support',
             features: [
-              { name: 'Email support', value: true },
+              { name: 'Monthly reporting', value: { Starter: true, Growth: true, Enterprise: true } },
               {
-                name: 'Priority response',
-                value: { Starter: false, Growth: true, Pro: true },
+                name: 'Advanced analytics',
+                value: { Starter: false, Growth: true, Enterprise: true },
               },
               {
-                name: 'Dedicated manager',
-                value: { Starter: false, Growth: false, Pro: true },
+                name: 'Account manager',
+                value: { Starter: false, Growth: true, Enterprise: true },
+              },
+              {
+                name: 'Dedicated team',
+                value: { Starter: false, Growth: false, Enterprise: true },
               },
             ],
           },
@@ -286,8 +278,8 @@ export default function Page() {
         id="testimonial"
         quote={
           <p>
-            Ever since we started using Oatmeal, our customer satisfaction scores have skyrocketed. The personal touch
-            that their human-AI hybrid support provides is unparalleled.
+            Ever since we started working with Magnet, our brand positioning has become crystal clear and our marketing
+            results have transformed. Their strategic approach and data-driven insights have been game-changing.
           </p>
         }
         img={
@@ -306,31 +298,31 @@ export default function Page() {
       <FAQsAccordion id="faqs" headline="Questions & Answers">
         <Faq
           id="faq-1"
-          question="Do I need a credit card to start the free trial?"
-          answer="Yes, but don't worry, you won't be charged until the trial period is over. We won't send you an email reminding you when this happens because we are really hoping you'll forget and we can keep charging you until your cards expires"
+          question="How do you measure marketing success?"
+          answer="We track metrics that matter: conversion rates, customer acquisition cost, lifetime value, and revenue attribution. Every campaign includes clear KPIs and regular reporting so you know exactly what's working and what's driving growth."
         />
         <Faq
           id="faq-2"
-          question="Can my whole team use the same inbox?"
-          answer="Yes, the more the merrier! Oatmeal works best when your entire company has access. We will charge you per additional seat, but we won't tell you about this until you get your invoice."
+          question="Can you work with our existing marketing team?"
+          answer="Absolutely. We collaborate seamlessly with in-house teams, providing strategic guidance and execution support. Whether you need full-service support or specific expertise, we adapt to your team structure and workflow."
         />
         <Faq
           id="faq-3"
-          question="Is the AI agent actually a bunch of people in India?"
-          answer="Not just India! We have people in lots of countries around the world pretending to be an AI, including some that are currently under sanctions, so we can't legally mention them here."
+          question="What makes your approach different?"
+          answer="We focus on building sustainable, data-driven marketing systems rather than chasing trends. Our methodology combines strategic foundation, activation, acceleration, and retention—creating marketing that compounds over time, not just quick wins."
         />
         <Faq
           id="faq-4"
-          question="Does Oatmeal replace my email client?"
-          answer="Absolutely. The idea is that we transition you away from email entirely, so you become completely dependent on our service. Like a parasite living off a host."
+          question="How long does it take to see results?"
+          answer="Results vary by service and market, but most clients see measurable improvements within 30-90 days. Search marketing and paid ads typically show faster initial results, while branding and website work compounds over time. We set clear expectations upfront."
         />
       </FAQsAccordion>
       {/* Call To Action */}
       <CallToActionSimpleCentered
         id="call-to-action"
-        headline="Have anymore questions?"
+        headline="Have more questions?"
         subheadline={
-          <p>Chat to someone on our sales team, who will make promises about our roadmap that we won't keep.</p>
+          <p>Let's discuss how Magnet can help build your brand and drive measurable growth for your business.</p>
         }
         cta={
           <div className="flex items-center gap-4">

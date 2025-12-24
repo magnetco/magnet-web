@@ -6,7 +6,7 @@ import { Screenshot } from '@/components/elements/screenshot'
 import { ArrowNarrowRightIcon } from '@/components/icons/arrow-narrow-right-icon'
 import { ChevronIcon } from '@/components/icons/chevron-icon'
 import { Approach, ApproachItem, ApproachStage } from '@/components/sections/approach'
-import { CallToActionSimple } from '@/components/sections/call-to-action-simple'
+import { CallToActionWithEmail } from '@/components/sections/call-to-action-with-email'
 import { FAQsTwoColumnAccordion, Faq } from '@/components/sections/faqs-two-column-accordion'
 import { FeatureThreeColumnWithDemos, Features } from '@/components/sections/features-three-column-with-demos'
 import { HeroCenteredWithDemo } from '@/components/sections/hero-centered-with-demo'
@@ -553,25 +553,14 @@ export default function Page() {
       />
 
       {/* Call To Action */}
-      <CallToActionSimple
+      <CallToActionWithEmail
         id="call-to-action"
         headline="Ready to build a brand that stands out?"
         subheadline={
           <p>
-            Join thousands of companies using our branding services to create memorable identities that connect with their
-            audience and drive business growth.
+            Tell us about your branding needs and we'll help you create a memorable identity that connects with your
+            audience and drives business growth.
           </p>
-        }
-        cta={
-          <div className="flex items-center gap-4">
-            <ButtonLink href="#" size="lg">
-              Get started
-            </ButtonLink>
-
-            <PlainButtonLink href="#" size="lg">
-              Book a consultation <ChevronIcon />
-            </PlainButtonLink>
-          </div>
         }
       />
     </>

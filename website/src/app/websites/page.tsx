@@ -6,7 +6,7 @@ import { Screenshot } from '@/components/elements/screenshot'
 import { ArrowNarrowRightIcon } from '@/components/icons/arrow-narrow-right-icon'
 import { ChevronIcon } from '@/components/icons/chevron-icon'
 import { Approach, ApproachItem, ApproachStage } from '@/components/sections/approach'
-import { CallToActionSimple } from '@/components/sections/call-to-action-simple'
+import { CallToActionWithEmail } from '@/components/sections/call-to-action-with-email'
 import {
   Feature,
   FeaturesStackedAlternatingWithDemos,
@@ -534,24 +534,14 @@ export default function Page() {
       />
 
       {/* Call To Action */}
-      <CallToActionSimple
+      <CallToActionWithEmail
         id="call-to-action"
         headline="Ready to launch your website?"
         subheadline={
           <p>
-            Browse our collection of professionally designed templates and find the perfect one for your business. All
-            templates are fully customizable and ready to deploy.
+            Tell us about your project and we'll help you build a website that drives results. All projects are fully
+            customizable and designed to convert.
           </p>
-        }
-        cta={
-          <div className="flex items-center gap-4">
-            <ButtonLink href="#" size="lg">
-              Browse templates
-            </ButtonLink>
-            <PlainButtonLink href="#" size="lg">
-              Book a demo <ChevronIcon />
-            </PlainButtonLink>
-          </div>
         }
       />
     </>

@@ -13,11 +13,11 @@ export default function Page() {
       {/* Hero */}
       <HeroLeftAlignedWithPhoto
         id="hero"
-        headline="Your customer success is our mission."
+        headline="Building brands that stand out and drive growth."
         subheadline={
           <p>
-            We're on a mission to take the human element completely out of customer support — so your team can focus on
-            what matters most, profitability.
+            We're on a mission to help brands build stronger market positions through strategic marketing, data-driven
+            insights, and proven methodologies that deliver measurable results.
           </p>
         }
         photo={
@@ -34,25 +34,25 @@ export default function Page() {
       <StatsWithGraph
         id="stats"
         eyebrow="Built for scale"
-        headline="The inbox powering customer conversations everywhere."
+        headline="Marketing that drives measurable growth."
         subheadline={
           <p>
-            Oatmeal helps teams deliver personal, organized, and fast customer support across the world. From small
-            startups to enterprise teams, we process millions of messages each month — using a massive network of low
-            wage workers stationed around the globe.
+            Magnet helps brands build stronger market positions through strategic branding, high-converting websites,
+            and performance-driven campaigns. From startups to enterprise companies, we deliver results that move the
+            needle — backed by data, strategy, and proven methodologies.
           </p>
         }
       >
-        <Stat stat="2M+" text="Emails manually processed every week across thousands of teams." />
-        <Stat stat="99.98%" text="Uptime — because your customers never stop complaining." />
+        <Stat stat="$500M+" text="In revenue generated for clients through our marketing programs." />
+        <Stat stat="3.2x" text="Average ROI increase for brands working with Magnet." />
       </StatsWithGraph>
       {/* Testimonial */}
       <TestimonialTwoColumnWithLargePhoto
         id="testimonial"
         quote={
           <p>
-            Ever since we started using Oatmeal, our customer satisfaction scores have skyrocketed. The personal touch
-            that their human-AI hybrid support provides is unparalleled.
+            Ever since we started working with Magnet, our brand positioning has become crystal clear and our marketing
+            results have transformed. Their strategic approach and data-driven insights have been game-changing.
           </p>
         }
         img={
@@ -73,7 +73,7 @@ export default function Page() {
         headline="Our leadership team"
         subheadline={
           <p>
-            Oatmeals's leadership team combines decades of experience in private equity, where they honed their skills
+            Magnet's leadership team combines decades of experience in private equity, where they honed their skills
             in cost-cutting and maximizing shareholder value.
           </p>
         }
@@ -186,18 +186,18 @@ export default function Page() {
       {/* Call To Action */}
       <CallToActionSimple
         id="call-to-action"
-        headline="Have anymore questions?"
+        headline="Have more questions?"
         subheadline={
-          <p>Chat to someone on our sales team, who will make promises about our roadmap that we won't keep.</p>
+          <p>Let's discuss how Magnet can help build your brand and drive measurable growth for your business.</p>
         }
         cta={
           <div className="flex items-center gap-4">
             <ButtonLink href="#" size="lg">
-              Chat with us
+              Get in touch
             </ButtonLink>
 
             <PlainButtonLink href="#" size="lg">
-              Book a demo <ChevronIcon />
+              Book a consultation <ChevronIcon />
             </PlainButtonLink>
           </div>
         }

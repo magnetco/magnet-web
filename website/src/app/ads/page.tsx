@@ -6,7 +6,7 @@ import { Screenshot } from '@/components/elements/screenshot'
 import { ArrowNarrowRightIcon } from '@/components/icons/arrow-narrow-right-icon'
 import { ChevronIcon } from '@/components/icons/chevron-icon'
 import { Approach, ApproachItem, ApproachStage } from '@/components/sections/approach'
-import { CallToActionSimple } from '@/components/sections/call-to-action-simple'
+import { CallToActionWithEmail } from '@/components/sections/call-to-action-with-email'
 import { FAQsTwoColumnAccordion, Faq } from '@/components/sections/faqs-two-column-accordion'
 import { FeatureThreeColumnWithDemos, Features } from '@/components/sections/features-three-column-with-demos'
 import { HeroCenteredWithDemo } from '@/components/sections/hero-centered-with-demo'
@@ -553,25 +553,14 @@ export default function Page() {
       />
 
       {/* Call To Action */}
-      <CallToActionSimple
+      <CallToActionWithEmail
         id="call-to-action"
         headline="Ready to create ads that convert?"
         subheadline={
           <p>
-            Join thousands of businesses using our platform to create high-performing ads that drive real results and
-            maximize ROI.
+            Tell us about your advertising goals and we'll help you build campaigns that drive real results and maximize
+            ROI.
           </p>
-        }
-        cta={
-          <div className="flex items-center gap-4">
-            <ButtonLink href="#" size="lg">
-              Start free trial
-            </ButtonLink>
-
-            <PlainButtonLink href="#" size="lg">
-              Book a demo <ChevronIcon />
-            </PlainButtonLink>
-          </div>
         }
       />
     </>
