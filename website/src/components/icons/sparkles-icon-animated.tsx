@@ -76,9 +76,8 @@ function AbstractSparkle() {
         <bufferGeometry>
           <bufferAttribute
             attach="attributes-position"
+            args={[particlePositions, 3]}
             count={particlePositions.length / 3}
-            array={particlePositions}
-            itemSize={3}
           />
         </bufferGeometry>
         <pointsMaterial
