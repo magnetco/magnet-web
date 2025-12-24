@@ -38,10 +38,10 @@ export default function Page() {
         }
         cta={
           <div className="flex items-center gap-4">
-            <ButtonLink href="#" size="lg" variant="overlay">
+            <ButtonLink href="#" size="lg" color="light">
               Get started
             </ButtonLink>
-            <PlainButtonLink href="#" size="lg" variant="overlay">
+            <PlainButtonLink href="#" size="lg" color="light">
               See how it works <ArrowNarrowRightIcon />
             </PlainButtonLink>
           </div>
