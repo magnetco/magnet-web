@@ -19,26 +19,42 @@ Every page must earn its existence by advancing one of those outcomes.
 
 ## 2. Ideal Customer Profile
 
-Primary audience:
+### Primary Audience
+
+**Demographics:**
 - CMOs, VPs of Marketing, and Marketing Directors
-- Mid-market to enterprise B2B companies
-- Established revenue, internal teams, complex funnels
+- Mid-market to enterprise B2B companies ($10M-$500M+ revenue)
+- Established revenue streams, internal marketing teams (5-50+ people)
+- Complex, multi-channel funnels requiring coordination
+- Annual marketing budgets: $500K-$5M+
+
+**Psychographics:**
 - Frustrated by fragmentation across agencies, tools, and channels
+- Experienced enough to recognize systemic problems
+- Budget authority and decision-making power
+- Under pressure to demonstrate ROI and efficiency
+- Seeking strategic partnership, not tactical execution
 
-They are not looking for:
-- Vendors
-- Tactics
-- Pretty websites
+**What they are NOT looking for:**
+- Vendors who execute without understanding context
+- Tactics without strategy
+- Pretty websites that don't convert
+- Agencies that add complexity
+- Short-term fixes
 
-They are looking for:
-- Coherence
-- Accountability
+**What they ARE looking for:**
+- Coherence across all marketing activities
+- Accountability and clear ownership
 - A system that makes their job easier and safer
+- Strategic thinking that translates to execution
+- Long-term partnership
 
-Secondary audience:
+### Secondary Audience
+
 - CEOs involved in growth decisions
 - Heads of Revenue or Growth
 - Founders transitioning from scrappy to scaled
+- Board members evaluating marketing effectiveness
 
 ## 3. Core Problem We Solve
 
@@ -92,24 +108,152 @@ Retention ensures the system compounds instead of decaying.
 
 The website must clearly express this model and reinforce Magnet's role as the architect and operator of the system.
 
-## 6. Conversion Strategy
+## 6. Jobs to be Done
 
-Primary conversion:
-- Book a strategy call
+Our customers hire Magnet to:
 
-Secondary conversions:
-- Engage with high-signal content
-- Explore service depth
-- Build trust and authority over time
+**Functional Jobs:**
+- Eliminate context fragmentation across marketing systems
+- Build a unified digital growth engine
+- Improve conversion efficiency across the funnel
+- Reduce wasted spend and misaligned execution
+- Create a compounding marketing system
+
+**Emotional Jobs:**
+- Feel confident in marketing decisions
+- Reduce political risk in their role
+- Demonstrate clear ROI to leadership
+- Sleep better knowing the system is working
+- Feel like a strategic partner, not a vendor
+
+**Social Jobs:**
+- Look competent and forward-thinking to peers
+- Build a reputation for marketing excellence
+- Create a system that outlasts their tenure
+- Align marketing with business objectives
+
+## 7. Primary Conversion Actions
+
+### Primary Conversion
+**Book a strategy call**
+- Highest intent signal
+- Direct path to qualified pipeline
+- Requires clear value proposition and low friction
+
+### Secondary Conversions
+**Engage with high-signal content:**
+- Download playbook or methodology guides
+- Read case studies or deep-dive articles
+- Explore service pages with intent
+
+**Build trust and authority:**
+- Subscribe to newsletter or insights
+- Follow on social platforms
+- Return to site multiple times
+- Share content with team
+
+**Explore service depth:**
+- View multiple service pages
+- Read about methodology/phases
+- Compare with competitors
+
+### Conversion Optimization Principles
 
 We optimize for:
 - Lead quality over lead volume
 - Confidence over urgency
 - Long-term fit over short-term wins
+- Appropriate CTAs, not aggressive ones
+- Natural progression through the funnel
 
 Every CTA should feel appropriate, not aggressive.
 
-## 7. Messaging Principles
+## 8. Narrative Spine
+
+The core story we tell:
+
+**Act 1: The Problem (Context Loss)**
+Marketing leaders are drowning in fragmentation. Strategy, copy, design, SEO, and performance live in separate systems. This creates misalignment, wasted spend, and political risk.
+
+**Act 2: The Insight (Unified Systems)**
+Websites are not pages—they are the center of gravity for modern growth. A high-performance website encodes strategy, persuades across the funnel, integrates with all channels, and compounds value over time.
+
+**Act 3: The Solution (Magnet's Approach)**
+Magnet builds unified digital systems where strategy, execution, and performance reinforce each other. We operate across four phases: Foundation, Activation, Acceleration, Retention. Each phase builds on the last.
+
+**Act 4: The Outcome (Compounding Growth)**
+Marketing leaders get coherence, accountability, and a system that makes their job easier and safer. The system compounds value instead of decaying.
+
+Every page, every piece of content, every interaction should advance this narrative.
+
+## 9. Brand Constraints
+
+**What Magnet is:**
+- Strategic partner, not vendor
+- System architect, not tactician
+- Long-term thinker, not short-term optimizer
+- Senior advisor, not junior executor
+
+**What Magnet is NOT:**
+- A design agency
+- A development shop
+- A content mill
+- A performance marketing agency
+- A generalist consultancy
+
+**Tone Constraints:**
+- Never hype trends or use buzzwords
+- Never over-explain basics
+- Never hide behind jargon
+- Never make claims we can't support
+- Never sound like every other agency
+
+**Visual Constraints:**
+- Calm over flashy
+- Deliberate over spontaneous
+- Senior over trendy
+- Clear over clever
+- Inevitable over surprising
+
+**Content Constraints:**
+- Strategic over tactical
+- Depth over breadth
+- Quality over quantity
+- Reusable over one-off
+- System-focused over asset-focused
+
+## 10. Competitive Posture
+
+**How we differentiate:**
+
+**vs. Traditional Agencies:**
+- We build systems, not campaigns
+- We encode strategy in code, not just decks
+- We integrate execution with performance
+- We compound value, not just deliver projects
+
+**vs. Performance Marketing Agencies:**
+- We start with strategy, not tactics
+- We build for long-term, not just short-term wins
+- We integrate all channels, not just paid
+- We focus on systems, not just optimization
+
+**vs. Design/Dev Shops:**
+- We think strategically, not just aesthetically
+- We integrate with marketing systems
+- We optimize for conversion and growth
+- We build for evolution, not just delivery
+
+**vs. In-House Teams:**
+- We bring external perspective and expertise
+- We accelerate without adding headcount
+- We provide strategic partnership
+- We build systems that scale
+
+**Our unique position:**
+We are the only agency that builds unified digital systems where strategy, execution, and performance reinforce each other. We don't just execute—we architect systems that compound value.
+
+## 11. Messaging Principles
 
 Our tone is:
 - Clear, not clever
@@ -124,7 +268,7 @@ We do not hide behind jargon.
 
 If a sentence could be written by any agency, it is rewritten.
 
-## 8. Design Principles
+## 12. Design Principles
 
 Design exists to support comprehension and trust.
 
@@ -137,7 +281,7 @@ The interface should:
 Visual novelty is secondary to clarity.  
 Every design decision should help the reader think.
 
-## 9. SEO and Discoverability
+## 13. SEO and Discoverability
 
 Search is a compounding system, not a traffic trick.
 
@@ -154,7 +298,7 @@ SEO decisions must align with:
 We do not create pages solely to rank.  
 We create pages to persuade and convert.
 
-## 10. Content Rules
+## 14. Content Rules
 
 All content must:
 - Serve a clear intent
@@ -169,7 +313,7 @@ We prefer:
 
 Content is part of the system, not decoration.
 
-## 11. Measurement and Feedback
+## 15. Measurement and Feedback
 
 Success is measured by:
 - Qualified pipeline generated
@@ -182,7 +326,7 @@ Vanity metrics are ignored.
 
 Data exists to inform decisions, not justify past ones.
 
-## 12. Operating Constraints
+## 16. Operating Constraints
 
 This site must:
 - Be fast
@@ -198,7 +342,7 @@ We avoid:
 
 If it cannot evolve, it does not ship.
 
-## 13. Decision Authority
+## 17. Decision Authority
 
 When tradeoffs arise:
 - Strategy wins over aesthetics
@@ -208,7 +352,7 @@ When tradeoffs arise:
 
 If there is disagreement, this document is the reference point.
 
-## 14. Final Principle
+## 18. Final Principle
 
 This website is Magnet's best salesperson.
 
