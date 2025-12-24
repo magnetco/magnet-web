@@ -11,7 +11,7 @@ export function AnimatedTextLogo({
   fillGroupsRef: externalFillGroupsRef,
   ...props 
 }: ComponentProps<'div'> & {
-  fillMaskRef?: React.RefObject<SVGRectElement>
+  fillMaskRef?: React.RefObject<SVGRectElement | null>
   fillGroupsRef?: React.RefObject<(SVGGElement | null)[]>
 }) {
   const svgRef = useRef<SVGSVGElement>(null)
