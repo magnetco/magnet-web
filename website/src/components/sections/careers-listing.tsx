@@ -52,7 +52,7 @@ export function FilterDropdown({
   value: string
   options: Array<{ value: string; label: string }>
   onChange: (value: string) => void
-} & ComponentProps<'div'>) {
+} & Omit<ComponentProps<'div'>, 'onChange'>) {
   const [isOpen, setIsOpen] = useState(false)
 
   return (

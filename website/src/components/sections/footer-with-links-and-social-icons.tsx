@@ -29,7 +29,7 @@ export function SocialLink({
       href={href}
       target="_blank"
       aria-label={name}
-      className={clsx('text-oxblood
+      className={clsx('text-oxblood dark:text-coral', className)}
       {...props}
     />
   )
