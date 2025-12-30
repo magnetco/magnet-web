@@ -77,9 +77,9 @@ export function NavbarWithLinksActionsAndCenteredLogo({
         </div>
 
         <ElDialog className="lg:hidden">
-          <dialog id="mobile-menu" className="backdrop:bg-transparent">
+          <dialog id="mobile-menu" className="backdrop:bg-black/20 backdrop:transition-opacity backdrop:duration-300 backdrop:ease-in-out [&:not([open])]:backdrop:opacity-0 [&[open]]:backdrop:opacity-100">
             <ElDialogPanel
-              className="fixed inset-0 px-6 py-6 lg:px-10"
+              className="fixed inset-0 px-6 py-6 lg:px-10 transition-transform duration-300 ease-in-out translate-x-full [dialog[open]_&]:translate-x-0"
               style={{ backgroundColor: 'var(--navbar-bg)' }}
             >
               <div className="flex justify-end">

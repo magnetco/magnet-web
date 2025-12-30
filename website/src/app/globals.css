@@ -85,4 +85,24 @@
     max-height: 1000px;
     opacity: 1;
   }
+
+  /* Mobile menu dialog animations */
+  dialog#mobile-menu::backdrop {
+    background-color: rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transition: opacity 300ms ease-in-out;
+  }
+
+  dialog#mobile-menu[open]::backdrop {
+    opacity: 1;
+  }
+
+  dialog#mobile-menu el-dialog-panel {
+    transform: translateX(100%);
+    transition: transform 300ms ease-in-out;
+  }
+
+  dialog#mobile-menu[open] el-dialog-panel {
+    transform: translateX(0);
+  }
 }
