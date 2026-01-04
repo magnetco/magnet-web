@@ -22,9 +22,9 @@ export function Feature({
       )}
     >
       <div className="flex flex-col justify-between gap-6 p-6 sm:gap-10 sm:p-10 lg:p-6 lg:group-even:col-start-2">
-        <div className="text-xl/8 sm:text-2xl/9">
-          <h3 className="text-oxblood dark:text-ember">{headline}</h3>
-          <div className="flex flex-col gap-4 text-olive-500">{subheadline}</div>
+        <div>
+          <h3 className="text-base/8 font-medium text-oxblood dark:text-ember">{headline}</h3>
+          <div className="mt-2 flex flex-col gap-4 text-sm/7 text-oxblood dark:text-coral">{subheadline}</div>
         </div>
         {cta}
       </div>

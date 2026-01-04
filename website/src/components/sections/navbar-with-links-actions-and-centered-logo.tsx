@@ -1,7 +1,10 @@
+'use client'
+
 import { ElDialog, ElDialogPanel } from '@tailwindplus/elements/react'
 import { clsx } from 'clsx/lite'
 import Link from 'next/link'
-import type { ComponentProps, ReactNode } from 'react'
+import { useState, type ComponentProps, type ReactNode } from 'react'
+import { ChevronDownIcon } from '../icons/chevron-down-icon'
 
 export function NavbarLink({
   children,
@@ -30,6 +33,101 @@ export function NavbarLink({
 
 export function NavbarLogo({ className, href, ...props }: { href: string } & Omit<ComponentProps<'a'>, 'href'>) {
   return <Link href={href} {...props} className={clsx('inline-flex items-stretch', className)} />
+}
+
+export function NavbarDropdown({
+  label,
+  children,
+  className,
+  ...props
+}: {
+  label: ReactNode
+  children: ReactNode
+} & Omit<ComponentProps<'div'>, 'children'>) {
+  const [isOpen, setIsOpen] = useState(false)
+
+  return (
+    <div className={clsx('relative', className)} {...props}>
+      <button
+        type="button"
+        onClick={() => setIsOpen(!isOpen)}
+        onBlur={() => setTimeout(() => setIsOpen(false), 200)}
+        className={clsx(
+          'group relative inline-flex items-center gap-1.5 text-3xl/10 font-medium text-oxblood lg:text-sm/7 after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:origin-left after:scale-x-0 after:bg-current after:transition-transform after:duration-200 after:ease-in-out hover:after:scale-x-100 hover:text-ember transition-colors duration-200',
+        )}
+      >
+        {label}
+        <ChevronDownIcon
+          className={clsx(
+            'h-3 w-3 transition-transform duration-200 lg:h-3.5 lg:w-3.5',
+            isOpen && 'rotate-180',
+          )}
+        />
+      </button>
+      {isOpen && (
+        <>
+          <div
+            className="fixed inset-0 z-10"
+            onClick={() => setIsOpen(false)}
+            aria-hidden="true"
+          />
+          <div className="absolute top-full left-1/2 z-20 mt-2 w-[calc(100vw-3rem)] max-w-7xl -translate-x-1/2 lg:mt-1">
+            <div className="rounded-lg border border-oxblood/10 bg-olive-100 p-6 shadow-xl dark:border-white/10 dark:bg-olive-950">
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+                {children}
+              </div>
+            </div>
+          </div>
+        </>
+      )}
+    </div>
+  )
+}
+
+export function NavbarDropdownItem({
+  title,
+  subcopy,
+  href,
+  className,
+  ...props
+}: {
+  title: string
+  subcopy: string
+  href: string
+} & Omit<ComponentProps<'a'>, 'href'>) {
+  return (
+    <Link
+      href={href}
+      className={clsx(
+        'group flex flex-col gap-2 rounded-lg border border-transparent p-4 transition-all hover:border-oxblood/20 hover:bg-oxblood/5 dark:hover:border-white/20 dark:hover:bg-white/5',
+        className,
+      )}
+      {...props}
+    >
+      <h3 className="text-base/8 font-medium text-oxblood dark:text-ember">{title}</h3>
+      <p className="text-sm/7 text-olive-500">{subcopy}</p>
+    </Link>
+  )
+}
+
+export function NavbarDropdownLink({
+  children,
+  href,
+  className,
+  ...props
+}: { href: string } & Omit<ComponentProps<'a'>, 'href'>) {
+  return (
+    <Link
+      href={href}
+      className={clsx(
+        'block px-4 py-2 text-sm/7 text-oxblood transition-colors hover:bg-oxblood/5 hover:text-ember dark:text-coral dark:hover:bg-white/5 dark:hover:text-ember',
+        className,
+      )}
+      {...props}
+    >
+      {children}
+    </Link>
+  )
 }
 
 export function NavbarWithLinksActionsAndCenteredLogo({
@@ -77,9 +175,9 @@ export function NavbarWithLinksActionsAndCenteredLogo({
         </div>
 
         <ElDialog className="lg:hidden">
-          <dialog id="mobile-menu" className="backdrop:bg-black/20 backdrop:transition-opacity backdrop:duration-300 backdrop:ease-in-out [&:not([open])]:backdrop:opacity-0 [&[open]]:backdrop:opacity-100">
+          <dialog id="mobile-menu" className="backdrop:bg-transparent">
             <ElDialogPanel
-              className="fixed inset-0 px-6 py-6 lg:px-10 transition-transform duration-300 ease-in-out translate-x-full [dialog[open]_&]:translate-x-0"
+              className="fixed inset-0 px-6 py-6 lg:px-10"
               style={{ backgroundColor: 'var(--navbar-bg)' }}
             >
               <div className="flex justify-end">

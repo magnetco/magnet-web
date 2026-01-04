@@ -1,10 +1,8 @@
 import { AnnouncementBadge } from '@/components/elements/announcement-badge'
 import { ButtonLink, PlainButtonLink } from '@/components/elements/button'
-import { Link } from '@/components/elements/link'
 import { Logo, LogoGrid } from '@/components/elements/logo-grid'
 import { Screenshot } from '@/components/elements/screenshot'
 import { ArrowNarrowRightIcon } from '@/components/icons/arrow-narrow-right-icon'
-import { ChevronIcon } from '@/components/icons/chevron-icon'
 import { Approach, ApproachItem, ApproachStage } from '@/components/sections/approach'
 import { CallToActionWithEmail } from '@/components/sections/call-to-action-with-email'
 import {
@@ -213,9 +211,9 @@ export default function Page() {
                 </p>
               }
               cta={
-                <Link href="#">
-                  Learn more <ChevronIcon />
-                </Link>
+                <ButtonLink href="#">
+                  Learn more
+                </ButtonLink>
               }
               demo={
                 <Screenshot wallpaper="blue" placement="bottom-right">
@@ -287,9 +285,9 @@ export default function Page() {
                 </p>
               }
               cta={
-                <Link href="#">
-                  Learn more <ChevronIcon />
-                </Link>
+                <ButtonLink href="#">
+                  Learn more
+                </ButtonLink>
               }
               demo={
                 <Screenshot wallpaper="purple" placement="top-left">
@@ -361,9 +359,9 @@ export default function Page() {
                 </p>
               }
               cta={
-                <Link href="#">
-                  Learn more <ChevronIcon />
-                </Link>
+                <ButtonLink href="#">
+                  Learn more
+                </ButtonLink>
               }
               demo={
                 <Screenshot wallpaper="brown" placement="bottom-left">

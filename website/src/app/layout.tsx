@@ -10,6 +10,8 @@ import {
   SocialLink,
 } from '@/components/sections/footer-with-newsletter-form-categories-and-social-icons'
 import {
+  NavbarDropdown,
+  NavbarDropdownItem,
   NavbarLink,
   NavbarWithLinksActionsAndCenteredLogo,
 } from '@/components/sections/navbar-with-links-actions-and-centered-logo'
@@ -80,10 +82,31 @@ export default function RootLayout({
             id="navbar"
             links={
               <>
-                <NavbarLink href="/websites">Websites</NavbarLink>
-                <NavbarLink href="/branding">Branding</NavbarLink>
-                <NavbarLink href="/search">Search</NavbarLink>
-                <NavbarLink href="/ads">Ads</NavbarLink>
+                <NavbarDropdown label="Solutions">
+                  <NavbarDropdownItem
+                    href="/websites"
+                    title="Websites"
+                    subcopy="Design frictionless digital journeys that consistently convert higher-quality buyers."
+                  />
+                  <NavbarDropdownItem
+                    href="/branding"
+                    title="Branding"
+                    subcopy="Clarify your story and stand out in the market with advanced strategic precision."
+                  />
+                  <NavbarDropdownItem
+                    href="/search"
+                    title="Search"
+                    subcopy="Build fast, scalable search systems that reliably power sustainable long-term growth."
+                  />
+                  <NavbarDropdownItem
+                    href="/ads"
+                    title="Ads"
+                    subcopy="Increase qualified demand through highly targeted, high-intent acquisition campaigns."
+                  />
+                </NavbarDropdown>
+                <NavbarLink href="/playbook">Method</NavbarLink>
+                <NavbarLink href="/team">Team</NavbarLink>
+                <NavbarLink href="/pricing">Pricing</NavbarLink>
                 <NavbarLink href="/login" className="sm:hidden">
                   Log in
                 </NavbarLink>
@@ -120,7 +143,7 @@ export default function RootLayout({
                   <FooterLink href="/method/retention">Retention</FooterLink>
                 </FooterCategory>
                 <FooterCategory title="Company">
-                  <FooterLink href="/about">About</FooterLink>
+                  <FooterLink href="/team">Team</FooterLink>
                   <FooterLink href="/pricing">Pricing</FooterLink>
                   <FooterLink href="/careers">Careers</FooterLink>
                   <FooterLink href="/privacy-policy">Privacy</FooterLink>
