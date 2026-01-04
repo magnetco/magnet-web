@@ -3,12 +3,10 @@
 import { ElDisclosure } from '@tailwindplus/elements/react'
 import { clsx } from 'clsx/lite'
 import { gsap } from 'gsap'
-import { useEffect, useRef, type ComponentProps, type ReactNode, useId } from 'react'
+import { useEffect, useRef, useState, type ComponentProps, type ReactNode, useId } from 'react'
 import { Container } from '../elements/container'
 import { Subheading } from '../elements/subheading'
 import { Text } from '../elements/text'
-import { MinusIcon } from '../icons/minus-icon'
-import { PlusIcon } from '../icons/plus-icon'
 
 export function Faq({
   id,
@@ -21,99 +19,143 @@ export function Faq({
   const disclosureRef = useRef<HTMLElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
   const buttonRef = useRef<HTMLButtonElement>(null)
+  const iconRef = useRef<HTMLDivElement>(null)
+  const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
     const disclosure = disclosureRef.current
     const content = contentRef.current
     const button = buttonRef.current
-    if (!disclosure || !content) return
+    const icon = iconRef.current
+    if (!disclosure || !content || !icon) return
 
-    // Disable CSS transitions via inline style to override CSS
-    // Use height instead of max-height to avoid CSS conflicts
-    disclosure.style.transition = 'none'
+    // Initialize closed state
     disclosure.style.height = '0px'
-    disclosure.style.maxHeight = 'none' // Override CSS max-height
-    disclosure.style.opacity = '0'
     disclosure.style.overflow = 'hidden'
+    gsap.set(content, { opacity: 0, y: 12 })
 
-    const updateAriaExpanded = (isOpen: boolean) => {
+    const updateAriaExpanded = (open: boolean) => {
       if (button) {
-        button.setAttribute('aria-expanded', String(isOpen))
+        button.setAttribute('aria-expanded', String(open))
       }
+      setIsOpen(open)
+    }
+
+    const animateOpen = () => {
+      // Kill any running animations
+      gsap.killTweensOf([disclosure, content, icon])
+
+      // Measure target height
+      disclosure.style.height = 'auto'
+      const targetHeight = disclosure.offsetHeight
+      disclosure.style.height = '0px'
+
+      // Create timeline for orchestrated animation
+      const tl = gsap.timeline({
+        defaults: { ease: 'power3.out' },
+      })
+
+      // Animate icon rotation
+      tl.to(
+        icon,
+        {
+          rotation: 180,
+          duration: 0.4,
+          ease: 'back.out(1.7)',
+        },
+        0
+      )
+
+      // Expand container with slight overshoot
+      tl.to(
+        disclosure,
+        {
+          height: targetHeight,
+          duration: 0.5,
+          ease: 'power2.out',
+          onComplete: () => {
+            disclosure.style.height = 'auto'
+          },
+        },
+        0
+      )
+
+      // Content fades up with slight delay
+      tl.to(
+        content,
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.4,
+          ease: 'power2.out',
+        },
+        0.1
+      )
+    }
+
+    const animateClose = () => {
+      // Kill any running animations
+      gsap.killTweensOf([disclosure, content, icon])
+
+      const currentHeight = disclosure.offsetHeight
+      disclosure.style.height = `${currentHeight}px`
+
+      // Create timeline for orchestrated animation
+      const tl = gsap.timeline({
+        defaults: { ease: 'power2.inOut' },
+      })
+
+      // Animate icon back
+      tl.to(
+        icon,
+        {
+          rotation: 0,
+          duration: 0.3,
+          ease: 'power2.inOut',
+        },
+        0
+      )
+
+      // Content fades down first
+      tl.to(
+        content,
+        {
+          opacity: 0,
+          y: 8,
+          duration: 0.25,
+        },
+        0
+      )
+
+      // Then collapse container
+      tl.to(
+        disclosure,
+        {
+          height: 0,
+          duration: 0.35,
+          ease: 'power3.inOut',
+        },
+        0.05
+      )
     }
 
     const animateToggle = () => {
-      const isOpen = disclosure.hasAttribute('open') && !disclosure.hasAttribute('hidden')
-      updateAriaExpanded(isOpen)
-      
-      // Always disable CSS transitions during animation
-      disclosure.style.transition = 'none'
-      
-      if (isOpen) {
-        // Opening: immediately set to 0 to prevent CSS from showing it
-        disclosure.style.height = '0px'
-        disclosure.style.maxHeight = 'none' // Override CSS
-        disclosure.style.opacity = '0'
-        disclosure.style.overflow = 'hidden'
-        
-        // Force reflow to ensure 0px is applied
-        void disclosure.offsetHeight
-        
-        // Temporarily set height to auto to measure natural height
-        disclosure.style.height = 'auto'
-        void disclosure.offsetHeight
-        
-        // Measure the natural height
-        const targetHeight = disclosure.offsetHeight
-        
-        // Reset to 0 before animating
-        disclosure.style.height = '0px'
-        
-        // Force another reflow to ensure 0px is applied
-        void disclosure.offsetHeight
-        
-        // Animate to target height using height (not max-height to avoid CSS conflicts)
-        gsap.to(disclosure, {
-          height: `${targetHeight}px`,
-          opacity: 1,
-          duration: 0.3,
-          ease: 'power2.out',
-          onComplete: () => {
-            // After animation, set to auto to allow content changes
-            disclosure.style.height = 'auto'
-          }
-        })
+      const open = disclosure.hasAttribute('open') && !disclosure.hasAttribute('hidden')
+      updateAriaExpanded(open)
+
+      if (open) {
+        animateOpen()
       } else {
-        // Closing: get current height first, then animate to 0
-        const currentHeight = disclosure.offsetHeight
-        if (currentHeight > 0) {
-          // Ensure we're using height, not max-height
-          disclosure.style.height = `${currentHeight}px`
-          disclosure.style.maxHeight = 'none'
-          void disclosure.offsetHeight
-          
-          gsap.to(disclosure, {
-            height: '0px',
-            opacity: 0,
-            duration: 0.3,
-            ease: 'power2.in',
-          })
-        }
+        animateClose()
       }
     }
 
-    // Use MutationObserver to watch for attribute changes
+    // Watch for attribute changes
     const observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
         if (mutation.type === 'attributes' && (mutation.attributeName === 'open' || mutation.attributeName === 'hidden')) {
-          // Immediately disable CSS transitions to prevent CSS from applying
-          disclosure.style.transition = 'none'
-          
-          // Use double RAF to ensure we catch it before CSS applies
           requestAnimationFrame(() => {
-            requestAnimationFrame(() => {
-              animateToggle()
-            })
+            animateToggle()
           })
         }
       })
@@ -129,41 +171,70 @@ export function Faq({
     updateAriaExpanded(isInitiallyOpen)
     if (isInitiallyOpen) {
       disclosure.style.height = 'auto'
-      disclosure.style.maxHeight = 'none'
-      disclosure.style.opacity = '1'
-      disclosure.style.transition = 'none'
+      gsap.set(content, { opacity: 1, y: 0 })
+      gsap.set(icon, { rotation: 180 })
     }
 
     return () => {
       observer.disconnect()
+      gsap.killTweensOf([disclosure, content, icon])
     }
   }, [])
 
   return (
-    <div id={id} {...props}>
+    <div
+      id={id}
+      className={clsx(
+        'group transition-colors duration-200',
+        isOpen && 'bg-olive-950/2 dark:bg-white/2'
+      )}
+      {...props}
+    >
       <button
         ref={buttonRef}
         type="button"
         id={`${id}-question`}
         command="--toggle"
         commandfor={`${id}-answer`}
-        aria-expanded="false"
-        className="flex w-full cursor-pointer items-start justify-between gap-6 py-4 text-left text-base/7 text-oxblood dark:text-ember"
+        aria-expanded={isOpen}
+        className={clsx(
+          'flex w-full cursor-pointer items-start justify-between gap-6 py-5 text-left',
+          'text-base/7 font-medium text-oxblood transition-colors duration-200',
+          'hover:text-ember dark:text-coral dark:hover:text-ember'
+        )}
       >
-        {question}
-        <div className="relative h-lh w-lh shrink-0">
-          <PlusIcon className="h-lh w-lh transition-transform duration-300 ease-in-out in-aria-expanded:rotate-90 in-aria-expanded:opacity-0" />
-          <MinusIcon className="absolute inset-0 h-lh w-lh transition-opacity duration-300 ease-in-out not-in-aria-expanded:opacity-0" />
+        <span className="text-pretty">{question}</span>
+        <div
+          ref={iconRef}
+          className={clsx(
+            'relative flex size-6 shrink-0 items-center justify-center rounded-full',
+            'bg-olive-950/5 transition-colors duration-200',
+            'group-hover:bg-ember/10 dark:bg-white/10 dark:group-hover:bg-ember/20',
+            isOpen && 'bg-ember/10 dark:bg-ember/20'
+          )}
+        >
+          <svg
+            className="size-3 text-oxblood dark:text-coral"
+            fill="none"
+            viewBox="0 0 12 12"
+            stroke="currentColor"
+            strokeWidth={2}
+            strokeLinecap="round"
+          >
+            <path d="M6 1v10" className={clsx('origin-center transition-opacity duration-200', isOpen && 'opacity-0')} />
+            <path d="M1 6h10" />
+          </svg>
         </div>
       </button>
       <ElDisclosure
         ref={disclosureRef}
         id={`${id}-answer`}
         hidden
-        className="-mt-2 flex flex-col gap-2 pr-12 pb-4 text-sm/7 text-oxblood dark:text-coral"
-        style={{ maxHeight: 'none', transition: 'none', height: 'auto' }}
+        className="overflow-hidden"
       >
-        <div ref={contentRef}>{answer}</div>
+        <div ref={contentRef} className="pb-5 pr-12">
+          <div className="text-sm/7 text-olive-700 dark:text-opal">{answer}</div>
+        </div>
       </ElDisclosure>
     </div>
   )

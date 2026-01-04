@@ -7,7 +7,7 @@ export default function LoginPage() {
       headline="Client Login"
       subheadline={
         <p>
-          Enter your email address and we'll send you a secure magic link to access your assets, reports, and documentation.
+          Enter your password to access your assets, reports, and documentation.
         </p>
       }
     >

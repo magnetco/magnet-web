@@ -1,94 +1,45 @@
-import { ButtonLink, PlainButtonLink, SoftButtonLink } from '@/components/elements/button'
+import { ButtonLink, PlainButtonLink } from '@/components/elements/button'
 import { Logo, LogoGrid } from '@/components/elements/logo-grid'
 import { ChevronIcon } from '@/components/icons/chevron-icon'
 import { CallToActionSimpleCentered } from '@/components/sections/call-to-action-simple-centered'
 import { FAQsAccordion, Faq } from '@/components/sections/faqs-accordion'
-import { PlanComparisonTable } from '@/components/sections/plan-comparison-table'
-import { Plan, PricingHeroMultiTier } from '@/components/sections/pricing-hero-multi-tier'
+import { PricingRetainerHero } from '@/components/sections/pricing-retainer-hero'
+import { PricingServicesGrid } from '@/components/sections/pricing-services-grid'
 import { TestimonialTwoColumnWithLargePhoto } from '@/components/sections/testimonial-two-column-with-large-photo'
 import Image from 'next/image'
 
-function plans(option: string) {
-  return (
-    <>
-      <Plan
-        name="Starter"
-        price={option === 'Monthly' ? '$5K' : '$50K'}
-        period={option === 'Monthly' ? '/month' : '/year'}
-        subheadline={<p>Emerging brands ready to build their foundation</p>}
-        features={[
-          'Brand strategy & positioning',
-          'Website design & development',
-          'Basic SEO setup',
-          'Monthly performance reporting',
-          'Email support',
-        ]}
-        cta={
-          <SoftButtonLink href="#" size="lg">
-            Get started
-          </SoftButtonLink>
-        }
-      />
-      <Plan
-        name="Growth"
-        price={option === 'Monthly' ? '$15K' : '$150K'}
-        period={option === 'Monthly' ? '/month' : '/year'}
-        subheadline={<p>Scaling brands needing comprehensive marketing</p>}
-        badge="Most popular"
-        features={[
-          'Everything in Starter',
-          'Search marketing program',
-          'Paid advertising campaigns',
-          'Content strategy & creation',
-          'Advanced analytics & attribution',
-          'Dedicated account manager',
-          'Quarterly strategy reviews',
-        ]}
-        cta={
-          <ButtonLink href="#" size="lg">
-            Get started
-          </ButtonLink>
-        }
-      />
-      <Plan
-        name="Enterprise"
-        price="Custom"
-        period=""
-        subheadline={<p>Large organizations requiring full-service support</p>}
-        features={[
-          'Everything in Growth',
-          'Custom marketing systems',
-          'Multi-channel campaign management',
-          'Advanced data analytics',
-          'Dedicated team',
-          'Priority support',
-          'Custom integrations',
-        ]}
-        cta={
-          <SoftButtonLink href="#" size="lg">
-            Contact sales
-          </SoftButtonLink>
-        }
-      />
-    </>
-  )
-}
+const MONTHLY_PRICE = 25000
+const YEARLY_PRICE = Math.round(MONTHLY_PRICE * 12 * 0.9 / 12) // 10% discount, shown per month
+
+const retainerFeatures = [
+  'Brand strategy & positioning',
+  'Website design & development',
+  'Paid advertising campaigns',
+  'Search marketing program',
+  'Content strategy & creation',
+  'Conversion optimization',
+  'Advanced analytics & attribution',
+  'Dedicated account team',
+  'Monthly strategy reviews',
+  'Priority support',
+]
 
 export default function Page() {
   return (
     <>
-      {/* Hero */}
-      <PricingHeroMultiTier
-        id="pricing"
+      {/* Retainer Hero */}
+      <PricingRetainerHero
+        id="retainer"
         headline="Pricing"
         subheadline={
           <p>
-            Build a brand that stands out, create websites that convert, and launch campaigns that drive real results —
-            all backed by data-driven strategy and proven methodologies.
+            Partner with us for ongoing growth, or engage us for specific deliverables.
+            Every engagement is backed by our proven four-phase methodology.
           </p>
         }
-        options={['Monthly', 'Yearly']}
-        plans={{ Monthly: plans('Monthly'), Yearly: plans('Yearly') }}
+        monthlyPrice={MONTHLY_PRICE}
+        yearlyPrice={YEARLY_PRICE}
+        features={retainerFeatures}
         footer={
           <LogoGrid>
             <Logo>
@@ -190,89 +141,19 @@ export default function Page() {
           </LogoGrid>
         }
       />
-      {/* Plan Comparison Table */}
-      <PlanComparisonTable
-        id="pricing"
-        plans={['Starter', 'Growth', 'Enterprise']}
-        features={[
-          {
-            title: 'Branding & Strategy',
-            features: [
-              {
-                name: 'Brand strategy & positioning',
-                value: { Starter: true, Growth: true, Enterprise: true },
-              },
-              { name: 'Visual identity design', value: { Starter: true, Growth: true, Enterprise: true } },
-              { name: 'Brand guidelines', value: { Starter: 'Basic', Growth: true, Enterprise: true } },
-              {
-                name: 'Messaging framework',
-                value: { Starter: false, Growth: true, Enterprise: true },
-              },
-              {
-                name: 'Custom brand system',
-                value: { Starter: false, Growth: false, Enterprise: true },
-              },
-            ],
-          },
-          {
-            title: 'Websites & Development',
-            features: [
-              { name: 'Website design & development', value: { Starter: true, Growth: true, Enterprise: true } },
-              {
-                name: 'Conversion optimization',
-                value: { Starter: false, Growth: true, Enterprise: true },
-              },
-              {
-                name: 'Advanced integrations',
-                value: { Starter: false, Growth: true, Enterprise: true },
-              },
-              {
-                name: 'Custom functionality',
-                value: { Starter: false, Growth: false, Enterprise: true },
-              },
-            ],
-          },
-          {
-            title: 'Marketing Programs',
-            features: [
-              {
-                name: 'Search marketing (SEO)',
-                value: { Starter: 'Basic', Growth: true, Enterprise: true },
-              },
-              {
-                name: 'Paid advertising',
-                value: { Starter: false, Growth: true, Enterprise: true },
-              },
-              {
-                name: 'Content strategy',
-                value: { Starter: false, Growth: true, Enterprise: true },
-              },
-              {
-                name: 'Multi-channel campaigns',
-                value: { Starter: false, Growth: false, Enterprise: true },
-              },
-            ],
-          },
-          {
-            title: 'Analytics & Support',
-            features: [
-              { name: 'Monthly reporting', value: { Starter: true, Growth: true, Enterprise: true } },
-              {
-                name: 'Advanced analytics',
-                value: { Starter: false, Growth: true, Enterprise: true },
-              },
-              {
-                name: 'Account manager',
-                value: { Starter: false, Growth: true, Enterprise: true },
-              },
-              {
-                name: 'Dedicated team',
-                value: { Starter: false, Growth: false, Enterprise: true },
-              },
-            ],
-          },
-        ]}
+
+      {/* Individual Services */}
+      <PricingServicesGrid
+        id="services"
+        headline="Individual Services"
+        subheadline={
+          <p>
+            Need a specific capability? Our core services are available as standalone engagements
+            with fixed pricing and clear deliverables.
+          </p>
+        }
       />
+
       {/* Testimonial */}
       <TestimonialTwoColumnWithLargePhoto
         id="testimonial"
@@ -294,29 +175,36 @@ export default function Page() {
         name="Lynn Marshall"
         byline="Founder at Pine Labs"
       />
+
       {/* FAQs */}
       <FAQsAccordion id="faqs" headline="Questions & Answers">
         <Faq
           id="faq-1"
-          question="How do you measure marketing success?"
-          answer="We track metrics that matter: conversion rates, customer acquisition cost, lifetime value, and revenue attribution. Every campaign includes clear KPIs and regular reporting so you know exactly what's working and what's driving growth."
+          question="What's included in the full-service retainer?"
+          answer="The retainer includes comprehensive coverage across all four phases of our methodology: Foundation (brand, messaging, website, conversion architecture), Activation (paid media, search marketing, content), Acceleration (landing pages, sales enablement, CRM automation), and Retention (lifecycle email, customer success, analytics). You get a dedicated team working on your growth every month."
         />
         <Faq
           id="faq-2"
-          question="Can you work with our existing marketing team?"
-          answer="Absolutely. We collaborate seamlessly with in-house teams, providing strategic guidance and execution support. Whether you need full-service support or specific expertise, we adapt to your team structure and workflow."
+          question="How does yearly billing work?"
+          answer="When you commit to yearly billing, you receive a 10% discount on the monthly rate. You can pay annually upfront or in quarterly installments. The commitment helps us plan resources and deliver more strategic, long-term work."
         />
         <Faq
           id="faq-3"
-          question="What makes your approach different?"
-          answer="We focus on building sustainable, data-driven marketing systems rather than chasing trends. Our methodology combines strategic foundation, activation, acceleration, and retention—creating marketing that compounds over time, not just quick wins."
+          question="Can I start with individual services and upgrade later?"
+          answer="Absolutely. Many clients start with a specific need—like branding or a new website—and later move to the full-service retainer as they see results. We'll credit a portion of your initial engagement toward your first retainer months."
         />
         <Faq
           id="faq-4"
           question="How long does it take to see results?"
           answer="Results vary by service and market, but most clients see measurable improvements within 30-90 days. Search marketing and paid ads typically show faster initial results, while branding and website work compounds over time. We set clear expectations upfront."
         />
+        <Faq
+          id="faq-5"
+          question="What if I need to pause or cancel?"
+          answer="The retainer is month-to-month with no long-term contracts. We ask for 30 days notice to wrap up active work and transition deliverables. For yearly commitments, we offer flexibility to pause for up to 2 months if business circumstances change."
+        />
       </FAQsAccordion>
+
       {/* Call To Action */}
       <CallToActionSimpleCentered
         id="call-to-action"
@@ -326,12 +214,12 @@ export default function Page() {
         }
         cta={
           <div className="flex items-center gap-4">
-            <ButtonLink href="#" size="lg">
-              Chat with us
+            <ButtonLink href="/contact" size="lg">
+              Book a strategy call
             </ButtonLink>
 
-            <PlainButtonLink href="#" size="lg">
-              Book a demo <ChevronIcon />
+            <PlainButtonLink href="/method/foundation" size="lg">
+              Explore our method <ChevronIcon />
             </PlainButtonLink>
           </div>
         }

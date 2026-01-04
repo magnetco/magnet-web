@@ -1,36 +1,29 @@
 import { Suspense } from 'react'
 import Image from 'next/image'
-import { ButtonLink } from '@/components/elements/button'
-import { ArrowNarrowRightIcon } from '@/components/icons/arrow-narrow-right-icon'
-import { ContactForm } from '@/components/sections/contact-form'
+import { Approach, ApproachItem, ApproachStage } from '@/components/sections/approach'
 import { FAQsTwoColumnAccordion, Faq } from '@/components/sections/faqs-two-column-accordion'
 import { FeaturesThreeColumn, Feature } from '@/components/sections/features-three-column'
-import { HeroSimpleCentered } from '@/components/sections/hero-simple-centered'
-import { Approach, ApproachItem, ApproachStage } from '@/components/sections/approach'
+import { HeroWithContactForm } from '@/components/sections/hero-with-contact-form'
+import { PricingCompact } from '@/components/sections/pricing-compact'
 import { Stat, StatsWithGraph } from '@/components/sections/stats-with-graph'
 import { Testimonial, TestimonialThreeColumnGrid } from '@/components/sections/testimonials-three-column-grid'
 
 export default function Page() {
   return (
     <>
-      {/* Hero */}
-      <HeroSimpleCentered
-        id="hero"
-        headline="Let's build something great together"
-        subheadline={
-          <p>
-            Ready to transform your marketing? Get in touch and discover how Magnet can help you build stronger market
-            positions, create high-converting websites, and launch campaigns that deliver measurable results.
-          </p>
-        }
-        cta={
-          <div className="flex items-center justify-center gap-4">
-            <ButtonLink href="#contact-form" size="lg">
-              Get started
-            </ButtonLink>
-          </div>
-        }
-      />
+      {/* Hero with Contact Form */}
+      <Suspense fallback={<div className="py-16" />}>
+        <HeroWithContactForm
+          id="hero"
+          headline="Let's build something great together"
+          subheadline={
+            <p>
+              Ready to transform your marketing? Tell us about your goals and we&apos;ll help you build stronger market
+              positions, create high-converting websites, and launch campaigns that deliver measurable results.
+            </p>
+          }
+        />
+      </Suspense>
 
       {/* Stats */}
       <StatsWithGraph
@@ -39,7 +32,8 @@ export default function Page() {
         headline="Marketing that drives measurable growth"
         subheadline={
           <p>
-            Our data-driven approach delivers real results for brands of all sizes, from startups to enterprise companies.
+            Our data-driven approach delivers real results for brands of all sizes, from startups to enterprise
+            companies.
           </p>
         }
       >
@@ -65,8 +59,8 @@ export default function Page() {
               headline="Strategic foundation"
               subheadline={
                 <p>
-                  We start with deep research and strategic planning to ensure every campaign is built on a solid foundation
-                  that drives long-term growth.
+                  We start with deep research and strategic planning to ensure every campaign is built on a solid
+                  foundation that drives long-term growth.
                 </p>
               }
             />
@@ -74,8 +68,8 @@ export default function Page() {
               headline="Data-driven decisions"
               subheadline={
                 <p>
-                  Every decision is backed by data. We track metrics that matter and provide clear reporting so you always
-                  know what&apos;s working.
+                  Every decision is backed by data. We track metrics that matter and provide clear reporting so you
+                  always know what&apos;s working.
                 </p>
               }
             />
@@ -83,8 +77,8 @@ export default function Page() {
               headline="Full-service support"
               subheadline={
                 <p>
-                  From branding to websites to paid campaigns, we provide comprehensive marketing support tailored to your
-                  business needs.
+                  From branding to websites to paid campaigns, we provide comprehensive marketing support tailored to
+                  your business needs.
                 </p>
               }
             />
@@ -92,8 +86,8 @@ export default function Page() {
               headline="Proven methodology"
               subheadline={
                 <p>
-                  Our systematic approach combines foundation, activation, acceleration, and retention to create marketing
-                  that compounds over time.
+                  Our systematic approach combines foundation, activation, acceleration, and retention to create
+                  marketing that compounds over time.
                 </p>
               }
             />
@@ -101,8 +95,8 @@ export default function Page() {
               headline="Dedicated partnership"
               subheadline={
                 <p>
-                  We work as an extension of your team, providing strategic guidance and execution support that adapts to
-                  your workflow.
+                  We work as an extension of your team, providing strategic guidance and execution support that adapts
+                  to your workflow.
                 </p>
               }
             />
@@ -110,14 +104,17 @@ export default function Page() {
               headline="Measurable results"
               subheadline={
                 <p>
-                  We set clear KPIs upfront and deliver regular reporting so you can track progress and see the impact of
-                  our work.
+                  We set clear KPIs upfront and deliver regular reporting so you can track progress and see the impact
+                  of our work.
                 </p>
               }
             />
           </>
         }
       />
+
+      {/* Pricing */}
+      <PricingCompact id="pricing" />
 
       {/* Process */}
       <Approach
@@ -279,20 +276,6 @@ export default function Page() {
           answer="We focus on building sustainable, data-driven marketing systems rather than chasing trends. Our methodology combines strategic foundation, activation, acceleration, and retention—creating marketing that compounds over time."
         />
       </FAQsTwoColumnAccordion>
-
-      {/* Contact Form */}
-      <Suspense fallback={<div>Loading...</div>}>
-        <ContactForm
-          id="contact-form"
-          headline="Ready to get started?"
-          subheadline={
-            <p>
-              Tell us about your goals and we&apos;ll help you build stronger market positions, create high-converting
-              websites, and launch campaigns that deliver measurable results.
-            </p>
-          }
-        />
-      </Suspense>
     </>
   )
 }

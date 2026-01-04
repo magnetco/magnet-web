@@ -1,7 +1,10 @@
-import { ButtonLink, PlainButtonLink } from '@/components/elements/button'
+import { ButtonLink } from '@/components/elements/button'
+import { ChatWidget } from '@/components/elements/chat-widget'
+import { DevBar } from '@/components/elements/dev-bar'
 import { FooterLogo } from '@/components/elements/footer-logo'
 import { Main } from '@/components/elements/main'
 import { ScrollableLogo } from '@/components/elements/scrollable-logo'
+import { Search } from '@/components/elements/search'
 import { LinkedInIcon } from '@/components/icons/social/linkedin-icon'
 import {
   FooterCategory,
@@ -10,8 +13,6 @@ import {
   SocialLink,
 } from '@/components/sections/footer-with-newsletter-form-categories-and-social-icons'
 import {
-  NavbarDropdown,
-  NavbarDropdownItem,
   NavbarLink,
   NavbarWithLinksActionsAndCenteredLogo,
 } from '@/components/sections/navbar-with-links-actions-and-centered-logo'
@@ -78,47 +79,22 @@ export default function RootLayout({
       </head>
       <body>
         <>
+          <DevBar />
           <NavbarWithLinksActionsAndCenteredLogo
             id="navbar"
             links={
               <>
-                <NavbarDropdown label="Solutions">
-                  <NavbarDropdownItem
-                    href="/websites"
-                    title="Websites"
-                    subcopy="Design frictionless digital journeys that consistently convert higher-quality buyers."
-                  />
-                  <NavbarDropdownItem
-                    href="/branding"
-                    title="Branding"
-                    subcopy="Clarify your story and stand out in the market with advanced strategic precision."
-                  />
-                  <NavbarDropdownItem
-                    href="/search"
-                    title="Search"
-                    subcopy="Build fast, scalable search systems that reliably power sustainable long-term growth."
-                  />
-                  <NavbarDropdownItem
-                    href="/ads"
-                    title="Ads"
-                    subcopy="Increase qualified demand through highly targeted, high-intent acquisition campaigns."
-                  />
-                </NavbarDropdown>
-                <NavbarLink href="/playbook">Method</NavbarLink>
-                <NavbarLink href="/team">Team</NavbarLink>
-                <NavbarLink href="/pricing">Pricing</NavbarLink>
-                <NavbarLink href="/login" className="sm:hidden">
-                  Log in
-                </NavbarLink>
+                <NavbarLink href="/branding">Branding</NavbarLink>
+                <NavbarLink href="/websites">Websites</NavbarLink>
+                <NavbarLink href="/ads">Paid</NavbarLink>
+                <NavbarLink href="/search">Search</NavbarLink>
               </>
             }
             logo={<ScrollableLogo href="/" />}
             actions={
               <>
-                <PlainButtonLink href="/login" className="max-sm:hidden">
-                  Log in
-                </PlainButtonLink>
-                <ButtonLink href="#">Get started</ButtonLink>
+                <Search />
+                <ButtonLink href="/contact">Get started</ButtonLink>
               </>
             }
           />
@@ -144,6 +120,7 @@ export default function RootLayout({
                 </FooterCategory>
                 <FooterCategory title="Company">
                   <FooterLink href="/team">Team</FooterLink>
+                  <FooterLink href="/posts">Posts</FooterLink>
                   <FooterLink href="/pricing">Pricing</FooterLink>
                   <FooterLink href="/careers">Careers</FooterLink>
                   <FooterLink href="/privacy-policy">Privacy</FooterLink>
@@ -157,6 +134,7 @@ export default function RootLayout({
               </SocialLink>
             }
           />
+          <ChatWidget />
         </>
       </body>
     </html>

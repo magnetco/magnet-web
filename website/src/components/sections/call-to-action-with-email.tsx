@@ -9,7 +9,9 @@ import { Eyebrow } from '../elements/eyebrow'
 import { Subheading } from '../elements/subheading'
 import { Text } from '../elements/text'
 import { Button } from '../elements/button'
+import { Input } from '../elements/input'
 import { AlertTriangleIcon } from '../icons/alert-triangle-icon'
+import { isValidEmail } from '@/lib/validation'
 
 export function CallToActionWithEmail({
   eyebrow,
@@ -26,11 +28,6 @@ export function CallToActionWithEmail({
   const [error, setError] = useState('')
   const router = useRouter()
 
-  const validateEmail = (email: string): boolean => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    return emailRegex.test(email)
-  }
-
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setError('')
@@ -40,7 +37,7 @@ export function CallToActionWithEmail({
       return
     }
 
-    if (!validateEmail(email)) {
+    if (!isValidEmail(email)) {
       setError('Please enter a valid email address')
       return
     }
@@ -61,11 +58,11 @@ export function CallToActionWithEmail({
         </div>
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-4 sm:flex-row sm:items-center">
-          <div className="flex-1 max-w-96">
+          <div className="max-w-96 flex-1">
             <label htmlFor="email" className="sr-only">
               Email address
             </label>
-            <input
+            <Input
               id="email"
               type="email"
               value={email}
@@ -74,12 +71,8 @@ export function CallToActionWithEmail({
                 if (error) setError('')
               }}
               placeholder="you@example.com"
-              className={clsx(
-                'w-full rounded-lg border-2 bg-white px-4 py-2 text-sm/7 text-oxblood placeholder:text-oxblood/40 focus:outline-none focus:ring-2 focus:ring-offset-2 dark:bg-white/5 dark:text-coral dark:placeholder:text-coral/40',
-                error
-                  ? 'border-rose-500 focus:border-rose-500 focus:ring-rose-500/20 dark:border-rose-400 dark:focus:border-rose-400'
-                  : 'border-oxblood/20 focus:border-ember focus:ring-ember/20 dark:border-white/20 dark:focus:border-ember',
-              )}
+              hasError={!!error}
+              className="py-2"
             />
             {error && (
               <div className="mt-2 flex items-center gap-2 text-sm text-rose-600 dark:text-rose-400">

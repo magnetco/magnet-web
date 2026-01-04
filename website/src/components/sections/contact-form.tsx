@@ -9,8 +9,10 @@ import { Eyebrow } from '../elements/eyebrow'
 import { Subheading } from '../elements/subheading'
 import { Text } from '../elements/text'
 import { Button } from '../elements/button'
+import { Input, Textarea, Select, Label } from '../elements/input'
 import { CheckmarkIcon } from '../icons/checkmark-icon'
 import { AlertTriangleIcon } from '../icons/alert-triangle-icon'
+import { isValidEmail } from '@/lib/validation'
 
 type FormField = {
   name: string
@@ -24,38 +26,36 @@ type FormField = {
 
 type FormState = 'idle' | 'submitting' | 'success' | 'error'
 
-const getFormFields = (): FormField[] => {
-  return [
-    {
-      name: 'name',
-      label: 'Name',
-      type: 'text',
-      placeholder: 'Your name',
-      required: true,
-    },
-    {
-      name: 'company',
-      label: 'Company',
-      type: 'text',
-      placeholder: 'Your company name',
-    },
-    {
-      name: 'email',
-      label: 'Email',
-      type: 'email',
-      placeholder: 'you@example.com',
-      required: true,
-    },
-    {
-      name: 'message',
-      label: 'Message',
-      type: 'textarea',
-      placeholder: 'Tell us about your inquiry...',
-      rows: 4,
-      required: true,
-    },
-  ]
-}
+const FORM_FIELDS: FormField[] = [
+  {
+    name: 'name',
+    label: 'Name',
+    type: 'text',
+    placeholder: 'Your name',
+    required: true,
+  },
+  {
+    name: 'company',
+    label: 'Company',
+    type: 'text',
+    placeholder: 'Your company name',
+  },
+  {
+    name: 'email',
+    label: 'Email',
+    type: 'email',
+    placeholder: 'you@example.com',
+    required: true,
+  },
+  {
+    name: 'message',
+    label: 'Message',
+    type: 'textarea',
+    placeholder: 'Tell us about your inquiry...',
+    rows: 4,
+    required: true,
+  },
+]
 
 export function ContactForm({
   eyebrow,
@@ -70,14 +70,14 @@ export function ContactForm({
 } & ComponentProps<'section'>) {
   const searchParams = useSearchParams()
   const prefilledEmail = searchParams?.get('email') || ''
-  
+
   const [formState, setFormState] = useState<FormState>('idle')
   const [errorMessage, setErrorMessage] = useState('')
   const [formData, setFormData] = useState<Record<string, string | boolean | string[]>>(
     prefilledEmail ? { email: prefilledEmail } : {}
   )
 
-  const fields = getFormFields()
+  const fields = FORM_FIELDS
 
   const handleChange = (name: string, value: string | boolean) => {
     setFormData((prev) => ({ ...prev, [name]: value }))
@@ -103,8 +103,7 @@ export function ContactForm({
     for (const field of fields) {
       if (field.type === 'email' && formData[field.name]) {
         const email = formData[field.name] as string
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-        if (!emailRegex.test(email)) {
+        if (!isValidEmail(email)) {
           setErrorMessage('Please enter a valid email address')
           setFormState('error')
           return false
@@ -126,8 +125,23 @@ export function ContactForm({
     setErrorMessage('')
 
     try {
-      // TODO: Replace with actual API call
-      await new Promise((resolve) => setTimeout(resolve, 1500))
+      const response = await fetch('/api/leads', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name as string,
+          company: (formData.company as string) || null,
+          email: formData.email as string,
+          message: formData.message as string,
+        }),
+      })
+
+      if (!response.ok) {
+        throw new Error('Failed to submit form')
+      }
+
       setFormState('success')
     } catch {
       setFormState('error')
@@ -180,18 +194,15 @@ export function ContactForm({
             {fields.map((field) => {
               const value = formData[field.name] || ''
               const isError = formState === 'error' && field.required && !value
+              const isDisabled = formState === 'submitting'
 
               if (field.type === 'textarea') {
                 return (
                   <div key={field.name} className="sm:col-span-2">
-                    <label
-                      htmlFor={field.name}
-                      className="mb-2 block text-sm font-medium text-oxblood dark:text-coral"
-                    >
+                    <Label htmlFor={field.name} required={field.required}>
                       {field.label}
-                      {field.required && <span className="text-rose-500">*</span>}
-                    </label>
-                    <textarea
+                    </Label>
+                    <Textarea
                       id={field.name}
                       name={field.name}
                       value={value as string}
@@ -199,14 +210,8 @@ export function ContactForm({
                       placeholder={field.placeholder}
                       required={field.required}
                       rows={field.rows || 4}
-                      disabled={formState === 'submitting'}
-                      className={clsx(
-                        'w-full rounded-lg border-2 bg-white px-4 py-3 text-sm/7 text-oxblood placeholder:text-oxblood/40 focus:outline-none focus:ring-2 focus:ring-offset-2 dark:bg-white/5 dark:text-coral dark:placeholder:text-coral/40',
-                        isError
-                          ? 'border-rose-500 focus:border-rose-500 focus:ring-rose-500/20 dark:border-rose-400 dark:focus:border-rose-400'
-                          : 'border-oxblood/20 focus:border-ember focus:ring-ember/20 dark:border-white/20 dark:focus:border-ember',
-                        formState === 'submitting' && 'opacity-60 cursor-not-allowed',
-                      )}
+                      disabled={isDisabled}
+                      hasError={isError}
                     />
                   </div>
                 )
@@ -215,27 +220,17 @@ export function ContactForm({
               if (field.type === 'select') {
                 return (
                   <div key={field.name}>
-                    <label
-                      htmlFor={field.name}
-                      className="mb-2 block text-sm font-medium text-oxblood dark:text-coral"
-                    >
+                    <Label htmlFor={field.name} required={field.required}>
                       {field.label}
-                      {field.required && <span className="text-rose-500">*</span>}
-                    </label>
-                    <select
+                    </Label>
+                    <Select
                       id={field.name}
                       name={field.name}
                       value={value as string}
                       onChange={(e) => handleChange(field.name, e.target.value)}
                       required={field.required}
-                      disabled={formState === 'submitting'}
-                      className={clsx(
-                        'w-full rounded-lg border-2 bg-white px-4 py-3 text-sm/7 text-oxblood focus:outline-none focus:ring-2 focus:ring-offset-2 dark:bg-white/5 dark:text-coral',
-                        isError
-                          ? 'border-rose-500 focus:border-rose-500 focus:ring-rose-500/20 dark:border-rose-400 dark:focus:border-rose-400'
-                          : 'border-oxblood/20 focus:border-ember focus:ring-ember/20 dark:border-white/20 dark:focus:border-ember',
-                        formState === 'submitting' && 'opacity-60 cursor-not-allowed',
-                      )}
+                      disabled={isDisabled}
+                      hasError={isError}
                     >
                       <option value="">{field.placeholder || 'Select an option'}</option>
                       {field.options?.map((option) => (
@@ -243,21 +238,17 @@ export function ContactForm({
                           {option.label}
                         </option>
                       ))}
-                    </select>
+                    </Select>
                   </div>
                 )
               }
 
               return (
                 <div key={field.name}>
-                  <label
-                    htmlFor={field.name}
-                    className="mb-2 block text-sm font-medium text-oxblood dark:text-coral"
-                  >
+                  <Label htmlFor={field.name} required={field.required}>
                     {field.label}
-                    {field.required && <span className="text-rose-500">*</span>}
-                  </label>
-                  <input
+                  </Label>
+                  <Input
                     id={field.name}
                     name={field.name}
                     type={field.type}
@@ -265,14 +256,8 @@ export function ContactForm({
                     onChange={(e) => handleChange(field.name, e.target.value)}
                     placeholder={field.placeholder}
                     required={field.required}
-                    disabled={formState === 'submitting'}
-                    className={clsx(
-                      'w-full rounded-lg border-2 bg-white px-4 py-3 text-sm/7 text-oxblood placeholder:text-oxblood/40 focus:outline-none focus:ring-2 focus:ring-offset-2 dark:bg-white/5 dark:text-coral dark:placeholder:text-coral/40',
-                      isError
-                        ? 'border-rose-500 focus:border-rose-500 focus:ring-rose-500/20 dark:border-rose-400 dark:focus:border-rose-400'
-                        : 'border-oxblood/20 focus:border-ember focus:ring-ember/20 dark:border-white/20 dark:focus:border-ember',
-                      formState === 'submitting' && 'opacity-60 cursor-not-allowed',
-                    )}
+                    disabled={isDisabled}
+                    hasError={isError}
                   />
                 </div>
               )

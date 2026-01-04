@@ -31,7 +31,7 @@ export default function Page() {
         }
         cta={
           <div className="flex items-center gap-4">
-            <ButtonLink href="#" size="lg">
+            <ButtonLink href="/contact" size="lg">
               Get started
             </ButtonLink>
             <PlainButtonLink href="#" size="lg">
@@ -505,7 +505,7 @@ export default function Page() {
         }
         cta={
           <div className="flex items-center gap-4">
-            <ButtonLink href="#" size="lg">
+            <ButtonLink href="/contact" size="lg">
               Get started
             </ButtonLink>
 

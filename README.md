@@ -1,96 +1,89 @@
 # Magnet Web
 
-The Magnet agency website built with Next.js, Tailwind CSS, and modern web technologies.
-
-## Overview
-
-This repository contains the Magnet website, a Next.js application that serves as both our agency's public-facing website and a unified workspace for creating, managing, and delivering digital marketing solutions.
-
-## Architecture
-
-### Project Structure
-
-```
-magnet-web/
-├── website/          # Next.js application
-│   ├── src/
-│   │   ├── app/      # Next.js App Router pages
-│   │   ├── components/ # React components
-│   │   └── data/      # Static data files
-│   └── public/       # Static assets
-├── STRATEGY.md       # Agency strategy and vision
-└── LICENSE.md        # Tailwind Plus license
-```
-
-### Technology Stack
-
-- **Framework**: Next.js 16 (App Router)
-- **UI**: React 19, Tailwind CSS v4
-- **Components**: Tailwind Plus Elements
-- **Styling**: Tailwind CSS with custom theme
-- **TypeScript**: Full type safety
-- **3D Graphics**: Three.js, React Three Fiber
-
-### Future Integrations
-
-- **Sanity CMS**: For blog content and editorial management
-- **Vercel Postgres**: For project-level knowledge and structured data
-- **Content Strategy**: All content, keywords, and strategy documents will live in the codebase
+The Magnet agency website.
 
 ## Quick Start
 
-### Prerequisites
+```bash
+# Website (Next.js)
+cd website && pnpm install && pnpm dev
+```
 
-- Node.js 20+ 
-- npm, yarn, or pnpm
+Open [localhost:3000](http://localhost:3000).
 
-### Installation
+```bash
+# Sanity Studio (CMS)
+cd studio && pnpm install && pnpm dev
+```
 
-1. Navigate to the website directory:
+Open [localhost:3333](http://localhost:3333).
+
+## Documentation
+
+| File | Purpose |
+|------|---------|
+| [`docs/CONTEXT.md`](docs/CONTEXT.md) | Business background, ICP, what Magnet does |
+| [`docs/BRAND.md`](docs/BRAND.md) | Voice, tone, messaging guidelines |
+| [`docs/DESIGN.md`](docs/DESIGN.md) | Colors, typography, visual system |
+| [`docs/STRATEGY.md`](docs/STRATEGY.md) | Business strategy, competitive position |
+| [`docs/METHOD.md`](docs/METHOD.md) | Complete offer architecture and methodology |
+| [`docs/ROADMAP.md`](docs/ROADMAP.md) | What's shipped, in progress, and planned |
+| [`AGENTS.md`](AGENTS.md) | AI assistant instructions |
+
+## Stack
+
+- Next.js 16 (App Router)
+- React 19
+- TypeScript
+- Tailwind CSS v4
+- Neon (Postgres)
+- Resend (email)
+- Vercel AI SDK + Groq (chat)
+- Sanity CMS (content)
+
+## Structure
+
+```
+magnet-web/
+├── docs/             # Documentation
+├── studio/           # Sanity CMS Studio
+├── website/          # Next.js application
+│   ├── src/
+│   │   ├── app/      # Pages and API routes
+│   │   ├── components/
+│   │   ├── lib/      # Utilities (db, email, sanity)
+│   │   └── data/     # Static data
+│   └── public/       # Static assets
+├── AGENTS.md         # AI instructions
+└── README.md         # This file
+```
+
+## Environment
+
+Create `website/.env.local`:
+
+```bash
+# Database
+DATABASE_URL=your_neon_url
+
+# Email
+RESEND_API_KEY=your_resend_key
+
+# AI Chat
+GROQ_API_KEY=your_groq_key
+
+# Sanity CMS
+SANITY_PROJECT_ID=your_project_id
+SANITY_DATASET=production
+SANITY_API_TOKEN=your_api_token
+```
+
+## Build
+
 ```bash
 cd website
+pnpm build
+pnpm start
 ```
 
-2. Install dependencies:
-```bash
-npm install
-# or
-yarn install
-# or
-pnpm install
-```
-
-3. Run the development server:
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
-
-4. Open [http://localhost:3000](http://localhost:3000) in your browser.
-
-### Build for Production
-
-```bash
-npm run build
-npm start
-```
-
-## Development
-
-### Code Style
-
-- TypeScript for type safety
-- Prettier for code formatting
-- ESLint for code quality
-- Tailwind CSS for styling
-
-### Project Philosophy
-
-This project follows a unified approach where all aspects of website creation—from copywriting and keyword research to design and development—happen within the codebase using Cursor and modern development tools. This eliminates context fragmentation and creates a single source of truth for all project knowledge.
-
-## License
-
-This project uses components from Tailwind Plus. See [LICENSE.md](./LICENSE.md) for details.
+Deployed on Vercel.

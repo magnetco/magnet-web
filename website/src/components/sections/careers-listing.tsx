@@ -7,16 +7,11 @@ import { Container } from '../elements/container'
 import { Eyebrow } from '../elements/eyebrow'
 import { Subheading } from '../elements/subheading'
 import { ChevronIcon } from '../icons/chevron-icon'
+import type { JobListing as JobListingType } from '@/lib/sanity/types'
 
-export interface Job {
-  id: string
-  title: string
-  type: string
-  locations: string[]
-  department: string
-}
-
-export function JobListing({ job, href }: { job: Job; href: string }) {
+export function JobListing({ job, href }: { job: JobListingType; href: string }) {
+  const locationNames = job.locations.map((loc) => loc.title).join(' / ')
+  
   return (
     <Link
       href={href}
@@ -28,11 +23,11 @@ export function JobListing({ job, href }: { job: Job; href: string }) {
             {job.title}
           </h3>
           <span className="rounded-full bg-oxblood/10 px-3 py-0.5 text-xs/6 text-oxblood dark:bg-white/10 dark:text-coral">
-            {job.type}
+            {job.jobType.title}
           </span>
         </div>
         <div className="flex flex-wrap items-center gap-4 text-sm/6 text-oxblood/70 dark:text-coral/70">
-          <span>{job.locations.join(' / ')}</span>
+          <span>{locationNames}</span>
         </div>
       </div>
       <ChevronIcon className="h-5 w-5 rotate-[-90deg] text-oxblood/40 transition-transform group-hover:translate-x-1 dark:text-coral/40" />
@@ -123,7 +118,7 @@ export function CareersListing({
   eyebrow?: ReactNode
   headline: ReactNode
   subheadline?: ReactNode
-  jobs: Job[]
+  jobs: JobListingType[]
   departments: Array<{ value: string; label: string }>
   locations: Array<{ value: string; label: string }>
 } & ComponentProps<'section'>) {
@@ -132,19 +127,20 @@ export function CareersListing({
 
   // Filter jobs
   const filteredJobs = jobs.filter((job) => {
-    if (selectedDepartment !== 'All' && job.department !== selectedDepartment) return false
-    if (selectedLocation !== 'Anywhere' && !job.locations.some((loc) => loc.includes(selectedLocation))) return false
+    if (selectedDepartment !== 'All' && job.department.title !== selectedDepartment) return false
+    if (selectedLocation !== 'Anywhere' && !job.locations.some((loc) => loc.title.includes(selectedLocation))) return false
     return true
   })
 
   // Group jobs by department
   const jobsByDepartment = filteredJobs.reduce((acc, job) => {
-    if (!acc[job.department]) {
-      acc[job.department] = []
+    const deptTitle = job.department.title
+    if (!acc[deptTitle]) {
+      acc[deptTitle] = []
     }
-    acc[job.department].push(job)
+    acc[deptTitle].push(job)
     return acc
-  }, {} as Record<string, Job[]>)
+  }, {} as Record<string, JobListingType[]>)
 
   return (
     <section className={clsx('py-16', className)} {...props}>
@@ -181,7 +177,7 @@ export function CareersListing({
               <h2 className="text-xl/8 font-semibold text-oxblood dark:text-coral">{department}</h2>
               <div className="flex flex-col">
                 {departmentJobs.map((job) => (
-                  <JobListing key={job.id} job={job} href={`/careers/${job.id}`} />
+                  <JobListing key={job._id} job={job} href={`/careers/${job.slug.current}`} />
                 ))}
               </div>
             </div>

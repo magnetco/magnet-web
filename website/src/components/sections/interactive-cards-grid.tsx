@@ -7,7 +7,7 @@ import { Eyebrow } from '@/components/elements/eyebrow'
 import { Subheading } from '@/components/elements/subheading'
 import { Text } from '@/components/elements/text'
 import type { ComponentProps, ReactNode } from 'react'
-import { useCallback, useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 
 export interface InteractiveCard {
@@ -164,7 +164,7 @@ export function InteractiveCard({
       card.removeEventListener('mouseenter', handleMouseEnter)
       card.removeEventListener('mouseleave', handleMouseLeave)
     }
-  }, [description])
+  }, [])
 
   // React handler for mouse leave as backup
   const handleReactMouseLeave = () => {

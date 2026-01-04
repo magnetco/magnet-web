@@ -31,7 +31,7 @@ export default function Page() {
         }
         cta={
           <div className="flex items-center gap-4">
-            <ButtonLink href="#" size="lg">
+            <ButtonLink href="/contact" size="lg">
               Get started
             </ButtonLink>
             <PlainButtonLink href="#" size="lg">
@@ -502,7 +502,7 @@ export default function Page() {
               subheadline={<p>Perfect for small businesses getting started with SEO</p>}
               features={['SEO audit & strategy', 'Keyword research', 'Basic content optimization', 'Monthly reporting', 'Email support']}
               cta={
-                <SoftButtonLink href="#" size="lg">
+                <SoftButtonLink href="/contact" size="lg">
                   Get started
                 </SoftButtonLink>
               }
@@ -523,7 +523,7 @@ export default function Page() {
                 'Dedicated account manager',
               ]}
               cta={
-                <ButtonLink href="#" size="lg">
+                <ButtonLink href="/contact" size="lg">
                   Get started
                 </ButtonLink>
               }
@@ -543,7 +543,7 @@ export default function Page() {
                 '24/7 priority support',
               ]}
               cta={
-                <SoftButtonLink href="#" size="lg">
+                <SoftButtonLink href="/contact" size="lg">
                   Get started
                 </SoftButtonLink>
               }

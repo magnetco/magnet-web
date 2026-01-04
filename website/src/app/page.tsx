@@ -13,10 +13,7 @@ import { InteractiveCardsGrid } from '@/components/sections/interactive-cards-gr
 import { Plan, PricingMultiTier } from '@/components/sections/pricing-multi-tier'
 import { Stat, StatsWithGraph } from '@/components/sections/stats-with-graph'
 import { Testimonial, TestimonialThreeColumnGrid } from '@/components/sections/testimonials-three-column-grid'
-import { Sparkles } from 'lucide-react'
-import { Code2 } from 'lucide-react'
-import { Search } from 'lucide-react'
-import { Target } from 'lucide-react'
+import { Code2, Search, Sparkles, Target } from 'lucide-react'
 import Image from 'next/image'
 
 export default function Page() {
@@ -35,7 +32,7 @@ export default function Page() {
         }
         cta={
           <div className="flex items-center gap-4">
-            <ButtonLink href="#" size="lg">
+            <ButtonLink href="/contact" size="lg">
               Get started
             </ButtonLink>
 
@@ -545,7 +542,7 @@ export default function Page() {
                 'Email support',
               ]}
               cta={
-                <SoftButtonLink href="#" size="lg">
+                <SoftButtonLink href="/contact" size="lg">
                   Get started
                 </SoftButtonLink>
               }
@@ -566,7 +563,7 @@ export default function Page() {
                 'Quarterly strategy reviews',
               ]}
               cta={
-                <ButtonLink href="#" size="lg">
+                <ButtonLink href="/contact" size="lg">
                   Get started
                 </ButtonLink>
               }

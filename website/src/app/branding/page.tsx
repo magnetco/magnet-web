@@ -4,7 +4,6 @@ import { Link } from '@/components/elements/link'
 import { Logo, LogoGrid } from '@/components/elements/logo-grid'
 import { Screenshot } from '@/components/elements/screenshot'
 import { ArrowNarrowRightIcon } from '@/components/icons/arrow-narrow-right-icon'
-import { ChevronIcon } from '@/components/icons/chevron-icon'
 import { Approach, ApproachItem, ApproachStage } from '@/components/sections/approach'
 import { CallToActionWithEmail } from '@/components/sections/call-to-action-with-email'
 import { FAQsTwoColumnAccordion, Faq } from '@/components/sections/faqs-two-column-accordion'
@@ -31,7 +30,7 @@ export default function Page() {
         }
         cta={
           <div className="flex items-center gap-4">
-            <ButtonLink href="#" size="lg">
+            <ButtonLink href="/contact" size="lg">
               Get started
             </ButtonLink>
             <PlainButtonLink href="#" size="lg">
@@ -502,7 +501,7 @@ export default function Page() {
               subheadline={<p>Perfect for small businesses getting started</p>}
               features={['Logo design', 'Color palette', 'Typography selection', 'Basic brand guidelines', 'Email support']}
               cta={
-                <SoftButtonLink href="#" size="lg">
+                <SoftButtonLink href="/contact" size="lg">
                   Get started
                 </SoftButtonLink>
               }
@@ -523,7 +522,7 @@ export default function Page() {
                 'Priority support',
               ]}
               cta={
-                <ButtonLink href="#" size="lg">
+                <ButtonLink href="/contact" size="lg">
                   Get started
                 </ButtonLink>
               }
@@ -543,7 +542,7 @@ export default function Page() {
                 'Dedicated account manager',
               ]}
               cta={
-                <SoftButtonLink href="#" size="lg">
+                <SoftButtonLink href="/contact" size="lg">
                   Get started
                 </SoftButtonLink>
               }

@@ -1,0 +1,28 @@
+{
+  "name": "magnet-studio",
+  "private": true,
+  "version": "1.0.0",
+  "main": "package.json",
+  "type": "module",
+  "scripts": {
+    "dev": "sanity dev",
+    "start": "sanity start",
+    "build": "sanity build",
+    "deploy": "sanity deploy",
+    "seed": "tsx seed.ts"
+  },
+  "dependencies": {
+    "@sanity/client": "^6",
+    "@sanity/vision": "^3",
+    "react": "^19",
+    "react-dom": "^19",
+    "sanity": "^3",
+    "styled-components": "^6"
+  },
+  "devDependencies": {
+    "@types/react": "^19",
+    "tsx": "^4",
+    "typescript": "^5"
+  }
+}
+
