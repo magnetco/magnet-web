@@ -2,7 +2,7 @@
 
 Voice, tone, and messaging guidelines for Magnet.
 
-For business context, see [`CONTEXT.md`](CONTEXT.md). For visual design, see [`DESIGN.md`](DESIGN.md).
+For business context, see [`OVERVIEW.md`](OVERVIEW.md). For visual design, see [`DESIGN.md`](DESIGN.md).
 
 ---
 

@@ -2,7 +2,7 @@
 
 Visual design principles and system for Magnet.
 
-For voice and tone, see [`BRAND.md`](BRAND.md). For coding patterns, see [`AGENTS.md`](../AGENTS.md).
+For voice and tone, see [`BRAND.md`](BRAND.md). For coding patterns, see [`README.md`](../README.md).
 
 ---
 

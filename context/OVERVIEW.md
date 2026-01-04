@@ -1,6 +1,6 @@
-# CONTEXT.md
+# OVERVIEW.md
 
-Business context and domain background for the Magnet website.
+Business context and domain background for the Magnet website. Start here.
 
 For strategic positioning, see [`STRATEGY.md`](STRATEGY.md). For how we talk about it, see [`BRAND.md`](BRAND.md).
 
