@@ -6,6 +6,7 @@ import Image from 'next/image'
 import { useEffect, useRef, type ComponentProps, type ReactNode } from 'react'
 import { Container } from '../elements/container'
 import { Eyebrow } from '../elements/eyebrow'
+import { GridBgSection } from '../elements/grid-bg'
 import { Subheading } from '../elements/subheading'
 import { Text } from '../elements/text'
 
@@ -81,27 +82,6 @@ const testimonials: TestimonialData[] = [
     company: "Craft",
     image: "/img/avatars/15-size-160.webp",
   },
-  {
-    quote: "Before Magnet, our marketing felt scattered. Now every piece works together like a well-oiled machine. Our CAC dropped 62% in the first quarter.",
-    name: "Alex Rivera",
-    role: "Head of Growth",
-    company: "Beacon",
-    image: "/img/avatars/11-size-160.webp",
-  },
-  {
-    quote: "Magnet reimagined our entire customer journey. The result? A 340% increase in qualified demo requests and a sales team that actually has time to sell.",
-    name: "Michael Torres",
-    role: "CRO",
-    company: "Pulse",
-    image: "/img/avatars/12-size-160.webp",
-  },
-  {
-    quote: "Their approach to content strategy transformed how we think about thought leadership. We went from unknown to industry authority in under a year.",
-    name: "Emily Zhang",
-    role: "Marketing Lead",
-    company: "Clarity",
-    image: "/img/avatars/14-size-160.webp",
-  },
 ]
 
 function TestimonialCard({
@@ -117,42 +97,34 @@ function TestimonialCard({
     <div
       ref={onRef}
       className={clsx(
-        'group relative flex flex-col justify-between gap-8 overflow-hidden rounded-2xl p-6 sm:p-8',
-        'bg-gradient-to-br from-oxblood/[0.03] via-transparent to-ember/[0.02]',
-        'border border-oxblood/[0.06] dark:border-white/[0.08]',
-        'dark:from-white/[0.03] dark:to-ember/[0.02]',
-        'transition-all duration-500 ease-out',
-        'hover:border-ember/20 hover:shadow-[0_8px_40px_-12px_rgba(249,67,43,0.15)]',
-        'dark:hover:border-ember/30 dark:hover:shadow-[0_8px_40px_-12px_rgba(249,67,43,0.25)]',
+        'group relative flex flex-col justify-between gap-6 overflow-hidden rounded-xl p-6 sm:p-8',
+        'bg-white/60 dark:bg-juniper/40',
+        'border border-oxblood/5 dark:border-white/5',
+        'transition-all duration-300 ease-out',
+        'hover:bg-white hover:shadow-lg hover:shadow-oxblood/5',
+        'dark:hover:bg-juniper/60 dark:hover:shadow-ember/5',
         className,
       )}
     >
-      {/* Animated gradient orb */}
-      <div className="pointer-events-none absolute -right-20 -top-20 h-40 w-40 rounded-full bg-gradient-to-br from-ember/10 to-transparent opacity-0 blur-3xl transition-opacity duration-700 group-hover:opacity-100" />
-      
       {/* Quote */}
-      <blockquote className="relative text-sm/7 text-oxblood/90 dark:text-opal/90 sm:text-base/7">
-        <span className="absolute -left-1 -top-2 font-serif text-4xl text-ember/30">"</span>
-        <p className="pl-4">{testimonial.quote}</p>
+      <blockquote className="text-base/7 text-oxblood/80 dark:text-opal/80">
+        {testimonial.quote}
       </blockquote>
 
       {/* Author */}
       <div className="flex items-center gap-4">
-        <div className="relative">
-          <div className="absolute -inset-0.5 rounded-full bg-gradient-to-br from-ember/50 to-ember/20 opacity-0 blur transition-opacity duration-300 group-hover:opacity-100" />
-          <div className="relative size-12 overflow-hidden rounded-full ring-2 ring-oxblood/10 ring-offset-2 ring-offset-snow dark:ring-white/10 dark:ring-offset-juniper">
-            <Image
-              src={testimonial.image}
-              alt={testimonial.name}
-              fill
-              className="object-cover"
-            />
-          </div>
+        <div className="relative size-11 overflow-hidden rounded-full ring-1 ring-oxblood/10 dark:ring-white/10">
+          <Image
+            src={testimonial.image}
+            alt={testimonial.name}
+            fill
+            className="object-cover"
+          />
         </div>
         <div>
           <p className="font-semibold text-oxblood dark:text-white">{testimonial.name}</p>
-          <p className="text-sm text-oxblood/60 dark:text-opal/60">
-            {testimonial.role} at <span className="text-ember">{testimonial.company}</span>
+          <p className="text-sm text-oxblood/50 dark:text-opal/50">
+            {testimonial.role}, <span className="text-ember">{testimonial.company}</span>
           </p>
         </div>
       </div>
@@ -173,8 +145,8 @@ export function TestimonialsAnimatedGrid({
 } & ComponentProps<'section'>) {
   const gridRef = useRef<HTMLDivElement>(null)
   const cardsRef = useRef<(HTMLDivElement | null)[]>([])
-  const currentIndicesRef = useRef<number[]>([0, 1, 2, 3, 4, 5, 6, 7, 8])
-  const isAnimatingRef = useRef<boolean[]>(Array(9).fill(false))
+  const currentIndicesRef = useRef<number[]>([0, 1, 2])
+  const isAnimatingRef = useRef<boolean[]>(Array(3).fill(false))
 
   // Get a random testimonial index that's not currently displayed
   const getRandomTestimonialIndex = (excludeIndices: number[]): number => {
@@ -190,22 +162,19 @@ export function TestimonialsAnimatedGrid({
     const cards = cardsRef.current.filter(Boolean) as HTMLDivElement[]
     
     // Initial animation - staggered fade in
-    gsap.set(cards, { opacity: 0, y: 30 })
+    gsap.set(cards, { opacity: 0, y: 20 })
     gsap.to(cards, {
       opacity: 1,
       y: 0,
-      duration: 0.8,
-      stagger: {
-        each: 0.1,
-        from: 'random',
-      },
-      ease: 'power3.out',
+      duration: 0.6,
+      stagger: 0.15,
+      ease: 'power2.out',
     })
 
     // Continuous random swap animation
     const swapCard = () => {
       // Pick a random card position to swap
-      const cardIndex = Math.floor(Math.random() * 9)
+      const cardIndex = Math.floor(Math.random() * 3)
       
       // Skip if this card is already animating
       if (isAnimatingRef.current[cardIndex]) {
@@ -224,13 +193,12 @@ export function TestimonialsAnimatedGrid({
       // Animate out
       gsap.to(card, {
         opacity: 0,
-        scale: 0.95,
-        filter: 'blur(4px)',
-        duration: 0.5,
+        y: -10,
+        duration: 0.4,
         ease: 'power2.in',
         onComplete: () => {
           // Update content
-          const quoteEl = card.querySelector('blockquote p')
+          const quoteEl = card.querySelector('blockquote')
           const nameEl = card.querySelector('p.font-semibold')
           const roleEl = card.querySelector('p.text-sm')
           const imgEl = card.querySelector('img')
@@ -238,7 +206,7 @@ export function TestimonialsAnimatedGrid({
           if (quoteEl) quoteEl.textContent = newTestimonial.quote
           if (nameEl) nameEl.textContent = newTestimonial.name
           if (roleEl) {
-            roleEl.innerHTML = `${newTestimonial.role} at <span class="text-ember">${newTestimonial.company}</span>`
+            roleEl.innerHTML = `${newTestimonial.role}, <span class="text-ember">${newTestimonial.company}</span>`
           }
           if (imgEl) imgEl.src = newTestimonial.image
 
@@ -246,16 +214,18 @@ export function TestimonialsAnimatedGrid({
           currentIndicesRef.current[cardIndex] = newTestimonialIndex
 
           // Animate in
-          gsap.to(card, {
-            opacity: 1,
-            scale: 1,
-            filter: 'blur(0px)',
-            duration: 0.6,
-            ease: 'power2.out',
-            onComplete: () => {
-              isAnimatingRef.current[cardIndex] = false
-            },
-          })
+          gsap.fromTo(card, 
+            { opacity: 0, y: 10 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.5,
+              ease: 'power2.out',
+              onComplete: () => {
+                isAnimatingRef.current[cardIndex] = false
+              },
+            }
+          )
         },
       })
     }
@@ -264,7 +234,7 @@ export function TestimonialsAnimatedGrid({
     const intervals: NodeJS.Timeout[] = []
     
     const scheduleSwap = () => {
-      const delay = 2500 + Math.random() * 3500 // 2.5-6 seconds
+      const delay = 3000 + Math.random() * 4000 // 3-7 seconds
       const timeout = setTimeout(() => {
         swapCard()
         scheduleSwap()
@@ -272,10 +242,8 @@ export function TestimonialsAnimatedGrid({
       intervals.push(timeout)
     }
 
-    // Start multiple swap timers for more organic feel
-    setTimeout(() => scheduleSwap(), 3000)
-    setTimeout(() => scheduleSwap(), 4500)
-    setTimeout(() => scheduleSwap(), 6000)
+    // Start swap timer after initial load
+    setTimeout(() => scheduleSwap(), 4000)
 
     return () => {
       intervals.forEach(clearTimeout)
@@ -287,64 +255,33 @@ export function TestimonialsAnimatedGrid({
     headline && typeof headline === 'string' ? <Subheading>{headline}</Subheading> : headline
 
   return (
-    <section className={clsx('relative overflow-hidden', className)} {...props}>
-      {/* Background decorations */}
-      <div className="absolute inset-0 -z-10">
-        {/* Gradient mesh */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(249,67,43,0.08),transparent)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_50%_80%_at_100%_50%,rgba(186,217,220,0.1),transparent)]" />
-        
-        {/* Subtle grid pattern */}
-        <div 
-          className="absolute inset-0 opacity-[0.015]"
-          style={{
-            backgroundImage: `
-              linear-gradient(to right, currentColor 1px, transparent 1px),
-              linear-gradient(to bottom, currentColor 1px, transparent 1px)
-            `,
-            backgroundSize: '60px 60px',
-          }}
-        />
-      </div>
+    <section className={className} {...props}>
+      <GridBgSection showBottomBorder withPadding>
+        <Container className="flex flex-col gap-12 sm:gap-16">
+          {/* Header - Left aligned */}
+          <div className="flex max-w-xl flex-col gap-4">
+            {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
+            {headlineElement}
+            {subheadline && <Text className="text-pretty">{subheadline}</Text>}
+          </div>
 
-      <Container className="py-24 sm:py-32 lg:py-40">
-        {/* Header */}
-        <div className="mx-auto mb-16 max-w-2xl text-center sm:mb-20 lg:mb-24">
-          {eyebrow && (
-            <Eyebrow className="mb-4 inline-flex items-center gap-2">
-              <span className="inline-block h-px w-8 bg-ember" />
-              {eyebrow}
-              <span className="inline-block h-px w-8 bg-ember" />
-            </Eyebrow>
-          )}
-          {headlineElement}
-          {subheadline && <Text className="mt-6 text-pretty">{subheadline}</Text>}
-        </div>
-
-        {/* Testimonials Grid - 3x3 */}
-        <div
-          ref={gridRef}
-          className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 lg:gap-8"
-        >
-          {[0, 1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
-            <TestimonialCard
-              key={i}
-              testimonial={testimonials[i]}
-              onRef={(el) => {
-                cardsRef.current[i] = el
-              }}
-            />
-          ))}
-        </div>
-
-        {/* Bottom decorative element */}
-        <div className="mx-auto mt-16 flex items-center justify-center gap-3 sm:mt-20">
-          <div className="h-px w-12 bg-gradient-to-r from-transparent to-ember/30" />
-          <div className="size-1.5 rounded-full bg-ember/40" />
-          <div className="h-px w-12 bg-gradient-to-l from-transparent to-ember/30" />
-        </div>
-      </Container>
+          {/* Testimonials - Single row of 3 */}
+          <div
+            ref={gridRef}
+            className="grid grid-cols-1 gap-6 md:grid-cols-3"
+          >
+            {[0, 1, 2].map((i) => (
+              <TestimonialCard
+                key={i}
+                testimonial={testimonials[i]}
+                onRef={(el) => {
+                  cardsRef.current[i] = el
+                }}
+              />
+            ))}
+          </div>
+        </Container>
+      </GridBgSection>
     </section>
   )
 }
-

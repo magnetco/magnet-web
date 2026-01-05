@@ -471,6 +471,7 @@ export default function Page() {
       {/* Features */}
       <FeaturesBentoGrid
         id="features"
+        withGridBg
         headline="Everything you need to accelerate conversion."
         subheadline={
           <p>

@@ -3,6 +3,7 @@ import { ChatWidget } from '@/components/elements/chat-widget'
 import { FooterLogo } from '@/components/elements/footer-logo'
 import { Main } from '@/components/elements/main'
 import { ScrollableLogo } from '@/components/elements/scrollable-logo'
+import { ScrollDotTracker } from '@/components/elements/scroll-dot-tracker'
 import { Search } from '@/components/elements/search'
 import { LinkedInIcon } from '@/components/icons/social/linkedin-icon'
 import {
@@ -78,6 +79,7 @@ export default function RootLayout({
       </head>
       <body>
         <>
+          <ScrollDotTracker />
           <NavbarWithLinksActionsAndCenteredLogo
             id="navbar"
             withGridBg

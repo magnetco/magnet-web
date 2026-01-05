@@ -51,6 +51,7 @@ export function GridBgSection({
 const stripeColors = {
   oxblood: 'rgba(34, 0, 2, 0.04)',
   coral: 'rgba(237, 176, 161, 0.10)',
+  white: 'rgba(255, 255, 255, 0.08)',
 } as const
 
 /**
@@ -125,6 +126,7 @@ export function GridBgStripes({
 const borderColors = {
   oxblood: 'bg-oxblood/10',
   coral: 'bg-coral/10',
+  white: 'bg-white/15',
 } as const
 
 export function GridBgBorderLine({

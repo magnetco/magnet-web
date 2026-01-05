@@ -11,7 +11,7 @@ import { ChevronIcon } from '../icons/chevron-icon'
 import type { JobListing as JobListingType } from '@/lib/sanity/types'
 
 export function JobListing({ job, href }: { job: JobListingType; href: string }) {
-  const locationNames = job.locations.map((loc) => loc.title).join(' / ')
+  const locationNames = job.locations?.map((loc) => loc.title).join(' / ') || ''
   
   return (
     <Link
@@ -23,13 +23,17 @@ export function JobListing({ job, href }: { job: JobListingType; href: string })
           <h3 className="text-lg/7 font-semibold text-oxblood group-hover:text-ember dark:text-coral">
             {job.title}
           </h3>
-          <span className="rounded-full bg-oxblood/10 px-3 py-0.5 text-xs/6 text-oxblood dark:bg-white/10 dark:text-coral">
-            {job.jobType.title}
-          </span>
+          {job.jobType && (
+            <span className="rounded-full bg-oxblood/10 px-3 py-0.5 text-xs/6 text-oxblood dark:bg-white/10 dark:text-coral">
+              {job.jobType.title}
+            </span>
+          )}
         </div>
-        <div className="flex flex-wrap items-center gap-4 text-sm/6 text-oxblood/70 dark:text-coral/70">
-          <span>{locationNames}</span>
-        </div>
+        {locationNames && (
+          <div className="flex flex-wrap items-center gap-4 text-sm/6 text-oxblood/70 dark:text-coral/70">
+            <span>{locationNames}</span>
+          </div>
+        )}
       </div>
       <ChevronIcon className="h-5 w-5 rotate-[-90deg] text-oxblood/40 transition-transform group-hover:translate-x-1 dark:text-coral/40" />
     </Link>
@@ -130,14 +134,14 @@ export function CareersListing({
 
   // Filter jobs
   const filteredJobs = jobs.filter((job) => {
-    if (selectedDepartment !== 'All' && job.department.title !== selectedDepartment) return false
-    if (selectedLocation !== 'Anywhere' && !job.locations.some((loc) => loc.title.includes(selectedLocation))) return false
+    if (selectedDepartment !== 'All' && job.department?.title !== selectedDepartment) return false
+    if (selectedLocation !== 'Anywhere' && !job.locations?.some((loc) => loc.title.includes(selectedLocation))) return false
     return true
   })
 
   // Group jobs by department
   const jobsByDepartment = filteredJobs.reduce((acc, job) => {
-    const deptTitle = job.department.title
+    const deptTitle = job.department?.title || 'Uncategorized'
     if (!acc[deptTitle]) {
       acc[deptTitle] = []
     }

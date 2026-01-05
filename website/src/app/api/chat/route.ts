@@ -1,5 +1,5 @@
 import { createGroq } from '@ai-sdk/groq'
-import { streamText } from 'ai'
+import { convertToModelMessages, streamText } from 'ai'
 
 const groq = createGroq({
   apiKey: process.env.GROQ_API_KEY,
@@ -167,30 +167,10 @@ When someone seems like a good fit, encourage them to book a strategy call using
 
 Remember: You speak to intelligent, experienced marketers. Do not over-explain basics. Do not hype trends. If a response could be written by any chatbot, rewrite it.`
 
-// Convert UI messages (with parts array) to model messages (with content string)
-function convertToModelMessages(messages: Array<{ role: string; content?: string; parts?: Array<{ type: string; text: string }> }>) {
-  return messages.map((msg) => {
-    // If already has content as string, use it
-    if (typeof msg.content === 'string') {
-      return { role: msg.role, content: msg.content }
-    }
-    // If has parts array, extract text
-    if (msg.parts && Array.isArray(msg.parts)) {
-      const textContent = msg.parts
-        .filter((p) => p.type === 'text')
-        .map((p) => p.text)
-        .join('')
-      return { role: msg.role, content: textContent }
-    }
-    // Fallback
-    return { role: msg.role, content: '' }
-  })
-}
-
 export async function POST(req: Request) {
   const { messages } = await req.json()
 
-  const modelMessages = convertToModelMessages(messages)
+  const modelMessages = await convertToModelMessages(messages)
 
   const result = await streamText({
     model: groq('llama-3.3-70b-versatile'),

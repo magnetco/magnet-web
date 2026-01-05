@@ -105,7 +105,7 @@ export function PricingSearch({
               key={option.name}
               className={clsx(
                 'flex flex-col rounded-2xl p-6',
-                option.popular
+                'popular' in option && option.popular
                   ? 'bg-oxblood/[0.03] ring-2 ring-ember/50 dark:bg-white/5 dark:ring-ember/30'
                   : 'bg-oxblood/[0.02] ring-1 ring-oxblood/10 dark:bg-white/5 dark:ring-white/10'
               )}
@@ -116,7 +116,7 @@ export function PricingSearch({
                   <div className="inline-flex rounded-full bg-ember/10 px-2.5 py-0.5 text-xs font-medium text-ember">
                     Activation
                   </div>
-                  {option.popular && (
+                  {'popular' in option && option.popular && (
                     <div className="inline-flex rounded-full bg-ember px-2.5 py-0.5 text-xs font-medium text-white">
                       Popular
                     </div>
@@ -149,7 +149,7 @@ export function PricingSearch({
 
                 {/* CTA */}
                 <div className="mt-5">
-                  {option.popular ? (
+                  {'popular' in option && option.popular ? (
                     <ButtonLink href={`/contact?service=search-marketing&option=${option.id}`} size="sm" className="w-full justify-center">
                       Get started
                     </ButtonLink>

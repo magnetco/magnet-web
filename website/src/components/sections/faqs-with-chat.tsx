@@ -288,11 +288,9 @@ function InlineChat() {
   const inputRef = useRef<HTMLInputElement>(null)
   const hasUserInteracted = useRef(false)
 
-  const { messages, sendMessage, status, setMessages } = useChat({
-    api: '/api/chat',
-  })
+  const { messages, sendMessage, status, setMessages } = useChat()
 
-  const isLoading = status === 'streaming' || status === 'loading'
+  const isLoading = status === 'submitted'
 
   // Load conversation from localStorage on mount
   useEffect(() => {
@@ -312,8 +310,7 @@ function InlineChat() {
       {
         id: 'welcome',
         role: 'assistant',
-        content: getWelcomeMessage(pathname),
-        createdAt: new Date(),
+        parts: [{ type: 'text', text: getWelcomeMessage(pathname) }],
       },
     ])
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
@@ -367,8 +364,7 @@ function InlineChat() {
       {
         id: 'welcome-' + Date.now(),
         role: 'assistant',
-        content: getWelcomeMessage(pathname),
-        createdAt: new Date(),
+        parts: [{ type: 'text', text: getWelcomeMessage(pathname) }],
       },
     ])
   }, [pathname, setMessages])

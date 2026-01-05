@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import { client } from '@/lib/sanity/client'
 import { jobsForApplyQuery } from '@/lib/sanity/queries'
 import { ApplyForm } from './apply-form'
@@ -16,5 +17,9 @@ export type ApplyJob = {
 export default async function ApplyPage() {
   const jobs = await client.fetch<ApplyJob[]>(jobsForApplyQuery)
 
-  return <ApplyForm jobs={jobs} />
+  return (
+    <Suspense fallback={null}>
+      <ApplyForm jobs={jobs} />
+    </Suspense>
+  )
 }

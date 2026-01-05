@@ -22,24 +22,24 @@ export async function POST(request: Request) {
     // Find or create company if provided
     let companyId: number | null = null
     if (company) {
-      const existingCompany = await sql`
+      const existingCompany = (await sql`
         SELECT id FROM companies WHERE LOWER(name) = LOWER(${company}) LIMIT 1
-      `
+      `) as { id: number }[]
       if (existingCompany.length > 0) {
         companyId = existingCompany[0].id
       } else {
-        const newCompany = await sql`
+        const newCompany = (await sql`
           INSERT INTO companies (name) VALUES (${company}) RETURNING id
-        `
+        `) as { id: number }[]
         companyId = newCompany[0].id
       }
     }
 
     // Find or create person
     let personId: number | null = null
-    const existingPerson = await sql`
+    const existingPerson = (await sql`
       SELECT id FROM people WHERE LOWER(email) = LOWER(${email}) LIMIT 1
-    `
+    `) as { id: number }[]
     if (existingPerson.length > 0) {
       personId = existingPerson[0].id
       // Update company_id if we have a new one
@@ -47,11 +47,11 @@ export async function POST(request: Request) {
         await sql`UPDATE people SET company_id = ${companyId} WHERE id = ${personId}`
       }
     } else {
-      const newPerson = await sql`
+      const newPerson = (await sql`
         INSERT INTO people (name, email, company_id) 
         VALUES (${name}, ${email}, ${companyId}) 
         RETURNING id
-      `
+      `) as { id: number }[]
       personId = newPerson[0].id
     }
 

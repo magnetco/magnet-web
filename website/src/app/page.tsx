@@ -528,6 +528,7 @@ export default async function Page() {
       {/* Services */}
       <FeaturesBentoGrid
         id="services"
+        withGridBg
         eyebrow="Our Services"
         headline="Full-service marketing support built around your growth."
         subheadline={
@@ -743,7 +744,6 @@ export default async function Page() {
       {/* Call To Action */}
       <CallToActionWithEmail
         id="call-to-action"
-        withGridBg
         headline="Ready to build marketing that drives real growth?"
         subheadline={
           <p>

@@ -6,6 +6,7 @@ import { clsx } from 'clsx/lite'
 import Image from 'next/image'
 import type { ComponentProps, ReactNode } from 'react'
 import { Container } from '../elements/container'
+import { GridBgStripes, GridBgBorderLine } from '../elements/grid-bg'
 import { Button } from '../elements/button'
 import { Input } from '../elements/input'
 import { AlertTriangleIcon } from '../icons/alert-triangle-icon'
@@ -95,20 +96,14 @@ export function CallToActionWithEmail({
       className={clsx('relative overflow-hidden bg-ember py-20 lg:py-28', className)} 
       {...props}
     >
-      {/* Grid pattern background */}
-      <div 
-        className="pointer-events-none absolute inset-0 opacity-[0.08]"
-        style={{
-          backgroundImage: `
-            linear-gradient(to right, rgba(255,255,255,0.5) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(255,255,255,0.5) 1px, transparent 1px)
-          `,
-          backgroundSize: '48px 48px',
-        }}
-      />
+      {/* Grid background stripes in margins */}
+      <GridBgStripes color="white" />
       
-      {/* Gradient overlay for depth */}
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-black/5 via-transparent to-black/10" />
+      {/* Border lines */}
+      <GridBgBorderLine position="left" color="white" />
+      <GridBgBorderLine position="right" color="white" />
+      <GridBgBorderLine position="top" color="white" />
+      <GridBgBorderLine position="bottom" color="white" />
       
       <Container className="relative">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">

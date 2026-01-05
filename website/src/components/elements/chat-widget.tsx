@@ -394,11 +394,9 @@ export function ChatWidget() {
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
 
-  const { messages, sendMessage, status, setMessages } = useChat({
-    api: '/api/chat',
-  })
+  const { messages, sendMessage, status, setMessages } = useChat()
 
-  const isLoading = status === 'streaming' || status === 'loading'
+  const isLoading = status === 'submitted'
 
   // Load conversation from localStorage on mount
   useEffect(() => {
@@ -420,8 +418,7 @@ export function ChatWidget() {
       {
         id: 'welcome',
         role: 'assistant',
-        content: getWelcomeMessage(pathname),
-        createdAt: new Date(),
+        parts: [{ type: 'text', text: getWelcomeMessage(pathname) }],
       },
     ])
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
@@ -458,8 +455,7 @@ export function ChatWidget() {
           {
             id: 'proactive-' + Date.now(),
             role: 'assistant',
-            content: proactiveMessage,
-            createdAt: new Date(),
+            parts: [{ type: 'text', text: proactiveMessage }],
           },
         ])
       }
@@ -530,8 +526,7 @@ export function ChatWidget() {
       {
         id: 'welcome-' + Date.now(),
         role: 'assistant',
-        content: getWelcomeMessage(pathname),
-        createdAt: new Date(),
+        parts: [{ type: 'text', text: getWelcomeMessage(pathname) }],
       },
     ])
     setShowEmailCapture(false)

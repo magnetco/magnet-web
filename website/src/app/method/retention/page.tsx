@@ -470,6 +470,7 @@ export default function Page() {
       {/* Features */}
       <FeaturesBentoGrid
         id="features"
+        withGridBg
         headline="Everything you need to retain and grow customer value."
         subheadline={
           <p>

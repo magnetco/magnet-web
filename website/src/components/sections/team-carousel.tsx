@@ -32,11 +32,11 @@ export type TeamCarouselMember = {
 }
 
 // Card dimensions - fixed height for smooth horizontal-only expansion
-const CARD_WIDTH = 260
-const CARD_HEIGHT = 420
-const CARD_GAP = 20
-const EXPANDED_WIDTH = 640
-const IMAGE_WIDTH_EXPANDED = 240
+const CARD_WIDTH = 240
+const CARD_HEIGHT = 380
+const CARD_GAP = 16
+const EXPANDED_WIDTH = 560
+const IMAGE_WIDTH_EXPANDED = 200
 
 function TeamCarouselCard({
   member,
@@ -132,10 +132,10 @@ function TeamCarouselCard({
     <div
       ref={cardRef}
       className={clsx(
-        'group relative flex-shrink-0 cursor-pointer overflow-hidden rounded-xl transition-shadow duration-300',
+        'group relative flex-shrink-0 cursor-pointer overflow-hidden rounded-lg transition-all duration-300',
         isExpanded
-          ? 'z-20 bg-white shadow-2xl shadow-oxblood/15 ring-1 ring-oxblood/10'
-          : 'bg-white shadow-md shadow-oxblood/5 hover:shadow-lg hover:shadow-oxblood/10'
+          ? 'z-20 bg-white shadow-[0_20px_50px_-12px_rgba(34,0,2,0.25)]'
+          : 'bg-white shadow-sm hover:shadow-md'
       )}
       style={{ width: CARD_WIDTH, height: CARD_HEIGHT }}
       onClick={(e) => {
@@ -143,41 +143,59 @@ function TeamCarouselCard({
         if (!isExpanded) onExpand()
       }}
     >
-      {/* Ember accent bar - elegant highlight when expanded */}
-      <div 
-        className={clsx(
-          'absolute left-0 top-0 bottom-0 w-1 bg-ember transition-opacity duration-300',
-          isExpanded ? 'opacity-100' : 'opacity-0'
-        )} 
-      />
-      
       <div className="flex h-full flex-row">
-        {/* Image container - fixed size */}
+        {/* Image container */}
         <div
-          className={clsx(
-            'relative flex-shrink-0 overflow-hidden transition-all duration-500',
-            isExpanded ? 'w-[240px]' : 'w-full'
-          )}
-          style={{ height: CARD_HEIGHT }}
+          className="relative flex-shrink-0 overflow-hidden transition-all duration-500"
+          style={{ 
+            height: CARD_HEIGHT,
+            width: isExpanded ? IMAGE_WIDTH_EXPANDED : CARD_WIDTH
+          }}
         >
           <Image
             src={member.image?.asset?.url || '/img/placeholder.webp'}
             alt={member.name}
             fill
-            className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+            className={clsx(
+              'object-cover transition-all duration-500',
+              isExpanded ? 'scale-100' : 'group-hover:scale-[1.03]'
+            )}
+          />
+          
+          {/* Subtle overlay when expanded */}
+          <div 
+            className={clsx(
+              'absolute inset-0 bg-gradient-to-r from-transparent to-white/10 transition-opacity duration-300',
+              isExpanded ? 'opacity-100' : 'opacity-0'
+            )}
           />
           
           {/* Name/role overlay when collapsed */}
           <div 
             className={clsx(
-              'absolute inset-x-0 bottom-0 bg-gradient-to-t from-oxblood/80 via-oxblood/40 to-transparent p-5 pt-16 transition-opacity duration-300',
-              isExpanded ? 'opacity-0' : 'opacity-100'
+              'absolute inset-x-0 bottom-0 bg-gradient-to-t from-oxblood/90 via-oxblood/50 to-transparent p-4 pt-20 transition-opacity duration-300',
+              isExpanded ? 'opacity-0 pointer-events-none' : 'opacity-100'
             )}
           >
-            <p className="text-lg font-semibold text-white">
+            <p className="text-base font-semibold text-white leading-tight">
               {member.name}
             </p>
-            <p className="mt-0.5 text-sm text-white/70">{member.role}</p>
+            <p className="mt-1 text-xs text-white/60">{member.role}</p>
+          </div>
+          
+          {/* Click hint on hover when collapsed */}
+          <div 
+            className={clsx(
+              'absolute inset-0 flex items-center justify-center bg-oxblood/0 transition-all duration-300',
+              isExpanded ? 'opacity-0' : 'group-hover:bg-oxblood/20'
+            )}
+          >
+            <span className={clsx(
+              'rounded-full bg-white/90 px-3 py-1.5 text-xs font-medium text-oxblood opacity-0 shadow-lg transition-all duration-300',
+              !isExpanded && 'group-hover:opacity-100'
+            )}>
+              View bio
+            </span>
           </div>
         </div>
 
@@ -185,44 +203,44 @@ function TeamCarouselCard({
         <div
           ref={contentRef}
           className={clsx(
-            'flex flex-col overflow-hidden',
+            'relative flex flex-col overflow-hidden border-l border-opal/50',
             isExpanded ? 'opacity-100' : 'opacity-0 pointer-events-none'
           )}
           style={{ width: EXPANDED_WIDTH - IMAGE_WIDTH_EXPANDED }}
         >
-          <div className="flex h-full flex-col p-5">
-            {/* Header with close button */}
-            <div className="mb-3 flex items-start justify-between">
-              <div>
-                <p className="text-[11px] font-semibold tracking-wider text-ember uppercase">
-                  {member.role}
-                </p>
-                <h3 className="mt-1 text-xl font-bold tracking-tight text-oxblood">
-                  {member.name}
-                </h3>
+          {/* Close button - top right corner */}
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation()
+              onCollapse()
+            }}
+            className="absolute top-3 right-3 z-10 flex size-6 items-center justify-center rounded-full bg-opal/60 text-basalt/50 transition-all hover:bg-ember hover:text-white"
+            aria-label="Close"
+          >
+            <CloseIcon className="size-3" />
+          </button>
+          
+          <div className="flex h-full flex-col p-5 pr-4">
+            {/* Header */}
+            <div className="mb-4 pr-6">
+              <div className="flex items-center gap-2 mb-1.5">
+                <div className="h-px flex-1 bg-gradient-to-r from-ember/40 to-transparent" />
               </div>
-              <button
-                type="button"
-                onClick={(e) => {
-                  e.stopPropagation()
-                  onCollapse()
-                }}
-                className="flex size-7 items-center justify-center rounded-full text-basalt/40 transition-colors hover:bg-opal hover:text-oxblood"
-                aria-label="Close"
-              >
-                <CloseIcon className="size-3.5" />
-              </button>
+              <h3 className="text-lg font-bold tracking-tight text-oxblood leading-snug">
+                {member.name}
+              </h3>
+              <p className="mt-0.5 text-[11px] font-medium tracking-wide text-ember/80 uppercase">
+                {member.role}
+              </p>
             </div>
-            
-            {/* Divider */}
-            <div className="mb-4 h-px w-10 bg-ember/30" />
 
             {/* Bio */}
             <div
               ref={bioRef}
-              className="flex-1 overflow-y-auto pr-1 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-opal"
+              className="flex-1 overflow-y-auto pr-2 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-opal/60"
             >
-              <div className="space-y-2.5 text-[13px]/[1.65] text-basalt/70">
+              <div className="space-y-3 text-[13px]/[1.7] text-basalt/65 [&>p:first-child]:text-basalt/80 [&>p:first-child]:font-medium">
                 {member.bio ? (
                   <PortableText value={member.bio} />
                 ) : (
@@ -231,15 +249,15 @@ function TeamCarouselCard({
               </div>
             </div>
             
-            {/* Footer link */}
-            <div className="mt-4 pt-3 border-t border-opal">
+            {/* Footer */}
+            <div className="mt-4 pt-3 flex items-center justify-between border-t border-opal/40">
               <Link 
                 href={`/team/${member.slug?.current || ''}`}
-                className="inline-flex items-center gap-1.5 text-xs font-medium"
+                className="group/link inline-flex items-center gap-1 text-[11px] font-semibold tracking-wide text-oxblood uppercase transition-colors hover:text-ember"
                 onClick={(e) => e.stopPropagation()}
               >
                 Full profile
-                <ArrowNarrowRightIcon className="size-3" />
+                <ArrowNarrowRightIcon className="size-3 transition-transform group-hover/link:translate-x-0.5" />
               </Link>
             </div>
           </div>

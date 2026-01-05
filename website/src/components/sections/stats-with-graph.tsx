@@ -63,8 +63,8 @@ function AnimatedNumber({
 }) {
   const [displayValue, setDisplayValue] = useState(value)
   const previousValue = useRef(value)
-  const animationRef = useRef<number>()
-  const startTimeRef = useRef<number>()
+  const animationRef = useRef<number | undefined>(undefined)
+  const startTimeRef = useRef<number | undefined>(undefined)
 
   const animate = useCallback((timestamp: number) => {
     if (!startTimeRef.current) {

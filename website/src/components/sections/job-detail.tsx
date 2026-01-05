@@ -63,30 +63,36 @@ export function JobDetail({
                 </div>
 
                 {/* Job Type */}
-                <div className="space-y-2">
-                  <Eyebrow>Type</Eyebrow>
-                  <span className="inline-block rounded-full bg-ember/10 px-2.5 py-0.5 font-mono text-xs font-bold uppercase tracking-[0.03em] text-ember">
-                    {job.jobType.title}
-                  </span>
-                </div>
+                {job.jobType && (
+                  <div className="space-y-2">
+                    <Eyebrow>Type</Eyebrow>
+                    <span className="inline-block rounded-full bg-ember/10 px-2.5 py-0.5 font-mono text-xs font-bold uppercase tracking-[0.03em] text-ember">
+                      {job.jobType.title}
+                    </span>
+                  </div>
+                )}
 
                 {/* Location */}
-                <div className="space-y-2">
-                  <Eyebrow>Location</Eyebrow>
-                  <div className="flex flex-col gap-1">
-                    {job.locations.map((location) => (
-                      <span key={location._id} className="font-mono text-sm text-oxblood dark:text-coral">
-                        {location.title}
-                      </span>
-                    ))}
+                {job.locations && job.locations.length > 0 && (
+                  <div className="space-y-2">
+                    <Eyebrow>Location</Eyebrow>
+                    <div className="flex flex-col gap-1">
+                      {job.locations.map((location) => (
+                        <span key={location._id} className="font-mono text-sm text-oxblood dark:text-coral">
+                          {location.title}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                </div>
+                )}
 
                 {/* Department */}
-                <div className="space-y-2">
-                  <Eyebrow>Department</Eyebrow>
-                  <span className="font-mono text-sm text-oxblood dark:text-coral">{job.department.title}</span>
-                </div>
+                {job.department && (
+                  <div className="space-y-2">
+                    <Eyebrow>Department</Eyebrow>
+                    <span className="font-mono text-sm text-oxblood dark:text-coral">{job.department.title}</span>
+                  </div>
+                )}
               </div>
             </aside>
 
@@ -94,15 +100,23 @@ export function JobDetail({
           <article className="max-w-[38rem]">
             <header className="mb-16 lg:mb-20">
               {/* Mobile-only meta info */}
-              <div className="mb-8 flex flex-wrap items-center gap-3 lg:hidden">
-                <span className="inline-block rounded-full bg-ember/10 px-2.5 py-0.5 font-mono text-xs font-bold uppercase tracking-[0.03em] text-ember">
-                  {job.jobType.title}
-                </span>
-                <span className="text-opal dark:text-basalt">•</span>
-                <span className="font-mono text-xs font-bold uppercase tracking-[0.03em] text-ember">
-                  {job.locations.map(l => l.title).join(', ')}
-                </span>
-              </div>
+              {(job.jobType || (job.locations && job.locations.length > 0)) && (
+                <div className="mb-8 flex flex-wrap items-center gap-3 lg:hidden">
+                  {job.jobType && (
+                    <span className="inline-block rounded-full bg-ember/10 px-2.5 py-0.5 font-mono text-xs font-bold uppercase tracking-[0.03em] text-ember">
+                      {job.jobType.title}
+                    </span>
+                  )}
+                  {job.jobType && job.locations && job.locations.length > 0 && (
+                    <span className="text-opal dark:text-basalt">•</span>
+                  )}
+                  {job.locations && job.locations.length > 0 && (
+                    <span className="font-mono text-xs font-bold uppercase tracking-[0.03em] text-ember">
+                      {job.locations.map(l => l.title).join(', ')}
+                    </span>
+                  )}
+                </div>
+              )}
 
               <h1 className="font-display text-[2.5rem]/[1.15] font-medium tracking-[-0.02em] text-oxblood sm:text-5xl/[1.15] lg:text-[3.25rem]/[1.1] dark:text-frost">
                 {job.title}
