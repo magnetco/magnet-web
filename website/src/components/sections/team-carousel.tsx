@@ -9,9 +9,13 @@ import { PortableText } from 'next-sanity'
 import type { PortableTextBlock } from 'next-sanity'
 import { Container } from '../elements/container'
 import { Eyebrow } from '../elements/eyebrow'
+import { GridBgFrame, sectionPaddingClasses } from '../elements/grid-bg'
 import { Subheading } from '../elements/subheading'
 import { Text } from '../elements/text'
+import { PlainButtonLink } from '../elements/button'
+import { Link } from '../elements/link'
 import { CloseIcon } from '../icons/close-icon'
+import { ArrowNarrowRightIcon } from '../icons/arrow-narrow-right-icon'
 
 export type TeamCarouselMember = {
   _id: string
@@ -27,10 +31,12 @@ export type TeamCarouselMember = {
   bio?: PortableTextBlock[]
 }
 
-// Card width constants
-const CARD_WIDTH = 280
-const CARD_GAP = 24
+// Card dimensions - fixed height for smooth horizontal-only expansion
+const CARD_WIDTH = 260
+const CARD_HEIGHT = 420
+const CARD_GAP = 20
 const EXPANDED_WIDTH = 640
+const IMAGE_WIDTH_EXPANDED = 240
 
 function TeamCarouselCard({
   member,
@@ -57,36 +63,49 @@ function TeamCarouselCard({
     return () => document.removeEventListener('keydown', handleEscape)
   }, [isExpanded, onCollapse])
 
-  // Animate expansion/collapse
+  // Animate expansion/collapse - horizontal only
   useEffect(() => {
     const card = cardRef.current
     const content = contentRef.current
     const bio = bioRef.current
-    if (!card || !content) return
+    if (!card) return
 
     if (isExpanded) {
-      // Expand animation
+      gsap.killTweensOf([card, content])
+      
+      // Smooth horizontal expansion
       gsap.to(card, {
         width: EXPANDED_WIDTH,
         duration: 0.5,
         ease: 'power3.out',
       })
-      gsap.to(content, {
-        opacity: 1,
-        duration: 0.3,
-        delay: 0.2,
-        ease: 'power2.out',
-      })
-      if (bio) {
+      
+      // Content fades in
+      if (content) {
         gsap.fromTo(
-          bio.children,
+          content,
           { opacity: 0, x: 20 },
           {
             opacity: 1,
             x: 0,
             duration: 0.4,
-            stagger: 0.08,
-            delay: 0.3,
+            delay: 0.15,
+            ease: 'power2.out',
+          }
+        )
+      }
+      
+      // Bio content stagger
+      if (bio) {
+        gsap.fromTo(
+          bio.children,
+          { opacity: 0, y: 10 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.3,
+            stagger: 0.05,
+            delay: 0.25,
             ease: 'power2.out',
           }
         )
@@ -98,11 +117,14 @@ function TeamCarouselCard({
         duration: 0.4,
         ease: 'power3.inOut',
       })
-      gsap.to(content, {
-        opacity: 0,
-        duration: 0.2,
-        ease: 'power2.in',
-      })
+      if (content) {
+        gsap.to(content, {
+          opacity: 0,
+          x: 10,
+          duration: 0.2,
+          ease: 'power2.in',
+        })
+      }
     }
   }, [isExpanded])
 
@@ -110,91 +132,118 @@ function TeamCarouselCard({
     <div
       ref={cardRef}
       className={clsx(
-        'group relative flex-shrink-0 cursor-pointer overflow-hidden rounded-lg transition-shadow duration-300',
+        'group relative flex-shrink-0 cursor-pointer overflow-hidden rounded-xl transition-shadow duration-300',
         isExpanded
-          ? 'z-20 bg-basalt/80 shadow-2xl ring-1 ring-white/10'
-          : 'hover:shadow-xl'
+          ? 'z-20 bg-white shadow-2xl shadow-oxblood/15 ring-1 ring-oxblood/10'
+          : 'bg-white shadow-md shadow-oxblood/5 hover:shadow-lg hover:shadow-oxblood/10'
       )}
-      style={{ width: CARD_WIDTH }}
+      style={{ width: CARD_WIDTH, height: CARD_HEIGHT }}
       onClick={(e) => {
         e.stopPropagation()
         if (!isExpanded) onExpand()
       }}
     >
-      <div className={clsx('flex h-full', isExpanded ? 'flex-row' : 'flex-col')}>
-        {/* Image container */}
+      {/* Ember accent bar - elegant highlight when expanded */}
+      <div 
+        className={clsx(
+          'absolute left-0 top-0 bottom-0 w-1 bg-ember transition-opacity duration-300',
+          isExpanded ? 'opacity-100' : 'opacity-0'
+        )} 
+      />
+      
+      <div className="flex h-full flex-row">
+        {/* Image container - fixed size */}
         <div
           className={clsx(
-            'relative overflow-hidden',
-            isExpanded
-              ? 'h-[360px] w-[240px] flex-shrink-0'
-              : 'aspect-[3/4] w-full'
+            'relative flex-shrink-0 overflow-hidden transition-all duration-500',
+            isExpanded ? 'w-[240px]' : 'w-full'
           )}
+          style={{ height: CARD_HEIGHT }}
         >
           <Image
             src={member.image?.asset?.url || '/img/placeholder.webp'}
             alt={member.name}
             fill
-            className={clsx(
-              'object-cover transition-transform duration-500',
-              !isExpanded && 'group-hover:scale-105'
-            )}
+            className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
           />
-          {/* Gradient overlay on hover (collapsed state) */}
-          {!isExpanded && (
-            <div className="absolute inset-0 bg-gradient-to-t from-juniper/90 via-juniper/20 to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-80" />
-          )}
-        </div>
-
-        {/* Info overlay (collapsed state) */}
-        {!isExpanded && (
-          <div className="absolute inset-x-0 bottom-0 p-5">
-            <p className="text-lg font-semibold text-frost transition-colors duration-200 group-hover:text-ember">
+          
+          {/* Name/role overlay when collapsed */}
+          <div 
+            className={clsx(
+              'absolute inset-x-0 bottom-0 bg-gradient-to-t from-oxblood/80 via-oxblood/40 to-transparent p-5 pt-16 transition-opacity duration-300',
+              isExpanded ? 'opacity-0' : 'opacity-100'
+            )}
+          >
+            <p className="text-lg font-semibold text-white">
               {member.name}
             </p>
-            <p className="mt-1 text-sm text-frost/70">{member.role}</p>
+            <p className="mt-0.5 text-sm text-white/70">{member.role}</p>
           </div>
-        )}
+        </div>
 
-        {/* Expanded content */}
-        {isExpanded && (
-          <div
-            ref={contentRef}
-            className="flex flex-1 flex-col p-6 opacity-0"
-            style={{ width: EXPANDED_WIDTH - 240 }}
-          >
-            {/* Close button */}
-            <button
-              type="button"
-              onClick={(e) => {
-                e.stopPropagation()
-                onCollapse()
-              }}
-              className="absolute top-3 right-3 z-10 rounded-full p-2 text-frost/60 transition-colors hover:bg-white/10 hover:text-frost"
-              aria-label="Close"
-            >
-              <CloseIcon className="size-5" />
-            </button>
-
-            {/* Name and role */}
-            <div className="mb-4">
-              <h3 className="text-xl font-semibold text-ember">{member.name}</h3>
-              <p className="mt-1 text-sm text-frost/70">{member.role}</p>
+        {/* Expanded content panel */}
+        <div
+          ref={contentRef}
+          className={clsx(
+            'flex flex-col overflow-hidden',
+            isExpanded ? 'opacity-100' : 'opacity-0 pointer-events-none'
+          )}
+          style={{ width: EXPANDED_WIDTH - IMAGE_WIDTH_EXPANDED }}
+        >
+          <div className="flex h-full flex-col p-5">
+            {/* Header with close button */}
+            <div className="mb-3 flex items-start justify-between">
+              <div>
+                <p className="text-[11px] font-semibold tracking-wider text-ember uppercase">
+                  {member.role}
+                </p>
+                <h3 className="mt-1 text-xl font-bold tracking-tight text-oxblood">
+                  {member.name}
+                </h3>
+              </div>
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation()
+                  onCollapse()
+                }}
+                className="flex size-7 items-center justify-center rounded-full text-basalt/40 transition-colors hover:bg-opal hover:text-oxblood"
+                aria-label="Close"
+              >
+                <CloseIcon className="size-3.5" />
+              </button>
             </div>
+            
+            {/* Divider */}
+            <div className="mb-4 h-px w-10 bg-ember/30" />
 
             {/* Bio */}
             <div
               ref={bioRef}
-              className="flex-1 space-y-3 overflow-y-auto text-sm/6 text-frost/90 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-white/20"
+              className="flex-1 overflow-y-auto pr-1 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-opal"
             >
-              {member.bio ? (
-                <PortableText value={member.bio} />
-              ) : (
-                <p className="text-frost/60 italic">No bio available.</p>
-              )}
+              <div className="space-y-2.5 text-[13px]/[1.65] text-basalt/70">
+                {member.bio ? (
+                  <PortableText value={member.bio} />
+                ) : (
+                  <p className="text-basalt/40 italic">No bio available.</p>
+                )}
+              </div>
+            </div>
+            
+            {/* Footer link */}
+            <div className="mt-4 pt-3 border-t border-opal">
+              <Link 
+                href={`/team/${member.slug?.current || ''}`}
+                className="inline-flex items-center gap-1.5 text-xs font-medium"
+                onClick={(e) => e.stopPropagation()}
+              >
+                Full profile
+                <ArrowNarrowRightIcon className="size-3" />
+              </Link>
             </div>
           </div>
-        )}
+        </div>
       </div>
     </div>
   )
@@ -225,10 +274,10 @@ function TeamCarousel({
     // Set initial position
     gsap.set(track, { x: 0 })
 
-    // Create infinite scroll animation
+    // Create infinite scroll animation - slower pace (8 seconds per card)
     animationRef.current = gsap.to(track, {
       x: -singleSetWidth,
-      duration: members.length * 4, // 4 seconds per card
+      duration: members.length * 8,
       ease: 'none',
       repeat: -1,
       modifiers: {
@@ -279,13 +328,13 @@ function TeamCarousel({
   return (
     <div
       ref={containerRef}
-      className="relative overflow-hidden py-4"
+      className="relative overflow-hidden py-8"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
       {/* Gradient masks for smooth fade at edges */}
-      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-juniper to-transparent" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-juniper to-transparent" />
+      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-32 bg-gradient-to-r from-snow to-transparent" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-32 bg-gradient-to-l from-snow to-transparent" />
 
       {/* Carousel track */}
       <div
@@ -313,6 +362,8 @@ export function TeamCarouselSection({
   headline,
   subheadline,
   members,
+  ctaHref = '/team',
+  ctaLabel = 'Meet the full team',
   className,
   ...props
 }: {
@@ -320,6 +371,8 @@ export function TeamCarouselSection({
   headline?: ReactNode
   subheadline?: ReactNode
   members: TeamCarouselMember[]
+  ctaHref?: string
+  ctaLabel?: string
 } & ComponentProps<'section'>) {
   // Don't render section if no team members
   if (!members || members.length === 0) {
@@ -327,25 +380,31 @@ export function TeamCarouselSection({
   }
 
   return (
-    <section className={clsx('bg-juniper py-20', className)} {...props}>
-      {/* Header */}
-      <Container className="mb-12">
-        <div className="flex max-w-2xl flex-col gap-6">
-          <div className="flex flex-col gap-2">
-            {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
-            {headline && (
-              <Subheading className="text-frost">{headline}</Subheading>
+    <GridBgFrame showBottomBorder showSideBorders={false}>
+      <section className={clsx(sectionPaddingClasses, 'overflow-hidden', className)} {...props}>
+        {/* Header - matching standard Section structure */}
+        <Container className="mb-10 sm:mb-16">
+          <div className="flex max-w-2xl flex-col gap-6">
+            <div className="flex flex-col gap-2">
+              {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
+              {headline && <Subheading>{headline}</Subheading>}
+            </div>
+            {subheadline && <Text className="text-pretty">{subheadline}</Text>}
+            {ctaHref && (
+              <div className="mt-2">
+                <PlainButtonLink href={ctaHref}>
+                  {ctaLabel}
+                  <ArrowNarrowRightIcon className="size-4" />
+                </PlainButtonLink>
+              </div>
             )}
           </div>
-          {subheadline && (
-            <Text className="text-frost/80">{subheadline}</Text>
-          )}
-        </div>
-      </Container>
+        </Container>
 
-      {/* Full-width carousel */}
-      <TeamCarousel members={members} />
-    </section>
+        {/* Full-width carousel */}
+        <TeamCarousel members={members} />
+      </section>
+    </GridBgFrame>
   )
 }
 

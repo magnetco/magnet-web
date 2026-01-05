@@ -4,19 +4,17 @@ import { Link } from '@/components/elements/link'
 import { Screenshot } from '@/components/elements/screenshot'
 import { TabbedLogoGallery, type GalleryItem } from '@/components/elements/tabbed-logo-gallery'
 import { ArrowNarrowRightIcon } from '@/components/icons/arrow-narrow-right-icon'
-import { ChevronIcon } from '@/components/icons/chevron-icon'
 import { CallToActionWithEmail } from '@/components/sections/call-to-action-with-email'
 import { FAQsWithChat, Faq } from '@/components/sections/faqs-with-chat'
+import { FeaturesBentoGrid } from '@/components/sections/features-bento-grid'
 import { Feature, FeaturesTwoColumnWithDemos } from '@/components/sections/features-two-column-with-demos'
 import { HeroLeftAlignedWithDemo } from '@/components/sections/hero-left-aligned-with-demo'
-import { InteractiveCardsGrid } from '@/components/sections/interactive-cards-grid'
 import { PricingCompact } from '@/components/sections/pricing-compact'
 import { Stat, StatsWithGraph } from '@/components/sections/stats-with-graph'
 import { TeamCarouselSection, type TeamCarouselMember } from '@/components/sections/team-carousel'
-import { Testimonial, TestimonialThreeColumnGrid } from '@/components/sections/testimonials-three-column-grid'
+import { TestimonialsAnimatedGrid } from '@/components/sections/testimonials-animated-grid'
 import { client } from '@/lib/sanity/client'
 import { teamMembersQuery } from '@/lib/sanity/queries'
-import { Code2, Search, Sparkles, Target } from 'lucide-react'
 import Image from 'next/image'
 
 const galleryItems: GalleryItem[] = [
@@ -527,44 +525,137 @@ export default async function Page() {
           </>
         }
       />
-      {/* Interactive Cards */}
-      <InteractiveCardsGrid
+      {/* Services */}
+      <FeaturesBentoGrid
         id="services"
-        withGridBg
-        eyebrow="Solutions"
-        headline="Access customized, full-service support for every investment vehicle"
-        cards={[
+        eyebrow="Our Services"
+        headline="Full-service marketing support built around your growth."
+        subheadline={
+          <p>
+            From strategic retainers to specialized projects, we offer flexible engagement models that scale with your
+            business needs.
+          </p>
+        }
+        features={[
           {
-            title: 'Branding',
-            icon: <Sparkles className="size-12" strokeWidth={1} />,
-            description: (
-              <p>Clarify your story and stand out in the market with advanced strategic precision.</p>
+            title: 'Retainer Partnership',
+            description:
+              'Ongoing strategic partnership with dedicated team access, monthly strategy sessions, and priority support. The most effective way to build sustainable marketing momentum.',
+            href: '/pricing',
+            demo: (
+              <Screenshot wallpaper="purple" placement="bottom-right" className="h-full">
+                <Image
+                  src="/img/screenshots/1-left-1800-top-1250.webp"
+                  alt="Retainer partnership dashboard"
+                  className="bg-white/75 dark:hidden"
+                  width={1800}
+                  height={1250}
+                />
+                <Image
+                  src="/img/screenshots/1-color-olive-left-1800-top-1250.webp"
+                  alt="Retainer partnership dashboard"
+                  width={1800}
+                  height={1250}
+                  className="bg-black/75 not-dark:hidden"
+                />
+              </Screenshot>
             ),
-            href: '/branding',
           },
           {
             title: 'Websites',
-            icon: <Code2 className="size-12" strokeWidth={1} />,
-            description: (
-              <p>Design frictionless digital journeys that consistently convert higher-quality buyers.</p>
-            ),
+            description:
+              'High-converting websites built on modern foundations. From marketing sites to complex platforms.',
             href: '/websites',
+            demo: (
+              <Screenshot wallpaper="blue" placement="top-left" className="h-full">
+                <Image
+                  src="/img/screenshots/1-right-1300-top-1300.webp"
+                  alt="Website development"
+                  className="bg-white/75 dark:hidden"
+                  width={1300}
+                  height={1300}
+                />
+                <Image
+                  src="/img/screenshots/1-color-olive-right-1300-top-1300.webp"
+                  alt="Website development"
+                  width={1300}
+                  height={1300}
+                  className="bg-black/75 not-dark:hidden"
+                />
+              </Screenshot>
+            ),
+          },
+          {
+            title: 'Branding',
+            description:
+              'Strategic brand positioning that clarifies your story and differentiates you in the market.',
+            href: '/branding',
+            demo: (
+              <Screenshot wallpaper="brown" placement="bottom-left" className="h-full">
+                <Image
+                  src="/img/screenshots/1-left-1300-top-1300.webp"
+                  alt="Brand strategy"
+                  className="bg-white/75 dark:hidden"
+                  width={1300}
+                  height={1300}
+                />
+                <Image
+                  src="/img/screenshots/1-color-olive-left-1300-top-1300.webp"
+                  alt="Brand strategy"
+                  width={1300}
+                  height={1300}
+                  className="bg-black/75 not-dark:hidden"
+                />
+              </Screenshot>
+            ),
+          },
+          {
+            title: 'Paid Media',
+            description:
+              'Data-driven advertising campaigns across Google, Meta, and LinkedIn that drive qualified demand.',
+            href: '/ads',
+            demo: (
+              <Screenshot wallpaper="green" placement="bottom-right" className="h-full">
+                <Image
+                  src="/img/screenshots/1-right-1300-top-1300.webp"
+                  alt="Paid media campaigns"
+                  className="bg-white/75 dark:hidden"
+                  width={1300}
+                  height={1300}
+                />
+                <Image
+                  src="/img/screenshots/1-color-olive-right-1300-top-1300.webp"
+                  alt="Paid media campaigns"
+                  width={1300}
+                  height={1300}
+                  className="bg-black/75 not-dark:hidden"
+                />
+              </Screenshot>
+            ),
           },
           {
             title: 'Search Marketing',
-            icon: <Search className="size-12" strokeWidth={1} />,
-            description: (
-              <p>Build fast, scalable search systems that reliably power sustainable long-term growth.</p>
-            ),
+            description:
+              'SEO and content strategies that build long-term organic visibility and sustainable traffic growth.',
             href: '/search',
-          },
-          {
-            title: 'Paid Ads',
-            icon: <Target className="size-12" strokeWidth={1} />,
-            description: (
-              <p>Increase qualified demand through highly targeted, high-intent acquisition campaigns.</p>
+            demo: (
+              <Screenshot wallpaper="purple" placement="top-right" className="h-full">
+                <Image
+                  src="/img/screenshots/1-left-1300-top-1300.webp"
+                  alt="Search marketing"
+                  className="bg-white/75 dark:hidden"
+                  width={1300}
+                  height={1300}
+                />
+                <Image
+                  src="/img/screenshots/1-color-olive-left-1300-top-1300.webp"
+                  alt="Search marketing"
+                  width={1300}
+                  height={1300}
+                  className="bg-black/75 not-dark:hidden"
+                />
+              </Screenshot>
             ),
-            href: '/ads',
           },
         ]}
       />
@@ -585,128 +676,13 @@ export default async function Page() {
         <Stat stat="$500M+" text="In revenue generated for clients through our marketing programs." />
         <Stat stat="3.2x" text="Average ROI increase for brands working with Magnet." />
       </StatsWithGraph>
-      {/* Testimonial */}
-      <TestimonialThreeColumnGrid
-        id="testimonial"
-        withGridBg
+      {/* Testimonials */}
+      <TestimonialsAnimatedGrid
+        id="testimonials"
+        eyebrow="Kind Words"
         headline="What our customers are saying"
-        subheadline={<p>We've given these customers a significant discount in exchange for their honest reviews.</p>}
-      >
-        <Testimonial
-          quote={
-            <p>
-              Magnet completely transformed our brand positioning and website. Our conversion rate increased by 240% in
-              the first quarter, and we're finally standing out in a crowded market.
-            </p>
-          }
-          img={
-            <Image
-              src="/img/avatars/10-size-160.webp"
-              alt=""
-              className="not-dark:bg-white/75 dark:bg-black/75"
-              width={160}
-              height={160}
-            />
-          }
-          name="Jordan Rogers"
-          byline="Founder at Anomaly"
-        />
-        <Testimonial
-          quote={
-            <p>
-              Their search marketing strategy tripled our organic traffic in six months. Magnet understands how to build
-              sustainable growth, not just quick wins.
-            </p>
-          }
-          img={
-            <Image
-              src="/img/avatars/15-size-160.webp"
-              alt=""
-              className="not-dark:bg-white/75 dark:bg-black/75"
-              width={160}
-              height={160}
-            />
-          }
-          name="Lynn Marshall"
-          byline="Founder at Pine Labs"
-        />
-        <Testimonial
-          quote={
-            <p>
-              Working with Magnet freed up our team to focus on product development. Their paid ads campaigns are
-              driving qualified leads at a fraction of our previous cost per acquisition.
-            </p>
-          }
-          img={
-            <Image
-              src="/img/avatars/13-size-160.webp"
-              alt=""
-              className="not-dark:bg-white/75 dark:bg-black/75"
-              width={160}
-              height={160}
-            />
-          }
-          name="Rajat Singh"
-          byline="Head of Marketing at Concise"
-        />
-        <Testimonial
-          quote={
-            <p>
-              Magnet's branding work gave us clarity we didn't know we needed. Our messaging is now consistent across
-              every touchpoint, and it shows in our customer engagement metrics.
-            </p>
-          }
-          img={
-            <Image
-              src="/img/avatars/12-size-160.webp"
-              alt=""
-              className="not-dark:bg-white/75 dark:bg-black/75"
-              width={160}
-              height={160}
-            />
-          }
-          name="John Walters"
-          byline="CPO at Orbital"
-        />
-        <Testimonial
-          quote={
-            <p>
-              As a solo founder, Magnet made it possible to compete with much larger companies. Their website and
-              marketing systems give us the credibility and reach we needed to scale.
-            </p>
-          }
-          img={
-            <Image
-              src="/img/avatars/11-size-160.webp"
-              alt=""
-              className="not-dark:bg-white/75 dark:bg-black/75"
-              width={160}
-              height={160}
-            />
-          }
-          name="Noah Gold"
-          byline="CEO at Looply"
-        />
-        <Testimonial
-          quote={
-            <p>
-              We've doubled our marketing ROI since partnering with Magnet. Their data-driven approach and strategic
-              thinking have transformed how we think about growth.
-            </p>
-          }
-          img={
-            <Image
-              src="/img/avatars/14-size-160.webp"
-              alt=""
-              className="not-dark:bg-white/75 dark:bg-black/75"
-              width={160}
-              height={160}
-            />
-          }
-          name="Mark Levinson"
-          byline="CMO at Quirk"
-        />
-      </TestimonialThreeColumnGrid>
+        subheadline={<p>Real feedback from real partners. See how we've helped brands transform their marketing and achieve measurable growth.</p>}
+      />
       {/* Team */}
       <TeamCarouselSection
         id="team"

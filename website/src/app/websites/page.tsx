@@ -5,10 +5,7 @@ import { TabbedLogoGallery, type GalleryItem } from '@/components/elements/tabbe
 import { ArrowNarrowRightIcon } from '@/components/icons/arrow-narrow-right-icon'
 import { ServiceProcess } from '@/components/sections/service-process'
 import { CallToActionWithEmail } from '@/components/sections/call-to-action-with-email'
-import {
-  Feature,
-  FeaturesStackedAlternatingWithDemos,
-} from '@/components/sections/features-stacked-alternating-with-demos'
+import { FeaturesBentoGrid } from '@/components/sections/features-bento-grid'
 import { HeroCenteredWithDemo } from '@/components/sections/hero-centered-with-demo'
 import { Stat, StatsWithGraph } from '@/components/sections/stats-with-graph'
 import { TestimonialTwoColumnWithLargePhoto } from '@/components/sections/testimonial-two-column-with-large-photo'
@@ -473,242 +470,89 @@ export default function Page() {
       />
 
       {/* Features */}
-      <FeaturesStackedAlternatingWithDemos
+      <FeaturesBentoGrid
         id="features"
-        headline="Everything you need to build a stunning website.
-          "
+        headline="Everything you need to build a stunning website."
         subheadline={
           <p>
             Our templates come with everything you need to launch fast. Responsive design, SEO optimization, and
             conversion-focused layouts built right in.
           </p>
         }
-        features={
-          <>
-            <Feature
-              headline="Responsive Design"
-              subheadline={
-                <p>
-                  Every template is fully responsive and looks perfect on desktop, tablet, and mobile devices. No
-                  additional work required.
-                </p>
-              }
-              cta={
-                <ButtonLink href="#">
-                  Learn more
-                </ButtonLink>
-              }
-              demo={
-                <Screenshot wallpaper="blue" placement="bottom-right">
-                  <Image
-                    src="/img/screenshots/1-left-1000-top-800.webp"
-                    alt=""
-                    className="bg-white/75 sm:hidden dark:hidden"
-                    width={1000}
-                    height={800}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1000-top-800.webp"
-                    alt=""
-                    width={1000}
-                    height={800}
-                    className="bg-black/75 not-dark:hidden sm:hidden"
-                  />
-                  <Image
-                    src="/img/screenshots/1-left-1800-top-660.webp"
-                    alt=""
-                    className="bg-white/75 max-sm:hidden lg:hidden dark:hidden"
-                    width={1800}
-                    height={660}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1800-top-660.webp"
-                    alt=""
-                    width={1800}
-                    height={660}
-                    className="bg-black/75 not-dark:hidden max-sm:hidden lg:hidden"
-                  />
-                  <Image
-                    src="/img/screenshots/1-left-1300-top-1300.webp"
-                    alt=""
-                    className="bg-white/75 max-lg:hidden xl:hidden dark:hidden"
-                    width={1300}
-                    height={1300}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1300-top-1300.webp"
-                    alt=""
-                    width={1300}
-                    height={1300}
-                    className="bg-black/75 not-dark:hidden max-lg:hidden xl:hidden"
-                  />
-                  <Image
-                    src="/img/screenshots/1-left-1800-top-1250.webp"
-                    alt=""
-                    className="bg-white/75 max-xl:hidden dark:hidden"
-                    width={1800}
-                    height={1250}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1800-top-1250.webp"
-                    alt=""
-                    width={1800}
-                    height={1250}
-                    className="bg-black/75 not-dark:hidden max-xl:hidden"
-                  />
-                </Screenshot>
-              }
-            />
-            <Feature
-              headline="SEO Optimized"
-              subheadline={
-                <p>
-                  Built with SEO best practices in mind. Clean code, fast loading times, and semantic HTML help your site
-                  rank higher in search results.
-                </p>
-              }
-              cta={
-                <ButtonLink href="#">
-                  Learn more
-                </ButtonLink>
-              }
-              demo={
-                <Screenshot wallpaper="purple" placement="top-left">
-                  <Image
-                    src="/img/screenshots/1-right-1000-top-800.webp"
-                    alt=""
-                    className="bg-white/75 sm:hidden dark:hidden"
-                    width={1000}
-                    height={800}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-right-1000-top-800.webp"
-                    alt=""
-                    width={1000}
-                    height={800}
-                    className="bg-black/75 not-dark:hidden sm:hidden"
-                  />
-                  <Image
-                    src="/img/screenshots/1-right-1800-top-660.webp"
-                    alt=""
-                    className="bg-white/75 max-sm:hidden lg:hidden dark:hidden"
-                    width={1800}
-                    height={660}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-right-1800-top-660.webp"
-                    alt=""
-                    width={1800}
-                    height={660}
-                    className="bg-black/75 not-dark:hidden max-sm:hidden lg:hidden"
-                  />
-                  <Image
-                    src="/img/screenshots/1-right-1300-top-1300.webp"
-                    alt=""
-                    className="bg-white/75 max-lg:hidden xl:hidden dark:hidden"
-                    width={1300}
-                    height={1300}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-right-1300-top-1300.webp"
-                    alt=""
-                    width={1300}
-                    height={1300}
-                    className="bg-black/75 not-dark:hidden max-lg:hidden xl:hidden"
-                  />
-                  <Image
-                    src="/img/screenshots/1-right-1800-top-1250.webp"
-                    alt=""
-                    className="bg-white/75 max-xl:hidden dark:hidden"
-                    width={1800}
-                    height={1250}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-right-1800-top-1250.webp"
-                    alt=""
-                    width={1800}
-                    height={1250}
-                    className="bg-black/75 not-dark:hidden max-xl:hidden"
-                  />
-                </Screenshot>
-              }
-            />
-            <Feature
-              headline="Conversion Focused"
-              subheadline={
-                <p>
-                  Every element is designed to convert visitors into customers. Tested layouts, clear CTAs, and
-                  conversion-optimized forms.
-                </p>
-              }
-              cta={
-                <ButtonLink href="#">
-                  Learn more
-                </ButtonLink>
-              }
-              demo={
-                <Screenshot wallpaper="brown" placement="bottom-left">
-                  <Image
-                    src="/img/screenshots/1-left-1000-top-800.webp"
-                    alt=""
-                    className="bg-white/75 sm:hidden dark:hidden"
-                    width={1000}
-                    height={800}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1000-top-800.webp"
-                    alt=""
-                    width={1000}
-                    height={800}
-                    className="bg-black/75 not-dark:hidden sm:hidden"
-                  />
-                  <Image
-                    src="/img/screenshots/1-left-1800-top-660.webp"
-                    alt=""
-                    className="bg-white/75 max-sm:hidden lg:hidden dark:hidden"
-                    width={1800}
-                    height={660}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1800-top-660.webp"
-                    alt=""
-                    width={1800}
-                    height={660}
-                    className="bg-black/75 not-dark:hidden max-sm:hidden lg:hidden"
-                  />
-                  <Image
-                    src="/img/screenshots/1-left-1300-top-1300.webp"
-                    alt=""
-                    className="bg-white/75 max-lg:hidden xl:hidden dark:hidden"
-                    width={1300}
-                    height={1300}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1300-top-1300.webp"
-                    alt=""
-                    width={1300}
-                    height={1300}
-                    className="bg-black/75 not-dark:hidden max-lg:hidden xl:hidden"
-                  />
-                  <Image
-                    src="/img/screenshots/1-left-1800-top-1250.webp"
-                    alt=""
-                    className="bg-white/75 max-xl:hidden dark:hidden"
-                    width={1800}
-                    height={1250}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1800-top-1250.webp"
-                    alt=""
-                    width={1800}
-                    height={1250}
-                    className="bg-black/75 not-dark:hidden max-xl:hidden"
-                  />
-                </Screenshot>
-              }
-            />
-          </>
-        }
+        features={[
+          {
+            title: 'Responsive Design',
+            description:
+              'Every template is fully responsive and looks perfect on desktop, tablet, and mobile devices. No additional work required.',
+            href: '#',
+            demo: (
+              <Screenshot wallpaper="blue" placement="bottom-right" className="h-full">
+                <Image
+                  src="/img/screenshots/1-left-1800-top-1250.webp"
+                  alt="Responsive design"
+                  className="bg-white/75 dark:hidden"
+                  width={1800}
+                  height={1250}
+                />
+                <Image
+                  src="/img/screenshots/1-color-olive-left-1800-top-1250.webp"
+                  alt="Responsive design"
+                  width={1800}
+                  height={1250}
+                  className="bg-black/75 not-dark:hidden"
+                />
+              </Screenshot>
+            ),
+          },
+          {
+            title: 'SEO Optimized',
+            description:
+              'Built with SEO best practices in mind. Clean code, fast loading times, and semantic HTML help your site rank higher.',
+            href: '#',
+            demo: (
+              <Screenshot wallpaper="purple" placement="top-left" className="h-full">
+                <Image
+                  src="/img/screenshots/1-right-1300-top-1300.webp"
+                  alt="SEO optimization"
+                  className="bg-white/75 dark:hidden"
+                  width={1300}
+                  height={1300}
+                />
+                <Image
+                  src="/img/screenshots/1-color-olive-right-1300-top-1300.webp"
+                  alt="SEO optimization"
+                  width={1300}
+                  height={1300}
+                  className="bg-black/75 not-dark:hidden"
+                />
+              </Screenshot>
+            ),
+          },
+          {
+            title: 'Conversion Focused',
+            description:
+              'Every element is designed to convert visitors into customers. Tested layouts, clear CTAs, and optimized forms.',
+            href: '#',
+            demo: (
+              <Screenshot wallpaper="brown" placement="bottom-left" className="h-full">
+                <Image
+                  src="/img/screenshots/1-left-1300-top-1300.webp"
+                  alt="Conversion focused"
+                  className="bg-white/75 dark:hidden"
+                  width={1300}
+                  height={1300}
+                />
+                <Image
+                  src="/img/screenshots/1-color-olive-left-1300-top-1300.webp"
+                  alt="Conversion focused"
+                  width={1300}
+                  height={1300}
+                  className="bg-black/75 not-dark:hidden"
+                />
+              </Screenshot>
+            ),
+          },
+        ]}
       />
 
       {/* Pricing */}
