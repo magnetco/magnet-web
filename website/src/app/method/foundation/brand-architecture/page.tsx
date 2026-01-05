@@ -18,6 +18,7 @@ export default function Page() {
       {/* Hero */}
       <HeroLeftAlignedWithDemo
         id="hero"
+        withGridBg
         eyebrow={
           <span className="flex items-center gap-1.5 text-sm text-oxblood dark:text-coral">
             <Link href="/method">Method</Link>

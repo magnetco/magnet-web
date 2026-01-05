@@ -2,6 +2,7 @@ import { clsx } from 'clsx/lite'
 import Link from 'next/link'
 import type { ComponentProps, ReactNode } from 'react'
 import { Container } from '../elements/container'
+import { GridBgStripes, GridBgBorderLine } from '../elements/grid-bg'
 import { ArrowNarrowRightIcon } from '../icons/arrow-narrow-right-icon'
 
 export function FooterCategory({ title, children, ...props }: { title: ReactNode } & ComponentProps<'div'>) {
@@ -93,9 +94,15 @@ export function FooterWithNewsletterFormCategoriesAndSocialIcons({
   socialLinks?: ReactNode
 } & ComponentProps<'footer'>) {
   return (
-    <footer className={clsx('pt-0', className)} {...props}>
+    <footer className={clsx('relative pt-0', className)} {...props}>
+      {/* Grid BG effect for footer */}
+      <GridBgStripes color="coral" />
+      <GridBgBorderLine position="left" color="coral" />
+      <GridBgBorderLine position="right" color="coral" />
+      <GridBgBorderLine position="top" color="coral" />
+      
       <div
-        className="py-20 text-coral"
+        className="relative py-20 text-coral"
         style={{ backgroundColor: 'var(--color-oxblood)' }}
       >
         <Container className="flex flex-col gap-16">

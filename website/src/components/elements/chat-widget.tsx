@@ -357,10 +357,9 @@ function EmailCapture({
         />
         <button
           type="submit"
-          disabled={isSubmitting}
-          className="rounded-lg bg-ember px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-oxblood disabled:opacity-50"
+          className="rounded-lg bg-ember px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-oxblood"
         >
-          {isSubmitting ? '...' : 'Send'}
+          Send
         </button>
       </form>
     </div>
@@ -483,10 +482,12 @@ export function ChatWidget() {
     }
   }, [isOpen])
 
-  // Auto-scroll to bottom on new messages
+  // Auto-scroll to bottom on new messages (only when chat is open)
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
-  }, [messages, isLoading])
+    if (isOpen) {
+      messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
+    }
+  }, [messages, isLoading, isOpen])
 
   // Focus input when opened
   useEffect(() => {
@@ -550,7 +551,7 @@ export function ChatWidget() {
           setIsOpen(true)
         }}
         className={clsx(
-          'fixed bottom-6 right-6 z-50 flex size-14 items-center justify-center rounded-full bg-oxblood text-white shadow-lg transition-all duration-300 hover:scale-105 hover:bg-ember',
+          'fixed bottom-6 right-6 z-50 flex size-14 items-center justify-center rounded-full border-2 border-white bg-oxblood text-white shadow-lg transition-all duration-300 hover:scale-105 hover:bg-ember',
           isOpen && 'pointer-events-none opacity-0'
         )}
         aria-label="Open chat"

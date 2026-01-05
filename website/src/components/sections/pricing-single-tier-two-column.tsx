@@ -28,7 +28,7 @@ export function PricingSingleTierTwoColumn({
         <div className="grid grid-cols-1 gap-x-2 rounded-xl bg-olive-950/2.5 p-2 lg:grid-cols-2 dark:bg-white/5">
           <div className="flex flex-col items-start justify-between gap-10 p-6 sm:p-10">
             <div className="flex flex-col gap-6">
-              <Subheading>{headline}</Subheading>
+              {typeof headline === 'string' ? <Subheading>{headline}</Subheading> : headline}
               <Text className="flex flex-col gap-4 text-pretty">{subheadline}</Text>
             </div>
             {cta}

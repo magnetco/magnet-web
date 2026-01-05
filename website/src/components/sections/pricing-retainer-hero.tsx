@@ -3,6 +3,7 @@
 import { clsx } from 'clsx/lite'
 import { useState, type ComponentProps, type ReactNode } from 'react'
 import { Container } from '../elements/container'
+import { GridBgSection, sectionPaddingClasses } from '../elements/grid-bg'
 import { Heading } from '../elements/heading'
 import { Text } from '../elements/text'
 import { ButtonLink } from '../elements/button'
@@ -99,6 +100,7 @@ export function PricingRetainerHero({
   features,
   footer,
   className,
+  withGridBg = false,
   ...props
 }: {
   eyebrow?: ReactNode
@@ -108,18 +110,18 @@ export function PricingRetainerHero({
   yearlyPrice: number
   features: string[]
   footer?: ReactNode
+  withGridBg?: boolean
 } & ComponentProps<'section'>) {
   const [isYearly, setIsYearly] = useState(false)
 
   const yearlyTotal = yearlyPrice * 12
   const yearlySavings = (monthlyPrice * 12) - yearlyTotal
 
-  return (
-    <section className={clsx('py-16', className)} {...props}>
-      <Container className="flex flex-col gap-16">
+  const content = (
+    <Container className="flex flex-col gap-16">
         <div className="flex flex-col items-center gap-6 text-center">
           {eyebrow}
-          <Heading>{headline}</Heading>
+          {typeof headline === 'string' ? <Heading>{headline}</Heading> : headline}
           <Text size="lg" className="flex max-w-2xl flex-col gap-4 text-center">
             {subheadline}
           </Text>
@@ -206,6 +208,21 @@ export function PricingRetainerHero({
 
         {footer}
       </Container>
+  )
+
+  if (withGridBg) {
+    return (
+      <section className={className} {...props}>
+        <GridBgSection showBottomBorder={true} withPadding>
+          {content}
+        </GridBgSection>
+      </section>
+    )
+  }
+
+  return (
+    <section className={clsx(sectionPaddingClasses, className)} {...props}>
+      {content}
     </section>
   )
 }

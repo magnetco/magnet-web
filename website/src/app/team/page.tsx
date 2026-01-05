@@ -322,6 +322,7 @@ export default function Page() {
       {/* Hero */}
       <HeroSimpleLeftAligned
         id="hero"
+        withGridBg
         headline="Craftsmanship elevated by a culture of quality"
         subheadline={
           <p>
@@ -335,7 +336,8 @@ export default function Page() {
       <TeamCardGrid
         id="leadership"
         eyebrow="Leadership"
-        headline="The people behind the method"
+        headline="The people behind the method
+          "
         subheadline={
           <p>
             Our leadership team combines strategic vision with deep execution experience. We've spent decades building
@@ -351,7 +353,8 @@ export default function Page() {
       <TeamCardGrid
         id="team"
         eyebrow="The team"
-        headline="Experts across every discipline"
+        headline="Experts across every discipline
+          "
         subheadline={
           <p>
             From brand designers to frontend engineers, our team brings depth across the full spectrum of digital.
@@ -365,7 +368,8 @@ export default function Page() {
       {/* Careers CTA */}
       <CallToActionSimple
         id="careers"
-        headline="Join our growing team"
+        headline="Join our growing team
+          "
         subheadline={
           <p>
             We're a remote-first agency that believes diversity, equity, and inclusion make our work and each

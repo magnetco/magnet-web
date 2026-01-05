@@ -1,10 +1,8 @@
 import { Suspense } from 'react'
 import Image from 'next/image'
-import { Approach, ApproachItem, ApproachStage } from '@/components/sections/approach'
-import { FAQsTwoColumnAccordion, Faq } from '@/components/sections/faqs-two-column-accordion'
+import { FAQsWithChat, Faq } from '@/components/sections/faqs-with-chat'
 import { FeaturesThreeColumn, Feature } from '@/components/sections/features-three-column'
 import { HeroWithContactForm } from '@/components/sections/hero-with-contact-form'
-import { PricingCompact } from '@/components/sections/pricing-compact'
 import { Stat, StatsWithGraph } from '@/components/sections/stats-with-graph'
 import { Testimonial, TestimonialThreeColumnGrid } from '@/components/sections/testimonials-three-column-grid'
 
@@ -15,7 +13,9 @@ export default function Page() {
       <Suspense fallback={<div className="py-16" />}>
         <HeroWithContactForm
           id="hero"
-          headline="Let's build something great together"
+          withGridBg
+          layout="stacked"
+          headline="Get in touch"
           subheadline={
             <p>
               Ready to transform your marketing? Tell us about your goals and we&apos;ll help you build stronger market
@@ -29,7 +29,8 @@ export default function Page() {
       <StatsWithGraph
         id="stats"
         eyebrow="Proven results"
-        headline="Marketing that drives measurable growth"
+        headline="Marketing that drives measurable growth
+          "
         subheadline={
           <p>
             Our data-driven approach delivers real results for brands of all sizes, from startups to enterprise
@@ -46,7 +47,8 @@ export default function Page() {
       <FeaturesThreeColumn
         id="benefits"
         eyebrow="Why work with us"
-        headline="What you get when you partner with Magnet"
+        headline="What you get when you partner with Magnet
+          "
         subheadline={
           <p>
             We combine strategic thinking with proven execution to deliver marketing that compounds over time, not just
@@ -113,75 +115,11 @@ export default function Page() {
         }
       />
 
-      {/* Pricing */}
-      <PricingCompact id="pricing" />
-
-      {/* Process */}
-      <Approach
-        id="process"
-        eyebrow="How it works"
-        headline="Our proven process for driving growth"
-        subheadline={
-          <p>
-            We follow a systematic approach that ensures every project delivers measurable results and sets you up for
-            long-term success.
-          </p>
-        }
-      >
-        <ApproachStage
-          title="Discovery"
-          description="Understanding your business, goals, and market position to create a tailored strategy."
-          items={
-            <>
-              <ApproachItem>Business goals & objectives</ApproachItem>
-              <ApproachItem>Market research & analysis</ApproachItem>
-              <ApproachItem>Competitive landscape review</ApproachItem>
-              <ApproachItem>Target audience insights</ApproachItem>
-            </>
-          }
-        />
-        <ApproachStage
-          title="Strategy"
-          description="Developing a comprehensive marketing strategy aligned with your business goals."
-          items={
-            <>
-              <ApproachItem>Strategic planning & roadmap</ApproachItem>
-              <ApproachItem>KPI definition & tracking</ApproachItem>
-              <ApproachItem>Channel selection & prioritization</ApproachItem>
-              <ApproachItem>Timeline & milestone planning</ApproachItem>
-            </>
-          }
-        />
-        <ApproachStage
-          title="Execution"
-          description="Implementing the strategy with precision and continuous optimization."
-          items={
-            <>
-              <ApproachItem>Campaign implementation</ApproachItem>
-              <ApproachItem>Creative development</ApproachItem>
-              <ApproachItem>Performance monitoring</ApproachItem>
-              <ApproachItem>Ongoing optimization</ApproachItem>
-            </>
-          }
-        />
-        <ApproachStage
-          title="Growth"
-          description="Scaling what works and refining our approach to drive greater results."
-          items={
-            <>
-              <ApproachItem>Performance tracking & reporting</ApproachItem>
-              <ApproachItem>Data-driven insights</ApproachItem>
-              <ApproachItem>Scaling successful campaigns</ApproachItem>
-              <ApproachItem>Continuous improvement</ApproachItem>
-            </>
-          }
-        />
-      </Approach>
-
       {/* Testimonials */}
       <TestimonialThreeColumnGrid
         id="testimonials"
-        headline="What our clients say"
+        headline="What our clients say
+          "
         subheadline={<p>See how we&apos;ve helped brands transform their marketing and drive real results.</p>}
       >
         <Testimonial
@@ -243,8 +181,14 @@ export default function Page() {
         />
       </TestimonialThreeColumnGrid>
 
-      {/* FAQs */}
-      <FAQsTwoColumnAccordion id="faqs" headline="Frequently asked questions">
+      {/* FAQs with Chat */}
+      <FAQsWithChat
+        id="faqs"
+        eyebrow="Got questions?"
+        headline="We have answers
+          "
+        subheadline="Browse common questions below, or chat directly with our AI assistant for instant, personalized answers about our services and methodology."
+      >
         <Faq
           id="faq-1"
           question="How quickly will I hear back after submitting the form?"
@@ -275,7 +219,7 @@ export default function Page() {
           question="What makes your approach different?"
           answer="We focus on building sustainable, data-driven marketing systems rather than chasing trends. Our methodology combines strategic foundation, activation, acceleration, and retention—creating marketing that compounds over time."
         />
-      </FAQsTwoColumnAccordion>
+      </FAQsWithChat>
     </>
   )
 }

@@ -3,6 +3,7 @@ import type { ComponentProps, ReactNode } from 'react'
 import { Container } from '../elements/container'
 import { SoftButtonLink } from '../elements/button'
 import { HoverGradient } from '../elements/use-hover-gradient'
+import { INDIVIDUAL_SERVICES } from '@/lib/pricing-data'
 
 function ServiceCard({
   name,
@@ -49,7 +50,6 @@ function ServiceCard({
           <span className="text-2xl font-medium tracking-tight text-oxblood dark:text-ember">
             {price}
           </span>
-          <span className="text-sm text-basalt/70 dark:text-coral/70">fixed price</span>
         </div>
 
         {/* Description */}
@@ -84,6 +84,26 @@ function ServiceCard({
   )
 }
 
+// Build service cards from the centralized data
+const services = INDIVIDUAL_SERVICES.map((service) => {
+  // Get first sub-option features for display
+  const firstOption = service.subOptions[0]
+  return {
+    name: service.label,
+    price: service.price,
+    description: service.id === 'branding'
+      ? 'Build a brand that stands out. Positioning, narrative, visual identity, and brand guidelines.'
+      : service.id === 'websites'
+      ? 'Create a digital experience that converts. UX, UI, development, and integration.'
+      : service.id === 'paid-media'
+      ? 'Predictable acquisition through targeted advertising across platforms.'
+      : 'Compounding inbound visibility through SEO and content strategy.',
+    features: firstOption.features.slice(0, 5),
+    href: service.href,
+    phase: service.phase,
+  }
+})
+
 export function PricingServicesGrid({
   headline,
   subheadline,
@@ -93,77 +113,16 @@ export function PricingServicesGrid({
   headline: ReactNode
   subheadline: ReactNode
 } & ComponentProps<'section'>) {
-  const services = [
-    {
-      name: 'Branding',
-      price: 'From $25K',
-      description:
-        'Build a brand that stands out. Positioning, narrative, visual identity, and brand guidelines.',
-      features: [
-        'Discovery & research',
-        'Positioning definition',
-        'Narrative development',
-        'Identity design',
-        'Brand guidelines',
-      ],
-      href: '/branding',
-      phase: 'Foundation' as const,
-    },
-    {
-      name: 'Websites',
-      price: 'From $35K',
-      description:
-        'Create a digital experience that converts. UX, UI, development, and integration.',
-      features: [
-        'UX architecture',
-        'UI design system',
-        'Development & build',
-        'Analytics integration',
-        'QA & refinement',
-      ],
-      href: '/websites',
-      phase: 'Foundation' as const,
-    },
-    {
-      name: 'Paid Media',
-      price: 'From $8K/mo',
-      description:
-        'Predictable acquisition through targeted advertising across platforms.',
-      features: [
-        'Channel strategy',
-        'Creative development',
-        'Campaign build',
-        'Launch & optimization',
-        'Scaling strategy',
-      ],
-      href: '/ads',
-      phase: 'Activation' as const,
-    },
-    {
-      name: 'Search Marketing',
-      price: 'From $6K/mo',
-      description:
-        'Compounding inbound visibility through SEO and content strategy.',
-      features: [
-        'Technical foundation',
-        'Intent & keyword mapping',
-        'Content production',
-        'Ongoing optimization',
-        'Authority building',
-      ],
-      href: '/search',
-      phase: 'Activation' as const,
-    },
-  ]
-
   return (
     <section className={clsx('py-16', className)} {...props}>
       <Container>
         {/* Header */}
         <div className="mb-12 max-w-2xl">
-          <h2 className="text-3xl font-medium tracking-tight text-oxblood dark:text-ember sm:text-4xl">
-            {headline}
-          </h2>
+          {typeof headline === 'string' ? (
+            <h2 className="text-3xl font-medium tracking-tight text-oxblood dark:text-ember sm:text-4xl">
+              {headline}
+            </h2>
+          ) : headline}
           <div className="mt-4 text-lg/8 text-oxblood/70 dark:text-coral/70">{subheadline}</div>
         </div>
 
@@ -196,4 +155,3 @@ export function PricingServicesGrid({
     </section>
   )
 }
-

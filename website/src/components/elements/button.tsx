@@ -6,6 +6,7 @@ import { type ComponentProps, type ReactNode } from 'react'
 import { useButtonHover } from './use-button-hover'
 
 const sizes = {
+  sm: 'px-4 py-1.5 text-xs/5',
   md: 'px-6 py-1',
   lg: 'px-6 py-2',
 }
@@ -254,5 +255,63 @@ export function PlainButtonLink({
         {children}
       </ButtonInner>
     </Link>
+  )
+}
+
+// Icon Button (square, for icons only)
+const iconSizes = {
+  sm: 'h-8 w-8',
+  md: 'h-10 w-10',
+  lg: 'h-12 w-12',
+}
+
+type IconButtonSize = keyof typeof iconSizes
+
+function getIconButtonStyles({ variant, color, size }: { variant: ButtonVariant; color: ButtonColor; size: IconButtonSize }) {
+  const baseClasses =
+    'group relative inline-flex shrink-0 cursor-pointer items-center justify-center rounded-full overflow-visible'
+
+  const variantClasses = {
+    solid: clsx(
+      color === 'dark/light' && 'bg-olive-950 text-white dark:bg-olive-300 dark:text-olive-950',
+      color === 'light' && 'bg-white text-olive-950 dark:bg-olive-100'
+    ),
+    soft: 'bg-oxblood/10 text-oxblood transition-colors duration-300 hover:text-ember dark:bg-white/10 dark:text-coral',
+    plain: clsx(
+      'border',
+      color === 'dark/light' && 'border-opal bg-snow text-basalt transition-colors duration-300 hover:text-ember dark:border-basalt dark:bg-oxblood dark:text-coral',
+      color === 'light' && 'border-white/20 bg-white/10 text-white'
+    ),
+  }
+
+  return clsx(baseClasses, variantClasses[variant], iconSizes[size])
+}
+
+export function IconButton({
+  size = 'sm',
+  variant = 'plain',
+  color = 'dark/light',
+  type = 'button',
+  className,
+  children,
+  ...props
+}: {
+  size?: IconButtonSize
+  variant?: ButtonVariant
+  color?: ButtonColor
+} & ComponentProps<'button'>) {
+  const { elementRef, fillRef, outlineRef } = useButtonHover<HTMLButtonElement>()
+
+  return (
+    <button
+      ref={elementRef}
+      type={type}
+      className={clsx(getIconButtonStyles({ variant, color, size }), className)}
+      {...props}
+    >
+      <ButtonInner fillRef={fillRef} outlineRef={outlineRef} variant={variant} color={color}>
+        {children}
+      </ButtonInner>
+    </button>
   )
 }

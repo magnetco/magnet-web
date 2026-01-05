@@ -2,10 +2,20 @@
 
 import { clsx } from 'clsx/lite'
 import Link from 'next/link'
-import { useState, type ComponentProps } from 'react'
+import { useState, type ComponentProps, type ReactNode } from 'react'
 import { Container } from '../elements/container'
-import { ButtonLink, PlainButtonLink } from '../elements/button'
+import { GridBgSection, sectionPaddingClasses } from '../elements/grid-bg'
+import { PlainButtonLink } from '../elements/button'
 import { ChevronIcon } from '../icons/chevron-icon'
+import { Subheading } from '../elements/subheading'
+import { Text } from '../elements/text'
+import {
+  RETAINER_MONTHLY,
+  RETAINER_YEARLY,
+  RETAINER_YEARLY_TOTAL,
+  RETAINER_YEARLY_SAVINGS,
+  INDIVIDUAL_SERVICES,
+} from '@/lib/pricing-data'
 
 function BillingToggle({
   isYearly,
@@ -50,28 +60,30 @@ function BillingToggle({
   )
 }
 
-const MONTHLY_PRICE = 25000
-const YEARLY_PRICE = Math.round(MONTHLY_PRICE * 12 * 0.9 / 12)
-
-const services = [
-  { name: 'Branding', price: 'From $25K', href: '/branding' },
-  { name: 'Websites', price: 'From $35K', href: '/websites' },
-  { name: 'Paid Media', price: 'From $8K/mo', href: '/ads' },
-  { name: 'Search', price: 'From $6K/mo', href: '/search' },
-]
-
 export function PricingCompact({
+  headline,
+  subheadline,
   className,
+  withGridBg = false,
   ...props
-}: ComponentProps<'section'>) {
+}: {
+  headline?: ReactNode
+  subheadline?: ReactNode
+  withGridBg?: boolean
+} & ComponentProps<'section'>) {
   const [isYearly, setIsYearly] = useState(false)
 
-  const yearlyTotal = YEARLY_PRICE * 12
-  const yearlySavings = (MONTHLY_PRICE * 12) - yearlyTotal
+  const headlineElement =
+    headline && typeof headline === 'string' ? <Subheading>{headline}</Subheading> : headline
 
-  return (
-    <section className={clsx('py-16', className)} {...props}>
-      <Container>
+  const content = (
+    <Container className="flex flex-col gap-10 sm:gap-16">
+      {headline && (
+        <div className="flex max-w-2xl flex-col gap-6">
+          {headlineElement}
+          {subheadline && <Text className="text-pretty">{subheadline}</Text>}
+        </div>
+      )}
         <div className="rounded-2xl bg-oxblood/[0.03] p-8 ring-1 ring-oxblood/10 dark:bg-white/5 dark:ring-white/10 lg:p-12">
           <div className="flex flex-col gap-8 lg:flex-row lg:gap-12">
             {/* Retainer Section */}
@@ -92,15 +104,15 @@ export function PricingCompact({
                 {isYearly ? (
                   <>
                     <span className="text-3xl font-medium tracking-tight text-oxblood dark:text-ember sm:text-4xl">
-                      ${yearlyTotal.toLocaleString()}
+                      ${RETAINER_YEARLY_TOTAL.toLocaleString()}
                     </span>
                     <span className="text-sm text-basalt/70 dark:text-coral/70">/year</span>
-                    <span className="text-sm text-ember">Save ${yearlySavings.toLocaleString()}</span>
+                    <span className="text-sm text-ember">Save ${RETAINER_YEARLY_SAVINGS.toLocaleString()}</span>
                   </>
                 ) : (
                   <>
                     <span className="text-3xl font-medium tracking-tight text-oxblood dark:text-ember sm:text-4xl">
-                      ${MONTHLY_PRICE.toLocaleString()}
+                      ${RETAINER_MONTHLY.toLocaleString()}
                     </span>
                     <span className="text-sm text-basalt/70 dark:text-coral/70">/month</span>
                   </>
@@ -137,14 +149,14 @@ export function PricingCompact({
                 Or choose individual services
               </h4>
               <div className="mt-3 grid grid-cols-2 gap-3">
-                {services.map((service) => (
+                {INDIVIDUAL_SERVICES.map((service) => (
                   <Link
-                    key={service.name}
+                    key={service.id}
                     href={service.href}
                     className="group rounded-lg bg-oxblood/[0.02] px-3 py-2 ring-1 ring-oxblood/5 transition-all hover:bg-oxblood/[0.05] hover:ring-oxblood/10 dark:bg-white/[0.02] dark:ring-white/5 dark:hover:bg-white/[0.05] dark:hover:ring-white/10"
                   >
                     <p className="text-sm font-medium text-oxblood transition-colors group-hover:text-ember dark:text-coral">
-                      {service.name}
+                      {service.label}
                     </p>
                     <p className="text-xs text-oxblood/60 dark:text-coral/60">{service.price}</p>
                   </Link>
@@ -164,7 +176,21 @@ export function PricingCompact({
           </div>
         </div>
       </Container>
+  )
+
+  if (withGridBg) {
+    return (
+      <section className={className} {...props}>
+        <GridBgSection showBottomBorder={true} withPadding>
+          {content}
+        </GridBgSection>
+      </section>
+    )
+  }
+
+  return (
+    <section className={clsx(sectionPaddingClasses, className)} {...props}>
+      {content}
     </section>
   )
 }
-

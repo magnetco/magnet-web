@@ -53,7 +53,7 @@ export function TeamWithBios({
           <div className="flex max-w-2xl flex-col gap-6">
             <div className="flex flex-col gap-2">
               {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
-              <Subheading>{headline}</Subheading>
+              {typeof headline === 'string' ? <Subheading>{headline}</Subheading> : headline}
             </div>
             {subheadline && <Text className="text-pretty">{subheadline}</Text>}
           </div>
@@ -111,7 +111,7 @@ export function TeamGrid({
           <div className="flex max-w-2xl flex-col gap-6">
             <div className="flex flex-col gap-2">
               {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
-              <Subheading>{headline}</Subheading>
+              {typeof headline === 'string' ? <Subheading>{headline}</Subheading> : headline}
             </div>
             {subheadline && <Text className="text-pretty">{subheadline}</Text>}
           </div>

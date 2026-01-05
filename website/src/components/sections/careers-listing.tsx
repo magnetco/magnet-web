@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { useState, type ComponentProps, type ReactNode } from 'react'
 import { Container } from '../elements/container'
 import { Eyebrow } from '../elements/eyebrow'
+import { GridBgSection, sectionPaddingClasses } from '../elements/grid-bg'
 import { Subheading } from '../elements/subheading'
 import { ChevronIcon } from '../icons/chevron-icon'
 import type { JobListing as JobListingType } from '@/lib/sanity/types'
@@ -113,6 +114,7 @@ export function CareersListing({
   departments,
   locations,
   className,
+  withGridBg = false,
   ...props
 }: {
   eyebrow?: ReactNode
@@ -121,6 +123,7 @@ export function CareersListing({
   jobs: JobListingType[]
   departments: Array<{ value: string; label: string }>
   locations: Array<{ value: string; label: string }>
+  withGridBg?: boolean
 } & ComponentProps<'section'>) {
   const [selectedDepartment, setSelectedDepartment] = useState('All')
   const [selectedLocation, setSelectedLocation] = useState('Anywhere')
@@ -142,51 +145,65 @@ export function CareersListing({
     return acc
   }, {} as Record<string, JobListingType[]>)
 
-  return (
-    <section className={clsx('py-16', className)} {...props}>
-      <Container className="flex flex-col gap-10 sm:gap-16">
-        {/* Header */}
-        <div className="flex max-w-2xl flex-col gap-6">
-          <div className="flex flex-col gap-2">
-            {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
-            <Subheading>{headline}</Subheading>
-            {subheadline && <p className="text-base/7 text-oxblood dark:text-coral">{subheadline}</p>}
-          </div>
+  const content = (
+    <Container className="flex flex-col gap-10 sm:gap-16">
+      {/* Header */}
+      <div className="flex max-w-2xl flex-col gap-6">
+        <div className="flex flex-col gap-2">
+          {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
+          {typeof headline === 'string' ? <Subheading>{headline}</Subheading> : headline}
+          {subheadline && <p className="text-base/7 text-oxblood dark:text-coral">{subheadline}</p>}
         </div>
+      </div>
 
-        {/* Filters */}
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6">
-          <FilterDropdown
-            label="Department"
-            value={selectedDepartment}
-            options={departments}
-            onChange={setSelectedDepartment}
-          />
-          <FilterDropdown
-            label="Location"
-            value={selectedLocation}
-            options={locations}
-            onChange={setSelectedLocation}
-          />
-        </div>
+      {/* Filters */}
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6">
+        <FilterDropdown
+          label="Department"
+          value={selectedDepartment}
+          options={departments}
+          onChange={setSelectedDepartment}
+        />
+        <FilterDropdown
+          label="Location"
+          value={selectedLocation}
+          options={locations}
+          onChange={setSelectedLocation}
+        />
+      </div>
 
-        {/* Job Listings */}
-        <div className="flex flex-col gap-12">
-          {Object.entries(jobsByDepartment).map(([department, departmentJobs]) => (
-            <div key={department} className="flex flex-col gap-6">
-              <h2 className="text-xl/8 font-semibold text-oxblood dark:text-coral">{department}</h2>
-              <div className="flex flex-col">
-                {departmentJobs.map((job) => (
-                  <JobListing key={job._id} job={job} href={`/careers/${job.slug.current}`} />
-                ))}
-              </div>
+      {/* Job Listings */}
+      <div className="flex flex-col gap-12">
+        {Object.entries(jobsByDepartment).map(([department, departmentJobs]) => (
+          <div key={department} className="flex flex-col gap-6">
+            <h2 className="text-xl/8 font-semibold text-oxblood dark:text-coral">{department}</h2>
+            <div className="flex flex-col">
+              {departmentJobs.map((job) => (
+                <JobListing key={job._id} job={job} href={`/careers/${job.slug.current}`} />
+              ))}
             </div>
-          ))}
-          {filteredJobs.length === 0 && (
-            <p className="text-base/7 text-oxblood/70 dark:text-coral/70">No jobs found matching your filters.</p>
-          )}
-        </div>
-      </Container>
+          </div>
+        ))}
+        {filteredJobs.length === 0 && (
+          <p className="text-base/7 text-oxblood/70 dark:text-coral/70">No jobs found matching your filters.</p>
+        )}
+      </div>
+    </Container>
+  )
+
+  if (withGridBg) {
+    return (
+      <section className={className} {...props}>
+        <GridBgSection showBottomBorder={true} withPadding>
+          {content}
+        </GridBgSection>
+      </section>
+    )
+  }
+
+  return (
+    <section className={clsx(sectionPaddingClasses, className)} {...props}>
+      {content}
     </section>
   )
 }

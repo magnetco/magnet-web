@@ -30,7 +30,9 @@ export default function Page() {
       {/* Retainer Hero */}
       <PricingRetainerHero
         id="retainer"
-        headline="Pricing"
+        withGridBg
+        headline="Pricing
+          "
         subheadline={
           <p>
             Partner with us for ongoing growth, or engage us for specific deliverables.
@@ -145,7 +147,8 @@ export default function Page() {
       {/* Individual Services */}
       <PricingServicesGrid
         id="services"
-        headline="Individual Services"
+        headline="Individual Services
+          "
         subheadline={
           <p>
             Need a specific capability? Our core services are available as standalone engagements
@@ -177,7 +180,11 @@ export default function Page() {
       />
 
       {/* FAQs */}
-      <FAQsAccordion id="faqs" headline="Questions & Answers">
+      <FAQsAccordion
+        id="faqs"
+        headline="Questions & Answers
+          "
+      >
         <Faq
           id="faq-1"
           question="What's included in the full-service retainer?"
@@ -208,7 +215,8 @@ export default function Page() {
       {/* Call To Action */}
       <CallToActionSimpleCentered
         id="call-to-action"
-        headline="Have more questions?"
+        headline="Have more questions?
+          "
         subheadline={
           <p>Let's discuss how Magnet can help build your brand and drive measurable growth for your business.</p>
         }

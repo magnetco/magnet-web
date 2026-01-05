@@ -252,11 +252,15 @@ export function FAQsAccordion({
   headline?: ReactNode
   subheadline?: ReactNode
 } & ComponentProps<'section'>) {
+  // If headline is a string, wrap in Subheading. Otherwise, render as-is (for AnimatedSubheading etc.)
+  const headlineElement =
+    headline && typeof headline === 'string' ? <Subheading>{headline}</Subheading> : headline
+
   return (
     <section className={clsx('py-16', className)} {...props}>
       <div className="mx-auto flex max-w-3xl flex-col gap-8 px-6 lg:max-w-5xl lg:px-10">
         <div className="flex flex-col gap-6">
-          <Subheading>{headline}</Subheading>
+          {headlineElement}
           {subheadline && <Text className="flex flex-col gap-4 text-pretty">{subheadline}</Text>}
         </div>
         <div className="flex flex-col gap-4">{children}</div>

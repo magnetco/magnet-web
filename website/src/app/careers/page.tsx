@@ -33,8 +33,10 @@ export default async function Page() {
   return (
     <CareersListing
       id="careers"
+      withGridBg
       eyebrow="Open positions"
-      headline="Explore open roles across teams at Magnet."
+      headline="Explore open roles across teams at Magnet.
+        "
       jobs={jobs}
       departments={departmentOptions}
       locations={locationOptions}

@@ -198,3 +198,174 @@ export const jobsForApplyQuery = groq`
   }
 `
 
+// Team Member queries
+
+// Get all active team members ordered by department and display order
+export const teamMembersQuery = groq`
+  *[_type == "teamMember" && isActive == true] | order(department asc, order asc) {
+    _id,
+    name,
+    slug,
+    role,
+    "image": image{
+      asset->{
+        _id,
+        url
+      }
+    },
+    bio,
+    department,
+    order,
+    isActive
+  }
+`
+
+// Get leadership team members only
+export const leadershipTeamQuery = groq`
+  *[_type == "teamMember" && isActive == true && department == "leadership"] | order(order asc) {
+    _id,
+    name,
+    slug,
+    role,
+    "image": image{
+      asset->{
+        _id,
+        url
+      }
+    },
+    bio,
+    department,
+    order,
+    isActive
+  }
+`
+
+// Get extended team members only
+export const extendedTeamQuery = groq`
+  *[_type == "teamMember" && isActive == true && department == "team"] | order(order asc) {
+    _id,
+    name,
+    slug,
+    role,
+    "image": image{
+      asset->{
+        _id,
+        url
+      }
+    },
+    bio,
+    department,
+    order,
+    isActive
+  }
+`
+
+// Get a single team member by slug
+export const teamMemberBySlugQuery = groq`
+  *[_type == "teamMember" && slug.current == $slug][0] {
+    _id,
+    name,
+    slug,
+    role,
+    "image": image{
+      asset->{
+        _id,
+        url
+      }
+    },
+    bio,
+    department,
+    order,
+    isActive
+  }
+`
+
+// Case Study queries
+
+// Get all case studies ordered by publish date
+export const caseStudiesQuery = groq`
+  *[_type == "caseStudy"] | order(publishedAt desc) {
+    _id,
+    title,
+    slug,
+    client,
+    "clientLogo": clientLogo{
+      asset->{
+        _id,
+        url
+      }
+    },
+    industry,
+    featured,
+    results,
+    testimonial,
+    services,
+    phases,
+    publishedAt
+  }
+`
+
+// Get featured case studies
+export const featuredCaseStudiesQuery = groq`
+  *[_type == "caseStudy" && featured == true] | order(publishedAt desc) {
+    _id,
+    title,
+    slug,
+    client,
+    "clientLogo": clientLogo{
+      asset->{
+        _id,
+        url
+      }
+    },
+    industry,
+    results,
+    testimonial,
+    services,
+    phases,
+    publishedAt
+  }
+`
+
+// Get a single case study by slug (full detail)
+export const caseStudyBySlugQuery = groq`
+  *[_type == "caseStudy" && slug.current == $slug][0] {
+    _id,
+    title,
+    slug,
+    client,
+    "clientLogo": clientLogo{
+      asset->{
+        _id,
+        url
+      }
+    },
+    industry,
+    featured,
+    challenge,
+    solution,
+    results,
+    testimonial,
+    services,
+    phases,
+    "teamLead": teamLead->{
+      _id,
+      name,
+      slug,
+      role,
+      "image": image{
+        asset->{
+          _id,
+          url
+        }
+      }
+    },
+    publishedAt
+  }
+`
+
+// Get all case study slugs for static generation
+export const caseStudySlugsQuery = groq`
+  *[_type == "caseStudy" && defined(slug.current)][].slug.current
+`
+

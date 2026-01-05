@@ -1,27 +1,346 @@
 import { AnnouncementBadge } from '@/components/elements/announcement-badge'
-import { ButtonLink, PlainButtonLink, SoftButtonLink } from '@/components/elements/button'
+import { ButtonLink, PlainButtonLink } from '@/components/elements/button'
 import { Link } from '@/components/elements/link'
-import { Logo, LogoGrid } from '@/components/elements/logo-grid'
 import { Screenshot } from '@/components/elements/screenshot'
+import { TabbedLogoGallery, type GalleryItem } from '@/components/elements/tabbed-logo-gallery'
 import { ArrowNarrowRightIcon } from '@/components/icons/arrow-narrow-right-icon'
 import { ChevronIcon } from '@/components/icons/chevron-icon'
 import { CallToActionWithEmail } from '@/components/sections/call-to-action-with-email'
-import { FAQsTwoColumnAccordion, Faq } from '@/components/sections/faqs-two-column-accordion'
+import { FAQsWithChat, Faq } from '@/components/sections/faqs-with-chat'
 import { Feature, FeaturesTwoColumnWithDemos } from '@/components/sections/features-two-column-with-demos'
 import { HeroLeftAlignedWithDemo } from '@/components/sections/hero-left-aligned-with-demo'
 import { InteractiveCardsGrid } from '@/components/sections/interactive-cards-grid'
-import { Plan, PricingMultiTier } from '@/components/sections/pricing-multi-tier'
+import { PricingCompact } from '@/components/sections/pricing-compact'
 import { Stat, StatsWithGraph } from '@/components/sections/stats-with-graph'
+import { TeamCarouselSection, type TeamCarouselMember } from '@/components/sections/team-carousel'
 import { Testimonial, TestimonialThreeColumnGrid } from '@/components/sections/testimonials-three-column-grid'
+import { client } from '@/lib/sanity/client'
+import { teamMembersQuery } from '@/lib/sanity/queries'
 import { Code2, Search, Sparkles, Target } from 'lucide-react'
 import Image from 'next/image'
 
-export default function Page() {
+const galleryItems: GalleryItem[] = [
+  {
+    id: 'ikea',
+    logo: (
+      <Image
+        src="/img/logos/ikea.png"
+        alt="IKEA"
+        width={200}
+        height={80}
+        className="h-full w-auto object-contain"
+      />
+    ),
+    image: (
+      <>
+        <Screenshot className="rounded-md lg:hidden" wallpaper="green" placement="bottom-right">
+          <Image
+            src="/img/screenshots/1-left-1670-top-1408.webp"
+            alt=""
+            width={1670}
+            height={1408}
+            className="bg-white/75 md:hidden dark:hidden"
+          />
+          <Image
+            src="/img/screenshots/1-color-olive-left-1670-top-1408.webp"
+            alt=""
+            width={1670}
+            height={1408}
+            className="bg-black/75 not-dark:hidden md:hidden"
+          />
+          <Image
+            src="/img/screenshots/1-left-2000-top-1408.webp"
+            alt=""
+            width={2000}
+            height={1408}
+            className="bg-white/75 max-md:hidden dark:hidden"
+          />
+          <Image
+            src="/img/screenshots/1-color-olive-left-2000-top-1408.webp"
+            alt=""
+            width={2000}
+            height={1408}
+            className="bg-black/75 not-dark:hidden max-md:hidden"
+          />
+        </Screenshot>
+        <Screenshot className="rounded-lg max-lg:hidden" wallpaper="green" placement="bottom">
+          <Image
+            src="/img/screenshots/1.webp"
+            alt=""
+            className="bg-white/75 dark:hidden"
+            width={3440}
+            height={1990}
+          />
+          <Image
+            className="bg-black/75 not-dark:hidden"
+            src="/img/screenshots/1-color-olive.webp"
+            alt=""
+            width={3440}
+            height={1990}
+          />
+        </Screenshot>
+      </>
+    ),
+  },
+  {
+    id: 'gorilla',
+    logo: (
+      <Image
+        src="/img/logos/gor.png"
+        alt="Gorilla Glue"
+        width={200}
+        height={80}
+        className="h-full w-auto object-contain"
+      />
+    ),
+    image: (
+      <>
+        <Screenshot className="rounded-md lg:hidden" wallpaper="blue" placement="bottom-right">
+          <Image
+            src="/img/screenshots/1-right-1000-top-800.webp"
+            alt=""
+            width={1000}
+            height={800}
+            className="bg-white/75 md:hidden dark:hidden"
+          />
+          <Image
+            src="/img/screenshots/1-color-olive-right-1000-top-800.webp"
+            alt=""
+            width={1000}
+            height={800}
+            className="bg-black/75 not-dark:hidden md:hidden"
+          />
+          <Image
+            src="/img/screenshots/1-right-1800-top-660.webp"
+            alt=""
+            width={1800}
+            height={660}
+            className="bg-white/75 max-md:hidden dark:hidden"
+          />
+          <Image
+            src="/img/screenshots/1-color-olive-right-1800-top-660.webp"
+            alt=""
+            width={1800}
+            height={660}
+            className="bg-black/75 not-dark:hidden max-md:hidden"
+          />
+        </Screenshot>
+        <Screenshot className="rounded-lg max-lg:hidden" wallpaper="blue" placement="bottom">
+          <Image
+            src="/img/screenshots/1-right-1300-top-1300.webp"
+            alt=""
+            className="bg-white/75 dark:hidden"
+            width={1300}
+            height={1300}
+          />
+          <Image
+            className="bg-black/75 not-dark:hidden"
+            src="/img/screenshots/1-color-olive-right-1300-top-1300.webp"
+            alt=""
+            width={1300}
+            height={1300}
+          />
+        </Screenshot>
+      </>
+    ),
+  },
+  {
+    id: 'hgtv',
+    logo: (
+      <Image
+        src="/img/logos/hgtv.png"
+        alt="HGTV"
+        width={200}
+        height={80}
+        className="h-full w-auto object-contain"
+      />
+    ),
+    image: (
+      <>
+        <Screenshot className="rounded-md lg:hidden" wallpaper="purple" placement="bottom-right">
+          <Image
+            src="/img/screenshots/1-left-1000-top-800.webp"
+            alt=""
+            width={1000}
+            height={800}
+            className="bg-white/75 md:hidden dark:hidden"
+          />
+          <Image
+            src="/img/screenshots/1-color-olive-left-1000-top-800.webp"
+            alt=""
+            width={1000}
+            height={800}
+            className="bg-black/75 not-dark:hidden md:hidden"
+          />
+          <Image
+            src="/img/screenshots/1-left-1800-top-660.webp"
+            alt=""
+            width={1800}
+            height={660}
+            className="bg-white/75 max-md:hidden dark:hidden"
+          />
+          <Image
+            src="/img/screenshots/1-color-olive-left-1800-top-660.webp"
+            alt=""
+            width={1800}
+            height={660}
+            className="bg-black/75 not-dark:hidden max-md:hidden"
+          />
+        </Screenshot>
+        <Screenshot className="rounded-lg max-lg:hidden" wallpaper="purple" placement="bottom">
+          <Image
+            src="/img/screenshots/1-left-1300-top-1300.webp"
+            alt=""
+            className="bg-white/75 dark:hidden"
+            width={1300}
+            height={1300}
+          />
+          <Image
+            className="bg-black/75 not-dark:hidden"
+            src="/img/screenshots/1-color-olive-left-1300-top-1300.webp"
+            alt=""
+            width={1300}
+            height={1300}
+          />
+        </Screenshot>
+      </>
+    ),
+  },
+  {
+    id: 'kroger',
+    logo: (
+      <Image
+        src="/img/logos/kro.png"
+        alt="Kroger"
+        width={200}
+        height={80}
+        className="h-full w-auto object-contain"
+      />
+    ),
+    image: (
+      <>
+        <Screenshot className="rounded-md lg:hidden" wallpaper="brown" placement="bottom-right">
+          <Image
+            src="/img/screenshots/1-right-1000-top-800.webp"
+            alt=""
+            width={1000}
+            height={800}
+            className="bg-white/75 md:hidden dark:hidden"
+          />
+          <Image
+            src="/img/screenshots/1-color-olive-right-1000-top-800.webp"
+            alt=""
+            width={1000}
+            height={800}
+            className="bg-black/75 not-dark:hidden md:hidden"
+          />
+          <Image
+            src="/img/screenshots/1-right-1800-top-660.webp"
+            alt=""
+            width={1800}
+            height={660}
+            className="bg-white/75 max-md:hidden dark:hidden"
+          />
+          <Image
+            src="/img/screenshots/1-color-olive-right-1800-top-660.webp"
+            alt=""
+            width={1800}
+            height={660}
+            className="bg-black/75 not-dark:hidden max-md:hidden"
+          />
+        </Screenshot>
+        <Screenshot className="rounded-lg max-lg:hidden" wallpaper="brown" placement="bottom">
+          <Image
+            src="/img/screenshots/1-right-1300-top-1300.webp"
+            alt=""
+            className="bg-white/75 dark:hidden"
+            width={1300}
+            height={1300}
+          />
+          <Image
+            className="bg-black/75 not-dark:hidden"
+            src="/img/screenshots/1-color-olive-right-1300-top-1300.webp"
+            alt=""
+            width={1300}
+            height={1300}
+          />
+        </Screenshot>
+      </>
+    ),
+  },
+  {
+    id: 'mhe',
+    logo: (
+      <Image
+        src="/img/logos/mhe.png"
+        alt="McGraw Hill Education"
+        width={200}
+        height={80}
+        className="h-full w-auto object-contain"
+      />
+    ),
+    image: (
+      <>
+        <Screenshot className="rounded-md lg:hidden" wallpaper="green" placement="bottom-left">
+          <Image
+            src="/img/screenshots/1-left-1670-top-1408.webp"
+            alt=""
+            width={1670}
+            height={1408}
+            className="bg-white/75 md:hidden dark:hidden"
+          />
+          <Image
+            src="/img/screenshots/1-color-olive-left-1670-top-1408.webp"
+            alt=""
+            width={1670}
+            height={1408}
+            className="bg-black/75 not-dark:hidden md:hidden"
+          />
+          <Image
+            src="/img/screenshots/1-left-2000-top-1408.webp"
+            alt=""
+            width={2000}
+            height={1408}
+            className="bg-white/75 max-md:hidden dark:hidden"
+          />
+          <Image
+            src="/img/screenshots/1-color-olive-left-2000-top-1408.webp"
+            alt=""
+            width={2000}
+            height={1408}
+            className="bg-black/75 not-dark:hidden max-md:hidden"
+          />
+        </Screenshot>
+        <Screenshot className="rounded-lg max-lg:hidden" wallpaper="green" placement="bottom">
+          <Image
+            src="/img/screenshots/1.webp"
+            alt=""
+            className="bg-white/75 dark:hidden"
+            width={3440}
+            height={1990}
+          />
+          <Image
+            className="bg-black/75 not-dark:hidden"
+            src="/img/screenshots/1-color-olive.webp"
+            alt=""
+            width={3440}
+            height={1990}
+          />
+        </Screenshot>
+      </>
+    ),
+  },
+]
+
+export default async function Page() {
+  // Fetch team members from Sanity
+  const teamMembers = await client.fetch<TeamCarouselMember[]>(teamMembersQuery)
   return (
     <>
       {/* Hero */}
       <HeroLeftAlignedWithDemo
         id="hero"
+        withGridBg
         eyebrow={<AnnouncementBadge href="#" text="Magnet raises 80M Series A funding" cta="Learn more" />}
         headline="Digital marketing that resonates with your audience"
         subheadline={
@@ -36,132 +355,17 @@ export default function Page() {
               Get started
             </ButtonLink>
 
-            <PlainButtonLink href="/playbook" size="lg">
+            <PlainButtonLink href="/method" size="lg">
               See how it works <ArrowNarrowRightIcon />
             </PlainButtonLink>
           </div>
         }
-        demo={
-          <>
-            <Screenshot className="rounded-md lg:hidden" wallpaper="green" placement="bottom-right">
-              <Image
-                src="/img/screenshots/1-left-1670-top-1408.webp"
-                alt=""
-                width={1670}
-                height={1408}
-                className="bg-white/75 md:hidden dark:hidden"
-              />
-              <Image
-                src="/img/screenshots/1-color-olive-left-1670-top-1408.webp"
-                alt=""
-                width={1670}
-                height={1408}
-                className="bg-black/75 not-dark:hidden md:hidden"
-              />
-              <Image
-                src="/img/screenshots/1-left-2000-top-1408.webp"
-                alt=""
-                width={2000}
-                height={1408}
-                className="bg-white/75 max-md:hidden dark:hidden"
-              />
-              <Image
-                src="/img/screenshots/1-color-olive-left-2000-top-1408.webp"
-                alt=""
-                width={2000}
-                height={1408}
-                className="bg-black/75 not-dark:hidden max-md:hidden"
-              />
-            </Screenshot>
-            <Screenshot className="rounded-lg max-lg:hidden" wallpaper="green" placement="bottom">
-              <Image
-                src="/img/screenshots/1.webp"
-                alt=""
-                className="bg-white/75 dark:hidden"
-                width={3440}
-                height={1990}
-              />
-              <Image
-                className="bg-black/75 not-dark:hidden"
-                src="/img/screenshots/1-color-olive.webp"
-                alt=""
-                width={3440}
-                height={1990}
-              />
-            </Screenshot>
-          </>
-        }
-        footer={
-          <LogoGrid>
-            <Logo>
-              <Image
-                src="/img/logos/ikea.png"
-                alt="IKEA"
-                width={200}
-                height={80}
-                className="h-full w-auto object-contain"
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/gor.png"
-                alt="Gorilla Glue"
-                width={200}
-                height={80}
-                className="h-full w-auto object-contain"
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/lux.png"
-                alt="LUX"
-                width={200}
-                height={80}
-                className="h-full w-auto object-contain"
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/hgtv.png"
-                alt="HGTV"
-                width={200}
-                height={80}
-                className="h-full w-auto object-contain"
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/oke.png"
-                alt="KEEFE"
-                width={200}
-                height={80}
-                className="h-full w-auto object-contain"
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/kro.png"
-                alt="Kroger"
-                width={200}
-                height={80}
-                className="h-full w-auto object-contain"
-              />
-            </Logo>
-            <Logo>
-              <Image
-                src="/img/logos/mhe.png"
-                alt="McGraw Hill Education"
-                width={200}
-                height={80}
-                className="h-full w-auto object-contain"
-              />
-            </Logo>
-          </LogoGrid>
-        }
+        demo={<TabbedLogoGallery items={galleryItems} />}
       />
       {/* Features */}
       <FeaturesTwoColumnWithDemos
         id="features"
+        withGridBg
         eyebrow="Case studies"
         headline="Real results from real partnerships that drive meaningful impact at scale."
         subheadline={
@@ -326,6 +530,7 @@ export default function Page() {
       {/* Interactive Cards */}
       <InteractiveCardsGrid
         id="services"
+        withGridBg
         eyebrow="Solutions"
         headline="Access customized, full-service support for every investment vehicle"
         cards={[
@@ -366,6 +571,7 @@ export default function Page() {
       {/* Stats */}
       <StatsWithGraph
         id="stats"
+        withGridBg
         eyebrow="Built for scale"
         headline="Marketing that drives measurable growth."
         subheadline={
@@ -382,6 +588,7 @@ export default function Page() {
       {/* Testimonial */}
       <TestimonialThreeColumnGrid
         id="testimonial"
+        withGridBg
         headline="What our customers are saying"
         subheadline={<p>We've given these customers a significant discount in exchange for their honest reviews.</p>}
       >
@@ -500,8 +707,31 @@ export default function Page() {
           byline="CMO at Quirk"
         />
       </TestimonialThreeColumnGrid>
-      {/* FAQs */}
-      <FAQsTwoColumnAccordion id="faqs" headline="Questions & Answers">
+      {/* Team */}
+      <TeamCarouselSection
+        id="team"
+        headline={
+          <>
+            Craftsmanship elevated by
+            <br />a <span className="text-ember">culture of excellence</span>
+          </>
+        }
+        subheadline={
+          <p>
+            Momentum starts with the right team. At Magnet, we bring seasoned leadership, hands-on expertise, and a
+            founder's mindset to every project. We don't just work for you — we build with you, every step of the way.
+          </p>
+        }
+        members={teamMembers}
+      />
+      {/* FAQs with Chat */}
+      <FAQsWithChat
+        id="faqs"
+        withGridBg
+        eyebrow="Common questions"
+        headline="Everything you need to know"
+        subheadline="Get quick answers to frequently asked questions, or start a conversation with our AI assistant for personalized guidance."
+      >
         <Faq
           id="faq-1"
           question="How do you measure marketing success?"
@@ -522,78 +752,22 @@ export default function Page() {
           question="How long does it take to see results?"
           answer="Results vary by service and market, but most clients see measurable improvements within 30-90 days. Search marketing and paid ads typically show faster initial results, while branding and website work compounds over time. We set clear expectations upfront."
         />
-      </FAQsTwoColumnAccordion>
+      </FAQsWithChat>
       {/* Pricing */}
-      <PricingMultiTier
+      <PricingCompact
         id="pricing"
+        withGridBg
         headline="Pricing to fit your business needs."
-        plans={
-          <>
-            <Plan
-              name="Starter"
-              price="$5K"
-              period="/mo"
-              subheadline={<p>Emerging brands ready to build their foundation</p>}
-              features={[
-                'Brand strategy & positioning',
-                'Website design & development',
-                'Basic SEO setup',
-                'Monthly performance reporting',
-                'Email support',
-              ]}
-              cta={
-                <SoftButtonLink href="/contact" size="lg">
-                  Get started
-                </SoftButtonLink>
-              }
-            />
-            <Plan
-              name="Growth"
-              price="$15K"
-              period="/mo"
-              subheadline={<p>Scaling brands needing comprehensive marketing</p>}
-              badge="Most popular"
-              features={[
-                'Everything in Starter',
-                'Search marketing program',
-                'Paid advertising campaigns',
-                'Content strategy & creation',
-                'Advanced analytics & attribution',
-                'Dedicated account manager',
-                'Quarterly strategy reviews',
-              ]}
-              cta={
-                <ButtonLink href="/contact" size="lg">
-                  Get started
-                </ButtonLink>
-              }
-            />
-            <Plan
-              name="Enterprise"
-              price="Custom"
-              period=""
-              subheadline={<p>Large organizations requiring full-service support</p>}
-              features={[
-                'Everything in Growth',
-                'Custom marketing systems',
-                'Multi-channel campaign management',
-                'Advanced data analytics',
-                'Dedicated team',
-                'Priority support',
-                'Custom integrations',
-              ]}
-              cta={
-                <SoftButtonLink href="#" size="lg">
-                  Contact sales
-                </SoftButtonLink>
-              }
-            />
-          </>
+        subheadline={
+          <p>
+            Partner with us for ongoing growth, or engage us for specific deliverables.
+          </p>
         }
       />
       {/* Call To Action */}
       <CallToActionWithEmail
         id="call-to-action"
+        withGridBg
         headline="Ready to build marketing that drives real growth?"
         subheadline={
           <p>

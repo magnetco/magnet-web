@@ -5,6 +5,7 @@ import NextLink from 'next/link'
 
 import { Container } from '@/components/elements/container'
 import { Eyebrow } from '@/components/elements/eyebrow'
+import { GridBgSection } from '@/components/elements/grid-bg'
 import { Heading } from '@/components/elements/heading'
 import { Text } from '@/components/elements/text'
 import { client } from '@/lib/sanity/client'
@@ -153,34 +154,36 @@ export default async function PostsPage({
     : posts
 
   return (
-    <main className="py-16 sm:py-24">
-      <Container>
-        <header className="mb-12">
-          <Eyebrow className="mb-4">Posts</Eyebrow>
-          <Heading>Insights &amp; Links</Heading>
-          <Text size="lg" className="mt-6 max-w-2xl">
-            <p>Curated thinking on digital marketing strategy, methodology, and execution.</p>
-          </Text>
-        </header>
+    <main>
+      <GridBgSection showBottomBorder showTopBorder={false} withPadding>
+        <Container>
+          <header className="mb-12">
+            <Eyebrow className="mb-4">Posts</Eyebrow>
+            <Heading>Insights &amp; Links</Heading>
+            <Text size="lg" className="mt-6 max-w-2xl">
+              <p>Curated thinking on digital marketing strategy, methodology, and execution.</p>
+            </Text>
+          </header>
 
-        {categories.length > 0 && (
-          <div className="mb-10">
-            <CategoryFilter categories={categories} activeCategory={params.category} />
-          </div>
-        )}
+          {categories.length > 0 && (
+            <div className="mb-10">
+              <CategoryFilter categories={categories} activeCategory={params.category} />
+            </div>
+          )}
 
-        {filteredPosts.length > 0 ? (
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {filteredPosts.map((post) => (
-              <PostCard key={post._id} post={post} />
-            ))}
-          </div>
-        ) : (
-          <div className="rounded-xl border border-opal bg-frost/50 py-16 text-center dark:border-basalt dark:bg-juniper/30">
-            <p className="text-basalt dark:text-coral/80">No posts found.</p>
-          </div>
-        )}
-      </Container>
+          {filteredPosts.length > 0 ? (
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {filteredPosts.map((post) => (
+                <PostCard key={post._id} post={post} />
+              ))}
+            </div>
+          ) : (
+            <div className="rounded-xl border border-opal bg-frost/50 py-16 text-center dark:border-basalt dark:bg-juniper/30">
+              <p className="text-basalt dark:text-coral/80">No posts found.</p>
+            </div>
+          )}
+        </Container>
+      </GridBgSection>
     </main>
   )
 }

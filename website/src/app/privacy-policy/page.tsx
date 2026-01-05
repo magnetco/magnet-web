@@ -4,7 +4,7 @@ import Link from 'next/link'
 export default function Page() {
   return (
     <>
-      <DocumentCentered id="document" headline="Privacy Policy" subheadline={<p>Last updated on January 3, 2026.</p>}>
+      <DocumentCentered id="document" withGridBg headline="Privacy Policy" subheadline={<p>Last updated on January 3, 2026.</p>}>
         <p>
           Magnet ("<strong>Magnet</strong>," "<strong>we</strong>," "<strong>us</strong>," or "<strong>our</strong>") is
           a growth architecture firm that designs high-performance websites and the systems behind them. We respect your

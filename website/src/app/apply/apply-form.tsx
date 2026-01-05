@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { clsx } from 'clsx/lite'
 import { Container } from '@/components/elements/container'
+import { GridBgSection } from '@/components/elements/grid-bg'
 import { Heading } from '@/components/elements/heading'
 import { Text } from '@/components/elements/text'
 import { Button } from '@/components/elements/button'
@@ -109,11 +110,6 @@ export function ApplyForm({ jobs }: { jobs: ApplyJob[] }) {
       setFormState('error')
       return false
     }
-    if (!formData.linkedinUrl.trim()) {
-      setErrorMessage('Please enter your LinkedIn URL')
-      setFormState('error')
-      return false
-    }
     if (!formData.timezone) {
       setErrorMessage('Please select your timezone')
       setFormState('error')
@@ -155,7 +151,7 @@ export function ApplyForm({ jobs }: { jobs: ApplyJob[] }) {
           lastName: formData.lastName,
           email: formData.email,
           cellNumber: formData.cellNumber,
-          linkedinUrl: formData.linkedinUrl,
+          linkedinUrl: formData.linkedinUrl || null,
           resumeUrl: formData.resumeUrl || null,
           timezone: formData.timezone,
           locationPreference: formData.locationPreference,
@@ -192,17 +188,18 @@ export function ApplyForm({ jobs }: { jobs: ApplyJob[] }) {
   const isDisabled = formState === 'submitting'
 
   return (
-    <section className="min-h-screen py-16">
-      <Container>
-        <div className="mb-12">
-          <Heading>Apply for a position</Heading>
-          <Text size="lg" className="mt-4 max-w-2xl">
-            Join our team and help brands build stronger market positions. Fill out the form below and we&apos;ll be in
-            touch.
-          </Text>
-        </div>
+    <section className="min-h-screen">
+      <GridBgSection showBottomBorder showTopBorder={false} withPadding>
+        <Container>
+          <div className="mb-12">
+            <Heading>Apply for a position</Heading>
+            <Text size="lg" className="mt-4 max-w-2xl">
+              Join our team and help brands build stronger market positions. Fill out the form below and we&apos;ll be in
+              touch.
+            </Text>
+          </div>
 
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-[300px_1fr] lg:gap-16">
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-[300px_1fr] lg:gap-16">
           {/* Left Column - Job Selection */}
           <aside className="flex flex-col gap-6 lg:sticky lg:top-24 lg:h-fit">
             <div className="flex flex-col gap-2">
@@ -354,11 +351,9 @@ export function ApplyForm({ jobs }: { jobs: ApplyJob[] }) {
                     />
                   </div>
 
-                  {/* LinkedIn URL */}
+                  {/* LinkedIn URL (Optional) */}
                   <div>
-                    <Label htmlFor="linkedinUrl" required>
-                      LinkedIn URL
-                    </Label>
+                    <Label htmlFor="linkedinUrl">LinkedIn URL</Label>
                     <Input
                       id="linkedinUrl"
                       name="linkedinUrl"
@@ -366,9 +361,7 @@ export function ApplyForm({ jobs }: { jobs: ApplyJob[] }) {
                       value={formData.linkedinUrl}
                       onChange={(e) => handleChange('linkedinUrl', e.target.value)}
                       placeholder="https://linkedin.com/in/janesmith"
-                      required
                       disabled={isDisabled}
-                      hasError={formState === 'error' && !formData.linkedinUrl.trim()}
                     />
                   </div>
 
@@ -449,7 +442,8 @@ export function ApplyForm({ jobs }: { jobs: ApplyJob[] }) {
             )}
           </div>
         </div>
-      </Container>
+        </Container>
+      </GridBgSection>
     </section>
   )
 }

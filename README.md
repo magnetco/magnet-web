@@ -23,6 +23,7 @@ Read these files in order. Start with OVERVIEW, then read what's relevant to you
 | 6 | [`context/DESIGN.md`](context/DESIGN.md) | Colors, typography, spacing, visual system |
 | 7 | [`context/PRICING.md`](context/PRICING.md) | Pricing structure and packaging |
 | 8 | [`context/ROADMAP.md`](context/ROADMAP.md) | What's shipped, in progress, and planned |
+| 9 | [`context/ARCHITECTURE.md`](context/ARCHITECTURE.md) | Codebase structure diagram showing how parts interconnect |
 
 ## Tech Stack
 
@@ -144,7 +145,35 @@ Full palette in [`context/DESIGN.md`](context/DESIGN.md).
 
 **Interactive:** `ChatWidget` (AI assistant), `DevBar` (development tools)
 
+**Animated Headlines:** `AnimatedHeadline` (h1), `AnimatedSubheading` (h2) with GSAP animations
+
 All in `@/components/elements/`.
+
+## Animated Headlines
+
+Hero titles and section titles use GSAP-powered animation components. Pass a `variant` prop to change the effect:
+
+| Variant | Description |
+|---------|-------------|
+| `wave-blur` | Characters slide up with blur effect, staggered wave-like reveal |
+| `perspective-flip` | Words rotate in from 3D space with depth |
+| `scramble-decode` | Text "decodes" from random characters (hacker terminal effect) |
+| `stroke-fill` | Animated stroke outline that draws on, then fills with color |
+| `elastic-wipe` | Horizontal mask wipe with elastic bounce per character |
+
+```tsx
+// Hero headline (h1) - animates on page load
+<AnimatedHeadline variant="perspective-flip">
+  Your headline text here
+</AnimatedHeadline>
+
+// Section headline (h2) - animates when scrolled into view
+<AnimatedSubheading variant="perspective-flip">
+  Your section title here
+</AnimatedSubheading>
+```
+
+Both components require a string child. `AnimatedSubheading` uses ScrollTrigger to animate when entering the viewport.
 
 ## Decision Rules
 

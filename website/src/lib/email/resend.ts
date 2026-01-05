@@ -20,6 +20,9 @@ export interface ContactFormData {
   company?: string | null
   email: string
   message: string
+  intent?: string
+  services?: string[]
+  subOptions?: Record<string, string[]>
 }
 
 export async function sendContactFormEmail(data: ContactFormData): Promise<void> {
@@ -32,6 +35,30 @@ export async function sendContactFormEmail(data: ContactFormData): Promise<void>
   // Use branded HTML template
   const htmlBody = renderContactFormEmail(data)
 
+  // Format services for plain text
+  const formatServicesText = () => {
+    if (!data.services || data.services.length === 0) return ''
+    const serviceLabels: Record<string, string> = {
+      'retainer': 'Full-Service Retainer',
+      'branding': 'Branding',
+      'websites': 'Websites',
+      'paid-media': 'Paid Media',
+      'search-marketing': 'Search Marketing',
+    }
+    const lines = ['Services Requested:']
+    for (const serviceId of data.services) {
+      const label = serviceLabels[serviceId] || serviceId
+      lines.push(`  - ${label}`)
+      const subOpts = data.subOptions?.[serviceId]
+      if (subOpts && subOpts.length > 0) {
+        for (const subOpt of subOpts) {
+          lines.push(`      • ${subOpt}`)
+        }
+      }
+    }
+    return lines.join('\n')
+  }
+
   // Plain text fallback
   const textBody = `
 New Contact Form Submission
@@ -39,6 +66,8 @@ New Contact Form Submission
 Name: ${data.name}
 ${data.company ? `Company: ${data.company}` : ''}
 Email: ${data.email}
+${data.intent ? `Intent: ${data.intent}` : ''}
+${formatServicesText()}
 
 Message:
 ${data.message}

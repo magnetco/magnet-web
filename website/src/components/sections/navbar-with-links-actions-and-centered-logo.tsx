@@ -5,6 +5,7 @@ import { clsx } from 'clsx/lite'
 import Link from 'next/link'
 import { useState, type ComponentProps, type ReactNode } from 'react'
 import { ChevronDownIcon } from '../icons/chevron-down-icon'
+import { GridBgBorderLine, GridBgStripes } from '../elements/grid-bg'
 
 export function NavbarLink({
   children,
@@ -135,11 +136,13 @@ export function NavbarWithLinksActionsAndCenteredLogo({
   logo,
   actions,
   className,
+  withGridBg = false,
   ...props
 }: {
   links: ReactNode
   logo: ReactNode
   actions: ReactNode
+  withGridBg?: boolean
 } & ComponentProps<'header'>) {
   return (
     <header
@@ -150,11 +153,22 @@ export function NavbarWithLinksActionsAndCenteredLogo({
       {...props}
     >
       <style>{`:root { --scroll-padding-top: 5.25rem }`}</style>
-      <nav>
+
+      {/* Grid BG decorations */}
+      {withGridBg && (
+        <>
+          <GridBgStripes />
+          <GridBgBorderLine position="left" />
+          <GridBgBorderLine position="right" />
+          <GridBgBorderLine position="bottom" />
+        </>
+      )}
+
+      <nav className="relative">
         <div className="mx-auto flex h-(--scroll-padding-top) w-full max-w-2xl items-center gap-4 px-6 md:max-w-3xl lg:max-w-7xl lg:px-10">
-          <div className="flex flex-1 gap-8 max-lg:hidden">{links}</div>
           <div className="flex items-center">{logo}</div>
-          <div className="flex flex-1 items-center justify-end gap-4">
+          <div className="flex flex-1 items-center justify-end gap-8">
+            <div className="flex gap-8 max-lg:hidden">{links}</div>
             <div className="flex shrink-0 items-center gap-5">{actions}</div>
 
             <button

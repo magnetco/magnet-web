@@ -75,3 +75,80 @@ export type JobDetail = {
   publishedAt?: string
 }
 
+// Team Member types
+
+export type TeamMemberDepartment = 'leadership' | 'team'
+
+export type TeamMember = {
+  _id: string
+  name: string
+  slug: { current: string }
+  role: string
+  image: {
+    asset: {
+      _id: string
+      url: string
+    }
+  }
+  bio?: PortableTextBlock[]
+  department: TeamMemberDepartment
+  order?: number
+  isActive: boolean
+}
+
+// Case Study types
+
+export type CaseStudyResult = {
+  metric: string
+  label: string
+}
+
+export type CaseStudyTestimonial = {
+  quote?: string
+  author?: string
+  authorRole?: string
+}
+
+export type CaseStudyIndustry =
+  | 'saas'
+  | 'healthcare'
+  | 'manufacturing'
+  | 'financial-services'
+  | 'professional-services'
+  | 'technology'
+  | 'education'
+  | 'retail-ecommerce'
+  | 'other'
+
+export type CaseStudyService =
+  | 'branding'
+  | 'website'
+  | 'paid-media'
+  | 'search-marketing'
+  | 'content'
+  | 'crm-automation'
+  | 'analytics'
+
+export type CaseStudy = {
+  _id: string
+  title: string
+  slug: { current: string }
+  client: string
+  clientLogo?: {
+    asset: {
+      _id: string
+      url: string
+    }
+  }
+  industry: CaseStudyIndustry
+  featured: boolean
+  challenge?: PortableTextBlock[]
+  solution?: PortableTextBlock[]
+  results?: CaseStudyResult[]
+  testimonial?: CaseStudyTestimonial
+  services?: CaseStudyService[]
+  phases?: Phase[]
+  teamLead?: TeamMember
+  publishedAt?: string
+}
+

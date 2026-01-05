@@ -1,0 +1,107 @@
+@import 'tailwindcss';
+
+@theme {
+  /* Brand Colors from Magnet website */
+  --color-ember: #F9432B;
+  --color-oxblood: #220002;
+  --color-charcoal: #1C1917;
+  --color-powder: #BAD9DC;
+  --color-juniper: #001D22;
+  --color-basalt: #2A4144;
+  --color-opal: #DDE6E7;
+  --color-snow: #F5F7F7;
+  --color-frost: #FFFFFF;
+  --color-coral: #FFB5AB;
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: 'Geist', system-ui, -apple-system, sans-serif;
+    background-color: #F5F7F7;
+    color: #220002;
+  }
+
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #DDE6E7;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #2A4144;
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #220002;
+  }
+}
+
+/* Editable cell focus styling */
+.editable-cell:focus {
+  outline: 2px solid #F9432B;
+  outline-offset: -2px;
+  background-color: #FFFFFF;
+}
+
+/* Table row hover */
+.table-row:hover {
+  background-color: #DDE6E7;
+}
+
+/* Version history panel */
+.version-panel {
+  animation: slideIn 0.2s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Toast animations */
+.animate-slide-in {
+  animation: toastSlideIn 0.3s cubic-bezier(0.21, 1.02, 0.73, 1) forwards;
+}
+
+.animate-slide-out {
+  animation: toastSlideOut 0.3s cubic-bezier(0.21, 1.02, 0.73, 1) forwards;
+}
+
+@keyframes toastSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes toastSlideOut {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+

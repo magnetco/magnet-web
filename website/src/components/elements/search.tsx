@@ -14,14 +14,14 @@ const SITEMAP = {
     { path: '/branding', label: 'Branding' },
     { path: '/websites', label: 'Websites' },
     { path: '/ads', label: 'Ads' },
-    { path: '/search', label: 'Search' },
+    { path: '/search', label: 'Search Marketing' },
   ],
   Company: [
     { path: '/team', label: 'Team' },
     { path: '/careers', label: 'Careers' },
     { path: '/contact', label: 'Contact' },
     { path: '/pricing', label: 'Pricing' },
-    { path: '/playbook', label: 'Playbook' },
+    { path: '/method', label: 'Method' },
     { path: '/posts', label: 'Posts' },
   ],
   Method: [

@@ -106,3 +106,31 @@
     transform: translateX(0);
   }
 }
+
+/* Animated Headline - Stroke Fill Effect */
+@layer components {
+  .stroke-headline .stroke-word {
+    --stroke-progress: 0;
+    --fill-progress: 0;
+    position: relative;
+    -webkit-text-stroke: 2px currentColor;
+    -webkit-text-fill-color: transparent;
+    background: linear-gradient(
+      to right,
+      currentColor calc(var(--fill-progress) * 100%),
+      transparent calc(var(--fill-progress) * 100%)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+
+  .stroke-headline .stroke-word::before {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    top: 0;
+    -webkit-text-stroke: 2px currentColor;
+    -webkit-text-fill-color: transparent;
+    clip-path: inset(0 calc((1 - var(--stroke-progress)) * 100%) 0 0);
+  }
+}

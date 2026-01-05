@@ -23,13 +23,6 @@ export const job = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: 'department',
-      title: 'Department',
-      type: 'reference',
-      to: [{ type: 'department' }],
-      validation: (rule) => rule.required(),
-    }),
-    defineField({
       name: 'jobType',
       title: 'Job Type',
       type: 'reference',
@@ -169,14 +162,14 @@ export const job = defineType({
   preview: {
     select: {
       title: 'title',
-      department: 'department.title',
+      jobType: 'jobType.title',
       isActive: 'isActive',
     },
-    prepare({ title, department, isActive }) {
+    prepare({ title, jobType, isActive }) {
       const status = isActive === false ? '🔴' : '🟢'
       return {
         title: `${status} ${title}`,
-        subtitle: department || 'No department',
+        subtitle: jobType || '',
       }
     },
   },

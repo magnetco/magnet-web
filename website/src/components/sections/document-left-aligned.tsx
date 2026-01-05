@@ -19,7 +19,7 @@ export function DocumentLeftAligned({
     <section className={clsx('py-16', className)} {...props}>
       <Container className="flex flex-col gap-10 sm:gap-16">
         <div className="flex max-w-2xl flex-col gap-6">
-          <Heading>{headline}</Heading>
+          {typeof headline === 'string' ? <Heading>{headline}</Heading> : headline}
           {subheadline && (
             <Text size="lg" className="flex max-w-xl flex-col gap-4">
               {subheadline}

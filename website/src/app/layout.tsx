@@ -1,6 +1,5 @@
 import { ButtonLink } from '@/components/elements/button'
 import { ChatWidget } from '@/components/elements/chat-widget'
-import { DevBar } from '@/components/elements/dev-bar'
 import { FooterLogo } from '@/components/elements/footer-logo'
 import { Main } from '@/components/elements/main'
 import { ScrollableLogo } from '@/components/elements/scrollable-logo'
@@ -79,15 +78,15 @@ export default function RootLayout({
       </head>
       <body>
         <>
-          <DevBar />
           <NavbarWithLinksActionsAndCenteredLogo
             id="navbar"
+            withGridBg
             links={
               <>
                 <NavbarLink href="/branding">Branding</NavbarLink>
                 <NavbarLink href="/websites">Websites</NavbarLink>
-                <NavbarLink href="/ads">Paid</NavbarLink>
-                <NavbarLink href="/search">Search</NavbarLink>
+                <NavbarLink href="/ads">Paid Ads</NavbarLink>
+                <NavbarLink href="/search">Search Marketing</NavbarLink>
               </>
             }
             logo={<ScrollableLogo href="/" />}
@@ -109,7 +108,7 @@ export default function RootLayout({
                 <FooterCategory title="Services">
                   <FooterLink href="/websites">Websites</FooterLink>
                   <FooterLink href="/branding">Branding</FooterLink>
-                  <FooterLink href="/search">Search</FooterLink>
+                  <FooterLink href="/search">Search Marketing</FooterLink>
                   <FooterLink href="/ads">Ads</FooterLink>
                 </FooterCategory>
                 <FooterCategory title="Method">
@@ -129,9 +128,31 @@ export default function RootLayout({
             }
             fineprint="© 2025 Magnet Co, LLC"
             socialLinks={
-              <SocialLink href="https://www.linkedin.com/company/magnet-co" name="LinkedIn">
-                <LinkedInIcon />
-              </SocialLink>
+              <>
+                {process.env.NODE_ENV === 'development' && (
+                  <>
+                    <a
+                      href="http://localhost:3333"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-coral hover:text-frost transition-colors duration-200"
+                    >
+                      Studio
+                    </a>
+                    <a
+                      href="http://localhost:4000"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-coral hover:text-frost transition-colors duration-200"
+                    >
+                      Data
+                    </a>
+                  </>
+                )}
+                <SocialLink href="https://www.linkedin.com/company/magnet-co" name="LinkedIn">
+                  <LinkedInIcon />
+                </SocialLink>
+              </>
             }
           />
           <ChatWidget />

@@ -250,11 +250,15 @@ export function FAQsTwoColumnAccordion({
   headline?: ReactNode
   subheadline?: ReactNode
 } & ComponentProps<'section'>) {
+  // If headline is a string, wrap in Subheading. Otherwise, render as-is (for AnimatedSubheading etc.)
+  const headlineElement =
+    headline && typeof headline === 'string' ? <Subheading>{headline}</Subheading> : headline
+
   return (
     <section className={clsx('py-16', className)} {...props}>
       <Container className="grid grid-cols-1 gap-x-2 gap-y-8 lg:grid-cols-2">
         <div className="flex flex-col gap-6">
-          <Subheading>{headline}</Subheading>
+          {headlineElement}
           {subheadline && <Text className="flex flex-col gap-4 text-pretty">{subheadline}</Text>}
         </div>
         <div className="divide-y divide-olive-950/10 border-y border-olive-950/10 dark:divide-white/10 dark:border-white/10">

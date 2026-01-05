@@ -184,7 +184,7 @@ export function ContactForm({
         <div className="flex flex-col gap-6">
           <div className="flex max-w-4xl flex-col gap-2">
             {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
-            <Subheading>{headline}</Subheading>
+            {typeof headline === 'string' ? <Subheading>{headline}</Subheading> : headline}
           </div>
           {subheadline && <Text className="flex max-w-3xl flex-col gap-4 text-pretty">{subheadline}</Text>}
         </div>

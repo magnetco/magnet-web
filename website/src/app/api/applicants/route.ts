@@ -22,7 +22,7 @@ export async function POST(request: Request) {
     } = body
 
     // Validate required fields
-    if (!jobId || !firstName || !lastName || !email || !cellNumber || !linkedinUrl || !timezone || !locationPreference) {
+    if (!jobId || !firstName || !lastName || !email || !cellNumber || !timezone || !locationPreference) {
       return NextResponse.json(
         { error: 'Missing required fields' },
         { status: 400 }
@@ -60,7 +60,7 @@ export async function POST(request: Request) {
         ${lastName},
         ${email},
         ${cellNumber},
-        ${linkedinUrl},
+        ${linkedinUrl || null},
         ${resumeUrl || null},
         ${timezone},
         ${locationPreference},

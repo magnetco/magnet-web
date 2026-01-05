@@ -5,7 +5,7 @@ import { ContactFormData } from '../resend'
  * Matches Magnet brand colors and styling
  */
 export function renderContactFormEmail(data: ContactFormData): string {
-  const { name, company, email, message } = data
+  const { name, company, email, message, intent, services, subOptions } = data
 
   // Escape HTML to prevent XSS
   const escapeHtml = (text: string): string => {
@@ -19,11 +19,97 @@ export function renderContactFormEmail(data: ContactFormData): string {
     return text.replace(/[&<>"']/g, (m) => map[m])
   }
 
+  // Service ID to label mapping
+  const serviceLabels: Record<string, string> = {
+    'retainer': 'Full-Service Retainer',
+    'branding': 'Branding',
+    'websites': 'Websites',
+    'paid-media': 'Paid Media',
+    'search-marketing': 'Search Marketing',
+  }
+
+  // Sub-option ID to label mapping
+  const subOptionLabels: Record<string, string> = {
+    'brand-essentials': 'Brand Essentials',
+    'brand-comprehensive': 'Brand Comprehensive',
+    'marketing-website': 'Marketing Website',
+    'ecommerce-website': 'Ecommerce Website',
+    'custom-software': 'Custom Software',
+    'google-ads': 'Google Ads',
+    'meta-ads': 'Meta Ads',
+    'linkedin-ads': 'LinkedIn Ads',
+    'youtube-ads': 'YouTube Ads',
+    'technical-seo': 'Technical SEO',
+    'content-marketing': 'Content Marketing',
+    'link-building': 'Link Building',
+    'local-seo': 'Local SEO',
+  }
+
+  // Intent labels
+  const intentLabels: Record<string, string> = {
+    'prospect': 'Looking to hire Magnet',
+    'vendor': 'Vendor inquiry',
+    'partnership': 'Partnership opportunities',
+    'careers': 'Join our team',
+  }
+
   const safeName = escapeHtml(name)
   const safeCompany = company ? escapeHtml(company) : ''
   const safeEmail = escapeHtml(email)
   // Preserve line breaks in message
   const safeMessage = escapeHtml(message).replace(/\n/g, '<br>')
+
+  // Build services HTML
+  const buildServicesHtml = (): string => {
+    if (!services || services.length === 0) return ''
+    
+    let html = `
+                <tr>
+                  <td style="padding: 0 0 20px 0;">
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                      <tr>
+                        <td style="padding: 0 0 8px 0;">
+                          <p style="margin: 0; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: #2A4144; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;">
+                            Services Requested
+                          </p>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="padding: 0 0 24px 0;">
+                          <ul style="margin: 0; padding: 0 0 0 20px; font-size: 16px; line-height: 1.6; color: #220002; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;">`
+
+    for (const serviceId of services) {
+      const label = serviceLabels[serviceId] || serviceId
+      const serviceSubOptions = subOptions?.[serviceId]
+      
+      html += `
+                            <li style="margin-bottom: 8px;"><strong>${escapeHtml(label)}</strong>`
+      
+      if (serviceSubOptions && serviceSubOptions.length > 0) {
+        html += `
+                              <ul style="margin: 4px 0 0 0; padding: 0 0 0 16px; font-size: 14px; color: #2A4144;">`
+        for (const subOptId of serviceSubOptions) {
+          const subOptLabel = subOptionLabels[subOptId] || subOptId
+          html += `
+                                <li style="margin-bottom: 4px;">${escapeHtml(subOptLabel)}</li>`
+        }
+        html += `
+                              </ul>`
+      }
+      
+      html += `</li>`
+    }
+
+    html += `
+                          </ul>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>`
+    
+    return html
+  }
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -119,6 +205,33 @@ export function renderContactFormEmail(data: ContactFormData): string {
                   </td>
                 </tr>
                 ` : ''}
+
+                ${intent ? `
+                <tr>
+                  <td style="padding: 0 0 20px 0;">
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                      <tr>
+                        <td style="padding: 0 0 8px 0;">
+                          <p style="margin: 0; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: #2A4144; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;">
+                            Intent
+                          </p>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="padding: 0 0 24px 0;">
+                          <p style="margin: 0; font-size: 16px; line-height: 1.5; color: #220002; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;">
+                            <span style="display: inline-block; padding: 4px 12px; background-color: #F9432B; color: #FFFFFF; border-radius: 4px; font-weight: 500; font-size: 14px;">
+                              ${escapeHtml(intentLabels[intent] || intent)}
+                            </span>
+                          </p>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+                ` : ''}
+
+                ${buildServicesHtml()}
 
                 <tr>
                   <td style="padding: 0 0 20px 0;">
