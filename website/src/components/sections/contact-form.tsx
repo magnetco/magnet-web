@@ -6,6 +6,7 @@ import { clsx } from 'clsx/lite'
 import type { ComponentProps, ReactNode } from 'react'
 import { Container } from '../elements/container'
 import { Eyebrow } from '../elements/eyebrow'
+import { GridBgSection, sectionPaddingClasses } from '../elements/grid-bg'
 import { Subheading } from '../elements/subheading'
 import { Text } from '../elements/text'
 import { Button } from '../elements/button'
@@ -62,11 +63,13 @@ export function ContactForm({
   headline,
   subheadline,
   className,
+  withGridBg = false,
   ...props
 }: {
   eyebrow?: ReactNode
   headline: ReactNode
   subheadline?: ReactNode
+  withGridBg?: boolean
 } & ComponentProps<'section'>) {
   const searchParams = useSearchParams()
   const prefilledEmail = searchParams?.get('email') || ''
@@ -155,41 +158,55 @@ export function ContactForm({
     setErrorMessage('')
   }
 
-  if (formState === 'success') {
+  const renderSection = (content: React.ReactNode) => {
+    if (withGridBg) {
+      return (
+        <section className={className} {...props}>
+          <GridBgSection showBottomBorder={true} withPadding>
+            {content}
+          </GridBgSection>
+        </section>
+      )
+    }
     return (
-      <section className={clsx('py-16', className)} {...props}>
-        <Container className="flex flex-col gap-10">
-          <div className="flex flex-col items-center gap-6 text-center">
-            <div className="flex size-16 items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-900/30">
-              <CheckmarkIcon className="size-8 text-emerald-600 dark:text-emerald-400" />
-            </div>
-            <div className="flex flex-col gap-2">
-              <Subheading>Thank you for your interest!</Subheading>
-              <Text className="text-pretty">
-                We&apos;ve received your message and will get back to you within 24 hours.
-              </Text>
-            </div>
-            <Button onClick={handleReset} color="dark/light">
-              Submit another inquiry
-            </Button>
-          </div>
-        </Container>
+      <section className={clsx(sectionPaddingClasses, className)} {...props}>
+        {content}
       </section>
     )
   }
 
-  return (
-    <section className={clsx('py-16', className)} {...props}>
+  if (formState === 'success') {
+    return renderSection(
       <Container className="flex flex-col gap-10">
-        <div className="flex flex-col gap-6">
-          <div className="flex max-w-4xl flex-col gap-2">
-            {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
-            {typeof headline === 'string' ? <Subheading>{headline}</Subheading> : headline}
+        <div className="flex flex-col items-center gap-6 text-center">
+          <div className="flex size-16 items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-900/30">
+            <CheckmarkIcon className="size-8 text-emerald-600 dark:text-emerald-400" />
           </div>
-          {subheadline && <Text className="flex max-w-3xl flex-col gap-4 text-pretty">{subheadline}</Text>}
+          <div className="flex flex-col gap-2">
+            <Subheading>Thank you for your interest!</Subheading>
+            <Text className="text-pretty">
+              We&apos;ve received your message and will get back to you within 24 hours.
+            </Text>
+          </div>
+          <Button onClick={handleReset} color="dark/light">
+            Submit another inquiry
+          </Button>
         </div>
+      </Container>
+    )
+  }
 
-        <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+  return renderSection(
+    <Container className="flex flex-col gap-10">
+      <div className="flex flex-col gap-6">
+        <div className="flex max-w-4xl flex-col gap-2">
+          {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
+          {typeof headline === 'string' ? <Subheading>{headline}</Subheading> : headline}
+        </div>
+        {subheadline && <Text className="flex max-w-3xl flex-col gap-4 text-pretty">{subheadline}</Text>}
+      </div>
+
+      <form onSubmit={handleSubmit} className="flex flex-col gap-6">
           <div className="grid gap-6 sm:grid-cols-2">
             {fields.map((field) => {
               const value = formData[field.name] || ''
@@ -272,12 +289,11 @@ export function ContactForm({
           )}
 
           <div className="flex items-center gap-4">
-            <Button type="submit" size="lg" disabled={formState === 'submitting'}>
-              {formState === 'submitting' ? 'Submitting...' : 'Submit'}
-            </Button>
-          </div>
-        </form>
-      </Container>
-    </section>
+          <Button type="submit" size="lg" disabled={formState === 'submitting'}>
+            {formState === 'submitting' ? 'Submitting...' : 'Submit'}
+          </Button>
+        </div>
+      </form>
+    </Container>
   )
 }

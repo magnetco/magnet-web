@@ -3,6 +3,7 @@
 import { clsx } from 'clsx/lite'
 import { useState, type ComponentProps, type ReactNode } from 'react'
 import { Container } from '../elements/container'
+import { Eyebrow } from '../elements/eyebrow'
 import { GridBgSection, sectionPaddingClasses } from '../elements/grid-bg'
 import { Heading } from '../elements/heading'
 import { Text } from '../elements/text'
@@ -120,7 +121,7 @@ export function PricingRetainerHero({
   const content = (
     <Container className="flex flex-col gap-16">
         <div className="flex flex-col items-center gap-6 text-center">
-          {eyebrow}
+          {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
           {typeof headline === 'string' ? <Heading>{headline}</Heading> : headline}
           <Text size="lg" className="flex max-w-2xl flex-col gap-4 text-center">
             {subheadline}

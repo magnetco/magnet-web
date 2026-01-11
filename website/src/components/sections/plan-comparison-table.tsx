@@ -4,6 +4,7 @@ import { ElTabGroup, ElTabList, ElTabPanels } from '@tailwindplus/elements/react
 import { clsx } from 'clsx/lite'
 import { type ComponentProps, type ReactNode } from 'react'
 import { Container } from '../elements/container'
+import { GridBgSection, sectionPaddingClasses } from '../elements/grid-bg'
 import { CheckmarkIcon } from '../icons/checkmark-icon'
 import { MinusIcon } from '../icons/minus-icon'
 
@@ -67,6 +68,7 @@ export function PlanComparisonTable<const Plan extends string>({
   plans,
   features,
   className,
+  withGridBg = false,
   ...props
 }: {
   plans: Plan[]
@@ -74,10 +76,10 @@ export function PlanComparisonTable<const Plan extends string>({
     title: ReactNode
     features: { name: ReactNode; value: ReactNode | Record<Plan, ReactNode> }[]
   }[]
+  withGridBg?: boolean
 } & ComponentProps<'section'>) {
-  return (
-    <section className={clsx('py-16', className)} {...props}>
-      <Container>
+  const content = (
+    <Container>
         <table className="w-full border-collapse text-left text-sm/5 max-sm:hidden">
           <colgroup>
             <col className="w-2/5" />
@@ -134,6 +136,21 @@ export function PlanComparisonTable<const Plan extends string>({
           </ElTabGroup>
         </div>
       </Container>
+    )
+
+  if (withGridBg) {
+    return (
+      <section className={className} {...props}>
+        <GridBgSection showBottomBorder={true} withPadding>
+          {content}
+        </GridBgSection>
+      </section>
+    )
+  }
+
+  return (
+    <section className={clsx(sectionPaddingClasses, className)} {...props}>
+      {content}
     </section>
   )
 }

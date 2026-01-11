@@ -1,17 +1,16 @@
 'use client'
 
-import { ElDisclosure } from '@tailwindplus/elements/react'
 import { clsx } from 'clsx/lite'
-import { gsap } from 'gsap'
 import { useChat } from '@ai-sdk/react'
 import {
   useEffect,
   useRef,
   useState,
   useCallback,
+  useImperativeHandle,
+  forwardRef,
   type ComponentProps,
   type ReactNode,
-  useId,
 } from 'react'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
@@ -25,18 +24,6 @@ import { Text } from '../elements/text'
 // ============================================================================
 // Icons
 // ============================================================================
-
-function ChatIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className={className}>
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 0 1-2.555-.337A5.972 5.972 0 0 1 5.41 20.97a5.969 5.969 0 0 1-.474-.065 4.48 4.48 0 0 0 .978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25Z"
-      />
-    </svg>
-  )
-}
 
 function SendIcon({ className }: { className?: string }) {
   return (
@@ -52,6 +39,26 @@ function ArrowRightIcon({ className }: { className?: string }) {
       <path
         fillRule="evenodd"
         d="M2 8a.75.75 0 0 1 .75-.75h8.69L8.22 4.03a.75.75 0 0 1 1.06-1.06l4.5 4.5a.75.75 0 0 1 0 1.06l-4.5 4.5a.75.75 0 0 1-1.06-1.06l3.22-3.22H2.75A.75.75 0 0 1 2 8Z"
+        clipRule="evenodd"
+      />
+    </svg>
+  )
+}
+
+function SparkleIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
+      <path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
+    </svg>
+  )
+}
+
+function QuestionMarkIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 20 20" fill="currentColor" className={className}>
+      <path
+        fillRule="evenodd"
+        d="M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0ZM8.94 6.94a.75.75 0 1 1-1.061-1.061 3 3 0 1 1 2.871 5.026v.345a.75.75 0 0 1-1.5 0v-.5c0-.72.57-1.172 1.081-1.287A1.5 1.5 0 1 0 8.94 6.94ZM10 15a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"
         clipRule="evenodd"
       />
     </svg>
@@ -77,17 +84,19 @@ interface ParsedPart {
   href?: string
 }
 
+interface FaqQuestion {
+  question: string
+}
+
+interface InlineChatHandle {
+  sendQuestion: (question: string) => void
+}
+
 // ============================================================================
 // Constants
 // ============================================================================
 
 const STORAGE_KEY = 'magnet-chat-history'
-
-const QUICK_REPLIES = [
-  { text: 'What services do you offer?', icon: '🎯' },
-  { text: 'How does your methodology work?', icon: '📋' },
-  { text: 'What companies do you work with?', icon: '🏢' },
-]
 
 const PAGE_CONTEXTS: Record<string, { welcome: string }> = {
   '/pricing': {
@@ -231,32 +240,6 @@ function MessageBubble({ message, isLatest }: { message: ChatMessage; isLatest: 
   )
 }
 
-function QuickReplyButtons({
-  replies,
-  onSelect,
-  disabled,
-}: {
-  replies: typeof QUICK_REPLIES
-  onSelect: (text: string) => void
-  disabled: boolean
-}) {
-  return (
-    <div className="mt-5 flex flex-wrap gap-2">
-      {replies.map((reply) => (
-        <button
-          key={reply.text}
-          onClick={() => onSelect(reply.text)}
-          disabled={disabled}
-          className="inline-flex items-center gap-2 rounded-xl border border-olive-950/10 bg-white px-3.5 py-2 text-xs font-medium text-oxblood shadow-sm transition-all hover:border-oxblood/20 hover:bg-snow hover:shadow-md disabled:cursor-not-allowed disabled:opacity-50 dark:border-white/10 dark:bg-juniper/50 dark:text-coral dark:hover:border-ember/30 dark:hover:bg-juniper/70"
-        >
-          <span className="text-sm">{reply.icon}</span>
-          <span>{reply.text}</span>
-        </button>
-      ))}
-    </div>
-  )
-}
-
 function TypingIndicator() {
   return (
     <div className="flex items-start">
@@ -270,27 +253,75 @@ function TypingIndicator() {
 }
 
 // ============================================================================
-// Inline Chat Component
+// FAQ Pill Component
 // ============================================================================
 
-function SparkleIcon({ className }: { className?: string }) {
+function FaqPill({
+  question,
+  onClick,
+  disabled,
+}: {
+  question: string
+  onClick: () => void
+  disabled: boolean
+}) {
   return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
-      <path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
-    </svg>
+    <button
+      type="button"
+      onClick={onClick}
+      disabled={disabled}
+      className={clsx(
+        'group flex items-start gap-3 rounded-xl border px-4 py-3 text-left transition-all duration-200',
+        'border-olive-950/10 bg-white/60 backdrop-blur-sm',
+        'hover:border-ember/30 hover:bg-white hover:shadow-md hover:shadow-ember/5',
+        'dark:border-white/10 dark:bg-juniper/30 dark:hover:border-ember/40 dark:hover:bg-juniper/50',
+        'disabled:cursor-not-allowed disabled:opacity-50'
+      )}
+    >
+      <div
+        className={clsx(
+          'mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full',
+          'bg-ember/10 text-ember transition-colors duration-200',
+          'group-hover:bg-ember/20',
+          'dark:bg-ember/20 dark:group-hover:bg-ember/30'
+        )}
+      >
+        <QuestionMarkIcon className="size-3" />
+      </div>
+      <span className="text-sm font-medium text-oxblood transition-colors duration-200 group-hover:text-ember dark:text-coral dark:group-hover:text-ember">
+        {question}
+      </span>
+    </button>
   )
 }
 
-function InlineChat() {
+// ============================================================================
+// Inline Chat Component
+// ============================================================================
+
+const InlineChat = forwardRef<InlineChatHandle, object>(function InlineChat(_props, ref) {
   const pathname = usePathname()
   const [input, setInput] = useState('')
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
   const hasUserInteracted = useRef(false)
+  const containerRef = useRef<HTMLDivElement>(null)
 
   const { messages, sendMessage, status, setMessages } = useChat()
 
   const isLoading = status === 'submitted'
+
+  // Expose sendQuestion method to parent
+  useImperativeHandle(ref, () => ({
+    sendQuestion: (question: string) => {
+      hasUserInteracted.current = true
+      sendMessage({ text: question })
+      // Scroll chat into view
+      setTimeout(() => {
+        containerRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      }, 100)
+    },
+  }))
 
   // Load conversation from localStorage on mount
   useEffect(() => {
@@ -349,15 +380,6 @@ function InlineChat() {
     [input, isLoading, sendMessage]
   )
 
-  const handleQuickReply = useCallback(
-    (text: string) => {
-      setInput(text)
-      if (inputRef.current) inputRef.current.value = text
-      setTimeout(() => handleSubmit(), 50)
-    },
-    [handleSubmit]
-  )
-
   const handleClearHistory = useCallback(() => {
     localStorage.removeItem(STORAGE_KEY)
     setMessages([
@@ -369,10 +391,11 @@ function InlineChat() {
     ])
   }, [pathname, setMessages])
 
-  const showQuickReplies = messages.length === 1 && messages[0]?.role === 'assistant' && !isLoading
-
   return (
-    <div className="group/chat relative flex h-[28rem] flex-col overflow-hidden rounded-3xl border border-olive-950/10 bg-gradient-to-b from-white to-snow shadow-2xl shadow-oxblood/5 ring-1 ring-olive-950/5 dark:border-white/10 dark:from-juniper/60 dark:to-juniper/40 dark:shadow-black/20 dark:ring-white/5">
+    <div
+      ref={containerRef}
+      className="group/chat relative flex h-[32rem] flex-col overflow-hidden rounded-3xl border border-olive-950/10 bg-gradient-to-b from-white to-snow shadow-2xl shadow-oxblood/5 ring-1 ring-olive-950/5 dark:border-white/10 dark:from-juniper/60 dark:to-juniper/40 dark:shadow-black/20 dark:ring-white/5"
+    >
       {/* Decorative gradient overlay */}
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-ember/[0.02] via-transparent to-oxblood/[0.02] dark:from-ember/[0.05] dark:to-oxblood/[0.05]" />
 
@@ -410,15 +433,13 @@ function InlineChat() {
           {isLoading && <TypingIndicator />}
           <div ref={messagesEndRef} />
         </div>
-
-        {/* Quick replies */}
-        {showQuickReplies && (
-          <QuickReplyButtons replies={QUICK_REPLIES} onSelect={handleQuickReply} disabled={isLoading} />
-        )}
       </div>
 
       {/* Input */}
-      <form onSubmit={handleSubmit} className="relative border-t border-olive-950/5 bg-white/60 p-4 backdrop-blur-sm dark:border-white/5 dark:bg-juniper/30">
+      <form
+        onSubmit={handleSubmit}
+        className="relative border-t border-olive-950/5 bg-white/60 p-4 backdrop-blur-sm dark:border-white/5 dark:bg-juniper/30"
+      >
         <div className="flex items-center gap-3">
           <input
             ref={inputRef}
@@ -447,178 +468,7 @@ function InlineChat() {
       </form>
     </div>
   )
-}
-
-// ============================================================================
-// FAQ Component
-// ============================================================================
-
-export function Faq({
-  id,
-  question,
-  answer,
-  ...props
-}: { question: ReactNode; answer: ReactNode } & ComponentProps<'div'>) {
-  const autoId = useId()
-  id = id || autoId
-  const disclosureRef = useRef<HTMLElement>(null)
-  const contentRef = useRef<HTMLDivElement>(null)
-  const buttonRef = useRef<HTMLButtonElement>(null)
-  const iconRef = useRef<HTMLDivElement>(null)
-  const [isOpen, setIsOpen] = useState(false)
-
-  useEffect(() => {
-    const disclosure = disclosureRef.current
-    const content = contentRef.current
-    const button = buttonRef.current
-    const icon = iconRef.current
-    if (!disclosure || !content || !icon) return
-
-    disclosure.style.height = '0px'
-    disclosure.style.overflow = 'hidden'
-    gsap.set(content, { opacity: 0, y: 12 })
-
-    const updateAriaExpanded = (open: boolean) => {
-      if (button) {
-        button.setAttribute('aria-expanded', String(open))
-      }
-      setIsOpen(open)
-    }
-
-    const animateOpen = () => {
-      gsap.killTweensOf([disclosure, content, icon])
-
-      disclosure.style.height = 'auto'
-      const targetHeight = disclosure.offsetHeight
-      disclosure.style.height = '0px'
-
-      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
-      tl.to(icon, { rotation: 180, duration: 0.4, ease: 'back.out(1.7)' }, 0)
-      tl.to(
-        disclosure,
-        {
-          height: targetHeight,
-          duration: 0.5,
-          ease: 'power2.out',
-          onComplete: () => {
-            disclosure.style.height = 'auto'
-          },
-        },
-        0
-      )
-      tl.to(content, { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' }, 0.1)
-    }
-
-    const animateClose = () => {
-      gsap.killTweensOf([disclosure, content, icon])
-
-      const currentHeight = disclosure.offsetHeight
-      disclosure.style.height = `${currentHeight}px`
-
-      const tl = gsap.timeline({ defaults: { ease: 'power2.inOut' } })
-      tl.to(icon, { rotation: 0, duration: 0.3, ease: 'power2.inOut' }, 0)
-      tl.to(content, { opacity: 0, y: 8, duration: 0.25 }, 0)
-      tl.to(disclosure, { height: 0, duration: 0.35, ease: 'power3.inOut' }, 0.05)
-    }
-
-    const animateToggle = () => {
-      const open = disclosure.hasAttribute('open') && !disclosure.hasAttribute('hidden')
-      updateAriaExpanded(open)
-      if (open) {
-        animateOpen()
-      } else {
-        animateClose()
-      }
-    }
-
-    const observer = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
-        if (
-          mutation.type === 'attributes' &&
-          (mutation.attributeName === 'open' || mutation.attributeName === 'hidden')
-        ) {
-          requestAnimationFrame(() => {
-            animateToggle()
-          })
-        }
-      })
-    })
-
-    observer.observe(disclosure, {
-      attributes: true,
-      attributeFilter: ['open', 'hidden'],
-    })
-
-    const isInitiallyOpen = disclosure.hasAttribute('open') && !disclosure.hasAttribute('hidden')
-    updateAriaExpanded(isInitiallyOpen)
-    if (isInitiallyOpen) {
-      disclosure.style.height = 'auto'
-      gsap.set(content, { opacity: 1, y: 0 })
-      gsap.set(icon, { rotation: 180 })
-    }
-
-    return () => {
-      observer.disconnect()
-      gsap.killTweensOf([disclosure, content, icon])
-    }
-  }, [])
-
-  return (
-    <div
-      id={id}
-      className={clsx(
-        'group transition-all duration-200',
-        isOpen && '-mx-4 rounded-xl bg-olive-950/[0.02] px-4 dark:bg-white/[0.02]'
-      )}
-      {...props}
-    >
-      <button
-        ref={buttonRef}
-        type="button"
-        id={`${id}-question`}
-        command="--toggle"
-        commandfor={`${id}-answer`}
-        aria-expanded={isOpen}
-        className={clsx(
-          'flex w-full cursor-pointer items-start justify-between gap-6 py-5 text-left',
-          'text-base/7 font-medium text-oxblood transition-colors duration-200',
-          'hover:text-ember dark:text-coral dark:hover:text-ember'
-        )}
-      >
-        <span className="text-pretty">{question}</span>
-        <div
-          ref={iconRef}
-          className={clsx(
-            'relative mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full',
-            'bg-olive-950/5 transition-all duration-200',
-            'group-hover:bg-ember/10 group-hover:scale-110 dark:bg-white/10 dark:group-hover:bg-ember/20',
-            isOpen && 'bg-ember/10 dark:bg-ember/20'
-          )}
-        >
-          <svg
-            className="size-3 text-oxblood dark:text-coral"
-            fill="none"
-            viewBox="0 0 12 12"
-            stroke="currentColor"
-            strokeWidth={2}
-            strokeLinecap="round"
-          >
-            <path
-              d="M6 1v10"
-              className={clsx('origin-center transition-opacity duration-200', isOpen && 'opacity-0')}
-            />
-            <path d="M1 6h10" />
-          </svg>
-        </div>
-      </button>
-      <ElDisclosure ref={disclosureRef} id={`${id}-answer`} hidden className="overflow-hidden">
-        <div ref={contentRef} className="pb-5 pr-12">
-          <div className="text-sm/7 text-olive-700 dark:text-opal">{answer}</div>
-        </div>
-      </ElDisclosure>
-    </div>
-  )
-}
+})
 
 // ============================================================================
 // Main Section Component
@@ -628,52 +478,62 @@ export function FAQsWithChat({
   eyebrow,
   headline,
   subheadline,
+  questions,
   className,
-  children,
   withGridBg = false,
   ...props
 }: {
   eyebrow?: ReactNode
   headline?: ReactNode
   subheadline?: ReactNode
+  questions: FaqQuestion[]
   withGridBg?: boolean
-} & ComponentProps<'section'>) {
+} & Omit<ComponentProps<'section'>, 'children'>) {
+  const chatRef = useRef<InlineChatHandle>(null)
+  const [isLoading, setIsLoading] = useState(false)
+
   const headlineElement =
     headline && typeof headline === 'string' ? <Subheading>{headline}</Subheading> : headline
 
+  const handleQuestionClick = useCallback((question: string) => {
+    setIsLoading(true)
+    chatRef.current?.sendQuestion(question)
+    // Reset loading state after a brief delay
+    setTimeout(() => setIsLoading(false), 500)
+  }, [])
+
   const content = (
-    <Container>
-      <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-12 lg:gap-16">
-        {/* Left: FAQs */}
-        <div className="flex flex-col lg:col-span-7">
-          {/* Header */}
-          <div className="mb-10 flex flex-col gap-4">
-            <div className="flex flex-col gap-3">
-              {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
-              {headlineElement}
-            </div>
-            {subheadline && (
-              <Text className="max-w-xl text-pretty">{subheadline}</Text>
-            )}
-          </div>
-
-          {/* FAQ Items */}
-          <div className="divide-y divide-olive-950/10 border-y border-olive-950/10 dark:divide-white/10 dark:border-white/10">
-            {children}
-          </div>
+    <Container className="flex flex-col gap-12 sm:gap-16">
+      {/* Header - Left aligned */}
+      <div className="flex max-w-2xl flex-col gap-6">
+        <div className="flex flex-col gap-2">
+          {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
+          {headlineElement}
         </div>
+        {subheadline && <Text className="text-pretty">{subheadline}</Text>}
+      </div>
 
-        {/* Right: Chat */}
-        <div className="lg:col-span-5 lg:sticky lg:top-28 lg:self-start">
-          {/* Chat label */}
-          <div className="mb-4 flex items-center gap-2">
-            <div className="size-1.5 rounded-full bg-emerald-500" />
-            <span className="text-xs font-medium text-basalt/60 dark:text-opal/60">
-              AI assistant available
-            </span>
-          </div>
-          <InlineChat />
+      {/* FAQ Pills Grid */}
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        {questions.map((faq, index) => (
+          <FaqPill
+            key={index}
+            question={faq.question}
+            onClick={() => handleQuestionClick(faq.question)}
+            disabled={isLoading}
+          />
+        ))}
+      </div>
+
+      {/* Chat Panel */}
+      <div className="max-w-2xl">
+        <div className="mb-4 flex items-center gap-2">
+          <div className="size-1.5 rounded-full bg-emerald-500" />
+          <span className="text-xs font-medium text-basalt/60 dark:text-opal/60">
+            Or ask your own question below
+          </span>
         </div>
+        <InlineChat ref={chatRef} />
       </div>
     </Container>
   )
@@ -694,4 +554,3 @@ export function FAQsWithChat({
     </section>
   )
 }
-

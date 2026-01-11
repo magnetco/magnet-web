@@ -5,7 +5,7 @@ import { ArrowNarrowRightIcon } from '@/components/icons/arrow-narrow-right-icon
 import { ChevronIcon } from '@/components/icons/chevron-icon'
 import { Approach, ApproachItem, ApproachStage } from '@/components/sections/approach'
 import { CallToActionSimple } from '@/components/sections/call-to-action-simple'
-import { FAQsTwoColumnAccordion, Faq } from '@/components/sections/faqs-two-column-accordion'
+import { FAQsWithChat } from '@/components/sections/faqs-with-chat'
 import { Feature, FeaturesTwoColumnWithDemos } from '@/components/sections/features-two-column-with-demos'
 import { HeroLeftAlignedWithDemo } from '@/components/sections/hero-left-aligned-with-demo'
 import { Stat, StatsWithGraph } from '@/components/sections/stats-with-graph'
@@ -427,38 +427,20 @@ export default function Page() {
       </Approach>
 
       {/* FAQs */}
-      <FAQsTwoColumnAccordion id="faqs" headline="Questions about social content">
-        <Faq
-          id="faq-1"
-          question="What's the difference between social content and just posting?"
-          answer="Posting is one-way broadcasting. Social content is comprehensive strategies that align with how audiences consume content, when they're most receptive, and what moves them to action. Content systems create content with purpose—every piece serves a role in building awareness, trust, or relationships. When social content is done right, it builds relationships and drives qualified traffic."
-        />
-        <Faq
-          id="faq-2"
-          question="How do you align content with audience behavior?"
-          answer="We analyze when your audience is most active, what formats they prefer, what content they engage with, and what moves them to action. Then we build content strategies that align with these behaviors—posting when audiences are receptive, using formats they prefer, and creating content that drives engagement. This audience-aligned approach means content performs better because it's designed for how audiences actually consume content."
-        />
-        <Faq
-          id="faq-3"
-          question="What makes content engagement-focused?"
-          answer="Engagement-focused content serves a purpose—it builds awareness, educates, entertains, or moves audiences toward action. Every piece of content is designed to drive engagement, not just fill a feed. This means content provides value that audiences want to engage with, creating relationships that drive qualified traffic."
-        />
-        <Faq
-          id="faq-4"
-          question="How long does it take to see results from social content?"
-          answer="You'll typically see improvements in engagement rates within the first month as audience-aligned strategies are implemented. The real impact—brand awareness, trust, relationships, and qualified traffic—builds over 2-3 months as content systems mature and audiences engage more consistently."
-        />
-        <Faq
-          id="faq-5"
-          question="Can social content work for B2B companies?"
-          answer="Absolutely. B2B social content is especially valuable because it builds thought leadership, facilitates professional relationships, and drives qualified leads. We build B2B social content systems that align with how professionals consume content, when they're most receptive, and what moves them to engage. B2B social content often becomes a competitive advantage."
-        />
-        <Faq
-          id="faq-6"
-          question="How do you measure social content success?"
-          answer="We measure success through multiple metrics: engagement rates, reach, brand awareness, website traffic, lead generation, and ultimately, revenue. But the real measure is whether social content builds relationships and drives qualified traffic. We track both quantitative metrics and qualitative outcomes to continuously improve content systems."
-        />
-      </FAQsTwoColumnAccordion>
+      <FAQsWithChat
+        id="faqs"
+        eyebrow="Social Content FAQ"
+        headline="Questions about social content"
+        subheadline="Get answers to common questions, or chat with our AI assistant for personalized guidance."
+        questions={[
+          { question: "What's the difference between social content and just posting?" },
+          { question: 'How do you align content with audience behavior?' },
+          { question: 'What makes content engagement-focused?' },
+          { question: 'How long does it take to see results from social content?' },
+          { question: 'Can social content work for B2B companies?' },
+          { question: 'How do you measure social content success?' },
+        ]}
+      />
 
       {/* Call To Action */}
       <CallToActionSimple

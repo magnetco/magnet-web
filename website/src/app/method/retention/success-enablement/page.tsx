@@ -5,7 +5,7 @@ import { ArrowNarrowRightIcon } from '@/components/icons/arrow-narrow-right-icon
 import { ChevronIcon } from '@/components/icons/chevron-icon'
 import { Approach, ApproachItem, ApproachStage } from '@/components/sections/approach'
 import { CallToActionSimple } from '@/components/sections/call-to-action-simple'
-import { FAQsTwoColumnAccordion, Faq } from '@/components/sections/faqs-two-column-accordion'
+import { FAQsWithChat } from '@/components/sections/faqs-with-chat'
 import { Feature, FeaturesTwoColumnWithDemos } from '@/components/sections/features-two-column-with-demos'
 import { HeroLeftAlignedWithDemo } from '@/components/sections/hero-left-aligned-with-demo'
 import { Stat, StatsWithGraph } from '@/components/sections/stats-with-graph'
@@ -428,38 +428,20 @@ export default function Page() {
       </Approach>
 
       {/* FAQs */}
-      <FAQsTwoColumnAccordion id="faqs" headline="Questions about success enablement">
-        <Faq
-          id="faq-1"
-          question="What's the difference between success enablement and customer support?"
-          answer="Customer support is reactive—it helps when customers ask. Success enablement is proactive—it provides resources and guidance before customers need to ask. Support solves problems; success enablement helps customers achieve outcomes. When success enablement is done right, customers succeed faster, which increases satisfaction, builds loyalty, and creates advocates."
-        />
-        <Faq
-          id="faq-2"
-          question="How do you make guidance proactive?"
-          answer="We build systems that understand where customers are in their journey and surface the right resources at the right time. This means resources appear when customers need them, not when they search for them. Proactive guidance recognizes milestones, identifies needs, and provides support before customers have to ask. This approach helps customers succeed faster and creates satisfaction that builds loyalty."
-        />
-        <Faq
-          id="faq-3"
-          question="What does outcome-focused support mean?"
-          answer="Outcome-focused support helps customers achieve their desired outcomes, not just solve immediate problems. Instead of just answering questions, we guide customers toward success. This means understanding what customers are trying to achieve and providing support that moves them closer to those goals. When support is outcome-focused, customers see value faster, which increases satisfaction and retention."
-        />
-        <Faq
-          id="faq-4"
-          question="How long does it take to see results from success enablement?"
-          answer="You'll typically see improvements in customer satisfaction and engagement within the first month as proactive guidance and outcome-focused support are implemented. The real impact—better retention, higher lifetime value, and customers who become advocates—builds over 2-3 months as customers succeed with your product and see the value."
-        />
-        <Faq
-          id="faq-5"
-          question="Can success enablement work for different types of products?"
-          answer="Absolutely. Success enablement can be adapted for SaaS products, services, physical products, and more. The key is understanding what success looks like for your customers and building systems that help them achieve those outcomes. We customize success enablement to fit your product and your customers' needs."
-        />
-        <Faq
-          id="faq-6"
-          question="How do you measure success enablement effectiveness?"
-          answer="We measure success through multiple metrics: customer satisfaction scores, time to value, feature adoption rates, retention rates, and ultimately, customer lifetime value. But the real measure is whether customers are achieving their desired outcomes and becoming advocates. We track both quantitative metrics and qualitative feedback to continuously improve success enablement systems."
-        />
-      </FAQsTwoColumnAccordion>
+      <FAQsWithChat
+        id="faqs"
+        eyebrow="Success Enablement FAQ"
+        headline="Questions about success enablement"
+        subheadline="Get answers to common questions, or chat with our AI assistant for personalized guidance."
+        questions={[
+          { question: "What's the difference between success enablement and customer support?" },
+          { question: 'How do you make guidance proactive?' },
+          { question: 'What does outcome-focused support mean?' },
+          { question: 'How long does it take to see results from success enablement?' },
+          { question: 'Can success enablement work for different types of products?' },
+          { question: 'How do you measure success enablement effectiveness?' },
+        ]}
+      />
 
       {/* Call To Action */}
       <CallToActionSimple

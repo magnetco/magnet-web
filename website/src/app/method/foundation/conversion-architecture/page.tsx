@@ -5,7 +5,7 @@ import { ArrowNarrowRightIcon } from '@/components/icons/arrow-narrow-right-icon
 import { ChevronIcon } from '@/components/icons/chevron-icon'
 import { Approach, ApproachItem, ApproachStage } from '@/components/sections/approach'
 import { CallToActionSimple } from '@/components/sections/call-to-action-simple'
-import { FAQsTwoColumnAccordion, Faq } from '@/components/sections/faqs-two-column-accordion'
+import { FAQsWithChat } from '@/components/sections/faqs-with-chat'
 import { Feature, FeaturesTwoColumnWithDemos } from '@/components/sections/features-two-column-with-demos'
 import { HeroLeftAlignedWithDemo } from '@/components/sections/hero-left-aligned-with-demo'
 import { Stat, StatsWithGraph } from '@/components/sections/stats-with-graph'
@@ -428,38 +428,20 @@ export default function Page() {
       </Approach>
 
       {/* FAQs */}
-      <FAQsTwoColumnAccordion id="faqs" headline="Questions about conversion architecture">
-        <Faq
-          id="faq-1"
-          question="What's the difference between conversion architecture and just optimizing landing pages?"
-          answer="Landing page optimization focuses on improving individual pages. Conversion architecture is a comprehensive system that understands user intent, removes friction across the entire journey, and creates clear paths to action. It's not just about one page—it's about building a system that guides users from first touch to conversion, ensuring every interaction moves them closer to action."
-        />
-        <Faq
-          id="faq-2"
-          question="How do you identify user intent?"
-          answer="We identify user intent through a combination of analytics data, user research, and behavioral analysis. This includes understanding where users come from, what they're searching for, what content they engage with, and what actions they take. We then create paths that match different types of intent—research, comparison, purchase—ensuring each user gets the right experience for their needs."
-        />
-        <Faq
-          id="faq-3"
-          question="What types of friction do you typically find and remove?"
-          answer="Common friction points include unnecessary form fields, unclear value propositions, confusing navigation, too many choices, lack of trust signals, slow load times, and unclear calls to action. We systematically identify all friction points through user research and analytics, then remove them one by one. The goal is to make the path to action as clear and easy as possible."
-        />
-        <Faq
-          id="faq-4"
-          question="How long does it take to see results from conversion architecture improvements?"
-          answer="You'll typically see improvements in conversion rates within the first month as friction is removed and paths are clarified. The real impact—sustained higher conversion rates and better user satisfaction—builds over 2-3 months as the system matures and users adapt to the improved experience."
-        />
-        <Faq
-          id="faq-5"
-          question="Can conversion architecture work for complex B2B sales processes?"
-          answer="Absolutely. In fact, conversion architecture is especially valuable for complex B2B processes. We create paths that guide users through research, evaluation, and decision stages, removing friction at each step. For B2B, this might include simplifying proposal requests, making demos easier to schedule, or creating clear paths for different buyer personas."
-        />
-        <Faq
-          id="faq-6"
-          question="How do you measure conversion architecture success?"
-          answer="We measure success through multiple metrics: conversion rates, task completion rates, time to conversion, user satisfaction scores, and ultimately, revenue. But the real measure is whether users can easily achieve their goals. We track both quantitative metrics and qualitative feedback to continuously improve the architecture."
-        />
-      </FAQsTwoColumnAccordion>
+      <FAQsWithChat
+        id="faqs"
+        eyebrow="Conversion Architecture FAQ"
+        headline="Questions about conversion architecture"
+        subheadline="Get answers to common questions, or chat with our AI assistant for personalized guidance."
+        questions={[
+          { question: "What's the difference between conversion architecture and just optimizing landing pages?" },
+          { question: 'How do you identify user intent?' },
+          { question: 'What types of friction do you typically find and remove?' },
+          { question: 'How long does it take to see results from conversion architecture improvements?' },
+          { question: 'Can conversion architecture work for complex B2B sales processes?' },
+          { question: 'How do you measure conversion architecture success?' },
+        ]}
+      />
 
       {/* Call To Action */}
       <CallToActionSimple

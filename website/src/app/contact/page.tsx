@@ -1,6 +1,6 @@
 import { Suspense } from 'react'
 import Image from 'next/image'
-import { FAQsWithChat, Faq } from '@/components/sections/faqs-with-chat'
+import { FAQsWithChat } from '@/components/sections/faqs-with-chat'
 import { FeaturesThreeColumn, Feature } from '@/components/sections/features-three-column'
 import { HeroWithContactForm } from '@/components/sections/hero-with-contact-form'
 import { Stat, StatsWithGraph } from '@/components/sections/stats-with-graph'
@@ -185,41 +185,17 @@ export default function Page() {
       <FAQsWithChat
         id="faqs"
         eyebrow="Got questions?"
-        headline="We have answers
-          "
+        headline="We have answers"
         subheadline="Browse common questions below, or chat directly with our AI assistant for instant, personalized answers about our services and methodology."
-      >
-        <Faq
-          id="faq-1"
-          question="How quickly will I hear back after submitting the form?"
-          answer="We typically respond within 24 hours during business days. For urgent inquiries, please mention it in your message and we'll prioritize your request."
-        />
-        <Faq
-          id="faq-2"
-          question="What information should I include in my inquiry?"
-          answer="The more details you can share about your business, goals, and challenges, the better we can tailor our response. Include your company name, current marketing situation, and what you're hoping to achieve."
-        />
-        <Faq
-          id="faq-3"
-          question="Do you work with businesses of all sizes?"
-          answer="Yes! We work with startups, growing companies, and enterprise organizations. Our approach scales to fit your needs, whether you're just getting started or looking to accelerate existing growth."
-        />
-        <Faq
-          id="faq-4"
-          question="What happens after I submit the form?"
-          answer="After you submit, we'll review your inquiry and reach out to schedule a consultation call. During the call, we'll discuss your goals, answer questions, and determine if we're a good fit to work together."
-        />
-        <Faq
-          id="faq-5"
-          question="Can you work with our existing marketing team?"
-          answer="Absolutely. We collaborate seamlessly with in-house teams, providing strategic guidance and execution support. Whether you need full-service support or specific expertise, we adapt to your team structure."
-        />
-        <Faq
-          id="faq-6"
-          question="What makes your approach different?"
-          answer="We focus on building sustainable, data-driven marketing systems rather than chasing trends. Our methodology combines strategic foundation, activation, acceleration, and retention—creating marketing that compounds over time."
-        />
-      </FAQsWithChat>
+        questions={[
+          { question: 'How quickly will I hear back after submitting the form?' },
+          { question: 'What information should I include in my inquiry?' },
+          { question: 'Do you work with businesses of all sizes?' },
+          { question: 'What happens after I submit the form?' },
+          { question: 'Can you work with our existing marketing team?' },
+          { question: 'What makes your approach different?' },
+        ]}
+      />
     </>
   )
 }

@@ -4,6 +4,8 @@ import { ElDisclosure } from '@tailwindplus/elements/react'
 import { clsx } from 'clsx/lite'
 import { gsap } from 'gsap'
 import { useEffect, useRef, useState, type ComponentProps, type ReactNode, useId } from 'react'
+import { Eyebrow } from '../elements/eyebrow'
+import { GridBgSection, sectionPaddingClasses } from '../elements/grid-bg'
 import { Subheading } from '../elements/subheading'
 import { Text } from '../elements/text'
 
@@ -243,28 +245,49 @@ export function Faq({
 }
 
 export function FAQsAccordion({
+  eyebrow,
   headline,
   subheadline,
   className,
   children,
+  withGridBg = false,
   ...props
 }: {
+  eyebrow?: ReactNode
   headline?: ReactNode
   subheadline?: ReactNode
+  withGridBg?: boolean
 } & ComponentProps<'section'>) {
   // If headline is a string, wrap in Subheading. Otherwise, render as-is (for AnimatedSubheading etc.)
   const headlineElement =
     headline && typeof headline === 'string' ? <Subheading>{headline}</Subheading> : headline
 
-  return (
-    <section className={clsx('py-16', className)} {...props}>
-      <div className="mx-auto flex max-w-3xl flex-col gap-8 px-6 lg:max-w-5xl lg:px-10">
-        <div className="flex flex-col gap-6">
+  const content = (
+    <div className="mx-auto flex max-w-3xl flex-col gap-8 px-6 lg:max-w-5xl lg:px-10">
+      <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-2">
+          {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
           {headlineElement}
-          {subheadline && <Text className="flex flex-col gap-4 text-pretty">{subheadline}</Text>}
         </div>
-        <div className="flex flex-col gap-4">{children}</div>
+        {subheadline && <Text className="flex flex-col gap-4 text-pretty">{subheadline}</Text>}
       </div>
+      <div className="flex flex-col gap-4">{children}</div>
+    </div>
+  )
+
+  if (withGridBg) {
+    return (
+      <section className={className} {...props}>
+        <GridBgSection showBottomBorder={true} withPadding>
+          {content}
+        </GridBgSection>
+      </section>
+    )
+  }
+
+  return (
+    <section className={clsx(sectionPaddingClasses, className)} {...props}>
+      {content}
     </section>
   )
 }

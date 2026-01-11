@@ -1,20 +1,21 @@
 import { AnnouncementBadge } from '@/components/elements/announcement-badge'
 import { ButtonLink, PlainButtonLink } from '@/components/elements/button'
-import { Link } from '@/components/elements/link'
 import { Screenshot } from '@/components/elements/screenshot'
 import { TabbedLogoGallery, type GalleryItem } from '@/components/elements/tabbed-logo-gallery'
 import { ArrowNarrowRightIcon } from '@/components/icons/arrow-narrow-right-icon'
 import { CallToActionWithEmail } from '@/components/sections/call-to-action-with-email'
-import { FAQsWithChat, Faq } from '@/components/sections/faqs-with-chat'
+import { CaseStudySliderSection } from '@/components/sections/case-study-slider'
+import { FAQsWithChat } from '@/components/sections/faqs-with-chat'
 import { FeaturesBentoGrid } from '@/components/sections/features-bento-grid'
-import { Feature, FeaturesTwoColumnWithDemos } from '@/components/sections/features-two-column-with-demos'
 import { HeroLeftAlignedWithDemo } from '@/components/sections/hero-left-aligned-with-demo'
+import { IndustriesGrid } from '@/components/sections/industries-grid'
 import { PricingCompact } from '@/components/sections/pricing-compact'
 import { Stat, StatsWithGraph } from '@/components/sections/stats-with-graph'
 import { TeamCarouselSection, type TeamCarouselMember } from '@/components/sections/team-carousel'
 import { TestimonialsAnimatedGrid } from '@/components/sections/testimonials-animated-grid'
 import { client } from '@/lib/sanity/client'
-import { teamMembersQuery } from '@/lib/sanity/queries'
+import { featuredCaseStudiesQuery, teamMembersQuery } from '@/lib/sanity/queries'
+import type { CaseStudy } from '@/lib/sanity/types'
 import Image from 'next/image'
 
 const galleryItems: GalleryItem[] = [
@@ -331,8 +332,11 @@ const galleryItems: GalleryItem[] = [
 ]
 
 export default async function Page() {
-  // Fetch team members from Sanity
-  const teamMembers = await client.fetch<TeamCarouselMember[]>(teamMembersQuery)
+  // Fetch data from Sanity
+  const [teamMembers, featuredCaseStudies] = await Promise.all([
+    client.fetch<TeamCarouselMember[]>(teamMembersQuery),
+    client.fetch<CaseStudy[]>(featuredCaseStudiesQuery),
+  ])
   return (
     <>
       {/* Hero */}
@@ -360,11 +364,10 @@ export default async function Page() {
         }
         demo={<TabbedLogoGallery items={galleryItems} />}
       />
-      {/* Features */}
-      <FeaturesTwoColumnWithDemos
-        id="features"
-        withGridBg
-        eyebrow="Case studies"
+      {/* Case Studies Slider */}
+      <CaseStudySliderSection
+        id="case-studies"
+        eyebrow="Case Studies"
         headline="Real results from real partnerships that drive meaningful impact at scale."
         subheadline={
           <p>
@@ -372,158 +375,9 @@ export default async function Page() {
             digital experiences.
           </p>
         }
-        features={
-          <>
-            <Feature
-              demo={
-                <Screenshot wallpaper="purple" placement="bottom-right">
-                  <Image
-                    src="/img/screenshots/1-left-1000-top-800.webp"
-                    alt=""
-                    className="bg-white/75 sm:hidden dark:hidden"
-                    width={1000}
-                    height={800}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1000-top-800.webp"
-                    alt=""
-                    className="bg-black/75 not-dark:hidden sm:hidden"
-                    width={1000}
-                    height={800}
-                  />
-                  <Image
-                    src="/img/screenshots/1-left-1800-top-660.webp"
-                    alt=""
-                    className="bg-white/75 max-sm:hidden lg:hidden dark:hidden"
-                    width={1800}
-                    height={660}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1800-top-660.webp"
-                    alt=""
-                    className="bg-black/75 not-dark:hidden max-sm:hidden lg:hidden"
-                    width={1800}
-                    height={660}
-                  />
-                  <Image
-                    src="/img/screenshots/1-left-1300-top-1300.webp"
-                    alt=""
-                    className="bg-white/75 max-lg:hidden xl:hidden dark:hidden"
-                    width={1300}
-                    height={1300}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1300-top-1300.webp"
-                    alt=""
-                    className="bg-black/75 not-dark:hidden max-lg:hidden xl:hidden"
-                    width={1300}
-                    height={1300}
-                  />
-                  <Image
-                    src="/img/screenshots/1-left-1800-top-1250.webp"
-                    alt=""
-                    className="bg-white/75 max-xl:hidden dark:hidden"
-                    width={1800}
-                    height={1250}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1800-top-1250.webp"
-                    alt=""
-                    className="bg-black/75 not-dark:hidden max-xl:hidden"
-                    width={1800}
-                    height={1250}
-                  />
-                </Screenshot>
-              }
-              headline="McGraw Hill Education"
-              subheadline={
-                <p>
-                  Comprehensive platform engineering and full-stack development for their Engrade platforms, empowering
-                  over 6 million K-12 students with powerful, scalable educational technology.
-                </p>
-              }
-              cta={
-                <Link href="#">
-                  See how it works <ArrowNarrowRightIcon />
-                </Link>
-              }
-            />
-            <Feature
-              demo={
-                <Screenshot wallpaper="blue" placement="bottom-left">
-                  <Image
-                    src="/img/screenshots/1-right-1000-top-800.webp"
-                    alt=""
-                    className="bg-white/75 sm:hidden dark:hidden"
-                    width={1000}
-                    height={800}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-right-1000-top-800.webp"
-                    alt=""
-                    className="bg-black/75 not-dark:hidden sm:hidden"
-                    width={1000}
-                    height={800}
-                  />
-                  <Image
-                    src="/img/screenshots/1-right-1800-top-660.webp"
-                    alt=""
-                    className="bg-white/75 max-sm:hidden lg:hidden dark:hidden"
-                    width={1800}
-                    height={660}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-right-1800-top-660.webp"
-                    alt=""
-                    className="bg-black/75 not-dark:hidden max-sm:hidden lg:hidden"
-                    width={1800}
-                    height={660}
-                  />
-                  <Image
-                    src="/img/screenshots/1-right-1300-top-1300.webp"
-                    alt=""
-                    className="bg-white/75 max-lg:hidden xl:hidden dark:hidden"
-                    width={1300}
-                    height={1300}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-right-1300-top-1300.webp"
-                    alt=""
-                    className="bg-black/75 not-dark:hidden max-lg:hidden xl:hidden"
-                    width={1300}
-                    height={1300}
-                  />
-                  <Image
-                    src="/img/screenshots/1-right-1800-top-1250.webp"
-                    alt=""
-                    className="bg-white/75 max-xl:hidden dark:hidden"
-                    width={1800}
-                    height={1250}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-right-1800-top-1250.webp"
-                    alt=""
-                    className="bg-black/75 not-dark:hidden max-xl:hidden"
-                    width={1800}
-                    height={1250}
-                  />
-                </Screenshot>
-              }
-              headline="Gorilla Glue"
-              subheadline={
-                <p>
-                  Modern marketing website platform that anchors the ecommerce experience for their $400M market
-                  position.
-                </p>
-              }
-              cta={
-                <Link href="#">
-                  See how it works <ArrowNarrowRightIcon />
-                </Link>
-              }
-            />
-          </>
-        }
+        caseStudies={featuredCaseStudies}
+        ctaHref="/work"
+        ctaLabel="View all work"
       />
       {/* Services */}
       <FeaturesBentoGrid
@@ -660,6 +514,18 @@ export default async function Page() {
           },
         ]}
       />
+      {/* Industries */}
+      <IndustriesGrid
+        id="industries"
+        eyebrow="Industries We Serve"
+        headline="Deep expertise across sectors"
+        subheadline={
+          <p>
+            We bring 20+ years of industry knowledge to every engagement. Our teams understand your
+            market, your buyers, and the challenges unique to your sector.
+          </p>
+        }
+      />
       {/* Stats */}
       <StatsWithGraph
         id="stats"
@@ -708,28 +574,13 @@ export default async function Page() {
         eyebrow="Common questions"
         headline="Everything you need to know"
         subheadline="Get quick answers to frequently asked questions, or start a conversation with our AI assistant for personalized guidance."
-      >
-        <Faq
-          id="faq-1"
-          question="How do you measure marketing success?"
-          answer="We track metrics that matter: conversion rates, customer acquisition cost, lifetime value, and revenue attribution. Every campaign includes clear KPIs and regular reporting so you know exactly what's working and what's driving growth."
-        />
-        <Faq
-          id="faq-2"
-          question="Can you work with our existing marketing team?"
-          answer="Absolutely. We collaborate seamlessly with in-house teams, providing strategic guidance and execution support. Whether you need full-service support or specific expertise, we adapt to your team structure and workflow."
-        />
-        <Faq
-          id="faq-3"
-          question="What makes your approach different?"
-          answer="We focus on building sustainable, data-driven marketing systems rather than chasing trends. Our methodology combines strategic foundation, activation, acceleration, and retention—creating marketing that compounds over time, not just quick wins."
-        />
-        <Faq
-          id="faq-4"
-          question="How long does it take to see results?"
-          answer="Results vary by service and market, but most clients see measurable improvements within 30-90 days. Search marketing and paid ads typically show faster initial results, while branding and website work compounds over time. We set clear expectations upfront."
-        />
-      </FAQsWithChat>
+        questions={[
+          { question: 'How do you measure marketing success?' },
+          { question: 'Can you work with our existing marketing team?' },
+          { question: 'What makes your approach different?' },
+          { question: 'How long does it take to see results?' },
+        ]}
+      />
       {/* Pricing */}
       <PricingCompact
         id="pricing"

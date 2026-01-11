@@ -5,7 +5,7 @@ import { ArrowNarrowRightIcon } from '@/components/icons/arrow-narrow-right-icon
 import { ChevronIcon } from '@/components/icons/chevron-icon'
 import { Approach, ApproachItem, ApproachStage } from '@/components/sections/approach'
 import { CallToActionSimple } from '@/components/sections/call-to-action-simple'
-import { FAQsTwoColumnAccordion, Faq } from '@/components/sections/faqs-two-column-accordion'
+import { FAQsWithChat } from '@/components/sections/faqs-with-chat'
 import { Feature, FeaturesTwoColumnWithDemos } from '@/components/sections/features-two-column-with-demos'
 import { HeroLeftAlignedWithDemo } from '@/components/sections/hero-left-aligned-with-demo'
 import { Stat, StatsWithGraph } from '@/components/sections/stats-with-graph'
@@ -430,38 +430,20 @@ export default function Page() {
       </Approach>
 
       {/* FAQs */}
-      <FAQsTwoColumnAccordion id="faqs" headline="Questions about search marketing">
-        <Faq
-          id="faq-1"
-          question="What's the difference between search as a channel vs. search as a system?"
-          answer="Search as a channel treats SEO as a series of tactics—keyword targeting, link building, content creation—without a cohesive strategy. Search as a system is designed around buyer intent, evaluation, and trust. It removes hidden limits with technical foundations, uses intent-driven content to answer real questions, earns authority rather than assuming it, and ensures everything works together. This systematic approach creates compounding growth instead of fluctuating results."
-        />
-        <Faq
-          id="faq-2"
-          question="How do you build intent-driven content?"
-          answer="We start by understanding how buyers actually research and make decisions. Then we create content that matches their intent at each stage—awareness, consideration, decision. This means answering real questions, solving actual problems, and guiding buyers toward decisions. Intent-driven content isn't about targeting keywords—it's about matching what people are searching for with what they actually need."
-        />
-        <Faq
-          id="faq-3"
-          question="How long does it take to see results from search systems?"
-          answer="You'll typically see improvements in traffic quality and engagement within the first 2-3 months as intent-driven content starts ranking. The real compounding effects—steady growth, better traffic quality, and inbound demand that grows more valuable—build over 6-12 months as authority is earned and the system matures. Search is a long-term asset, not a quick win."
-        />
-        <Faq
-          id="faq-4"
-          question="What's the difference between earning authority and assuming it?"
-          answer="Assuming authority means trying to rank for competitive terms without building credibility. Earning authority means creating genuinely valuable content, building relationships through quality, and establishing trust through consistency. When you earn authority, you get better traffic quality and higher conversion rates because people trust you before they even visit your site."
-        />
-        <Faq
-          id="faq-5"
-          question="How do you measure search success beyond rankings?"
-          answer="We measure success through multiple metrics: traffic quality, engagement rates, conversion rates, and ultimately, inbound demand that converts. Rankings are just a means to an end. The real measure is whether search is creating better traffic, stronger credibility, and inbound demand that grows more valuable every month."
-        />
-        <Faq
-          id="faq-6"
-          question="Can search systems work for competitive industries?"
-          answer="Absolutely. In competitive industries, earning authority through value becomes even more important. Instead of trying to outrank competitors on generic terms, we focus on intent-driven content that answers specific questions and builds authority in niche areas. This approach often works better in competitive industries because you're building credibility rather than just trying to outrank."
-        />
-      </FAQsTwoColumnAccordion>
+      <FAQsWithChat
+        id="faqs"
+        eyebrow="Search Marketing FAQ"
+        headline="Questions about search marketing"
+        subheadline="Get answers to common questions, or chat with our AI assistant for personalized guidance."
+        questions={[
+          { question: "What's the difference between search as a channel vs. search as a system?" },
+          { question: 'How do you build intent-driven content?' },
+          { question: 'How long does it take to see results from search systems?' },
+          { question: "What's the difference between earning authority and assuming it?" },
+          { question: 'How do you measure search success beyond rankings?' },
+          { question: 'Can search systems work for competitive industries?' },
+        ]}
+      />
 
       {/* Call To Action */}
       <CallToActionSimple

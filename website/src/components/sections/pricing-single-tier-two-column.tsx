@@ -1,11 +1,14 @@
 import { clsx } from 'clsx/lite'
 import type { ComponentProps, ReactNode } from 'react'
 import { Container } from '../elements/container'
+import { Eyebrow } from '../elements/eyebrow'
+import { GridBgSection, sectionPaddingClasses } from '../elements/grid-bg'
 import { Subheading } from '../elements/subheading'
 import { Text } from '../elements/text'
 import { CheckmarkIcon } from '../icons/checkmark-icon'
 
 export function PricingSingleTierTwoColumn({
+  eyebrow,
   headline,
   subheadline,
   price,
@@ -13,46 +16,66 @@ export function PricingSingleTierTwoColumn({
   features,
   cta,
   className,
+  withGridBg = false,
   ...props
 }: {
+  eyebrow?: ReactNode
   headline: ReactNode
   subheadline: ReactNode
   price: ReactNode
   period?: ReactNode
   features: ReactNode[]
   cta: ReactNode
+  withGridBg?: boolean
 } & ComponentProps<'section'>) {
-  return (
-    <section className={clsx('py-16', className)} {...props}>
-      <Container>
-        <div className="grid grid-cols-1 gap-x-2 rounded-xl bg-olive-950/2.5 p-2 lg:grid-cols-2 dark:bg-white/5">
-          <div className="flex flex-col items-start justify-between gap-10 p-6 sm:p-10">
-            <div className="flex flex-col gap-6">
+  const content = (
+    <Container>
+      <div className="grid grid-cols-1 gap-x-2 rounded-xl bg-olive-950/2.5 p-2 lg:grid-cols-2 dark:bg-white/5">
+        <div className="flex flex-col items-start justify-between gap-10 p-6 sm:p-10">
+          <div className="flex flex-col gap-6">
+            <div className="flex flex-col gap-2">
+              {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
               {typeof headline === 'string' ? <Subheading>{headline}</Subheading> : headline}
-              <Text className="flex flex-col gap-4 text-pretty">{subheadline}</Text>
             </div>
-            {cta}
+            <Text className="flex flex-col gap-4 text-pretty">{subheadline}</Text>
           </div>
-          <div className="rounded-sm bg-olive-100 p-6 sm:p-10 dark:bg-olive-950">
-            <div className="flex items-baseline gap-2">
-              <p className="text-[5rem]/24 font-light tracking-tight text-oxblood">
-                {price}
-              </p>
-              <Text size="lg">{period}</Text>
-            </div>
-            <ul className="mt-6 grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-1">
-              {features.map((feature, index) => (
-                <li key={index} className="flex gap-3 text-sm/5">
-                  <span className="flex size-5 shrink-0 items-center justify-center rounded-xs bg-olive-950 dark:bg-olive-700">
-                    <CheckmarkIcon className="size-3 stroke-white" />
-                  </span>
-                  <p className="text-oxblood dark:text-coral">{feature}</p>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {cta}
         </div>
-      </Container>
+        <div className="rounded-sm bg-olive-100 p-6 sm:p-10 dark:bg-olive-950">
+          <div className="flex items-baseline gap-2">
+            <p className="text-[5rem]/24 font-light tracking-tight text-oxblood">
+              {price}
+            </p>
+            <Text size="lg">{period}</Text>
+          </div>
+          <ul className="mt-6 grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-1">
+            {features.map((feature, index) => (
+              <li key={index} className="flex gap-3 text-sm/5">
+                <span className="flex size-5 shrink-0 items-center justify-center rounded-xs bg-olive-950 dark:bg-olive-700">
+                  <CheckmarkIcon className="size-3 stroke-white" />
+                </span>
+                <p className="text-oxblood dark:text-coral">{feature}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </Container>
+  )
+
+  if (withGridBg) {
+    return (
+      <section className={className} {...props}>
+        <GridBgSection showBottomBorder={true} withPadding>
+          {content}
+        </GridBgSection>
+      </section>
+    )
+  }
+
+  return (
+    <section className={clsx(sectionPaddingClasses, className)} {...props}>
+      {content}
     </section>
   )
 }

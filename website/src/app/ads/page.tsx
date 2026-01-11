@@ -1,17 +1,21 @@
 import { AnnouncementBadge } from '@/components/elements/announcement-badge'
 import { ButtonLink, PlainButtonLink } from '@/components/elements/button'
-import { Link } from '@/components/elements/link'
 import { Screenshot } from '@/components/elements/screenshot'
 import { TabbedLogoGallery, type GalleryItem } from '@/components/elements/tabbed-logo-gallery'
 import { ArrowNarrowRightIcon } from '@/components/icons/arrow-narrow-right-icon'
-import { ServiceProcess } from '@/components/sections/service-process'
 import { CallToActionWithEmail } from '@/components/sections/call-to-action-with-email'
-import { FAQsTwoColumnAccordion, Faq } from '@/components/sections/faqs-two-column-accordion'
-import { FeatureThreeColumnWithDemos, Features } from '@/components/sections/features-three-column-with-demos'
+import { CaseStudiesPreview } from '@/components/sections/case-studies-preview'
+import { FAQsWithChat } from '@/components/sections/faqs-with-chat'
+import { FeaturesBentoGrid } from '@/components/sections/features-bento-grid'
 import { HeroCenteredWithDemo } from '@/components/sections/hero-centered-with-demo'
+import { defaultIndustries, IndustriesGrid } from '@/components/sections/industries-grid'
 import { PricingAds } from '@/components/sections/pricing-ads'
+import { ServiceProcess } from '@/components/sections/service-process'
 import { Stat, StatsWithGraph } from '@/components/sections/stats-with-graph'
 import { TestimonialLargeQuote } from '@/components/sections/testimonial-with-large-quote'
+import { client } from '@/lib/sanity/client'
+import { caseStudiesByServiceQuery } from '@/lib/sanity/queries'
+import type { CaseStudy } from '@/lib/sanity/types'
 import Image from 'next/image'
 
 const galleryItems: GalleryItem[] = [
@@ -443,7 +447,10 @@ const galleryItems: GalleryItem[] = [
   },
 ]
 
-export default function Page() {
+export default async function Page() {
+  // Fetch case studies from Sanity
+  const paidMediaCaseStudies = await client.fetch<CaseStudy[]>(caseStudiesByServiceQuery, { service: 'paid-media' })
+
   return (
     <>
       {/* Hero */}
@@ -472,175 +479,90 @@ export default function Page() {
       />
 
       {/* Features */}
-      <Features
+      <FeaturesBentoGrid
         id="features"
-        headline="Everything you need to create high-performing ads.
-          "
+        withGridBg
+        headline="Everything you need to create high-performing ads."
         subheadline={
           <p>
             From design to optimization, our platform provides all the tools you need to create ads that convert and
             drive real business results.
           </p>
         }
-        cta={
-          <Link href="#">
-            See how it works <ArrowNarrowRightIcon />
-          </Link>
-        }
-        features={
-          <>
-            <FeatureThreeColumnWithDemos
-              demo={
-                <Screenshot wallpaper="blue" placement="bottom-right">
-                  <Image
-                    src="/img/screenshots/1-left-1000-top-800.webp"
-                    alt=""
-                    className="bg-white/75 sm:hidden dark:hidden"
-                    width={1000}
-                    height={800}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1000-top-800.webp"
-                    alt=""
-                    width={1000}
-                    height={800}
-                    className="bg-black/75 not-dark:hidden sm:hidden"
-                  />
-                  <Image
-                    src="/img/screenshots/1-left-1800-top-660.webp"
-                    alt=""
-                    className="bg-white/75 max-sm:hidden lg:hidden dark:hidden"
-                    width={1800}
-                    height={660}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1800-top-660.webp"
-                    alt=""
-                    width={1800}
-                    height={660}
-                    className="bg-black/75 not-dark:hidden max-sm:hidden lg:hidden"
-                  />
-                  <Image
-                    src="/img/screenshots/1-left-1300-top-1300.webp"
-                    alt=""
-                    className="bg-white/75 max-lg:hidden dark:hidden"
-                    width={1300}
-                    height={1300}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1300-top-1300.webp"
-                    alt=""
-                    width={1300}
-                    height={1300}
-                    className="bg-black/75 not-dark:hidden max-lg:hidden"
-                  />
-                </Screenshot>
-              }
-              headline="Ad Templates"
-              subheadline={<p>Hundreds of professionally designed ad templates for every platform and campaign type.</p>}
-            />
-            <FeatureThreeColumnWithDemos
-              demo={
-                <Screenshot wallpaper="purple" placement="top-left">
-                  <Image
-                    src="/img/screenshots/1-right-1000-top-800.webp"
-                    alt=""
-                    className="bg-white/75 sm:hidden dark:hidden"
-                    width={1000}
-                    height={800}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-right-1000-top-800.webp"
-                    alt=""
-                    width={1000}
-                    height={800}
-                    className="bg-black/75 not-dark:hidden sm:hidden"
-                  />
-                  <Image
-                    src="/img/screenshots/1-right-1800-top-660.webp"
-                    alt=""
-                    className="bg-white/75 max-sm:hidden lg:hidden dark:hidden"
-                    width={1800}
-                    height={660}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-right-1800-top-660.webp"
-                    alt=""
-                    width={1800}
-                    height={660}
-                    className="bg-black/75 not-dark:hidden max-sm:hidden lg:hidden"
-                  />
-                  <Image
-                    src="/img/screenshots/1-right-1300-top-1300.webp"
-                    alt=""
-                    className="bg-white/75 max-lg:hidden dark:hidden"
-                    width={1300}
-                    height={1300}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-right-1300-top-1300.webp"
-                    alt=""
-                    width={1300}
-                    height={1300}
-                    className="bg-black/75 not-dark:hidden max-lg:hidden"
-                  />
-                </Screenshot>
-              }
-              headline="A/B Testing"
-              subheadline={<p>Test different ad variations to find what works best and optimize your conversion rates.</p>}
-            />
-            <FeatureThreeColumnWithDemos
-              demo={
-                <Screenshot wallpaper="brown" placement="bottom-left">
-                  <Image
-                    src="/img/screenshots/1-left-1000-top-800.webp"
-                    alt=""
-                    className="bg-white/75 sm:hidden dark:hidden"
-                    width={1000}
-                    height={800}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1000-top-800.webp"
-                    alt=""
-                    width={1000}
-                    height={800}
-                    className="bg-black/75 not-dark:hidden sm:hidden"
-                  />
-                  <Image
-                    src="/img/screenshots/1-left-1800-top-660.webp"
-                    alt=""
-                    className="bg-white/75 max-sm:hidden lg:hidden dark:hidden"
-                    width={1800}
-                    height={660}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1800-top-660.webp"
-                    alt=""
-                    width={1800}
-                    height={660}
-                    className="bg-black/75 not-dark:hidden max-sm:hidden lg:hidden"
-                  />
-                  <Image
-                    src="/img/screenshots/1-left-1300-top-1300.webp"
-                    alt=""
-                    className="bg-white/75 max-lg:hidden dark:hidden"
-                    width={1300}
-                    height={1300}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1300-top-1300.webp"
-                    alt=""
-                    width={1300}
-                    height={1300}
-                    className="bg-black/75 not-dark:hidden max-lg:hidden"
-                  />
-                </Screenshot>
-              }
-              headline="Performance Analytics"
-              subheadline={<p>Track ad performance with detailed analytics and insights to optimize your campaigns.</p>}
-            />
-          </>
-        }
+        features={[
+          {
+            title: 'Ad Templates',
+            description:
+              'Hundreds of professionally designed ad templates for every platform and campaign type.',
+            href: '#',
+            demo: (
+              <Screenshot wallpaper="blue" placement="bottom-right" className="h-full">
+                <Image
+                  src="/img/screenshots/1-left-1800-top-1250.webp"
+                  alt="Ad templates"
+                  className="bg-white/75 dark:hidden"
+                  width={1800}
+                  height={1250}
+                />
+                <Image
+                  src="/img/screenshots/1-color-olive-left-1800-top-1250.webp"
+                  alt="Ad templates"
+                  width={1800}
+                  height={1250}
+                  className="bg-black/75 not-dark:hidden"
+                />
+              </Screenshot>
+            ),
+          },
+          {
+            title: 'A/B Testing',
+            description:
+              'Test different ad variations to find what works best and optimize your conversion rates.',
+            href: '#',
+            demo: (
+              <Screenshot wallpaper="purple" placement="top-left" className="h-full">
+                <Image
+                  src="/img/screenshots/1-right-1300-top-1300.webp"
+                  alt="A/B testing"
+                  className="bg-white/75 dark:hidden"
+                  width={1300}
+                  height={1300}
+                />
+                <Image
+                  src="/img/screenshots/1-color-olive-right-1300-top-1300.webp"
+                  alt="A/B testing"
+                  width={1300}
+                  height={1300}
+                  className="bg-black/75 not-dark:hidden"
+                />
+              </Screenshot>
+            ),
+          },
+          {
+            title: 'Performance Analytics',
+            description:
+              'Track ad performance with detailed analytics and insights to optimize your campaigns.',
+            href: '#',
+            demo: (
+              <Screenshot wallpaper="brown" placement="bottom-left" className="h-full">
+                <Image
+                  src="/img/screenshots/1-left-1300-top-1300.webp"
+                  alt="Performance analytics"
+                  className="bg-white/75 dark:hidden"
+                  width={1300}
+                  height={1300}
+                />
+                <Image
+                  src="/img/screenshots/1-color-olive-left-1300-top-1300.webp"
+                  alt="Performance analytics"
+                  width={1300}
+                  height={1300}
+                  className="bg-black/75 not-dark:hidden"
+                />
+              </Screenshot>
+            ),
+          },
+        ]}
       />
 
       {/* Pricing */}
@@ -666,6 +588,17 @@ export default function Page() {
             A proven four-step process to build campaigns that drive real business results.
           </p>
         }
+      />
+
+      {/* Case Studies */}
+      <CaseStudiesPreview
+        id="case-studies"
+        eyebrow="Case Studies"
+        headline="Campaigns that deliver ROI"
+        subheadline={<p>See how we&apos;ve helped brands drive qualified demand through paid media.</p>}
+        caseStudies={paidMediaCaseStudies}
+        viewAllHref="/work/full-funnel"
+        viewAllText="View all paid media work"
       />
 
       {/* Stats */}
@@ -708,32 +641,34 @@ export default function Page() {
       />
 
       {/* FAQs */}
-      <FAQsTwoColumnAccordion
+      <FAQsWithChat
         id="faqs"
-        headline="Questions & Answers
-          "
-      >
-        <Faq
-          id="faq-1"
-          question="Which ad platforms are supported?"
-          answer="We support all major ad platforms including Facebook, Instagram, Google Ads, LinkedIn, Twitter, and TikTok. Our templates are optimized for each platform's specific requirements."
-        />
-        <Faq
-          id="faq-2"
-          question="Can I customize the ad templates?"
-          answer="Absolutely! All templates are fully customizable. You can change colors, fonts, images, copy, and layouts to match your brand and campaign goals."
-        />
-        <Faq
-          id="faq-3"
-          question="How does A/B testing work?"
-          answer="Our platform makes it easy to create multiple ad variations and test them against each other. You can track performance metrics and automatically optimize based on which ads perform best."
-        />
-        <Faq
-          id="faq-4"
-          question="Do you provide analytics and reporting?"
-          answer="Yes, our platform includes comprehensive analytics and reporting features. Track impressions, clicks, conversions, and ROI all in one dashboard."
-        />
-      </FAQsTwoColumnAccordion>
+        eyebrow="Ads FAQ"
+        headline="Questions & Answers"
+        subheadline="Get answers to common advertising questions, or chat with our AI assistant for personalized guidance."
+        questions={[
+          { question: 'Which ad platforms are supported?' },
+          { question: 'Can I customize the ad templates?' },
+          { question: 'How does A/B testing work?' },
+          { question: 'Do you provide analytics and reporting?' },
+        ]}
+      />
+
+      {/* Industries */}
+      <IndustriesGrid
+        id="industries"
+        eyebrow="Industries We Serve"
+        headline="Paid media expertise across sectors"
+        subheadline={
+          <p>
+            We run high-performing ad campaigns for companies across industries, with deep knowledge
+            of the targeting strategies and messaging that work for each sector.
+          </p>
+        }
+        industries={defaultIndustries.filter((i) =>
+          ['ecommerce', 'healthcare', 'professional-services', 'education-technology', 'financial-services', 'manufacturing'].includes(i.slug)
+        )}
+      />
 
       {/* Call To Action */}
       <CallToActionWithEmail

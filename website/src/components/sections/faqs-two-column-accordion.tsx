@@ -5,6 +5,8 @@ import { clsx } from 'clsx/lite'
 import { gsap } from 'gsap'
 import { useEffect, useRef, useState, type ComponentProps, type ReactNode, useId } from 'react'
 import { Container } from '../elements/container'
+import { Eyebrow } from '../elements/eyebrow'
+import { GridBgSection, sectionPaddingClasses } from '../elements/grid-bg'
 import { Subheading } from '../elements/subheading'
 import { Text } from '../elements/text'
 
@@ -241,30 +243,51 @@ export function Faq({
 }
 
 export function FAQsTwoColumnAccordion({
+  eyebrow,
   headline,
   subheadline,
   className,
   children,
+  withGridBg = false,
   ...props
 }: {
+  eyebrow?: ReactNode
   headline?: ReactNode
   subheadline?: ReactNode
+  withGridBg?: boolean
 } & ComponentProps<'section'>) {
   // If headline is a string, wrap in Subheading. Otherwise, render as-is (for AnimatedSubheading etc.)
   const headlineElement =
     headline && typeof headline === 'string' ? <Subheading>{headline}</Subheading> : headline
 
-  return (
-    <section className={clsx('py-16', className)} {...props}>
-      <Container className="grid grid-cols-1 gap-x-2 gap-y-8 lg:grid-cols-2">
-        <div className="flex flex-col gap-6">
+  const content = (
+    <Container className="grid grid-cols-1 gap-x-2 gap-y-8 lg:grid-cols-2">
+      <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-2">
+          {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
           {headlineElement}
-          {subheadline && <Text className="flex flex-col gap-4 text-pretty">{subheadline}</Text>}
         </div>
-        <div className="divide-y divide-olive-950/10 border-y border-olive-950/10 dark:divide-white/10 dark:border-white/10">
-          {children}
-        </div>
-      </Container>
+        {subheadline && <Text className="flex flex-col gap-4 text-pretty">{subheadline}</Text>}
+      </div>
+      <div className="divide-y divide-olive-950/10 border-y border-olive-950/10 dark:divide-white/10 dark:border-white/10">
+        {children}
+      </div>
+    </Container>
+  )
+
+  if (withGridBg) {
+    return (
+      <section className={className} {...props}>
+        <GridBgSection showBottomBorder={true} withPadding>
+          {content}
+        </GridBgSection>
+      </section>
+    )
+  }
+
+  return (
+    <section className={clsx(sectionPaddingClasses, className)} {...props}>
+      {content}
     </section>
   )
 }

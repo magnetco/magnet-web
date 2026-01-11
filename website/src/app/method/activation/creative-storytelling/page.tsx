@@ -5,7 +5,7 @@ import { ArrowNarrowRightIcon } from '@/components/icons/arrow-narrow-right-icon
 import { ChevronIcon } from '@/components/icons/chevron-icon'
 import { Approach, ApproachItem, ApproachStage } from '@/components/sections/approach'
 import { CallToActionSimple } from '@/components/sections/call-to-action-simple'
-import { FAQsTwoColumnAccordion, Faq } from '@/components/sections/faqs-two-column-accordion'
+import { FAQsWithChat } from '@/components/sections/faqs-with-chat'
 import { Feature, FeaturesTwoColumnWithDemos } from '@/components/sections/features-two-column-with-demos'
 import { HeroLeftAlignedWithDemo } from '@/components/sections/hero-left-aligned-with-demo'
 import { Stat, StatsWithGraph } from '@/components/sections/stats-with-graph'
@@ -428,38 +428,20 @@ export default function Page() {
       </Approach>
 
       {/* FAQs */}
-      <FAQsTwoColumnAccordion id="faqs" headline="Questions about creative storytelling">
-        <Faq
-          id="faq-1"
-          question="What makes creative storytelling different from regular content marketing?"
-          answer="Creative storytelling goes beyond creating content—it's about building narrative architectures that guide your audience through a journey. While content marketing focuses on producing pieces, storytelling focuses on creating connections, emotional resonance, and narratives that compound over time. Every story we tell serves a purpose in a larger narrative that moves people from awareness to action."
-        />
-        <Faq
-          id="faq-2"
-          question="How do you measure the success of creative storytelling?"
-          answer="We measure storytelling success through multiple metrics: engagement rates, brand recall, emotional connection scores, and ultimately, conversion rates. But the real measure is whether your stories are being remembered, shared, and acted upon. We track how stories perform across channels, how they build on each other, and how they contribute to your overall business goals."
-        />
-        <Faq
-          id="faq-3"
-          question="Can storytelling work for B2B companies?"
-          answer="Absolutely. B2B buyers are still human, and they make decisions based on emotion as much as logic. The best B2B storytelling connects the technical benefits to human outcomes—showing how your solution helps teams succeed, reduces stress, or enables growth. We've seen B2B brands achieve remarkable results by telling stories that resonate with their audience's challenges and aspirations."
-        />
-        <Faq
-          id="faq-4"
-          question="How long does it take to see results from creative storytelling?"
-          answer="While some stories can create immediate impact, the real power of storytelling comes from consistency and narrative architecture. You'll typically see engagement improvements within the first month, but the compounding effects—increased brand recall, stronger emotional connections, and higher conversion rates—build over 3-6 months as your narrative architecture takes shape."
-        />
-        <Faq
-          id="faq-5"
-          question="Do you create the stories or help us tell our own?"
-          answer="Both. We work with you to uncover the stories that already exist in your organization—the challenges you've overcome, the customers you've helped, the mission that drives you. Then we help structure those stories into a narrative architecture that resonates with your audience. Sometimes we create new stories, sometimes we help you tell existing ones better. The goal is always authenticity and resonance."
-        />
-        <Faq
-          id="faq-6"
-          question="How does storytelling integrate with other marketing channels?"
-          answer="Storytelling should be the thread that connects all your marketing channels. We build narrative architectures that work across paid media, social content, email, and more. Each channel tells part of the story, and together they create a cohesive narrative experience. This integration is what makes storytelling so powerful—it's not just one campaign, it's the foundation for all your marketing."
-        />
-      </FAQsTwoColumnAccordion>
+      <FAQsWithChat
+        id="faqs"
+        eyebrow="Creative Storytelling FAQ"
+        headline="Questions about creative storytelling"
+        subheadline="Get answers to common questions, or chat with our AI assistant for personalized guidance."
+        questions={[
+          { question: 'What makes creative storytelling different from regular content marketing?' },
+          { question: 'How do you measure the success of creative storytelling?' },
+          { question: 'Can storytelling work for B2B companies?' },
+          { question: 'How long does it take to see results from creative storytelling?' },
+          { question: 'Do you create the stories or help us tell our own?' },
+          { question: 'How does storytelling integrate with other marketing channels?' },
+        ]}
+      />
 
       {/* Call To Action */}
       <CallToActionSimple

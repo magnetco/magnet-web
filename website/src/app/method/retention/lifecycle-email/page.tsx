@@ -5,7 +5,7 @@ import { ArrowNarrowRightIcon } from '@/components/icons/arrow-narrow-right-icon
 import { ChevronIcon } from '@/components/icons/chevron-icon'
 import { Approach, ApproachItem, ApproachStage } from '@/components/sections/approach'
 import { CallToActionSimple } from '@/components/sections/call-to-action-simple'
-import { FAQsTwoColumnAccordion, Faq } from '@/components/sections/faqs-two-column-accordion'
+import { FAQsWithChat } from '@/components/sections/faqs-with-chat'
 import { Feature, FeaturesTwoColumnWithDemos } from '@/components/sections/features-two-column-with-demos'
 import { HeroLeftAlignedWithDemo } from '@/components/sections/hero-left-aligned-with-demo'
 import { Stat, StatsWithGraph } from '@/components/sections/stats-with-graph'
@@ -429,38 +429,20 @@ export default function Page() {
       </Approach>
 
       {/* FAQs */}
-      <FAQsTwoColumnAccordion id="faqs" headline="Questions about lifecycle email">
-        <Faq
-          id="faq-1"
-          question="What&apos;s the difference between behavior-driven and calendar-based lifecycle email?"
-          answer="Calendar-based lifecycle email sends messages on a schedule—day 1, day 7, day 30, etc. Behavior-driven email responds to what customers actually do. When someone completes an action, reaches a milestone, or shows engagement, the system triggers the right message at the right moment. This approach creates emails that feel timely and relevant because they're based on actual customer behavior, not arbitrary dates."
-        />
-        <Faq
-          id="faq-2"
-          question="How do you personalize lifecycle email at scale?"
-          answer="We personalize based on what customers actually do: which features they use, what content they engage with, where they are in their journey, and what they need next. This isn&apos;t just using someone&apos;s first name—it&apos;s understanding their context and sending the right message at the right time. Our systems track customer behavior and trigger personalized emails automatically, so you get personalization at scale without manual work."
-        />
-        <Faq
-          id="faq-3"
-          question="What kind of behavioral triggers do you use?"
-          answer="We use a wide range of behavioral triggers: feature usage, content engagement, milestone achievements, inactivity periods, support interactions, and more. The key is identifying the behaviors that indicate what a customer needs next, then triggering the right message at the right moment. Every trigger is designed to guide customers toward success, not just send another email."
-        />
-        <Faq
-          id="faq-4"
-          question="How long does it take to see results from behavior-driven lifecycle email?"
-          answer="You&apos;ll typically see improvements in open rates and engagement within the first month as behavioral triggers start firing. The real impact—better retention, stronger relationships, and customers who actually succeed with your product—builds over 2-3 months as the system learns customer behavior patterns and sends increasingly relevant messages."
-        />
-        <Faq
-          id="faq-5"
-          question="Can you integrate with our existing email platform?"
-          answer="Yes. We work with all major email platforms and can integrate behavioral triggers and personalization into your existing setup. Whether you're using Mailchimp, HubSpot, SendGrid, or another platform, we can build behavior-driven lifecycle email systems that work with your current infrastructure."
-        />
-        <Faq
-          id="faq-6"
-          question="How do you measure the success of lifecycle email?"
-          answer="We measure success through multiple metrics: open rates, click-through rates, engagement scores, and ultimately, customer retention and lifetime value. But the real measure is whether emails feel timely and relevant to customers, and whether they actually help customers succeed. We track how behavior-driven emails perform compared to scheduled sequences, and continuously optimize based on what works."
-        />
-      </FAQsTwoColumnAccordion>
+      <FAQsWithChat
+        id="faqs"
+        eyebrow="Lifecycle Email FAQ"
+        headline="Questions about lifecycle email"
+        subheadline="Get answers to common questions, or chat with our AI assistant for personalized guidance."
+        questions={[
+          { question: "What's the difference between behavior-driven and calendar-based lifecycle email?" },
+          { question: 'How do you personalize lifecycle email at scale?' },
+          { question: 'What kind of behavioral triggers do you use?' },
+          { question: 'How long does it take to see results from behavior-driven lifecycle email?' },
+          { question: 'Can you integrate with our existing email platform?' },
+          { question: 'How do you measure the success of lifecycle email?' },
+        ]}
+      />
 
       {/* Call To Action */}
       <CallToActionSimple

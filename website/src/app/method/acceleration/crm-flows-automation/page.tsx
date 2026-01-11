@@ -5,7 +5,7 @@ import { ArrowNarrowRightIcon } from '@/components/icons/arrow-narrow-right-icon
 import { ChevronIcon } from '@/components/icons/chevron-icon'
 import { Approach, ApproachItem, ApproachStage } from '@/components/sections/approach'
 import { CallToActionSimple } from '@/components/sections/call-to-action-simple'
-import { FAQsTwoColumnAccordion, Faq } from '@/components/sections/faqs-two-column-accordion'
+import { FAQsWithChat } from '@/components/sections/faqs-with-chat'
 import { Feature, FeaturesTwoColumnWithDemos } from '@/components/sections/features-two-column-with-demos'
 import { HeroLeftAlignedWithDemo } from '@/components/sections/hero-left-aligned-with-demo'
 import { Stat, StatsWithGraph } from '@/components/sections/stats-with-graph'
@@ -429,38 +429,20 @@ export default function Page() {
       </Approach>
 
       {/* FAQs */}
-      <FAQsTwoColumnAccordion id="faqs" headline="Questions about CRM flows & automation">
-        <Faq
-          id="faq-1"
-          question="What's the difference between CRM automation and just using sequences?"
-          answer="Sequences are linear, one-size-fits-all workflows. CRM automation is context-aware systems that understand where prospects are, what they've done, and what they need next. Automation triggers the right actions at the right time based on context, creating experiences that feel intentional and valuable. Sequences send the same thing to everyone; automation personalizes based on behavior and context."
-        />
-        <Faq
-          id="faq-2"
-          question="How do you ensure automation doesn't feel robotic?"
-          answer="We build automation that understands context and adapts accordingly. Instead of sending the same sequence to everyone, our automation recognizes where prospects are in their journey and triggers the right actions at the right time. This context-aware approach means automation feels intentional and valuable, not robotic. We also ensure automation integrates seamlessly with human touchpoints, so prospects get the right mix of automated and personal interactions."
-        />
-        <Faq
-          id="faq-3"
-          question="What types of workflows can be automated?"
-          answer="We can automate a wide range of workflows: lead qualification, follow-up sequences, task assignments, data enrichment, opportunity progression, and more. The key is identifying which workflows add value when automated and which require human judgment. We automate the repetitive, high-volume tasks that slow down your team, while ensuring important decisions still get human attention."
-        />
-        <Faq
-          id="faq-4"
-          question="How long does it take to see results from CRM automation?"
-          answer="You'll typically see improvements in sales efficiency and lead management within the first month as automation starts handling repetitive tasks. The real impact—shorter sales cycles, fewer dropped leads, and scalable sales processes—builds over 2-3 months as automation systems mature and integrate with your workflows."
-        />
-        <Faq
-          id="faq-5"
-          question="Can you integrate with our existing CRM?"
-          answer="Yes. We work with all major CRM platforms including Salesforce, HubSpot, Pipedrive, and more. We can build automation flows that integrate seamlessly with your existing CRM setup, ensuring automation works with your current processes rather than requiring you to change everything."
-        />
-        <Faq
-          id="faq-6"
-          question="How do you measure CRM automation success?"
-          answer="We measure success through multiple metrics: sales cycle length, lead response times, task completion rates, dropped lead rates, and ultimately, revenue growth. But the real measure is whether automation makes your sales process more efficient and scalable. We track how automation impacts team productivity and sales outcomes, continuously optimizing based on what works."
-        />
-      </FAQsTwoColumnAccordion>
+      <FAQsWithChat
+        id="faqs"
+        eyebrow="CRM Flows & Automation FAQ"
+        headline="Questions about CRM flows & automation"
+        subheadline="Get answers to common questions, or chat with our AI assistant for personalized guidance."
+        questions={[
+          { question: "What's the difference between CRM automation and just using sequences?" },
+          { question: "How do you ensure automation doesn't feel robotic?" },
+          { question: 'What types of workflows can be automated?' },
+          { question: 'How long does it take to see results from CRM automation?' },
+          { question: 'Can you integrate with our existing CRM?' },
+          { question: 'How do you measure CRM automation success?' },
+        ]}
+      />
 
       {/* Call To Action */}
       <CallToActionSimple

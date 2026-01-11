@@ -125,10 +125,10 @@ function FeatureBentoCard({
   }
 
   const variantStyles = {
-    default: 'row-span-1',
-    featured: 'sm:col-span-2 row-span-1 lg:row-span-2',
-    compact: 'row-span-1',
-    highlight: 'row-span-1 sm:row-span-2',
+    default: '',
+    featured: 'sm:col-span-2 lg:col-span-1 lg:row-span-2',
+    compact: '',
+    highlight: 'lg:row-span-2',
   }
 
   const styles = accentStyles[accent]
@@ -148,7 +148,7 @@ function FeatureBentoCard({
         styles.cardBg,
         styles.border,
         variantStyles[variant],
-        isFeatured ? 'flex-col lg:flex-row' : 'flex-col',
+        'flex-col',
         className
       )}
     >
@@ -178,9 +178,9 @@ function FeatureBentoCard({
 
       {/* Content area */}
       <div className={clsx(
-        'relative z-10 flex flex-1 flex-col p-6 sm:p-8',
-        isFeatured && 'lg:w-2/5 lg:justify-between',
-        isHighlight && 'justify-between'
+        'relative z-10 flex flex-col p-6 sm:p-8',
+        isFeatured && 'lg:flex-none',
+        !isFeatured && !isHighlight && 'flex-1'
       )}>
         {/* Header with number and arrow */}
         <div className="flex items-start justify-between gap-4">
@@ -209,13 +209,12 @@ function FeatureBentoCard({
         </div>
 
         {/* Title and description */}
-        <div className={clsx('mt-6 space-y-3', isFeatured && 'lg:mt-auto')}>
+        <div className="mt-4 space-y-2">
           <h3 className={clsx(
-            'font-semibold transition-colors duration-300',
+            'text-lg font-semibold transition-colors duration-300 sm:text-xl',
             isJuniper 
               ? 'text-frost group-hover:text-powder' 
-              : 'text-oxblood group-hover:text-ember dark:text-frost dark:group-hover:text-ember',
-            isFeatured ? 'text-xl sm:text-2xl lg:text-3xl' : 'text-lg sm:text-xl'
+              : 'text-oxblood group-hover:text-ember dark:text-frost dark:group-hover:text-ember'
           )}>
             {title}
           </h3>
@@ -223,8 +222,7 @@ function FeatureBentoCard({
             'text-sm leading-relaxed',
             isJuniper 
               ? 'text-opal/80' 
-              : 'text-oxblood/60 dark:text-opal/70',
-            isFeatured ? 'line-clamp-4 lg:line-clamp-none lg:text-base' : 'line-clamp-2 sm:line-clamp-3'
+              : 'text-oxblood/60 dark:text-opal/70'
           )}>
             {description}
           </p>
@@ -235,19 +233,15 @@ function FeatureBentoCard({
       <div
         ref={demoRef}
         className={clsx(
-          'relative z-10 overflow-hidden transition-all duration-500 ease-out',
-          isFeatured 
-            ? 'm-4 rounded-xl sm:m-6 lg:m-4 lg:my-4 lg:mr-4 lg:ml-0 lg:w-3/5 lg:rounded-2xl' 
-            : 'mx-4 mb-4 rounded-xl sm:mx-6 sm:mb-6',
-          isHighlight && 'flex-1'
+          'relative z-10 flex-1 overflow-hidden transition-all duration-500 ease-out',
+          'mx-4 mb-4 rounded-xl sm:mx-6 sm:mb-6'
         )}
       >
         <div className={clsx(
-          'absolute inset-0 ring-1 ring-inset transition-all duration-300',
+          'absolute inset-0 rounded-xl ring-1 ring-inset transition-all duration-300',
           isJuniper 
             ? 'ring-white/10 group-hover:ring-white/20' 
-            : 'ring-black/5 group-hover:ring-black/10 dark:ring-white/5 dark:group-hover:ring-white/10',
-          isFeatured ? 'rounded-xl lg:rounded-2xl' : 'rounded-xl'
+            : 'ring-black/5 group-hover:ring-black/10 dark:ring-white/5 dark:group-hover:ring-white/10'
         )} />
         {demo}
       </div>
@@ -305,10 +299,10 @@ const layoutConfigs: Record<number, Array<{ variant: 'default' | 'featured' | 'c
 
 // Grid class configurations for different card counts
 const gridConfigs: Record<number, string> = {
-  2: 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 auto-rows-[minmax(300px,auto)] lg:auto-rows-[minmax(280px,auto)]',
-  3: 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 auto-rows-[minmax(280px,auto)]',
-  4: 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 auto-rows-[minmax(260px,auto)]',
-  5: 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 auto-rows-[minmax(240px,auto)]',
+  2: 'grid-cols-1 sm:grid-cols-2 lg:grid-rows-[280px_280px]',
+  3: 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.2fr_1fr] lg:grid-rows-[280px_280px]',
+  4: 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lg:grid-rows-[280px_280px]',
+  5: 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lg:grid-rows-[260px_260px]',
 }
 
 export function FeaturesBentoGrid({

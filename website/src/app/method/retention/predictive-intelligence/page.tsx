@@ -5,7 +5,7 @@ import { ArrowNarrowRightIcon } from '@/components/icons/arrow-narrow-right-icon
 import { ChevronIcon } from '@/components/icons/chevron-icon'
 import { Approach, ApproachItem, ApproachStage } from '@/components/sections/approach'
 import { CallToActionSimple } from '@/components/sections/call-to-action-simple'
-import { FAQsTwoColumnAccordion, Faq } from '@/components/sections/faqs-two-column-accordion'
+import { FAQsWithChat } from '@/components/sections/faqs-with-chat'
 import { Feature, FeaturesTwoColumnWithDemos } from '@/components/sections/features-two-column-with-demos'
 import { HeroLeftAlignedWithDemo } from '@/components/sections/hero-left-aligned-with-demo'
 import { Stat, StatsWithGraph } from '@/components/sections/stats-with-graph'
@@ -426,38 +426,20 @@ export default function Page() {
       </Approach>
 
       {/* FAQs */}
-      <FAQsTwoColumnAccordion id="faqs" headline="Questions about predictive intelligence">
-        <Faq
-          id="faq-1"
-          question="What's the difference between predictive intelligence and basic analytics?"
-          answer="Basic analytics tell you what happened. Predictive intelligence tells you what will happen. Analytics are reactive—they analyze past behavior. Predictive intelligence is proactive—it identifies patterns and predicts future behavior, enabling interventions before problems arise. When predictive intelligence is done right, it makes retention efforts more effective because you're addressing needs before they become problems."
-        />
-        <Faq
-          id="faq-2"
-          question="What types of patterns can predictive intelligence identify?"
-          answer="Predictive intelligence can identify a wide range of patterns: churn risk indicators, upsell opportunities, feature adoption patterns, engagement trends, support needs, and more. The key is identifying patterns that indicate what customers need next, then enabling proactive interventions that improve outcomes."
-        />
-        <Faq
-          id="faq-3"
-          question="How accurate are predictive intelligence predictions?"
-          answer="Prediction accuracy depends on data quality, pattern complexity, and model sophistication. We build predictive intelligence systems that continuously learn and improve, starting with high-confidence predictions and expanding as the system matures. The goal isn't perfect predictions—it's predictions accurate enough to enable proactive interventions that improve outcomes."
-        />
-        <Faq
-          id="faq-4"
-          question="How long does it take to see results from predictive intelligence?"
-          answer="You'll typically see initial predictions within the first month as pattern recognition systems are implemented. The real impact—proactive interventions, better retention, and improved outcomes—builds over 2-3 months as the system learns patterns and predictions become more accurate."
-        />
-        <Faq
-          id="faq-5"
-          question="Can predictive intelligence work with limited data?"
-          answer="Yes, but prediction accuracy improves with more data. We can build predictive intelligence systems that work with limited data by starting with high-confidence patterns and expanding as more data becomes available. The key is building systems that learn and improve over time, not requiring perfect data from day one."
-        />
-        <Faq
-          id="faq-6"
-          question="How do you measure predictive intelligence effectiveness?"
-          answer="We measure success through multiple metrics: prediction accuracy, intervention success rates, churn reduction, upsell conversion rates, and ultimately, retention and customer lifetime value. But the real measure is whether predictive intelligence enables proactive interventions that improve outcomes. We track both quantitative metrics and qualitative outcomes to continuously improve predictive systems."
-        />
-      </FAQsTwoColumnAccordion>
+      <FAQsWithChat
+        id="faqs"
+        eyebrow="Predictive Intelligence FAQ"
+        headline="Questions about predictive intelligence"
+        subheadline="Get answers to common questions, or chat with our AI assistant for personalized guidance."
+        questions={[
+          { question: "What's the difference between predictive intelligence and basic analytics?" },
+          { question: 'What types of patterns can predictive intelligence identify?' },
+          { question: 'How accurate are predictive intelligence predictions?' },
+          { question: 'How long does it take to see results from predictive intelligence?' },
+          { question: 'Can predictive intelligence work with limited data?' },
+          { question: 'How do you measure predictive intelligence effectiveness?' },
+        ]}
+      />
 
       {/* Call To Action */}
       <CallToActionSimple

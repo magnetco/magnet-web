@@ -3,8 +3,8 @@ import { ChatWidget } from '@/components/elements/chat-widget'
 import { FooterLogo } from '@/components/elements/footer-logo'
 import { Main } from '@/components/elements/main'
 import { ScrollableLogo } from '@/components/elements/scrollable-logo'
-import { ScrollDotTracker } from '@/components/elements/scroll-dot-tracker'
 import { Search } from '@/components/elements/search'
+import { DevModeProvider, DevModeToolbar, DevModeToggle, DevTopBar, DevInspector } from '@/components/dev'
 import { LinkedInIcon } from '@/components/icons/social/linkedin-icon'
 import {
   FooterCategory,
@@ -13,9 +13,12 @@ import {
   SocialLink,
 } from '@/components/sections/footer-with-newsletter-form-categories-and-social-icons'
 import {
+  NavbarDropdown,
+  NavbarDropdownItem,
   NavbarLink,
   NavbarWithLinksActionsAndCenteredLogo,
 } from '@/components/sections/navbar-with-links-actions-and-centered-logo'
+import { TransitionProvider } from '@/components/transitions'
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
 import './globals.css'
@@ -78,17 +81,61 @@ export default function RootLayout({
       <head>
       </head>
       <body>
-        <>
-          <ScrollDotTracker />
+        <TransitionProvider>
+        <DevModeProvider>
           <NavbarWithLinksActionsAndCenteredLogo
             id="navbar"
             withGridBg
             links={
               <>
+                <NavbarLink href="/work">Work</NavbarLink>
+                <NavbarDropdown label="Industries">
+                  <NavbarDropdownItem
+                    title="Healthcare"
+                    subcopy="HIPAA-compliant digital experiences"
+                    href="/industries/healthcare"
+                  />
+                  <NavbarDropdownItem
+                    title="Manufacturing"
+                    subcopy="B2B marketing for technical buyers"
+                    href="/industries/manufacturing"
+                  />
+                  <NavbarDropdownItem
+                    title="Financial Services"
+                    subcopy="Trust-building digital platforms"
+                    href="/industries/financial-services"
+                  />
+                  <NavbarDropdownItem
+                    title="Ecommerce"
+                    subcopy="Stores that convert and scale"
+                    href="/industries/ecommerce"
+                  />
+                  <NavbarDropdownItem
+                    title="Professional Services"
+                    subcopy="Lead generation for service firms"
+                    href="/industries/professional-services"
+                  />
+                  <NavbarDropdownItem
+                    title="Education"
+                    subcopy="Learning platforms that engage"
+                    href="/industries/education-technology"
+                  />
+                  <NavbarDropdownItem
+                    title="Nonprofits"
+                    subcopy="Impact storytelling that inspires"
+                    href="/industries/nonprofits"
+                  />
+                  <NavbarDropdownItem
+                    title="View All Industries"
+                    subcopy="Explore our full industry expertise"
+                    href="/industries"
+                  />
+                </NavbarDropdown>
+                <NavbarLink href="/engineering">Engineering</NavbarLink>
                 <NavbarLink href="/branding">Branding</NavbarLink>
                 <NavbarLink href="/websites">Websites</NavbarLink>
                 <NavbarLink href="/ads">Paid Ads</NavbarLink>
-                <NavbarLink href="/search">Search Marketing</NavbarLink>
+                <NavbarLink href="/search">Search</NavbarLink>
               </>
             }
             logo={<ScrollableLogo href="/" />}
@@ -108,23 +155,32 @@ export default function RootLayout({
             links={
               <>
                 <FooterCategory title="Services">
+                  <FooterLink href="/retainer">Full-Service Retainer</FooterLink>
+                  <FooterLink href="/engineering">Engineering</FooterLink>
                   <FooterLink href="/websites">Websites</FooterLink>
                   <FooterLink href="/branding">Branding</FooterLink>
                   <FooterLink href="/search">Search Marketing</FooterLink>
-                  <FooterLink href="/ads">Ads</FooterLink>
+                  <FooterLink href="/ads">Paid Ads</FooterLink>
                 </FooterCategory>
-                <FooterCategory title="Method">
-                  <FooterLink href="/method/foundation">Foundation</FooterLink>
-                  <FooterLink href="/method/activation">Activation</FooterLink>
-                  <FooterLink href="/method/acceleration">Acceleration</FooterLink>
-                  <FooterLink href="/method/retention">Retention</FooterLink>
+                <FooterCategory title="Industries">
+                  <FooterLink href="/industries/healthcare">Healthcare</FooterLink>
+                  <FooterLink href="/industries/manufacturing">Manufacturing</FooterLink>
+                  <FooterLink href="/industries/financial-services">Financial Services</FooterLink>
+                  <FooterLink href="/industries/ecommerce">Ecommerce</FooterLink>
+                  <FooterLink href="/industries">All Industries</FooterLink>
+                </FooterCategory>
+                <FooterCategory title="Work">
+                  <FooterLink href="/work">All Work</FooterLink>
+                  <FooterLink href="/work/engineering">Engineering</FooterLink>
+                  <FooterLink href="/work/full-funnel">Full-Funnel</FooterLink>
+                  <FooterLink href="/work/websites">Websites</FooterLink>
                 </FooterCategory>
                 <FooterCategory title="Company">
                   <FooterLink href="/team">Team</FooterLink>
-                  <FooterLink href="/posts">Posts</FooterLink>
+                  <FooterLink href="/method">Method</FooterLink>
                   <FooterLink href="/pricing">Pricing</FooterLink>
                   <FooterLink href="/careers">Careers</FooterLink>
-                  <FooterLink href="/privacy-policy">Privacy</FooterLink>
+                  <FooterLink href="/contact">Contact</FooterLink>
                 </FooterCategory>
               </>
             }
@@ -133,6 +189,7 @@ export default function RootLayout({
               <>
                 {process.env.NODE_ENV === 'development' && (
                   <>
+                    <DevModeToggle />
                     <a
                       href="http://localhost:3333"
                       target="_blank"
@@ -158,7 +215,15 @@ export default function RootLayout({
             }
           />
           <ChatWidget />
-        </>
+          {process.env.NODE_ENV === 'development' && (
+            <>
+              <DevTopBar />
+              <DevInspector />
+              <DevModeToolbar />
+            </>
+          )}
+        </DevModeProvider>
+        </TransitionProvider>
       </body>
     </html>
   )

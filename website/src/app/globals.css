@@ -86,24 +86,88 @@
     opacity: 1;
   }
 
-  /* Mobile menu dialog animations */
+  /* Mobile menu dialog animations - Cinematic Reveal */
   dialog#mobile-menu::backdrop {
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 29, 34, 0.5);
     opacity: 0;
-    transition: opacity 300ms ease-in-out;
+    transition: opacity 300ms ease-out;
   }
 
   dialog#mobile-menu[open]::backdrop {
     opacity: 1;
   }
 
+  /* Panel wipe reveal from top */
   dialog#mobile-menu el-dialog-panel {
-    transform: translateX(100%);
-    transition: transform 300ms ease-in-out;
+    clip-path: inset(0 0 100% 0);
+    transition: clip-path 350ms cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: clip-path;
   }
 
   dialog#mobile-menu[open] el-dialog-panel {
-    transform: translateX(0);
+    clip-path: inset(0 0 0 0);
+  }
+
+  /* Content fade-in with stagger */
+  dialog#mobile-menu .mobile-menu-content,
+  dialog#mobile-menu .mobile-menu-link,
+  dialog#mobile-menu .mobile-menu-secondary,
+  dialog#mobile-menu .mobile-menu-footer {
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 300ms ease-out, transform 300ms ease-out;
+  }
+
+  dialog#mobile-menu[open] .mobile-menu-content {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 200ms;
+  }
+
+  /* Stagger primary nav links */
+  dialog#mobile-menu[open] .mobile-menu-link:nth-child(1) {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 250ms;
+  }
+  dialog#mobile-menu[open] .mobile-menu-link:nth-child(2) {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 300ms;
+  }
+  dialog#mobile-menu[open] .mobile-menu-link:nth-child(3) {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 350ms;
+  }
+  dialog#mobile-menu[open] .mobile-menu-link:nth-child(4) {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 400ms;
+  }
+
+  /* Secondary nav */
+  dialog#mobile-menu[open] .mobile-menu-secondary {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 450ms;
+  }
+
+  /* Footer content */
+  dialog#mobile-menu[open] .mobile-menu-footer {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 500ms;
+  }
+}
+
+/* Shimmer animation for skeleton loaders */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
   }
 }
 
@@ -132,5 +196,163 @@
     -webkit-text-stroke: 2px currentColor;
     -webkit-text-fill-color: transparent;
     clip-path: inset(0 calc((1 - var(--stroke-progress)) * 100%) 0 0);
+  }
+}
+
+/* Dev Mode - Grid Outline System */
+@layer components {
+  /* Section outlines - solid blue borders on <section> elements */
+  html[data-dev-mode="true"][data-dev-sections="true"] section {
+    outline: 2px solid rgba(59, 130, 246, 0.6);
+    outline-offset: -2px;
+  }
+
+  /* Also outline main, header, footer, nav, aside when sections enabled */
+  html[data-dev-mode="true"][data-dev-sections="true"] main,
+  html[data-dev-mode="true"][data-dev-sections="true"] header,
+  html[data-dev-mode="true"][data-dev-sections="true"] footer,
+  html[data-dev-mode="true"][data-dev-sections="true"] nav,
+  html[data-dev-mode="true"][data-dev-sections="true"] aside {
+    outline: 2px solid rgba(59, 130, 246, 0.4);
+    outline-offset: -2px;
+  }
+
+  /* Component outlines - dashed lighter blue on DevOutline wrappers */
+  html[data-dev-mode="true"][data-dev-components="true"] [data-dev-outline="component"] {
+    outline: 2px dashed rgba(59, 130, 246, 0.5);
+    outline-offset: -2px;
+  }
+
+  /* Section-type DevOutline wrappers - solid outline */
+  html[data-dev-mode="true"][data-dev-components="true"] [data-dev-outline="section"] {
+    outline: 2px solid rgba(59, 130, 246, 0.7);
+    outline-offset: -2px;
+  }
+
+  /* Unstandardized elements - orange outline for things that should be components */
+  html[data-dev-mode="true"][data-dev-unstandardized="true"] [data-dev-outline="unstandardized"] {
+    outline: 2px solid rgba(249, 115, 22, 0.7);
+    outline-offset: -2px;
+  }
+
+  /* Show labels when enabled */
+  html[data-dev-mode="true"][data-dev-labels="true"] .dev-outline-label {
+    display: block;
+  }
+
+  /* Auto-generate labels for native sections with IDs */
+  html[data-dev-mode="true"][data-dev-labels="true"] section[id]::before {
+    content: "#" attr(id);
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    z-index: 9998;
+    padding: 2px 6px;
+    font-family: ui-monospace, monospace;
+    font-size: 9px;
+    font-weight: 500;
+    color: white;
+    background-color: rgba(59, 130, 246, 0.85);
+    border-radius: 3px;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+
+  /* Ensure sections with IDs are positioned for label placement */
+  html[data-dev-mode="true"][data-dev-labels="true"] section[id] {
+    position: relative;
+  }
+
+  /* Animation controls */
+  html[data-dev-mode="true"][data-dev-animation="paused"] *,
+  html[data-dev-mode="true"][data-dev-animation="paused"] *::before,
+  html[data-dev-mode="true"][data-dev-animation="paused"] *::after {
+    animation-play-state: paused !important;
+    transition: none !important;
+  }
+
+  html[data-dev-mode="true"][data-dev-animation="slow"] *,
+  html[data-dev-mode="true"][data-dev-animation="slow"] *::before,
+  html[data-dev-mode="true"][data-dev-animation="slow"] *::after {
+    animation-duration: 4s !important;
+    animation-timing-function: linear !important;
+    transition-duration: 2s !important;
+  }
+
+  /* Image checker overlay */
+  html[data-dev-mode="true"][data-dev-images="true"] img:not([alt]),
+  html[data-dev-mode="true"][data-dev-images="true"] img[alt=""] {
+    outline: 3px solid rgba(239, 68, 68, 0.8) !important;
+    outline-offset: -3px;
+  }
+
+  html[data-dev-mode="true"][data-dev-images="true"] img:not([alt])::after,
+  html[data-dev-mode="true"][data-dev-images="true"] img[alt=""]::after {
+    content: "Missing alt";
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    padding: 2px 4px;
+    font-size: 9px;
+    font-family: ui-monospace, monospace;
+    color: white;
+    background: rgba(239, 68, 68, 0.9);
+    border-radius: 2px;
+  }
+
+  /* Mark images not using next/image (no data-nimg attribute) */
+  html[data-dev-mode="true"][data-dev-images="true"] img:not([data-nimg]) {
+    outline: 3px solid rgba(249, 115, 22, 0.7) !important;
+    outline-offset: -3px;
+  }
+
+  /* A11y checker - heading hierarchy */
+  html[data-dev-mode="true"][data-dev-a11y="true"] h1,
+  html[data-dev-mode="true"][data-dev-a11y="true"] h2,
+  html[data-dev-mode="true"][data-dev-a11y="true"] h3,
+  html[data-dev-mode="true"][data-dev-a11y="true"] h4,
+  html[data-dev-mode="true"][data-dev-a11y="true"] h5,
+  html[data-dev-mode="true"][data-dev-a11y="true"] h6 {
+    position: relative;
+  }
+
+  html[data-dev-mode="true"][data-dev-a11y="true"] h1::before { content: "H1"; }
+  html[data-dev-mode="true"][data-dev-a11y="true"] h2::before { content: "H2"; }
+  html[data-dev-mode="true"][data-dev-a11y="true"] h3::before { content: "H3"; }
+  html[data-dev-mode="true"][data-dev-a11y="true"] h4::before { content: "H4"; }
+  html[data-dev-mode="true"][data-dev-a11y="true"] h5::before { content: "H5"; }
+  html[data-dev-mode="true"][data-dev-a11y="true"] h6::before { content: "H6"; }
+
+  html[data-dev-mode="true"][data-dev-a11y="true"] h1::before,
+  html[data-dev-mode="true"][data-dev-a11y="true"] h2::before,
+  html[data-dev-mode="true"][data-dev-a11y="true"] h3::before,
+  html[data-dev-mode="true"][data-dev-a11y="true"] h4::before,
+  html[data-dev-mode="true"][data-dev-a11y="true"] h5::before,
+  html[data-dev-mode="true"][data-dev-a11y="true"] h6::before {
+    position: absolute;
+    left: -28px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 1px 4px;
+    font-size: 9px;
+    font-weight: bold;
+    font-family: ui-monospace, monospace;
+    color: white;
+    background: rgba(139, 92, 246, 0.85);
+    border-radius: 2px;
+    pointer-events: none;
+  }
+
+  /* A11y - Landmark indicators */
+  html[data-dev-mode="true"][data-dev-a11y="true"] [role="main"],
+  html[data-dev-mode="true"][data-dev-a11y="true"] [role="navigation"],
+  html[data-dev-mode="true"][data-dev-a11y="true"] [role="banner"],
+  html[data-dev-mode="true"][data-dev-a11y="true"] [role="contentinfo"],
+  html[data-dev-mode="true"][data-dev-a11y="true"] main,
+  html[data-dev-mode="true"][data-dev-a11y="true"] nav,
+  html[data-dev-mode="true"][data-dev-a11y="true"] header,
+  html[data-dev-mode="true"][data-dev-a11y="true"] footer {
+    outline: 2px dashed rgba(139, 92, 246, 0.5) !important;
+    outline-offset: -2px;
   }
 }

@@ -5,7 +5,7 @@ import { ArrowNarrowRightIcon } from '@/components/icons/arrow-narrow-right-icon
 import { ChevronIcon } from '@/components/icons/chevron-icon'
 import { Approach, ApproachItem, ApproachStage } from '@/components/sections/approach'
 import { CallToActionSimple } from '@/components/sections/call-to-action-simple'
-import { FAQsTwoColumnAccordion, Faq } from '@/components/sections/faqs-two-column-accordion'
+import { FAQsWithChat } from '@/components/sections/faqs-with-chat'
 import { Feature, FeaturesTwoColumnWithDemos } from '@/components/sections/features-two-column-with-demos'
 import { HeroLeftAlignedWithDemo } from '@/components/sections/hero-left-aligned-with-demo'
 import { Stat, StatsWithGraph } from '@/components/sections/stats-with-graph'
@@ -429,38 +429,20 @@ export default function Page() {
       </Approach>
 
       {/* FAQs */}
-      <FAQsTwoColumnAccordion id="faqs" headline="Questions about brand architecture">
-        <Faq
-          id="faq-1"
-          question="What's included in a brand architecture system?"
-          answer="A comprehensive brand architecture system includes visual identity guidelines (logo, colors, typography, imagery), brand voice and tone standards, messaging frameworks, design patterns and components, and usage guidelines for all brand elements. It's a complete system that ensures consistency while providing flexibility for different contexts and applications."
-        />
-        <Faq
-          id="faq-2"
-          question="How long does it take to build brand architecture?"
-          answer="The timeline depends on the scope and complexity of your brand, but typically takes 4-8 weeks. This includes discovery and research, design development, guideline creation, and refinement. For larger organizations or more complex brand systems, the process may take longer to ensure comprehensive coverage of all touchpoints."
-        />
-        <Faq
-          id="faq-3"
-          question="Can brand architecture work for companies with multiple products or sub-brands?"
-          answer="Absolutely. Brand architecture is especially valuable for companies with multiple products or sub-brands. We create hierarchical systems that maintain consistency at the parent brand level while allowing for differentiation at the product or sub-brand level. This ensures each brand feels distinct while maintaining overall coherence."
-        />
-        <Faq
-          id="faq-4"
-          question="How do you ensure brand guidelines are actually used?"
-          answer="We create brand guidelines that are clear, accessible, and practical. This includes visual examples, do's and don'ts, templates, and tools that make it easy for teams to create on-brand materials. We also provide training and ongoing support to ensure guidelines are understood and implemented correctly across your organization."
-        />
-        <Faq
-          id="faq-5"
-          question="What happens if our brand needs to evolve?"
-          answer="Brand architecture is designed to evolve with your business. We build flexible systems that can accommodate growth and change while maintaining consistency. When updates are needed, we work with you to evolve the architecture in a way that preserves brand recognition while allowing for necessary changes."
-        />
-        <Faq
-          id="faq-6"
-          question="How does brand architecture integrate with other marketing efforts?"
-          answer="Brand architecture is the foundation that makes all other marketing efforts more effective. It ensures consistency across paid media, social content, email, websites, and every other touchpoint. When brand architecture is in place, every marketing investment reinforces your brand identity, creating a compounding effect over time."
-        />
-      </FAQsTwoColumnAccordion>
+      <FAQsWithChat
+        id="faqs"
+        eyebrow="Brand Architecture FAQ"
+        headline="Questions about brand architecture"
+        subheadline="Get answers to common questions, or chat with our AI assistant for personalized guidance."
+        questions={[
+          { question: "What's included in a brand architecture system?" },
+          { question: 'How long does it take to build brand architecture?' },
+          { question: 'Can brand architecture work for companies with multiple products or sub-brands?' },
+          { question: 'How do you ensure brand guidelines are actually used?' },
+          { question: 'What happens if our brand needs to evolve?' },
+          { question: 'How does brand architecture integrate with other marketing efforts?' },
+        ]}
+      />
 
       {/* Call To Action */}
       <CallToActionSimple

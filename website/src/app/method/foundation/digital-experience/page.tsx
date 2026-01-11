@@ -5,7 +5,7 @@ import { ArrowNarrowRightIcon } from '@/components/icons/arrow-narrow-right-icon
 import { ChevronIcon } from '@/components/icons/chevron-icon'
 import { Approach, ApproachItem, ApproachStage } from '@/components/sections/approach'
 import { CallToActionSimple } from '@/components/sections/call-to-action-simple'
-import { FAQsTwoColumnAccordion, Faq } from '@/components/sections/faqs-two-column-accordion'
+import { FAQsWithChat } from '@/components/sections/faqs-with-chat'
 import { Feature, FeaturesTwoColumnWithDemos } from '@/components/sections/features-two-column-with-demos'
 import { HeroLeftAlignedWithDemo } from '@/components/sections/hero-left-aligned-with-demo'
 import { Stat, StatsWithGraph } from '@/components/sections/stats-with-graph'
@@ -428,38 +428,20 @@ export default function Page() {
       </Approach>
 
       {/* FAQs */}
-      <FAQsTwoColumnAccordion id="faqs" headline="Questions about digital experience">
-        <Faq
-          id="faq-1"
-          question="What's included in a digital experience system?"
-          answer="A comprehensive digital experience system includes user journey mapping, friction removal, value creation at key touchpoints, responsive design across all devices, accessibility considerations, performance optimization, and integration with other marketing systems. It's not just a website—it's a complete system that guides users from first touch to conversion and beyond."
-        />
-        <Faq
-          id="faq-2"
-          question="How do you identify friction points in digital experiences?"
-          answer="We use a combination of user research, analytics data, and journey mapping to identify friction points. This includes analyzing where users drop off, where they spend too much time, where they get confused, and where they abandon goals. We also conduct user testing to observe real behavior and identify obstacles that data alone might miss."
-        />
-        <Faq
-          id="faq-3"
-          question="Can digital experiences work across different devices and platforms?"
-          answer="Absolutely. We build digital experiences that work seamlessly across desktop, mobile, tablet, and other devices. The experience adapts to each platform while maintaining consistency and functionality. This responsive approach ensures users have a great experience regardless of how they access your brand."
-        />
-        <Faq
-          id="faq-4"
-          question="How do you measure digital experience success?"
-          answer="We measure success through multiple metrics: conversion rates, engagement rates, time on site, bounce rates, user satisfaction scores, and task completion rates. But the real measure is whether users can easily achieve their goals and whether they enjoy the experience. We track both quantitative metrics and qualitative feedback to continuously improve."
-        />
-        <Faq
-          id="faq-5"
-          question="How long does it take to build a comprehensive digital experience?"
-          answer="The timeline depends on the scope and complexity, but typically takes 6-12 weeks for a comprehensive digital experience system. This includes research, journey mapping, design, development, testing, and optimization. For larger or more complex experiences, the timeline may be longer to ensure quality and thoroughness."
-        />
-        <Faq
-          id="faq-6"
-          question="How does digital experience integrate with other marketing efforts?"
-          answer="Digital experience is the foundation that makes all other marketing efforts more effective. It ensures consistency across paid media, social content, email, and every other touchpoint. When digital experience is done right, every marketing investment reinforces the experience, creating a compounding effect that improves over time."
-        />
-      </FAQsTwoColumnAccordion>
+      <FAQsWithChat
+        id="faqs"
+        eyebrow="Digital Experience FAQ"
+        headline="Questions about digital experience"
+        subheadline="Get answers to common questions, or chat with our AI assistant for personalized guidance."
+        questions={[
+          { question: "What's included in a digital experience system?" },
+          { question: 'How do you identify friction points in digital experiences?' },
+          { question: 'Can digital experiences work across different devices and platforms?' },
+          { question: 'How do you measure digital experience success?' },
+          { question: 'How long does it take to build a comprehensive digital experience?' },
+          { question: 'How does digital experience integrate with other marketing efforts?' },
+        ]}
+      />
 
       {/* Call To Action */}
       <CallToActionSimple

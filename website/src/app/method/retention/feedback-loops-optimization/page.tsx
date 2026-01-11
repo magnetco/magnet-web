@@ -5,7 +5,7 @@ import { ArrowNarrowRightIcon } from '@/components/icons/arrow-narrow-right-icon
 import { ChevronIcon } from '@/components/icons/chevron-icon'
 import { Approach, ApproachItem, ApproachStage } from '@/components/sections/approach'
 import { CallToActionSimple } from '@/components/sections/call-to-action-simple'
-import { FAQsTwoColumnAccordion, Faq } from '@/components/sections/faqs-two-column-accordion'
+import { FAQsWithChat } from '@/components/sections/faqs-with-chat'
 import { Feature, FeaturesTwoColumnWithDemos } from '@/components/sections/features-two-column-with-demos'
 import { HeroLeftAlignedWithDemo } from '@/components/sections/hero-left-aligned-with-demo'
 import { Stat, StatsWithGraph } from '@/components/sections/stats-with-graph'
@@ -427,38 +427,20 @@ export default function Page() {
       </Approach>
 
       {/* FAQs */}
-      <FAQsTwoColumnAccordion id="faqs" headline="Questions about feedback loops & optimization">
-        <Faq
-          id="faq-1"
-          question="What's the difference between feedback loops and just collecting feedback?"
-          answer="Collecting feedback is one-way—you ask, customers answer. Feedback loops are two-way systems that capture feedback, analyze patterns, implement improvements, and close the loop by showing customers their feedback led to changes. When feedback loops are done right, they create continuous improvement that makes retention efforts more effective over time."
-        />
-        <Faq
-          id="faq-2"
-          question="When are the right moments to capture feedback?"
-          answer="The right moments depend on your business, but typically include: after key interactions (purchases, support interactions, feature usage), at milestone moments (onboarding completion, first value realization), and when customers experience value. The key is capturing feedback when customers are engaged and have context, not on arbitrary schedules."
-        />
-        <Faq
-          id="faq-3"
-          question="How do you analyze feedback patterns?"
-          answer="We analyze feedback using a combination of quantitative analysis (sentiment analysis, topic modeling, trend identification) and qualitative analysis (thematic coding, pattern recognition, opportunity identification). The goal is identifying patterns that indicate opportunities for improvement, not just summarizing what customers said."
-        />
-        <Faq
-          id="faq-4"
-          question="How long does it take to see results from feedback loops?"
-          answer="You'll typically see improvements in feedback quality and relevance within the first month as timely capture is implemented. The real impact—systematic improvements, better retention, and continuous optimization—builds over 2-3 months as feedback loops mature and improvements compound."
-        />
-        <Faq
-          id="faq-5"
-          question="Can feedback loops work for different types of businesses?"
-          answer="Absolutely. Feedback loops can be adapted for SaaS products, services, physical products, and more. The key is understanding what feedback matters for your business and building systems that capture it at the right moments. We customize feedback loops to fit your business model and customer journey."
-        />
-        <Faq
-          id="faq-6"
-          question="How do you measure feedback loop effectiveness?"
-          answer="We measure success through multiple metrics: feedback response rates, feedback quality scores, improvement implementation rates, and ultimately, retention and customer satisfaction. But the real measure is whether feedback loops create continuous improvement that makes retention efforts more effective over time. We track both quantitative metrics and qualitative outcomes to continuously improve feedback systems."
-        />
-      </FAQsTwoColumnAccordion>
+      <FAQsWithChat
+        id="faqs"
+        eyebrow="Feedback Loops FAQ"
+        headline="Questions about feedback loops & optimization"
+        subheadline="Get answers to common questions, or chat with our AI assistant for personalized guidance."
+        questions={[
+          { question: "What's the difference between feedback loops and just collecting feedback?" },
+          { question: 'When are the right moments to capture feedback?' },
+          { question: 'How do you analyze feedback patterns?' },
+          { question: 'How long does it take to see results from feedback loops?' },
+          { question: 'Can feedback loops work for different types of businesses?' },
+          { question: 'How do you measure feedback loop effectiveness?' },
+        ]}
+      />
 
       {/* Call To Action */}
       <CallToActionSimple

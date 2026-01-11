@@ -5,7 +5,7 @@ import { ArrowNarrowRightIcon } from '@/components/icons/arrow-narrow-right-icon
 import { ChevronIcon } from '@/components/icons/chevron-icon'
 import { Approach, ApproachItem, ApproachStage } from '@/components/sections/approach'
 import { CallToActionSimple } from '@/components/sections/call-to-action-simple'
-import { FAQsTwoColumnAccordion, Faq } from '@/components/sections/faqs-two-column-accordion'
+import { FAQsWithChat } from '@/components/sections/faqs-with-chat'
 import { Feature, FeaturesTwoColumnWithDemos } from '@/components/sections/features-two-column-with-demos'
 import { HeroLeftAlignedWithDemo } from '@/components/sections/hero-left-aligned-with-demo'
 import { Stat, StatsWithGraph } from '@/components/sections/stats-with-graph'
@@ -427,38 +427,20 @@ export default function Page() {
       </Approach>
 
       {/* FAQs */}
-      <FAQsTwoColumnAccordion id="faqs" headline="Questions about data & analytics">
-        <Faq
-          id="faq-1"
-          question="What's included in a data & analytics setup?"
-          answer="A comprehensive data & analytics setup includes unified data architecture that connects all channels and systems, tracking implementation across all touchpoints, dashboard creation for key metrics, automated reporting systems, attribution modeling, and ongoing analysis and optimization. It's a complete system that provides clarity and enables data-driven decisions."
-        />
-        <Faq
-          id="faq-2"
-          question="How do you unify data from different platforms?"
-          answer="We use data integration tools and platforms that connect all your systems—CRM, marketing platforms, analytics tools, and more—into a unified data warehouse. This creates a single source of truth where all data is accessible and can be analyzed together. The unified architecture enables you to see the complete customer journey and understand how channels work together."
-        />
-        <Faq
-          id="faq-3"
-          question="What metrics should we be tracking?"
-          answer="The metrics you track depend on your business goals, but typically include acquisition metrics (traffic, leads, cost per acquisition), engagement metrics (time on site, pages per visit, bounce rate), conversion metrics (conversion rate, revenue, customer lifetime value), and retention metrics (churn rate, repeat purchase rate). We help you identify the metrics that matter most for your business and build systems to track them effectively."
-        />
-        <Faq
-          id="faq-4"
-          question="How do you ensure data accuracy?"
-          answer="Data accuracy starts with proper tracking implementation and continues with regular audits and validation. We implement tracking correctly from the start, set up data validation processes, and regularly audit data quality. We also create systems that flag anomalies or inconsistencies, ensuring you can trust the data you're using to make decisions."
-        />
-        <Faq
-          id="faq-5"
-          question="Can you integrate with our existing tools?"
-          answer="Yes. We work with all major analytics platforms, CRMs, marketing tools, and data platforms. Whether you're using Google Analytics, Adobe Analytics, HubSpot, Salesforce, or other tools, we can integrate them into a unified data architecture. We build systems that work with your existing infrastructure."
-        />
-        <Faq
-          id="faq-6"
-          question="How does data & analytics integrate with other marketing efforts?"
-          answer="Data & analytics is the foundation that makes all other marketing efforts more effective. It provides clarity into what's working, enables optimization, and ensures every investment is measurable. When data systems are in place, you can make better decisions about where to invest, how to optimize, and what to scale."
-        />
-      </FAQsTwoColumnAccordion>
+      <FAQsWithChat
+        id="faqs"
+        eyebrow="Data & Analytics FAQ"
+        headline="Questions about data & analytics"
+        subheadline="Get answers to common questions, or chat with our AI assistant for personalized guidance."
+        questions={[
+          { question: "What's included in a data & analytics setup?" },
+          { question: 'How do you unify data from different platforms?' },
+          { question: 'What metrics should we be tracking?' },
+          { question: 'How do you ensure data accuracy?' },
+          { question: 'Can you integrate with our existing tools?' },
+          { question: 'How does data & analytics integrate with other marketing efforts?' },
+        ]}
+      />
 
       {/* Call To Action */}
       <CallToActionSimple

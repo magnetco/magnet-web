@@ -10,7 +10,8 @@ import type { ComponentProps, ReactNode } from 'react'
  */
 
 // Container width classes to match the site's container component
-const containerWidthClasses = 'max-w-2xl md:max-w-3xl lg:max-w-7xl'
+// Mobile: 8px inset from edges, Tablet: 16px inset, Desktop: max 7xl
+const containerWidthClasses = 'max-w-[calc(100%-16px)] md:max-w-[calc(100%-32px)] lg:max-w-7xl'
 
 // Standardized section padding - consistent vertical rhythm across all sections
 export const sectionPaddingClasses = 'py-12 sm:py-16 lg:py-20 xl:py-24'
@@ -30,7 +31,7 @@ export function GridBgSection({
 } & ComponentProps<'div'>) {
   return (
     <div className={clsx('relative', className)} {...props}>
-      {/* Diagonal stripe backgrounds - only visible on lg+ where there's margin space */}
+      {/* Diagonal stripe backgrounds - visible on all breakpoints with responsive widths */}
       <GridBgStripes />
 
       {/* Border lines */}
@@ -56,7 +57,10 @@ const stripeColors = {
 
 /**
  * GridBgStripes - Renders diagonal stripes in the margin areas outside the container
- * Only visible on lg+ breakpoints where there's actual margin space
+ * Visible on all breakpoints:
+ * - Mobile: 8px fixed width margins
+ * - Tablet (md): 16px fixed width margins
+ * - Desktop (lg): Dynamic width based on container (max-w-7xl = 80rem)
  */
 export function GridBgStripes({ 
   className,
@@ -70,14 +74,12 @@ export function GridBgStripes({
   return (
     <>
       {/* Left stripe area - positioned from left edge to container left edge */}
+      {/* Mobile: 8px, Tablet: 16px, Desktop: dynamic calc */}
       <div
         className={clsx(
-          'pointer-events-none absolute inset-y-0 left-0 hidden overflow-hidden lg:block',
+          'pointer-events-none absolute inset-y-0 left-0 w-2 overflow-hidden md:w-4 lg:w-[calc((100%-80rem)/2)]',
           className
         )}
-        style={{ 
-          width: 'calc((100% - min(100%, 80rem)) / 2)',
-        }}
         aria-hidden="true"
       >
         <div
@@ -97,12 +99,9 @@ export function GridBgStripes({
       {/* Right stripe area - positioned from container right edge to right edge */}
       <div
         className={clsx(
-          'pointer-events-none absolute inset-y-0 right-0 hidden overflow-hidden lg:block',
+          'pointer-events-none absolute inset-y-0 right-0 w-2 overflow-hidden md:w-4 lg:w-[calc((100%-80rem)/2)]',
           className
         )}
-        style={{ 
-          width: 'calc((100% - min(100%, 80rem)) / 2)',
-        }}
         aria-hidden="true"
       >
         <div

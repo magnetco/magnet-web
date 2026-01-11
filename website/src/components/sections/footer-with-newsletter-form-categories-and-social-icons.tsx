@@ -1,9 +1,12 @@
+'use client'
+
 import { clsx } from 'clsx/lite'
 import Link from 'next/link'
 import type { ComponentProps, ReactNode } from 'react'
 import { Container } from '../elements/container'
 import { GridBgStripes, GridBgBorderLine } from '../elements/grid-bg'
 import { ArrowNarrowRightIcon } from '../icons/arrow-narrow-right-icon'
+import { TransitionLink } from '../transitions'
 
 export function FooterCategory({ title, children, ...props }: { title: ReactNode } & ComponentProps<'div'>) {
   return (
@@ -19,7 +22,7 @@ export function FooterCategory({ title, children, ...props }: { title: ReactNode
 export function FooterLink({ href, className, ...props }: { href: string } & Omit<ComponentProps<'a'>, 'href'>) {
   return (
     <li className={clsx('text-coral', className)}>
-      <Link
+      <TransitionLink
         href={href}
         className="relative inline-block after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:origin-left after:scale-x-0 after:bg-current after:transition-transform after:duration-200 after:ease-in-out hover:after:scale-x-100 hover:text-frost transition-colors duration-200"
         {...props}
@@ -108,7 +111,7 @@ export function FooterWithNewsletterFormCategoriesAndSocialIcons({
         <Container className="flex flex-col gap-16">
           <div className="grid grid-cols-1 gap-x-6 gap-y-16 text-sm/7 lg:grid-cols-2">
             {cta}
-            <nav className="grid grid-cols-2 gap-6 sm:has-[>:last-child:nth-child(3)]:grid-cols-3 sm:has-[>:nth-child(5)]:grid-cols-3 md:has-[>:last-child:nth-child(4)]:grid-cols-4 lg:max-xl:has-[>:last-child:nth-child(4)]:grid-cols-2">
+            <nav className="grid grid-cols-2 gap-x-12 gap-y-6 sm:has-[>:last-child:nth-child(3)]:grid-cols-3 sm:has-[>:nth-child(5)]:grid-cols-3 md:has-[>:last-child:nth-child(4)]:grid-cols-4 md:justify-between lg:max-xl:has-[>:last-child:nth-child(4)]:grid-cols-2">
               {links}
             </nav>
           </div>

@@ -22,6 +22,7 @@ export type Post = {
   body?: PortableTextBlock[]
   publishedAt: string
   category?: Category
+  industry?: CaseStudyIndustry
 }
 
 // Job-related types
@@ -77,8 +78,6 @@ export type JobDetail = {
 
 // Team Member types
 
-export type TeamMemberDepartment = 'leadership' | 'team'
-
 export type TeamMember = {
   _id: string
   name: string
@@ -91,7 +90,7 @@ export type TeamMember = {
     }
   }
   bio?: PortableTextBlock[]
-  department: TeamMemberDepartment
+  featured?: boolean
   order?: number
   isActive: boolean
 }
@@ -109,6 +108,8 @@ export type CaseStudyTestimonial = {
   authorRole?: string
 }
 
+export type CaseStudyCategory = 'engineering' | 'full-funnel' | 'ecommerce' | 'other'
+
 export type CaseStudyIndustry =
   | 'saas'
   | 'healthcare'
@@ -118,6 +119,17 @@ export type CaseStudyIndustry =
   | 'technology'
   | 'education'
   | 'retail-ecommerce'
+  | 'media-entertainment'
+  | 'travel-hospitality'
+  | 'consumer-products'
+  | 'nonprofit'
+  | 'legal'
+  | 'automotive'
+  | 'sports-entertainment'
+  | 'venture-capital'
+  | 'ai-technology'
+  | 'home-furniture'
+  | 'grocery-retail'
   | 'other'
 
 export type CaseStudyService =
@@ -128,18 +140,31 @@ export type CaseStudyService =
   | 'content'
   | 'crm-automation'
   | 'analytics'
+  | 'platform-engineering'
+  | 'full-stack-development'
+  | 'api-design'
+  | 'data-architecture'
+  | 'ecommerce-platform'
+  | 'email-marketing'
+
+export type SanityImage = {
+  asset: {
+    _id: string
+    url: string
+  }
+}
 
 export type CaseStudy = {
   _id: string
   title: string
   slug: { current: string }
   client: string
-  clientLogo?: {
-    asset: {
-      _id: string
-      url: string
-    }
-  }
+  headline?: string
+  description?: string
+  clientLogo?: SanityImage
+  heroImage?: SanityImage
+  galleryImages?: SanityImage[]
+  category?: CaseStudyCategory
   industry: CaseStudyIndustry
   featured: boolean
   challenge?: PortableTextBlock[]

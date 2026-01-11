@@ -1,6 +1,8 @@
 import { clsx } from 'clsx/lite'
 import type { ComponentProps, ReactNode } from 'react'
 import { Container } from '../elements/container'
+import { Eyebrow } from '../elements/eyebrow'
+import { GridBgSection, sectionPaddingClasses } from '../elements/grid-bg'
 import { HoverGradient } from '../elements/use-hover-gradient'
 
 function ArrowConnector() {
@@ -77,9 +79,33 @@ export function ProcessStep({
   )
 }
 
-export type ServiceProcessType = 'branding' | 'websites' | 'paid-ads' | 'search'
+export type ServiceProcessType = 'branding' | 'websites' | 'paid-ads' | 'search' | 'engineering'
 
 const serviceProcesses: Record<ServiceProcessType, { steps: Array<{ title: string; description: string; duration?: string }> }> = {
+  engineering: {
+    steps: [
+      {
+        title: 'Discovery & Architecture',
+        description: 'Understand your technical requirements, constraints, and goals. Design system architecture and define technical specifications.',
+        duration: 'Week 1-2',
+      },
+      {
+        title: 'Foundation & Infrastructure',
+        description: 'Set up development environment, CI/CD pipelines, infrastructure, and core system foundations.',
+        duration: 'Week 2-4',
+      },
+      {
+        title: 'Development & Iteration',
+        description: 'Agile development cycles with regular demos, testing, and stakeholder feedback. Ship incrementally.',
+        duration: 'Week 4-12+',
+      },
+      {
+        title: 'Launch & Scale',
+        description: 'Production deployment, monitoring setup, performance optimization, and ongoing support and scaling.',
+        duration: 'Ongoing',
+      },
+    ],
+  },
   branding: {
     steps: [
       {
@@ -180,38 +206,43 @@ const serviceProcesses: Record<ServiceProcessType, { steps: Array<{ title: strin
 
 export function ServiceProcess({
   service,
+  eyebrow = 'Our Process',
   headline,
   subheadline,
   className,
+  withGridBg = false,
   ...props
 }: {
   service: ServiceProcessType
+  eyebrow?: ReactNode
   headline?: ReactNode
   subheadline?: ReactNode
+  withGridBg?: boolean
 } & ComponentProps<'section'>) {
   const { steps } = serviceProcesses[service]
 
-  return (
-    <section className={clsx('py-16', className)} {...props}>
-      <Container>
-        {/* Header */}
-        {(headline || subheadline) && (
-          <div className="mb-12 text-center">
-            <p className="text-sm font-medium uppercase tracking-wider text-ember">Our Process</p>
+  const content = (
+    <Container>
+      {/* Header */}
+      {(eyebrow || headline || subheadline) && (
+        <div className="mb-12 text-center">
+          <div className="flex flex-col items-center gap-2">
+            {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
             {headline && (
               typeof headline === 'string' ? (
-                <h2 className="mt-3 text-3xl font-medium tracking-tight text-oxblood dark:text-ember sm:text-4xl">
+                <h2 className="text-3xl font-medium tracking-tight text-oxblood dark:text-ember sm:text-4xl">
                   {headline}
                 </h2>
               ) : headline
             )}
-            {subheadline && (
-              <div className="mx-auto mt-4 max-w-2xl text-lg/8 text-oxblood/70 dark:text-coral/70">
-                {subheadline}
-              </div>
-            )}
           </div>
-        )}
+          {subheadline && (
+            <div className="mx-auto mt-4 max-w-2xl text-lg/8 text-oxblood/70 dark:text-coral/70">
+              {subheadline}
+            </div>
+          )}
+        </div>
+      )}
 
         {/* Process Steps - Desktop */}
         <div className="hidden lg:grid lg:grid-cols-[1fr_auto_1fr_auto_1fr_auto_1fr] lg:items-stretch lg:gap-4">
@@ -244,6 +275,21 @@ export function ServiceProcess({
           ))}
         </div>
       </Container>
+    )
+
+  if (withGridBg) {
+    return (
+      <section className={className} {...props}>
+        <GridBgSection showBottomBorder={true} withPadding>
+          {content}
+        </GridBgSection>
+      </section>
+    )
+  }
+
+  return (
+    <section className={clsx(sectionPaddingClasses, className)} {...props}>
+      {content}
     </section>
   )
 }

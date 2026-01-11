@@ -1,6 +1,8 @@
 import { clsx } from 'clsx/lite'
 import type { ComponentProps, ReactNode } from 'react'
 import { Container } from '../elements/container'
+import { Eyebrow } from '../elements/eyebrow'
+import { GridBgSection, sectionPaddingClasses } from '../elements/grid-bg'
 import { SoftButtonLink } from '../elements/button'
 import { HoverGradient } from '../elements/use-hover-gradient'
 import { INDIVIDUAL_SERVICES } from '@/lib/pricing-data'
@@ -105,26 +107,32 @@ const services = INDIVIDUAL_SERVICES.map((service) => {
 })
 
 export function PricingServicesGrid({
+  eyebrow,
   headline,
   subheadline,
   className,
+  withGridBg = false,
   ...props
 }: {
+  eyebrow?: ReactNode
   headline: ReactNode
   subheadline: ReactNode
+  withGridBg?: boolean
 } & ComponentProps<'section'>) {
-  return (
-    <section className={clsx('py-16', className)} {...props}>
-      <Container>
-        {/* Header */}
-        <div className="mb-12 max-w-2xl">
+  const content = (
+    <Container>
+      {/* Header */}
+      <div className="mb-12 max-w-2xl">
+        <div className="flex flex-col gap-2">
+          {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
           {typeof headline === 'string' ? (
             <h2 className="text-3xl font-medium tracking-tight text-oxblood dark:text-ember sm:text-4xl">
               {headline}
             </h2>
           ) : headline}
-          <div className="mt-4 text-lg/8 text-oxblood/70 dark:text-coral/70">{subheadline}</div>
         </div>
+        <div className="mt-4 text-lg/8 text-oxblood/70 dark:text-coral/70">{subheadline}</div>
+      </div>
 
         {/* Services Grid */}
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -152,6 +160,21 @@ export function PricingServicesGrid({
           </div>
         </div>
       </Container>
+    )
+
+  if (withGridBg) {
+    return (
+      <section className={className} {...props}>
+        <GridBgSection showBottomBorder={true} withPadding>
+          {content}
+        </GridBgSection>
+      </section>
+    )
+  }
+
+  return (
+    <section className={clsx(sectionPaddingClasses, className)} {...props}>
+      {content}
     </section>
   )
 }

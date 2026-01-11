@@ -5,7 +5,7 @@ import { ArrowNarrowRightIcon } from '@/components/icons/arrow-narrow-right-icon
 import { ChevronIcon } from '@/components/icons/chevron-icon'
 import { Approach, ApproachItem, ApproachStage } from '@/components/sections/approach'
 import { CallToActionSimple } from '@/components/sections/call-to-action-simple'
-import { FAQsTwoColumnAccordion, Faq } from '@/components/sections/faqs-two-column-accordion'
+import { FAQsWithChat } from '@/components/sections/faqs-with-chat'
 import { Feature, FeaturesTwoColumnWithDemos } from '@/components/sections/features-two-column-with-demos'
 import { HeroLeftAlignedWithDemo } from '@/components/sections/hero-left-aligned-with-demo'
 import { Stat, StatsWithGraph } from '@/components/sections/stats-with-graph'
@@ -428,38 +428,20 @@ export default function Page() {
       </Approach>
 
       {/* FAQs */}
-      <FAQsTwoColumnAccordion id="faqs" headline="Questions about offers & packaging">
-        <Faq
-          id="faq-1"
-          question="What's the difference between designing offers as products vs. bundles?"
-          answer="Bundles are collections of services with no clear job or outcome. Products have a clear purpose, a defined outcome, and a reason to exist. When offers are designed as products, each one has intentional scope and value-anchored pricing. This makes it obvious what customers get and why, eliminating the confusion that comes from too many similar options. Products clarify decisions; bundles complicate them."
-        />
-        <Faq
-          id="faq-2"
-          question="How do you anchor pricing to value?"
-          answer="We start by understanding the outcome customers get, not just the services we provide. Then we design pricing that clearly reflects that outcome. This means pricing communicates value upfront, making it obvious why an offer costs what it does. Value-anchored pricing reduces price objections because customers understand what they're paying for and why it's worth it."
-        />
-        <Faq
-          id="faq-3"
-          question="What makes packaging clear?"
-          answer="Clear packaging makes tradeoffs obvious. Each package has a distinct purpose, and the differences between packages are clear. Customers can easily see what they get in each package and what they don't, making it simple to choose the right one. When tradeoffs are obvious, decisions feel simpler because customers aren't trying to figure out which package is right for them."
-        />
-        <Faq
-          id="faq-4"
-          question="How do clear offers shorten sales cycles?"
-          answer="When offers are clear, customers don't need as much explanation or negotiation. They can quickly understand what they're buying, why it costs what it does, and which package fits their needs. This eliminates the back-and-forth that extends sales cycles. Clear offers also reduce objections because customers understand the value upfront, making it easier to close deals faster."
-        />
-        <Faq
-          id="faq-5"
-          question="Can you redesign existing offers?"
-          answer="Absolutely. We often work with companies to redesign existing offers that are causing friction. This typically involves clarifying scope, anchoring pricing to value, and making tradeoffs obvious. The result is offers that convert faster and close higher, even with the same underlying services."
-        />
-        <Faq
-          id="faq-6"
-          question="How do offers integrate with other acceleration components?"
-          answer="Offers are the foundation that makes other acceleration components more effective. Clear offers make landing experiences more effective because they're promoting something customers can understand. They make sales enablement easier because sales teams have clear value propositions. And they make attribution clearer because conversion events are more defined. Good offers accelerate everything else."
-        />
-      </FAQsTwoColumnAccordion>
+      <FAQsWithChat
+        id="faqs"
+        eyebrow="Offers & Packaging FAQ"
+        headline="Questions about offers & packaging"
+        subheadline="Get answers to common questions, or chat with our AI assistant for personalized guidance."
+        questions={[
+          { question: "What's the difference between designing offers as products vs. bundles?" },
+          { question: 'How do you anchor pricing to value?' },
+          { question: 'What makes packaging clear?' },
+          { question: 'How do clear offers shorten sales cycles?' },
+          { question: 'Can you redesign existing offers?' },
+          { question: 'How do offers integrate with other acceleration components?' },
+        ]}
+      />
 
       {/* Call To Action */}
       <CallToActionSimple

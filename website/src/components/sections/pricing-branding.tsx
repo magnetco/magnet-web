@@ -3,6 +3,8 @@
 import { clsx } from 'clsx/lite'
 import { useState, type ComponentProps, type ReactNode } from 'react'
 import { Container } from '../elements/container'
+import { Eyebrow } from '../elements/eyebrow'
+import { GridBgSection, sectionPaddingClasses } from '../elements/grid-bg'
 import { ButtonLink, SoftButtonLink } from '../elements/button'
 import { CheckmarkIcon } from '../icons/checkmark-icon'
 import { HoverGradient } from '../elements/use-hover-gradient'
@@ -60,23 +62,28 @@ function BillingToggle({
 const retainerFeatures = RETAINER_FEATURES.slice(0, 4)
 
 export function PricingBranding({
+  eyebrow,
   headline,
   subheadline,
   className,
+  withGridBg = false,
   ...props
 }: {
+  eyebrow?: ReactNode
   headline?: ReactNode
   subheadline?: ReactNode
+  withGridBg?: boolean
 } & ComponentProps<'section'>) {
   const [isYearly, setIsYearly] = useState(false)
   const currentRetainerPrice = isYearly ? RETAINER_YEARLY : RETAINER_MONTHLY
 
-  return (
-    <section className={clsx('py-16', className)} {...props}>
-      <Container>
-        {/* Header */}
-        {(headline || subheadline) && (
-          <div className="mb-12 max-w-2xl">
+  const content = (
+    <Container>
+      {/* Header */}
+      {(eyebrow || headline || subheadline) && (
+        <div className="mb-12 max-w-2xl">
+          <div className="flex flex-col gap-2">
+            {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
             {headline && (
               typeof headline === 'string' ? (
                 <h2 className="text-3xl font-medium tracking-tight text-oxblood dark:text-ember sm:text-4xl">
@@ -84,11 +91,12 @@ export function PricingBranding({
                 </h2>
               ) : headline
             )}
-            {subheadline && (
-              <div className="mt-4 text-lg/8 text-oxblood/70 dark:text-coral/70">{subheadline}</div>
-            )}
           </div>
-        )}
+          {subheadline && (
+            <div className="mt-4 text-lg/8 text-oxblood/70 dark:text-coral/70">{subheadline}</div>
+          )}
+        </div>
+      )}
 
         {/* Branding Options - Two Column */}
         <div className="grid gap-6 lg:grid-cols-2">
@@ -203,16 +211,31 @@ export function PricingBranding({
           </HoverGradient>
         </div>
 
-        {/* Footer Note */}
-        <div className="mt-8 text-center">
-          <p className="text-sm text-oxblood/60 dark:text-coral/60">
-            All projects include our proven methodology and dedicated team support.{' '}
-            <a href="/pricing" className="font-medium text-ember hover:underline">
-              View all pricing options →
-            </a>
-          </p>
-        </div>
-      </Container>
+      {/* Footer Note */}
+      <div className="mt-8 text-center">
+        <p className="text-sm text-oxblood/60 dark:text-coral/60">
+          All projects include our proven methodology and dedicated team support.{' '}
+          <a href="/pricing" className="font-medium text-ember hover:underline">
+            View all pricing options →
+          </a>
+        </p>
+      </div>
+    </Container>
+  )
+
+  if (withGridBg) {
+    return (
+      <section className={className} {...props}>
+        <GridBgSection showBottomBorder={true} withPadding>
+          {content}
+        </GridBgSection>
+      </section>
+    )
+  }
+
+  return (
+    <section className={clsx(sectionPaddingClasses, className)} {...props}>
+      {content}
     </section>
   )
 }

@@ -2,7 +2,7 @@ import { ButtonLink, PlainButtonLink } from '@/components/elements/button'
 import { Logo, LogoGrid } from '@/components/elements/logo-grid'
 import { ChevronIcon } from '@/components/icons/chevron-icon'
 import { CallToActionSimpleCentered } from '@/components/sections/call-to-action-simple-centered'
-import { FAQsAccordion, Faq } from '@/components/sections/faqs-accordion'
+import { FAQsWithChat } from '@/components/sections/faqs-with-chat'
 import { PricingRetainerHero } from '@/components/sections/pricing-retainer-hero'
 import { PricingServicesGrid } from '@/components/sections/pricing-services-grid'
 import { TestimonialTwoColumnWithLargePhoto } from '@/components/sections/testimonial-two-column-with-large-photo'
@@ -180,37 +180,19 @@ export default function Page() {
       />
 
       {/* FAQs */}
-      <FAQsAccordion
+      <FAQsWithChat
         id="faqs"
-        headline="Questions & Answers
-          "
-      >
-        <Faq
-          id="faq-1"
-          question="What's included in the full-service retainer?"
-          answer="The retainer includes comprehensive coverage across all four phases of our methodology: Foundation (brand, messaging, website, conversion architecture), Activation (paid media, search marketing, content), Acceleration (landing pages, sales enablement, CRM automation), and Retention (lifecycle email, customer success, analytics). You get a dedicated team working on your growth every month."
-        />
-        <Faq
-          id="faq-2"
-          question="How does yearly billing work?"
-          answer="When you commit to yearly billing, you receive a 10% discount on the monthly rate. You can pay annually upfront or in quarterly installments. The commitment helps us plan resources and deliver more strategic, long-term work."
-        />
-        <Faq
-          id="faq-3"
-          question="Can I start with individual services and upgrade later?"
-          answer="Absolutely. Many clients start with a specific need—like branding or a new website—and later move to the full-service retainer as they see results. We'll credit a portion of your initial engagement toward your first retainer months."
-        />
-        <Faq
-          id="faq-4"
-          question="How long does it take to see results?"
-          answer="Results vary by service and market, but most clients see measurable improvements within 30-90 days. Search marketing and paid ads typically show faster initial results, while branding and website work compounds over time. We set clear expectations upfront."
-        />
-        <Faq
-          id="faq-5"
-          question="What if I need to pause or cancel?"
-          answer="The retainer is month-to-month with no long-term contracts. We ask for 30 days notice to wrap up active work and transition deliverables. For yearly commitments, we offer flexibility to pause for up to 2 months if business circumstances change."
-        />
-      </FAQsAccordion>
+        eyebrow="Pricing FAQ"
+        headline="Questions & Answers"
+        subheadline="Get answers to common pricing questions, or chat with our AI assistant for personalized guidance."
+        questions={[
+          { question: "What's included in the full-service retainer?" },
+          { question: 'How does yearly billing work?' },
+          { question: 'Can I start with individual services and upgrade later?' },
+          { question: 'How long does it take to see results?' },
+          { question: 'What if I need to pause or cancel?' },
+        ]}
+      />
 
       {/* Call To Action */}
       <CallToActionSimpleCentered

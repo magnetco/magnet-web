@@ -38,6 +38,26 @@ export const postsByCategoryQuery = groq`
   }
 `
 
+// Get posts filtered by industry
+export const postsByIndustryQuery = groq`
+  *[_type == "post" && industry == $industry] | order(publishedAt desc) {
+    _id,
+    title,
+    slug,
+    postType,
+    externalUrl,
+    summary,
+    industry,
+    publishedAt,
+    "category": category->{
+      _id,
+      title,
+      slug,
+      phase
+    }
+  }
+`
+
 // Get a single post by slug (for article detail pages)
 export const postBySlugQuery = groq`
   *[_type == "post" && slug.current == $slug][0] {
@@ -200,9 +220,9 @@ export const jobsForApplyQuery = groq`
 
 // Team Member queries
 
-// Get all active team members ordered by department and display order
+// Get all active team members ordered by display order
 export const teamMembersQuery = groq`
-  *[_type == "teamMember" && isActive == true] | order(department asc, order asc) {
+  *[_type == "teamMember" && isActive == true] | order(order asc) {
     _id,
     name,
     slug,
@@ -214,15 +234,15 @@ export const teamMembersQuery = groq`
       }
     },
     bio,
-    department,
+    featured,
     order,
     isActive
   }
 `
 
-// Get leadership team members only
-export const leadershipTeamQuery = groq`
-  *[_type == "teamMember" && isActive == true && department == "leadership"] | order(order asc) {
+// Get featured team members only (for editorial display)
+export const featuredTeamMembersQuery = groq`
+  *[_type == "teamMember" && isActive == true && featured == true] | order(order asc) {
     _id,
     name,
     slug,
@@ -234,15 +254,15 @@ export const leadershipTeamQuery = groq`
       }
     },
     bio,
-    department,
+    featured,
     order,
     isActive
   }
 `
 
-// Get extended team members only
-export const extendedTeamQuery = groq`
-  *[_type == "teamMember" && isActive == true && department == "team"] | order(order asc) {
+// Get non-featured team members (for grid display)
+export const gridTeamMembersQuery = groq`
+  *[_type == "teamMember" && isActive == true && featured != true] | order(order asc) {
     _id,
     name,
     slug,
@@ -254,7 +274,7 @@ export const extendedTeamQuery = groq`
       }
     },
     bio,
-    department,
+    featured,
     order,
     isActive
   }
@@ -274,7 +294,7 @@ export const teamMemberBySlugQuery = groq`
       }
     },
     bio,
-    department,
+    featured,
     order,
     isActive
   }
@@ -289,7 +309,16 @@ export const caseStudiesQuery = groq`
     title,
     slug,
     client,
+    headline,
+    description,
+    category,
     "clientLogo": clientLogo{
+      asset->{
+        _id,
+        url
+      }
+    },
+    "heroImage": heroImage{
       asset->{
         _id,
         url
@@ -312,13 +341,86 @@ export const featuredCaseStudiesQuery = groq`
     title,
     slug,
     client,
+    headline,
+    description,
+    category,
     "clientLogo": clientLogo{
       asset->{
         _id,
         url
       }
     },
+    "heroImage": heroImage{
+      asset->{
+        _id,
+        url
+      }
+    },
     industry,
+    results,
+    testimonial,
+    services,
+    phases,
+    publishedAt
+  }
+`
+
+// Get case studies by category
+export const caseStudiesByCategoryQuery = groq`
+  *[_type == "caseStudy" && category == $category] | order(featured desc, publishedAt desc) {
+    _id,
+    title,
+    slug,
+    client,
+    headline,
+    description,
+    category,
+    "clientLogo": clientLogo{
+      asset->{
+        _id,
+        url
+      }
+    },
+    "heroImage": heroImage{
+      asset->{
+        _id,
+        url
+      }
+    },
+    industry,
+    featured,
+    results,
+    testimonial,
+    services,
+    phases,
+    publishedAt
+  }
+`
+
+// Get case studies by service
+export const caseStudiesByServiceQuery = groq`
+  *[_type == "caseStudy" && $service in services] | order(featured desc, publishedAt desc) {
+    _id,
+    title,
+    slug,
+    client,
+    headline,
+    description,
+    category,
+    "clientLogo": clientLogo{
+      asset->{
+        _id,
+        url
+      }
+    },
+    "heroImage": heroImage{
+      asset->{
+        _id,
+        url
+      }
+    },
+    industry,
+    featured,
     results,
     testimonial,
     services,
@@ -334,7 +436,22 @@ export const caseStudyBySlugQuery = groq`
     title,
     slug,
     client,
+    headline,
+    description,
+    category,
     "clientLogo": clientLogo{
+      asset->{
+        _id,
+        url
+      }
+    },
+    "heroImage": heroImage{
+      asset->{
+        _id,
+        url
+      }
+    },
+    "galleryImages": galleryImages[]{
       asset->{
         _id,
         url
@@ -367,5 +484,37 @@ export const caseStudyBySlugQuery = groq`
 // Get all case study slugs for static generation
 export const caseStudySlugsQuery = groq`
   *[_type == "caseStudy" && defined(slug.current)][].slug.current
+`
+
+// Get case studies by industry
+export const caseStudiesByIndustryQuery = groq`
+  *[_type == "caseStudy" && industry == $industry] | order(featured desc, publishedAt desc) {
+    _id,
+    title,
+    slug,
+    client,
+    headline,
+    description,
+    category,
+    "clientLogo": clientLogo{
+      asset->{
+        _id,
+        url
+      }
+    },
+    "heroImage": heroImage{
+      asset->{
+        _id,
+        url
+      }
+    },
+    industry,
+    featured,
+    results,
+    testimonial,
+    services,
+    phases,
+    publishedAt
+  }
 `
 

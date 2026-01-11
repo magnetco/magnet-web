@@ -5,7 +5,7 @@ import { ArrowNarrowRightIcon } from '@/components/icons/arrow-narrow-right-icon
 import { ChevronIcon } from '@/components/icons/chevron-icon'
 import { Approach, ApproachItem, ApproachStage } from '@/components/sections/approach'
 import { CallToActionSimple } from '@/components/sections/call-to-action-simple'
-import { FAQsTwoColumnAccordion, Faq } from '@/components/sections/faqs-two-column-accordion'
+import { FAQsWithChat } from '@/components/sections/faqs-with-chat'
 import { Feature, FeaturesTwoColumnWithDemos } from '@/components/sections/features-two-column-with-demos'
 import { HeroLeftAlignedWithDemo } from '@/components/sections/hero-left-aligned-with-demo'
 import { Stat, StatsWithGraph } from '@/components/sections/stats-with-graph'
@@ -427,38 +427,20 @@ export default function Page() {
       </Approach>
 
       {/* FAQs */}
-      <FAQsTwoColumnAccordion id="faqs" headline="Questions about attribution & measurement">
-        <Faq
-          id="faq-1"
-          question="What's the difference between multi-touch and last-click attribution?"
-          answer="Last-click attribution gives all credit to the final touchpoint before conversion. Multi-touch attribution recognizes how channels work together throughout the customer journey. It understands which channels create awareness, which drive consideration, and which close deals. This comprehensive approach means you can optimize the entire funnel, not just the last touchpoint, making every investment more effective."
-        />
-        <Faq
-          id="faq-2"
-          question="How do you make insights actionable?"
-          answer="We build reporting systems that answer 'so what?' not just 'what happened?' This means clear dashboards that highlight opportunities, automated reports that surface insights, and analysis that guides optimization decisions. When insights are actionable, every metric becomes an opportunity to improve, and optimization becomes systematic rather than reactive."
-        />
-        <Faq
-          id="faq-3"
-          question="What metrics should we be tracking?"
-          answer="The metrics you track depend on your business goals, but typically include acquisition metrics (traffic, leads, cost per acquisition), engagement metrics (time on site, pages per visit, bounce rate), conversion metrics (conversion rate, revenue, customer lifetime value), and retention metrics (churn rate, repeat purchase rate). We help you identify the metrics that matter most for your business and build systems to track them effectively."
-        />
-        <Faq
-          id="faq-4"
-          question="How long does it take to set up attribution & measurement systems?"
-          answer="The timeline depends on the scope and complexity, but typically takes 4-8 weeks for a comprehensive attribution & measurement system. This includes data integration, tracking implementation, dashboard creation, and reporting setup. For larger or more complex systems, the timeline may be longer to ensure accuracy and thoroughness."
-        />
-        <Faq
-          id="faq-5"
-          question="Can you integrate with our existing analytics tools?"
-          answer="Yes. We work with all major analytics platforms and can integrate attribution & measurement into your existing setup. Whether you're using Google Analytics, Adobe Analytics, Mixpanel, or another platform, we can build comprehensive attribution systems that work with your current infrastructure."
-        />
-        <Faq
-          id="faq-6"
-          question="How do attribution & measurement integrate with other acceleration components?"
-          answer="Attribution & measurement is the foundation that makes all other acceleration components more effective. It provides clarity into what's working, enables optimization, and ensures every investment is measurable. When measurement systems are in place, you can make better decisions about where to invest, how to optimize, and what to scale."
-        />
-      </FAQsTwoColumnAccordion>
+      <FAQsWithChat
+        id="faqs"
+        eyebrow="Attribution & Measurement FAQ"
+        headline="Questions about attribution & measurement"
+        subheadline="Get answers to common questions, or chat with our AI assistant for personalized guidance."
+        questions={[
+          { question: "What's the difference between multi-touch and last-click attribution?" },
+          { question: 'How do you make insights actionable?' },
+          { question: 'What metrics should we be tracking?' },
+          { question: 'How long does it take to set up attribution & measurement systems?' },
+          { question: 'Can you integrate with our existing analytics tools?' },
+          { question: 'How do attribution & measurement integrate with other acceleration components?' },
+        ]}
+      />
 
       {/* Call To Action */}
       <CallToActionSimple

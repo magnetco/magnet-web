@@ -5,7 +5,7 @@ import { ArrowNarrowRightIcon } from '@/components/icons/arrow-narrow-right-icon
 import { ChevronIcon } from '@/components/icons/chevron-icon'
 import { Approach, ApproachItem, ApproachStage } from '@/components/sections/approach'
 import { CallToActionSimple } from '@/components/sections/call-to-action-simple'
-import { FAQsTwoColumnAccordion, Faq } from '@/components/sections/faqs-two-column-accordion'
+import { FAQsWithChat } from '@/components/sections/faqs-with-chat'
 import { Feature, FeaturesTwoColumnWithDemos } from '@/components/sections/features-two-column-with-demos'
 import { HeroLeftAlignedWithDemo } from '@/components/sections/hero-left-aligned-with-demo'
 import { Stat, StatsWithGraph } from '@/components/sections/stats-with-graph'
@@ -428,38 +428,20 @@ export default function Page() {
       </Approach>
 
       {/* FAQs */}
-      <FAQsTwoColumnAccordion id="faqs" headline="Questions about landing experiences">
-        <Faq
-          id="faq-1"
-          question="What's the difference between landing experiences and just landing pages?"
-          answer="Landing pages are static pages. Landing experiences are comprehensive systems that understand user intent, remove obstacles, and create clear paths to conversion. They adapt to different visitor types, provide personalized guidance, and systematically remove friction. It's not just about one page—it's about building a system that guides visitors from first touch to conversion."
-        />
-        <Faq
-          id="faq-2"
-          question="How do you identify visitor intent?"
-          answer="We identify visitor intent through a combination of analytics data, user research, and behavioral analysis. This includes understanding where visitors come from, what they're searching for, what content they engage with, and what actions they take. We then create experiences that match different types of intent—research, comparison, purchase—ensuring each visitor gets the right experience for their needs."
-        />
-        <Faq
-          id="faq-3"
-          question="What types of friction do you typically find and remove?"
-          answer="Common friction points include unclear value propositions, confusing navigation, too many choices, lack of trust signals, slow load times, unnecessary form fields, and unclear calls to action. We systematically identify all friction points through user research and analytics, then remove them one by one. The goal is to make the path to conversion as clear and easy as possible."
-        />
-        <Faq
-          id="faq-4"
-          question="How long does it take to see results from landing experience improvements?"
-          answer="You'll typically see improvements in conversion rates within the first month as friction is removed and intent-based design is implemented. The real impact—sustained higher conversion rates and better visitor satisfaction—builds over 2-3 months as the system matures and visitors adapt to the improved experience."
-        />
-        <Faq
-          id="faq-5"
-          question="Can landing experiences work for complex B2B sales processes?"
-          answer="Absolutely. In fact, landing experiences are especially valuable for complex B2B processes. We create experiences that guide visitors through research, evaluation, and decision stages, removing friction at each step. For B2B, this might include simplifying proposal requests, making demos easier to schedule, or creating clear paths for different buyer personas."
-        />
-        <Faq
-          id="faq-6"
-          question="How do you measure landing experience success?"
-          answer="We measure success through multiple metrics: conversion rates, task completion rates, time to conversion, visitor satisfaction scores, and ultimately, revenue. But the real measure is whether visitors can easily achieve their goals. We track both quantitative metrics and qualitative feedback to continuously improve the experience."
-        />
-      </FAQsTwoColumnAccordion>
+      <FAQsWithChat
+        id="faqs"
+        eyebrow="Landing Experiences FAQ"
+        headline="Questions about landing experiences"
+        subheadline="Get answers to common questions, or chat with our AI assistant for personalized guidance."
+        questions={[
+          { question: "What's the difference between landing experiences and just landing pages?" },
+          { question: 'How do you identify visitor intent?' },
+          { question: 'What types of friction do you typically find and remove?' },
+          { question: 'How long does it take to see results from landing experience improvements?' },
+          { question: 'Can landing experiences work for complex B2B sales processes?' },
+          { question: 'How do you measure landing experience success?' },
+        ]}
+      />
 
       {/* Call To Action */}
       <CallToActionSimple

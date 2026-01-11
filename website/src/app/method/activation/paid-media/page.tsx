@@ -5,7 +5,7 @@ import { ArrowNarrowRightIcon } from '@/components/icons/arrow-narrow-right-icon
 import { ChevronIcon } from '@/components/icons/chevron-icon'
 import { Approach, ApproachItem, ApproachStage } from '@/components/sections/approach'
 import { CallToActionSimple } from '@/components/sections/call-to-action-simple'
-import { FAQsTwoColumnAccordion, Faq } from '@/components/sections/faqs-two-column-accordion'
+import { FAQsWithChat } from '@/components/sections/faqs-with-chat'
 import { Feature, FeaturesTwoColumnWithDemos } from '@/components/sections/features-two-column-with-demos'
 import { HeroLeftAlignedWithDemo } from '@/components/sections/hero-left-aligned-with-demo'
 import { Stat, StatsWithGraph } from '@/components/sections/stats-with-graph'
@@ -427,38 +427,20 @@ export default function Page() {
       </Approach>
 
       {/* FAQs */}
-      <FAQsTwoColumnAccordion id="faqs" headline="Questions about paid media">
-        <Faq
-          id="faq-1"
-          question="What's the difference between paid media as a system vs. isolated campaigns?"
-          answer="Isolated campaigns are one-off efforts that don't connect or learn from each other. A paid media system maps channels to funnel roles, builds creative for testing and learning, uses clean tracking, and optimizes based on signal. This systematic approach creates predictability, enables learning, and makes scaling sustainable. Instead of constant fire drills, you get steady performance you can rely on."
-        />
-        <Faq
-          id="faq-2"
-          question="How do you map channels to funnel roles?"
-          answer="We analyze how each channel performs at different stages of the funnel—awareness, consideration, decision, and retention. Then we map each channel to its optimal role. For example, some channels excel at top-of-funnel awareness, while others are better at bottom-of-funnel conversion. This mapping ensures each channel serves a specific purpose and complements the others, creating a more efficient system overall."
-        />
-        <Faq
-          id="faq-3"
-          question="How do you ensure paid media performance is predictable?"
-          answer="Predictability comes from building a learning system, not just running campaigns. We use clean tracking to understand what's working and why, build creative designed for testing, and optimize based on signal rather than instinct. When you understand the system, you can predict performance and scale with confidence. This systematic approach reduces swings and creates steadier results."
-        />
-        <Faq
-          id="faq-4"
-          question="What platforms do you work with?"
-          answer="We work with all major paid media platforms including Google Ads, Meta (Facebook/Instagram), LinkedIn, Twitter/X, TikTok, and more. The key isn't the platform—it's building a systematic approach that works across channels. We help you understand which platforms serve which roles in your funnel and how to optimize each for maximum efficiency."
-        />
-        <Faq
-          id="faq-5"
-          question="How long does it take to see results from systematic paid media?"
-          answer="You'll typically see improvements in efficiency and predictability within the first month as the system takes shape. The real benefits—steadier performance, clearer insights, and scalable growth—build over 2-3 months as the learning system matures and you understand what works and why. This foundation enables sustainable scaling."
-        />
-        <Faq
-          id="faq-6"
-          question="How do you measure paid media success?"
-          answer="We measure success through multiple metrics: ROAS, cost per acquisition, conversion rates, and ultimately, revenue growth. But the real measure is whether paid media feels predictable and scalable. When you understand what's working, why, and how far you can push it, paid media becomes a reliable growth engine instead of a constant source of anxiety."
-        />
-      </FAQsTwoColumnAccordion>
+      <FAQsWithChat
+        id="faqs"
+        eyebrow="Paid Media FAQ"
+        headline="Questions about paid media"
+        subheadline="Get answers to common questions, or chat with our AI assistant for personalized guidance."
+        questions={[
+          { question: "What's the difference between paid media as a system vs. isolated campaigns?" },
+          { question: 'How do you map channels to funnel roles?' },
+          { question: 'How do you ensure paid media performance is predictable?' },
+          { question: 'What platforms do you work with?' },
+          { question: 'How long does it take to see results from systematic paid media?' },
+          { question: 'How do you measure paid media success?' },
+        ]}
+      />
 
       {/* Call To Action */}
       <CallToActionSimple

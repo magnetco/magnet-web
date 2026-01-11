@@ -69,6 +69,13 @@ export const teamMember = defineType({
       description: 'Show this team member on the website',
       initialValue: true,
     }),
+    defineField({
+      name: 'featured',
+      title: 'Featured',
+      type: 'boolean',
+      description: 'Featured members get large cards with full bio on the team page',
+      initialValue: false,
+    }),
   ],
   orderings: [
     {
@@ -87,12 +94,14 @@ export const teamMember = defineType({
       title: 'name',
       role: 'role',
       isActive: 'isActive',
+      featured: 'featured',
       media: 'image',
     },
-    prepare({ title, role, isActive, media }) {
+    prepare({ title, role, isActive, featured, media }) {
       const status = isActive === false ? '🔴 ' : ''
+      const star = featured ? '⭐ ' : ''
       return {
-        title: `${status}${title}`,
+        title: `${status}${star}${title}`,
         subtitle: role,
         media,
       }

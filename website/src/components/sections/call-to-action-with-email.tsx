@@ -6,6 +6,7 @@ import { clsx } from 'clsx/lite'
 import Image from 'next/image'
 import type { ComponentProps, ReactNode } from 'react'
 import { Container } from '../elements/container'
+import { Eyebrow } from '../elements/eyebrow'
 import { GridBgStripes, GridBgBorderLine } from '../elements/grid-bg'
 import { Button } from '../elements/button'
 import { Input } from '../elements/input'
@@ -106,6 +107,8 @@ export function CallToActionWithEmail({
       <GridBgBorderLine position="bottom" color="white" />
       
       <Container className="relative">
+        <Eyebrow color="light" className="mb-12">Get Started</Eyebrow>
+
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           {/* Left column: Content and CTA */}
           <div className="flex flex-col gap-8">
@@ -115,9 +118,9 @@ export function CallToActionWithEmail({
                 {headline}
               </h2>
               {subheadline && (
-                <p className="max-w-md text-base/7 text-white/80">
+                <div className="max-w-md text-base/7 text-white/80">
                   {subheadline}
-                </p>
+                </div>
               )}
             </div>
 
@@ -175,15 +178,12 @@ export function CallToActionWithEmail({
           <div className="flex flex-col gap-8">
             {/* Testimonial */}
             <figure className="rounded-2xl bg-white/10 p-6 backdrop-blur-sm sm:p-8">
-              <blockquote className="flex flex-col gap-3">
-                <p className="text-lg/7 font-medium text-white sm:text-xl/8">
-                  "Magnet transformed our marketing from scattered campaigns into a cohesive system."
-                </p>
-                <p className="text-base/7 text-white/75">
-                  "Within 6 months, our qualified leads increased <span className="font-semibold text-white">340%</span> and our cost per acquisition dropped by half."
+              <blockquote>
+                <p className="text-xl/8 font-medium text-white sm:text-2xl/9">
+                  "Within 6 months, our qualified leads increased <span className="font-semibold">340%</span> and our cost per acquisition dropped by half."
                 </p>
               </blockquote>
-              <figcaption className="mt-5 flex items-center gap-3 border-t border-white/10 pt-5">
+              <figcaption className="mt-6 flex items-center gap-3 border-t border-white/10 pt-6">
                 <div className="size-11 overflow-hidden rounded-full ring-2 ring-white/20">
                   <Image 
                     src="/img/avatars/10-size-160.webp"

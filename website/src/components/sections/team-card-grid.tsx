@@ -6,9 +6,11 @@ import { useCallback, useEffect, useState } from 'react'
 import type { ReactNode } from 'react'
 import { Container } from '../elements/container'
 import { Eyebrow } from '../elements/eyebrow'
+import { GridBgSection, sectionPaddingClasses } from '../elements/grid-bg'
 import { Subheading } from '../elements/subheading'
 import { Text } from '../elements/text'
 import { CloseIcon } from '../icons/close-icon'
+import { ImageSkeleton } from '../elements/image-skeleton'
 
 export type TeamMember = {
   id: string
@@ -27,6 +29,8 @@ function TeamCard({
   size?: 'default' | 'large'
   onClick: () => void
 }) {
+  const [imageLoaded, setImageLoaded] = useState(false)
+
   return (
     <button
       type="button"
@@ -34,23 +38,30 @@ function TeamCard({
       className={clsx(
         'group flex cursor-pointer flex-col gap-4 text-left transition-transform duration-300 ease-in-out',
         'hover:scale-[1.02] focus-visible:scale-[1.02]',
-        'focus-visible:outline-none',
+        'focus-visible:outline-none'
       )}
     >
       <div
         className={clsx(
-          'w-full overflow-hidden rounded-sm transition-all duration-300',
+          'relative w-full overflow-hidden rounded-sm transition-all duration-300',
           'outline -outline-offset-1 outline-black/5 dark:outline-white/5',
           'group-hover:ring-2 group-hover:ring-ember/30 group-focus-visible:ring-2 group-focus-visible:ring-ember/30',
-          size === 'large' ? 'aspect-4/5' : 'aspect-3/4',
+          size === 'large' ? 'aspect-4/5' : 'aspect-3/4'
         )}
       >
+        {/* Skeleton loader */}
+        {!imageLoaded && <ImageSkeleton />}
+
         <Image
           src={member.image}
           alt={member.name}
           width={800}
           height={1000}
-          className="size-full object-cover not-dark:bg-white/75 dark:bg-black/75"
+          className={clsx(
+            'size-full object-cover transition-opacity duration-300 not-dark:bg-white/75 dark:bg-black/75',
+            imageLoaded ? 'opacity-100' : 'opacity-0'
+          )}
+          onLoad={() => setImageLoaded(true)}
         />
       </div>
       <div>
@@ -70,6 +81,15 @@ function BioDrawer({
   isOpen: boolean
   onClose: () => void
 }) {
+  const [drawerImageLoaded, setDrawerImageLoaded] = useState(false)
+
+  // Reset image loaded state when member changes
+  useEffect(() => {
+    if (member) {
+      setDrawerImageLoaded(false)
+    }
+  }, [member])
+
   // Handle escape key
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
@@ -91,7 +111,7 @@ function BioDrawer({
       <div
         className={clsx(
           'fixed inset-0 z-40 bg-black/40 backdrop-blur-sm transition-opacity duration-300',
-          isOpen ? 'opacity-100' : 'pointer-events-none opacity-0',
+          isOpen ? 'opacity-100' : 'pointer-events-none opacity-0'
         )}
         onClick={onClose}
         aria-hidden="true"
@@ -103,9 +123,9 @@ function BioDrawer({
         aria-modal="true"
         aria-labelledby={member ? `drawer-title-${member.id}` : undefined}
         className={clsx(
-          'fixed top-0 right-0 z-50 flex h-full w-full flex-col bg-frost shadow-2xl transition-transform duration-300 ease-in-out sm:w-[480px]',
+          'fixed right-0 top-0 z-50 flex h-full w-full flex-col bg-frost shadow-2xl transition-transform duration-300 ease-in-out sm:w-[480px]',
           'dark:bg-juniper',
-          isOpen ? 'translate-x-0' : 'translate-x-full',
+          isOpen ? 'translate-x-0' : 'translate-x-full'
         )}
       >
         {member && (
@@ -125,21 +145,25 @@ function BioDrawer({
             {/* Content */}
             <div className="flex-1 overflow-y-auto px-6 pb-12">
               {/* Photo */}
-              <div className="mb-8 aspect-4/5 w-full overflow-hidden rounded-sm outline -outline-offset-1 outline-black/5 dark:outline-white/5">
+              <div className="relative mb-8 aspect-4/5 w-full overflow-hidden rounded-sm outline -outline-offset-1 outline-black/5 dark:outline-white/5">
+                {/* Skeleton loader for drawer image */}
+                {!drawerImageLoaded && <ImageSkeleton />}
+
                 <Image
                   src={member.image}
                   alt={member.name}
                   width={800}
                   height={1000}
-                  className="size-full object-cover not-dark:bg-white/75 dark:bg-black/75"
+                  className={clsx(
+                    'size-full object-cover transition-opacity duration-300 not-dark:bg-white/75 dark:bg-black/75',
+                    drawerImageLoaded ? 'opacity-100' : 'opacity-0'
+                  )}
+                  onLoad={() => setDrawerImageLoaded(true)}
                 />
               </div>
 
               {/* Name & Role */}
-              <h2
-                id={`drawer-title-${member.id}`}
-                className="text-2xl font-semibold text-oxblood dark:text-ember"
-              >
+              <h2 id={`drawer-title-${member.id}`} className="text-2xl font-semibold text-oxblood dark:text-ember">
                 {member.name}
               </h2>
               <p className="mt-1 text-base text-oxblood/70 dark:text-coral/70">{member.role}</p>
@@ -162,6 +186,7 @@ export function TeamCardGrid({
   columns = 4,
   cardSize = 'default',
   className,
+  withGridBg = false,
   ...props
 }: {
   eyebrow?: ReactNode
@@ -170,6 +195,7 @@ export function TeamCardGrid({
   members: TeamMember[]
   columns?: 2 | 3 | 4
   cardSize?: 'default' | 'large'
+  withGridBg?: boolean
 } & React.ComponentProps<'section'>) {
   const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null)
   const [isDrawerOpen, setIsDrawerOpen] = useState(false)
@@ -183,37 +209,50 @@ export function TeamCardGrid({
     setIsDrawerOpen(false)
   }, [])
 
+  const content = (
+    <Container className="flex flex-col gap-10 sm:gap-16">
+      {headline && (
+        <div className="flex max-w-2xl flex-col gap-6">
+          <div className="flex flex-col gap-2">
+            {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
+            {typeof headline === 'string' ? <Subheading>{headline}</Subheading> : headline}
+          </div>
+          {subheadline && <Text className="text-pretty">{subheadline}</Text>}
+        </div>
+      )}
+      <ul
+        role="list"
+        className={clsx(
+          'grid gap-x-6 gap-y-10',
+          columns === 2 && 'grid-cols-2 md:grid-cols-2 lg:grid-cols-2',
+          columns === 3 && 'grid-cols-2 md:grid-cols-3',
+          columns === 4 && 'grid-cols-2 md:grid-cols-3 lg:grid-cols-4'
+        )}
+      >
+        {members.map((member) => (
+          <li key={member.id}>
+            <TeamCard member={member} size={cardSize} onClick={() => openDrawer(member)} />
+          </li>
+        ))}
+      </ul>
+    </Container>
+  )
+
+  const section = withGridBg ? (
+    <section className={className} {...props}>
+      <GridBgSection showBottomBorder={true} withPadding>
+        {content}
+      </GridBgSection>
+    </section>
+  ) : (
+    <section className={clsx(sectionPaddingClasses, className)} {...props}>
+      {content}
+    </section>
+  )
+
   return (
     <>
-      <section className={clsx('py-16', className)} {...props}>
-        <Container className="flex flex-col gap-10 sm:gap-16">
-          {headline && (
-            <div className="flex max-w-2xl flex-col gap-6">
-              <div className="flex flex-col gap-2">
-                {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
-                {typeof headline === 'string' ? <Subheading>{headline}</Subheading> : headline}
-              </div>
-              {subheadline && <Text className="text-pretty">{subheadline}</Text>}
-            </div>
-          )}
-          <ul
-            role="list"
-            className={clsx(
-              'grid gap-x-6 gap-y-10',
-              columns === 2 && 'grid-cols-2 md:grid-cols-2 lg:grid-cols-2',
-              columns === 3 && 'grid-cols-2 md:grid-cols-3',
-              columns === 4 && 'grid-cols-2 md:grid-cols-3 lg:grid-cols-4',
-            )}
-          >
-            {members.map((member) => (
-              <li key={member.id}>
-                <TeamCard member={member} size={cardSize} onClick={() => openDrawer(member)} />
-              </li>
-            ))}
-          </ul>
-        </Container>
-      </section>
-
+      {section}
       <BioDrawer member={selectedMember} isOpen={isDrawerOpen} onClose={closeDrawer} />
     </>
   )

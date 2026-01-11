@@ -5,7 +5,7 @@ import { ArrowNarrowRightIcon } from '@/components/icons/arrow-narrow-right-icon
 import { ChevronIcon } from '@/components/icons/chevron-icon'
 import { Approach, ApproachItem, ApproachStage } from '@/components/sections/approach'
 import { CallToActionSimple } from '@/components/sections/call-to-action-simple'
-import { FAQsTwoColumnAccordion, Faq } from '@/components/sections/faqs-two-column-accordion'
+import { FAQsWithChat } from '@/components/sections/faqs-with-chat'
 import { Feature, FeaturesTwoColumnWithDemos } from '@/components/sections/features-two-column-with-demos'
 import { HeroLeftAlignedWithDemo } from '@/components/sections/hero-left-aligned-with-demo'
 import { Stat, StatsWithGraph } from '@/components/sections/stats-with-graph'
@@ -427,38 +427,20 @@ export default function Page() {
       </Approach>
 
       {/* FAQs */}
-      <FAQsTwoColumnAccordion id="faqs" headline="Questions about partnerships">
-        <Faq
-          id="faq-1"
-          question="What's the difference between partnerships and just referrals?"
-          answer="Referrals are one-way transactions—you ask, partners refer. Partnerships are two-way relationships that create value for both parties. Strategic partnerships align with complementary businesses, create mutual value, and drive qualified traffic through co-marketing, co-creation, and other models. When partnerships are done right, they scale with relationships, not just transactions."
-        />
-        <Faq
-          id="faq-2"
-          question="How do you identify strategic partnership opportunities?"
-          answer="We identify partnerships by looking for complementary businesses that share values, serve similar audiences, and have complementary strengths. The key is finding partners where both parties can create value—whether through co-marketing, shared resources, co-creation, or other models. Strategic partnerships extend reach and build credibility because they're built on alignment, not just opportunity."
-        />
-        <Faq
-          id="faq-3"
-          question="What types of partnership models create value?"
-          answer="Partnership models that create value include co-marketing (joint campaigns), co-creation (joint products or content), shared resources (joint events or resources), affiliate programs (structured referral systems), and more. The key is creating models where both parties see clear benefits, making partnerships sustainable and effective."
-        />
-        <Faq
-          id="faq-4"
-          question="How long does it take to see results from partnerships?"
-          answer="You'll typically see initial partnership activity within the first month as strategic partnerships are established. The real impact—extended reach, qualified traffic, and brand credibility—builds over 2-3 months as partnerships mature and both parties see value. Strategic partnerships often compound over time as relationships strengthen."
-        />
-        <Faq
-          id="faq-5"
-          question="Can partnerships work for different types of businesses?"
-          answer="Absolutely. Partnerships can work for B2B companies, B2C companies, services, products, and more. The key is identifying complementary businesses and creating partnership models that create value for both parties. We customize partnership strategies to fit your business model and goals."
-        />
-        <Faq
-          id="faq-6"
-          question="How do you measure partnership success?"
-          answer="We measure success through multiple metrics: qualified traffic, lead generation, brand awareness, partnership engagement, and ultimately, revenue. But the real measure is whether partnerships extend reach, build credibility, and drive qualified traffic. We track both quantitative metrics and qualitative outcomes to continuously improve partnership systems."
-        />
-      </FAQsTwoColumnAccordion>
+      <FAQsWithChat
+        id="faqs"
+        eyebrow="Partnerships FAQ"
+        headline="Questions about partnerships"
+        subheadline="Get answers to common questions, or chat with our AI assistant for personalized guidance."
+        questions={[
+          { question: "What's the difference between partnerships and just referrals?" },
+          { question: 'How do you identify strategic partnership opportunities?' },
+          { question: 'What types of partnership models create value?' },
+          { question: 'How long does it take to see results from partnerships?' },
+          { question: 'Can partnerships work for different types of businesses?' },
+          { question: 'How do you measure partnership success?' },
+        ]}
+      />
 
       {/* Call To Action */}
       <CallToActionSimple

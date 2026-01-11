@@ -224,30 +224,36 @@ export function ApplyForm({ jobs }: { jobs: ApplyJob[] }) {
 
             {selectedJob && (
               <div className="flex flex-col gap-4 rounded-lg bg-oxblood/5 p-4 dark:bg-white/5">
-                <div className="flex flex-col gap-1">
-                  <span className="text-xs/6 font-semibold uppercase tracking-wide text-oxblood/60 dark:text-coral/60">
-                    Department
-                  </span>
-                  <span className="text-sm/7 text-oxblood dark:text-coral">{selectedJob.department.title}</span>
-                </div>
-                <div className="flex flex-col gap-1">
-                  <span className="text-xs/6 font-semibold uppercase tracking-wide text-oxblood/60 dark:text-coral/60">
-                    Type
-                  </span>
-                  <span className="text-sm/7 text-oxblood dark:text-coral">{selectedJob.jobType.title}</span>
-                </div>
-                <div className="flex flex-col gap-1">
-                  <span className="text-xs/6 font-semibold uppercase tracking-wide text-oxblood/60 dark:text-coral/60">
-                    Locations
-                  </span>
-                  <div className="flex flex-col gap-0.5">
-                    {selectedJob.locations.map((location) => (
-                      <span key={location._id} className="text-sm/7 text-oxblood dark:text-coral">
-                        {location.title}
-                      </span>
-                    ))}
+                {selectedJob.department && (
+                  <div className="flex flex-col gap-1">
+                    <span className="text-xs/6 font-semibold uppercase tracking-wide text-oxblood/60 dark:text-coral/60">
+                      Department
+                    </span>
+                    <span className="text-sm/7 text-oxblood dark:text-coral">{selectedJob.department.title}</span>
                   </div>
-                </div>
+                )}
+                {selectedJob.jobType && (
+                  <div className="flex flex-col gap-1">
+                    <span className="text-xs/6 font-semibold uppercase tracking-wide text-oxblood/60 dark:text-coral/60">
+                      Type
+                    </span>
+                    <span className="text-sm/7 text-oxblood dark:text-coral">{selectedJob.jobType.title}</span>
+                  </div>
+                )}
+                {selectedJob.locations && selectedJob.locations.length > 0 && (
+                  <div className="flex flex-col gap-1">
+                    <span className="text-xs/6 font-semibold uppercase tracking-wide text-oxblood/60 dark:text-coral/60">
+                      Locations
+                    </span>
+                    <div className="flex flex-col gap-0.5">
+                      {selectedJob.locations.map((location) => (
+                        <span key={location._id} className="text-sm/7 text-oxblood dark:text-coral">
+                          {location.title}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             )}
           </aside>

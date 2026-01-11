@@ -5,7 +5,7 @@ import { ArrowNarrowRightIcon } from '@/components/icons/arrow-narrow-right-icon
 import { ChevronIcon } from '@/components/icons/chevron-icon'
 import { Approach, ApproachItem, ApproachStage } from '@/components/sections/approach'
 import { CallToActionSimple } from '@/components/sections/call-to-action-simple'
-import { FAQsTwoColumnAccordion, Faq } from '@/components/sections/faqs-two-column-accordion'
+import { FAQsWithChat } from '@/components/sections/faqs-with-chat'
 import { Feature, FeaturesTwoColumnWithDemos } from '@/components/sections/features-two-column-with-demos'
 import { HeroLeftAlignedWithDemo } from '@/components/sections/hero-left-aligned-with-demo'
 import { Stat, StatsWithGraph } from '@/components/sections/stats-with-graph'
@@ -427,38 +427,20 @@ export default function Page() {
       </Approach>
 
       {/* FAQs */}
-      <FAQsTwoColumnAccordion id="faqs" headline="Questions about messaging systems">
-        <Faq
-          id="faq-1"
-          question="What's the difference between messaging and copywriting?"
-          answer="Messaging is the strategic framework that defines what you say and how you say it. Copywriting is the tactical execution of that framework. A messaging system provides the foundation—value propositions, key messages, voice and tone—that copywriters use to create effective content. Think of messaging as the blueprint and copywriting as the building."
-        />
-        <Faq
-          id="faq-2"
-          question="How do you develop a value proposition?"
-          answer="We start by understanding your unique strengths, your customers' needs, and how you solve problems differently than competitors. Through research, interviews, and analysis, we identify what makes you distinct and valuable. Then we craft a value proposition that's clear, compelling, and differentiated—one that resonates with your ideal customers and guides all your messaging."
-        />
-        <Faq
-          id="faq-3"
-          question="Can messaging systems work for B2B and B2C companies?"
-          answer="Absolutely. While the tone and approach may differ, the principles of clear messaging apply to both B2B and B2C. B2B messaging often focuses on business outcomes and ROI, while B2C messaging may be more emotional, but both benefit from clear value propositions, consistent voice, and messaging frameworks that guide communication."
-        />
-        <Faq
-          id="faq-4"
-          question="How do you ensure messaging stays consistent across teams?"
-          answer="We create messaging systems that are clear, accessible, and practical. This includes messaging guides, templates, examples, and training. When everyone understands the framework and has tools to apply it, consistency becomes natural. We also provide ongoing support and audits to ensure messaging stays on track as teams grow and evolve."
-        />
-        <Faq
-          id="faq-5"
-          question="What if our messaging needs to evolve?"
-          answer="Messaging systems are designed to evolve with your business. As your products, customers, or market position changes, your messaging should adapt. We build flexible frameworks that can accommodate growth and change while maintaining consistency. When updates are needed, we work with you to evolve messaging in a way that preserves brand recognition."
-        />
-        <Faq
-          id="faq-6"
-          question="How does messaging integrate with other marketing efforts?"
-          answer="Messaging is the foundation that makes all marketing efforts more effective. It ensures consistency across paid media, social content, email, websites, and every other touchpoint. When messaging is clear and consistent, every marketing investment reinforces your brand and value proposition, creating a compounding effect over time."
-        />
-      </FAQsTwoColumnAccordion>
+      <FAQsWithChat
+        id="faqs"
+        eyebrow="Messaging Systems FAQ"
+        headline="Questions about messaging systems"
+        subheadline="Get answers to common questions, or chat with our AI assistant for personalized guidance."
+        questions={[
+          { question: "What's the difference between messaging and copywriting?" },
+          { question: 'How do you develop a value proposition?' },
+          { question: 'Can messaging systems work for B2B and B2C companies?' },
+          { question: 'How do you ensure messaging stays consistent across teams?' },
+          { question: 'What if our messaging needs to evolve?' },
+          { question: 'How does messaging integrate with other marketing efforts?' },
+        ]}
+      />
 
       {/* Call To Action */}
       <CallToActionSimple

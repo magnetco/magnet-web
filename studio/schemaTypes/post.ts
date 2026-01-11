@@ -124,6 +124,28 @@ export const post = defineType({
       to: [{ type: 'category' }],
     }),
     defineField({
+      name: 'industry',
+      title: 'Industry',
+      type: 'string',
+      description: 'Tag posts with an industry to show on industry landing pages',
+      options: {
+        list: [
+          { title: 'Healthcare', value: 'healthcare' },
+          { title: 'Manufacturing', value: 'manufacturing' },
+          { title: 'Financial Services', value: 'financial-services' },
+          { title: 'Professional Services', value: 'professional-services' },
+          { title: 'Education', value: 'education' },
+          { title: 'Retail & Ecommerce', value: 'retail-ecommerce' },
+          { title: 'Media & Entertainment', value: 'media-entertainment' },
+          { title: 'Travel & Hospitality', value: 'travel-hospitality' },
+          { title: 'Nonprofit', value: 'nonprofit' },
+          { title: 'Sports & Entertainment', value: 'sports-entertainment' },
+          { title: 'Technology', value: 'technology' },
+          { title: 'SaaS', value: 'saas' },
+        ],
+      },
+    }),
+    defineField({
       name: 'publishedAt',
       title: 'Published At',
       type: 'datetime',
@@ -148,14 +170,15 @@ export const post = defineType({
       title: 'title',
       postType: 'postType',
       category: 'category.title',
+      industry: 'industry',
       date: 'publishedAt',
     },
-    prepare({ title, postType, category, date }) {
+    prepare({ title, postType, category, industry, date }) {
       const typeLabel = postType === 'link' ? '🔗' : '📝'
       const dateStr = date ? new Date(date).toLocaleDateString() : ''
       return {
         title: `${typeLabel} ${title}`,
-        subtitle: [category, dateStr].filter(Boolean).join(' · '),
+        subtitle: [category, industry, dateStr].filter(Boolean).join(' · '),
       }
     },
   },

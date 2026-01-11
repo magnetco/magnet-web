@@ -9,20 +9,23 @@
     "start": "sanity start",
     "build": "sanity build",
     "deploy": "sanity deploy",
-    "seed": "tsx seed.ts"
+    "seed": "tsx seed.ts",
+    "seed:case-studies": "tsx seed-case-studies.ts",
+    "import:images": "tsx import-images.ts"
   },
   "dependencies": {
     "@sanity/client": "^6",
     "@sanity/vision": "^3",
+    "papaparse": "^5.5.3",
     "react": "^19",
     "react-dom": "^19",
     "sanity": "^3",
     "styled-components": "^6"
   },
   "devDependencies": {
+    "@types/papaparse": "^5.5.2",
     "@types/react": "^19",
     "tsx": "^4",
     "typescript": "^5"
   }
 }
-

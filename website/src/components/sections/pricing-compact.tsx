@@ -4,6 +4,7 @@ import { clsx } from 'clsx/lite'
 import Link from 'next/link'
 import { useState, type ComponentProps, type ReactNode } from 'react'
 import { Container } from '../elements/container'
+import { Eyebrow } from '../elements/eyebrow'
 import { GridBgSection, sectionPaddingClasses } from '../elements/grid-bg'
 import { PlainButtonLink } from '../elements/button'
 import { ChevronIcon } from '../icons/chevron-icon'
@@ -61,12 +62,14 @@ function BillingToggle({
 }
 
 export function PricingCompact({
+  eyebrow,
   headline,
   subheadline,
   className,
   withGridBg = false,
   ...props
 }: {
+  eyebrow?: ReactNode
   headline?: ReactNode
   subheadline?: ReactNode
   withGridBg?: boolean
@@ -78,9 +81,12 @@ export function PricingCompact({
 
   const content = (
     <Container className="flex flex-col gap-10 sm:gap-16">
-      {headline && (
+      {(eyebrow || headline) && (
         <div className="flex max-w-2xl flex-col gap-6">
-          {headlineElement}
+          <div className="flex flex-col gap-2">
+            {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
+            {headlineElement}
+          </div>
           {subheadline && <Text className="text-pretty">{subheadline}</Text>}
         </div>
       )}

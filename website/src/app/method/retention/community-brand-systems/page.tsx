@@ -5,7 +5,7 @@ import { ArrowNarrowRightIcon } from '@/components/icons/arrow-narrow-right-icon
 import { ChevronIcon } from '@/components/icons/chevron-icon'
 import { Approach, ApproachItem, ApproachStage } from '@/components/sections/approach'
 import { CallToActionSimple } from '@/components/sections/call-to-action-simple'
-import { FAQsTwoColumnAccordion, Faq } from '@/components/sections/faqs-two-column-accordion'
+import { FAQsWithChat } from '@/components/sections/faqs-with-chat'
 import { Feature, FeaturesTwoColumnWithDemos } from '@/components/sections/features-two-column-with-demos'
 import { HeroLeftAlignedWithDemo } from '@/components/sections/hero-left-aligned-with-demo'
 import { Stat, StatsWithGraph } from '@/components/sections/stats-with-graph'
@@ -426,38 +426,20 @@ export default function Page() {
       </Approach>
 
       {/* FAQs */}
-      <FAQsTwoColumnAccordion id="faqs" headline="Questions about community & brand systems">
-        <Faq
-          id="faq-1"
-          question="What's the difference between a community and just a forum?"
-          answer="Forums are spaces for discussion. Communities are comprehensive systems that create value for members, facilitate connections, and strengthen brand relationships. Communities provide resources, create opportunities for learning and growth, and align with brand values. When communities are done right, they become places members want to be, not just places they have to check."
-        />
-        <Faq
-          id="faq-2"
-          question="How do you create value-driven communities?"
-          answer="We build communities that provide resources, facilitate connections, and create opportunities for members to learn and grow. This means communities offer more than just discussion—they provide educational content, networking opportunities, exclusive access, and other value that makes membership worthwhile. When communities create value, they become places members want to be, which strengthens brand relationships."
-        />
-        <Faq
-          id="faq-3"
-          question="What does brand-aligned community culture mean?"
-          answer="Brand-aligned community culture means communities reflect and strengthen your brand values, reinforce your messaging, and create experiences that feel cohesive with your overall brand. Instead of generic forums, communities become extensions of your brand that authentically represent who you are. This alignment strengthens brand relationships and creates advocates who authentically represent your brand."
-        />
-        <Faq
-          id="faq-4"
-          question="How long does it take to build an active community?"
-          answer="You'll typically see initial engagement within the first month as value-driven spaces are created and members start connecting. The real impact—active community, strong brand relationships, and advocates who drive organic growth—builds over 3-6 months as the community matures and members see the value of participation."
-        />
-        <Faq
-          id="faq-5"
-          question="Can communities work for B2B companies?"
-          answer="Absolutely. B2B communities are especially valuable because they create networking opportunities, facilitate knowledge sharing, and strengthen professional relationships. We build B2B communities that provide industry insights, facilitate peer connections, and create value that makes membership worthwhile. B2B communities often become competitive advantages."
-        />
-        <Faq
-          id="faq-6"
-          question="How do you measure community success?"
-          answer="We measure success through multiple metrics: member engagement, community activity, brand relationship strength, advocacy rates, and ultimately, retention and lifetime value. But the real measure is whether communities create value for members and strengthen brand relationships. We track both quantitative metrics and qualitative feedback to continuously improve community systems."
-        />
-      </FAQsTwoColumnAccordion>
+      <FAQsWithChat
+        id="faqs"
+        eyebrow="Community & Brand Systems FAQ"
+        headline="Questions about community & brand systems"
+        subheadline="Get answers to common questions, or chat with our AI assistant for personalized guidance."
+        questions={[
+          { question: "What's the difference between a community and just a forum?" },
+          { question: 'How do you create value-driven communities?' },
+          { question: 'What does brand-aligned community culture mean?' },
+          { question: 'How long does it take to build an active community?' },
+          { question: 'Can communities work for B2B companies?' },
+          { question: 'How do you measure community success?' },
+        ]}
+      />
 
       {/* Call To Action */}
       <CallToActionSimple

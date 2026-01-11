@@ -5,7 +5,7 @@ import { ArrowNarrowRightIcon } from '@/components/icons/arrow-narrow-right-icon
 import { ChevronIcon } from '@/components/icons/chevron-icon'
 import { Approach, ApproachItem, ApproachStage } from '@/components/sections/approach'
 import { CallToActionSimple } from '@/components/sections/call-to-action-simple'
-import { FAQsTwoColumnAccordion, Faq } from '@/components/sections/faqs-two-column-accordion'
+import { FAQsWithChat } from '@/components/sections/faqs-with-chat'
 import { Feature, FeaturesTwoColumnWithDemos } from '@/components/sections/features-two-column-with-demos'
 import { HeroLeftAlignedWithDemo } from '@/components/sections/hero-left-aligned-with-demo'
 import { Stat, StatsWithGraph } from '@/components/sections/stats-with-graph'
@@ -427,38 +427,20 @@ export default function Page() {
       </Approach>
 
       {/* FAQs */}
-      <FAQsTwoColumnAccordion id="faqs" headline="Questions about sales enablement">
-        <Faq
-          id="faq-1"
-          question="What's included in a sales enablement system?"
-          answer="A comprehensive sales enablement system includes contextual tools and resources that appear when needed, messaging frameworks and playbooks that guide conversations, training materials that build skills, CRM integration that provides context, and analytics that track what's working. It's a complete system that supports sales teams at every stage of the sales process."
-        />
-        <Faq
-          id="faq-2"
-          question="How do contextual tools work?"
-          answer="Contextual tools understand where a prospect is in their journey, what objections they're facing, and what questions they're asking. Based on this context, the system surfaces the right resources—case studies, pricing guides, objection handlers—at exactly the right moment. This means sales teams don't waste time searching for resources—they get exactly what they need when they need it."
-        />
-        <Faq
-          id="faq-3"
-          question="What's the difference between messaging frameworks and scripts?"
-          answer="Scripts tell sales teams exactly what to say, which can make conversations feel robotic. Messaging frameworks provide structure and guidance while allowing sales teams to adapt to each prospect's unique situation. Frameworks ensure consistency in messaging while maintaining the flexibility to personalize, making conversations more natural and effective."
-        />
-        <Faq
-          id="faq-4"
-          question="How long does it take to see results from sales enablement?"
-          answer="You'll typically see improvements in sales team confidence and efficiency within the first month as tools and frameworks are implemented. The real impact—shorter sales cycles, higher close rates, and better sales performance—builds over 2-3 months as teams adapt to the new systems and processes."
-        />
-        <Faq
-          id="faq-5"
-          question="Can sales enablement work for different sales models?"
-          answer="Absolutely. Sales enablement systems can be adapted for inside sales, field sales, account-based sales, and more. The key is understanding how each sales model works and building enablement systems that support those specific processes. We customize enablement to fit your sales model, not the other way around."
-        />
-        <Faq
-          id="faq-6"
-          question="How do you measure sales enablement success?"
-          answer="We measure success through multiple metrics: sales cycle length, close rates, sales team confidence scores, time spent searching for resources, and ultimately, revenue growth. But the real measure is whether sales teams can close more deals faster with less friction. We track both quantitative metrics and qualitative feedback to continuously improve enablement systems."
-        />
-      </FAQsTwoColumnAccordion>
+      <FAQsWithChat
+        id="faqs"
+        eyebrow="Sales Enablement FAQ"
+        headline="Questions about sales enablement"
+        subheadline="Get answers to common questions, or chat with our AI assistant for personalized guidance."
+        questions={[
+          { question: "What's included in a sales enablement system?" },
+          { question: 'How do contextual tools work?' },
+          { question: "What's the difference between messaging frameworks and scripts?" },
+          { question: 'How long does it take to see results from sales enablement?' },
+          { question: 'Can sales enablement work for different sales models?' },
+          { question: 'How do you measure sales enablement success?' },
+        ]}
+      />
 
       {/* Call To Action */}
       <CallToActionSimple

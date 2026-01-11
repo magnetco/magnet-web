@@ -1,17 +1,21 @@
 import { AnnouncementBadge } from '@/components/elements/announcement-badge'
 import { ButtonLink, PlainButtonLink } from '@/components/elements/button'
-import { Link } from '@/components/elements/link'
 import { Screenshot } from '@/components/elements/screenshot'
 import { TabbedLogoGallery, type GalleryItem } from '@/components/elements/tabbed-logo-gallery'
 import { ArrowNarrowRightIcon } from '@/components/icons/arrow-narrow-right-icon'
-import { ServiceProcess } from '@/components/sections/service-process'
 import { CallToActionWithEmail } from '@/components/sections/call-to-action-with-email'
-import { FAQsTwoColumnAccordion, Faq } from '@/components/sections/faqs-two-column-accordion'
-import { FeatureThreeColumnWithDemos, Features } from '@/components/sections/features-three-column-with-demos'
+import { CaseStudiesPreview } from '@/components/sections/case-studies-preview'
+import { FAQsWithChat } from '@/components/sections/faqs-with-chat'
+import { FeaturesBentoGrid } from '@/components/sections/features-bento-grid'
 import { HeroCenteredWithDemo } from '@/components/sections/hero-centered-with-demo'
+import { defaultIndustries, IndustriesGrid } from '@/components/sections/industries-grid'
 import { PricingBranding } from '@/components/sections/pricing-branding'
+import { ServiceProcess } from '@/components/sections/service-process'
 import { Stat, StatsWithGraph } from '@/components/sections/stats-with-graph'
 import { TestimonialLargeQuote } from '@/components/sections/testimonial-with-large-quote'
+import { client } from '@/lib/sanity/client'
+import { caseStudiesByServiceQuery } from '@/lib/sanity/queries'
+import type { CaseStudy } from '@/lib/sanity/types'
 import Image from 'next/image'
 
 const galleryItems: GalleryItem[] = [
@@ -443,7 +447,10 @@ const galleryItems: GalleryItem[] = [
   },
 ]
 
-export default function Page() {
+export default async function Page() {
+  // Fetch case studies from Sanity
+  const brandingCaseStudies = await client.fetch<CaseStudy[]>(caseStudiesByServiceQuery, { service: 'branding' })
+
   return (
     <>
       {/* Hero */}
@@ -472,175 +479,90 @@ export default function Page() {
       />
 
       {/* Features */}
-      <Features
+      <FeaturesBentoGrid
         id="features"
-        headline="Everything you need to build a memorable brand.
-          "
+        withGridBg
+        headline="Everything you need to build a memorable brand."
         subheadline={
           <p>
             From logo design to brand guidelines, we provide all the tools and resources you need to create a cohesive
             brand identity that your customers will remember.
           </p>
         }
-        cta={
-          <Link href="#">
-            See how it works <ArrowNarrowRightIcon />
-          </Link>
-        }
-        features={
-          <>
-            <FeatureThreeColumnWithDemos
-              demo={
-                <Screenshot wallpaper="blue" placement="bottom-right">
-                  <Image
-                    src="/img/screenshots/1-left-1000-top-800.webp"
-                    alt=""
-                    className="bg-white/75 sm:hidden dark:hidden"
-                    width={1000}
-                    height={800}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1000-top-800.webp"
-                    alt=""
-                    width={1000}
-                    height={800}
-                    className="bg-black/75 not-dark:hidden sm:hidden"
-                  />
-                  <Image
-                    src="/img/screenshots/1-left-1800-top-660.webp"
-                    alt=""
-                    className="bg-white/75 max-sm:hidden lg:hidden dark:hidden"
-                    width={1800}
-                    height={660}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1800-top-660.webp"
-                    alt=""
-                    width={1800}
-                    height={660}
-                    className="bg-black/75 not-dark:hidden max-sm:hidden lg:hidden"
-                  />
-                  <Image
-                    src="/img/screenshots/1-left-1300-top-1300.webp"
-                    alt=""
-                    className="bg-white/75 max-lg:hidden dark:hidden"
-                    width={1300}
-                    height={1300}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1300-top-1300.webp"
-                    alt=""
-                    width={1300}
-                    height={1300}
-                    className="bg-black/75 not-dark:hidden max-lg:hidden"
-                  />
-                </Screenshot>
-              }
-              headline="Logo Design"
-              subheadline={<p>Professional logo designs that capture your brand's essence and make a lasting impression.</p>}
-            />
-            <FeatureThreeColumnWithDemos
-              demo={
-                <Screenshot wallpaper="purple" placement="top-left">
-                  <Image
-                    src="/img/screenshots/1-right-1000-top-800.webp"
-                    alt=""
-                    className="bg-white/75 sm:hidden dark:hidden"
-                    width={1000}
-                    height={800}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-right-1000-top-800.webp"
-                    alt=""
-                    width={1000}
-                    height={800}
-                    className="bg-black/75 not-dark:hidden sm:hidden"
-                  />
-                  <Image
-                    src="/img/screenshots/1-right-1800-top-660.webp"
-                    alt=""
-                    className="bg-white/75 max-sm:hidden lg:hidden dark:hidden"
-                    width={1800}
-                    height={660}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-right-1800-top-660.webp"
-                    alt=""
-                    width={1800}
-                    height={660}
-                    className="bg-black/75 not-dark:hidden max-sm:hidden lg:hidden"
-                  />
-                  <Image
-                    src="/img/screenshots/1-right-1300-top-1300.webp"
-                    alt=""
-                    className="bg-white/75 max-lg:hidden dark:hidden"
-                    width={1300}
-                    height={1300}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-right-1300-top-1300.webp"
-                    alt=""
-                    width={1300}
-                    height={1300}
-                    className="bg-black/75 not-dark:hidden max-lg:hidden"
-                  />
-                </Screenshot>
-              }
-              headline="Color Palettes"
-              subheadline={<p>Curated color schemes that work together to create a cohesive and professional brand identity.</p>}
-            />
-            <FeatureThreeColumnWithDemos
-              demo={
-                <Screenshot wallpaper="brown" placement="bottom-left">
-                  <Image
-                    src="/img/screenshots/1-left-1000-top-800.webp"
-                    alt=""
-                    className="bg-white/75 sm:hidden dark:hidden"
-                    width={1000}
-                    height={800}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1000-top-800.webp"
-                    alt=""
-                    width={1000}
-                    height={800}
-                    className="bg-black/75 not-dark:hidden sm:hidden"
-                  />
-                  <Image
-                    src="/img/screenshots/1-left-1800-top-660.webp"
-                    alt=""
-                    className="bg-white/75 max-sm:hidden lg:hidden dark:hidden"
-                    width={1800}
-                    height={660}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1800-top-660.webp"
-                    alt=""
-                    width={1800}
-                    height={660}
-                    className="bg-black/75 not-dark:hidden max-sm:hidden lg:hidden"
-                  />
-                  <Image
-                    src="/img/screenshots/1-left-1300-top-1300.webp"
-                    alt=""
-                    className="bg-white/75 max-lg:hidden dark:hidden"
-                    width={1300}
-                    height={1300}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1300-top-1300.webp"
-                    alt=""
-                    width={1300}
-                    height={1300}
-                    className="bg-black/75 not-dark:hidden max-lg:hidden"
-                  />
-                </Screenshot>
-              }
-              headline="Brand Guidelines"
-              subheadline={<p>Comprehensive brand guidelines that ensure consistency across all your marketing materials.</p>}
-            />
-          </>
-        }
+        features={[
+          {
+            title: 'Logo Design',
+            description:
+              'Professional logo designs that capture your brand\'s essence and make a lasting impression.',
+            href: '#',
+            demo: (
+              <Screenshot wallpaper="blue" placement="bottom-right" className="h-full">
+                <Image
+                  src="/img/screenshots/1-left-1800-top-1250.webp"
+                  alt="Logo design"
+                  className="bg-white/75 dark:hidden"
+                  width={1800}
+                  height={1250}
+                />
+                <Image
+                  src="/img/screenshots/1-color-olive-left-1800-top-1250.webp"
+                  alt="Logo design"
+                  width={1800}
+                  height={1250}
+                  className="bg-black/75 not-dark:hidden"
+                />
+              </Screenshot>
+            ),
+          },
+          {
+            title: 'Color Palettes',
+            description:
+              'Curated color schemes that work together to create a cohesive and professional brand identity.',
+            href: '#',
+            demo: (
+              <Screenshot wallpaper="purple" placement="top-left" className="h-full">
+                <Image
+                  src="/img/screenshots/1-right-1300-top-1300.webp"
+                  alt="Color palettes"
+                  className="bg-white/75 dark:hidden"
+                  width={1300}
+                  height={1300}
+                />
+                <Image
+                  src="/img/screenshots/1-color-olive-right-1300-top-1300.webp"
+                  alt="Color palettes"
+                  width={1300}
+                  height={1300}
+                  className="bg-black/75 not-dark:hidden"
+                />
+              </Screenshot>
+            ),
+          },
+          {
+            title: 'Brand Guidelines',
+            description:
+              'Comprehensive brand guidelines that ensure consistency across all your marketing materials.',
+            href: '#',
+            demo: (
+              <Screenshot wallpaper="brown" placement="bottom-left" className="h-full">
+                <Image
+                  src="/img/screenshots/1-left-1300-top-1300.webp"
+                  alt="Brand guidelines"
+                  className="bg-white/75 dark:hidden"
+                  width={1300}
+                  height={1300}
+                />
+                <Image
+                  src="/img/screenshots/1-color-olive-left-1300-top-1300.webp"
+                  alt="Brand guidelines"
+                  width={1300}
+                  height={1300}
+                  className="bg-black/75 not-dark:hidden"
+                />
+              </Screenshot>
+            ),
+          },
+        ]}
       />
 
       {/* Pricing */}
@@ -666,6 +588,17 @@ export default function Page() {
             A proven four-step process to create brands that resonate and drive real business results.
           </p>
         }
+      />
+
+      {/* Case Studies */}
+      <CaseStudiesPreview
+        id="case-studies"
+        eyebrow="Case Studies"
+        headline="Brands that make an impact"
+        subheadline={<p>See how we&apos;ve helped companies build category-defining brands.</p>}
+        caseStudies={brandingCaseStudies}
+        viewAllHref="/work/full-funnel"
+        viewAllText="View all branding work"
       />
 
       {/* Stats */}
@@ -708,32 +641,34 @@ export default function Page() {
       />
 
       {/* FAQs */}
-      <FAQsTwoColumnAccordion
+      <FAQsWithChat
         id="faqs"
-        headline="Questions & Answers
-          "
-      >
-        <Faq
-          id="faq-1"
-          question="What's included in a branding package?"
-          answer="Our branding packages include logo design, color palette selection, typography recommendations, and comprehensive brand guidelines. Higher tier packages include additional assets like business cards and social media templates."
-        />
-        <Faq
-          id="faq-2"
-          question="How long does the branding process take?"
-          answer="Typically, a complete branding package takes 2-4 weeks from initial consultation to final delivery. This includes multiple rounds of revisions to ensure we capture your vision perfectly."
-        />
-        <Faq
-          id="faq-3"
-          question="Can I use the branding across all my marketing materials?"
-          answer="Absolutely! Once you receive your brand guidelines, you can use your new branding across all marketing materials, websites, social media, and any other touchpoints with your audience."
-        />
-        <Faq
-          id="faq-4"
-          question="Do you offer ongoing brand support?"
-          answer="Yes, we offer ongoing support packages that include brand asset updates, new material design, and brand consistency audits to ensure your brand stays cohesive as you grow."
-        />
-      </FAQsTwoColumnAccordion>
+        eyebrow="Branding FAQ"
+        headline="Questions & Answers"
+        subheadline="Get answers to common branding questions, or chat with our AI assistant for personalized guidance."
+        questions={[
+          { question: "What's included in a branding package?" },
+          { question: 'How long does the branding process take?' },
+          { question: 'Can I use the branding across all my marketing materials?' },
+          { question: 'Do you offer ongoing brand support?' },
+        ]}
+      />
+
+      {/* Industries */}
+      <IndustriesGrid
+        id="industries"
+        eyebrow="Industries We Serve"
+        headline="Branding expertise across sectors"
+        subheadline={
+          <p>
+            We build distinctive brands for companies across industries, understanding the unique
+            positioning and messaging requirements each sector demands.
+          </p>
+        }
+        industries={defaultIndustries.filter((i) =>
+          ['professional-services', 'healthcare', 'financial-services', 'ecommerce', 'nonprofits', 'entertainment'].includes(i.slug)
+        )}
+      />
 
       {/* Call To Action */}
       <CallToActionWithEmail

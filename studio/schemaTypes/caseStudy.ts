@@ -4,13 +4,20 @@ export const caseStudy = defineType({
   name: 'caseStudy',
   title: 'Case Study',
   type: 'document',
+  groups: [
+    { name: 'content', title: 'Content', default: true },
+    { name: 'media', title: 'Media' },
+    { name: 'metadata', title: 'Metadata' },
+  ],
   fields: [
+    // Basic Info
     defineField({
       name: 'title',
       title: 'Title',
       type: 'string',
       description: 'Internal title for the case study',
       validation: (rule) => rule.required(),
+      group: 'content',
     }),
     defineField({
       name: 'slug',
@@ -21,6 +28,7 @@ export const caseStudy = defineType({
         maxLength: 96,
       },
       validation: (rule) => rule.required(),
+      group: 'content',
     }),
     defineField({
       name: 'client',
@@ -28,7 +36,26 @@ export const caseStudy = defineType({
       type: 'string',
       description: 'Company or client name',
       validation: (rule) => rule.required(),
+      group: 'content',
     }),
+    defineField({
+      name: 'headline',
+      title: 'Headline',
+      type: 'string',
+      description: 'Short tagline for display on cards (e.g., "Built a cutting-edge digital banking platform")',
+      validation: (rule) => rule.max(150),
+      group: 'content',
+    }),
+    defineField({
+      name: 'description',
+      title: 'Description',
+      type: 'text',
+      rows: 3,
+      description: 'Summary paragraph for the case study overview',
+      group: 'content',
+    }),
+
+    // Media
     defineField({
       name: 'clientLogo',
       title: 'Client Logo',
@@ -37,6 +64,50 @@ export const caseStudy = defineType({
       options: {
         hotspot: false,
       },
+      group: 'media',
+    }),
+    defineField({
+      name: 'heroImage',
+      title: 'Hero Image',
+      type: 'image',
+      description: 'Main screenshot for the case study hero section',
+      options: {
+        hotspot: true,
+      },
+      group: 'media',
+    }),
+    defineField({
+      name: 'galleryImages',
+      title: 'Gallery Images',
+      type: 'array',
+      of: [
+        {
+          type: 'image',
+          options: {
+            hotspot: true,
+          },
+        },
+      ],
+      description: 'Additional screenshots for the case study detail page',
+      group: 'media',
+    }),
+
+    // Categorization
+    defineField({
+      name: 'category',
+      title: 'Category',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Engineering', value: 'engineering' },
+          { title: 'Full-Funnel Marketing', value: 'full-funnel' },
+          { title: 'Websites', value: 'websites' },
+          { title: 'Other', value: 'other' },
+        ],
+        layout: 'radio',
+      },
+      description: 'Primary category for filtering on the work page',
+      group: 'metadata',
     }),
     defineField({
       name: 'industry',
@@ -52,10 +123,22 @@ export const caseStudy = defineType({
           { title: 'Technology', value: 'technology' },
           { title: 'Education', value: 'education' },
           { title: 'Retail & Ecommerce', value: 'retail-ecommerce' },
+          { title: 'Media & Entertainment', value: 'media-entertainment' },
+          { title: 'Travel & Hospitality', value: 'travel-hospitality' },
+          { title: 'Consumer Products', value: 'consumer-products' },
+          { title: 'Nonprofit', value: 'nonprofit' },
+          { title: 'Legal', value: 'legal' },
+          { title: 'Automotive', value: 'automotive' },
+          { title: 'Sports & Entertainment', value: 'sports-entertainment' },
+          { title: 'Venture Capital', value: 'venture-capital' },
+          { title: 'AI / Technology', value: 'ai-technology' },
+          { title: 'Home & Furniture', value: 'home-furniture' },
+          { title: 'Grocery & Retail', value: 'grocery-retail' },
           { title: 'Other', value: 'other' },
         ],
       },
       validation: (rule) => rule.required(),
+      group: 'metadata',
     }),
     defineField({
       name: 'featured',
@@ -63,6 +146,7 @@ export const caseStudy = defineType({
       type: 'boolean',
       description: 'Show on homepage and featured sections',
       initialValue: false,
+      group: 'metadata',
     }),
 
     // The Story
@@ -83,6 +167,7 @@ export const caseStudy = defineType({
         },
       ],
       description: 'What problem did the client face?',
+      group: 'content',
     }),
     defineField({
       name: 'solution',
@@ -101,6 +186,7 @@ export const caseStudy = defineType({
         },
       ],
       description: 'How did we solve it?',
+      group: 'content',
     }),
 
     // Results
@@ -141,6 +227,7 @@ export const caseStudy = defineType({
         },
       ],
       description: 'Key metrics and results achieved',
+      group: 'content',
     }),
 
     // Testimonial
@@ -167,6 +254,7 @@ export const caseStudy = defineType({
           description: 'Job title and company (e.g., "VP of Marketing, ACME Corp")',
         },
       ],
+      group: 'content',
     }),
 
     // Metadata
@@ -184,8 +272,15 @@ export const caseStudy = defineType({
           { title: 'Content', value: 'content' },
           { title: 'CRM & Automation', value: 'crm-automation' },
           { title: 'Analytics', value: 'analytics' },
+          { title: 'Platform Engineering', value: 'platform-engineering' },
+          { title: 'Full-Stack Development', value: 'full-stack-development' },
+          { title: 'API Design', value: 'api-design' },
+          { title: 'Data Architecture', value: 'data-architecture' },
+          { title: 'E-commerce Platform', value: 'ecommerce-platform' },
+          { title: 'Email Marketing', value: 'email-marketing' },
         ],
       },
+      group: 'metadata',
     }),
     defineField({
       name: 'phases',
@@ -201,6 +296,7 @@ export const caseStudy = defineType({
         ],
       },
       description: 'Which phases of the METHOD were applied',
+      group: 'metadata',
     }),
     defineField({
       name: 'teamLead',
@@ -208,12 +304,14 @@ export const caseStudy = defineType({
       type: 'reference',
       to: [{ type: 'teamMember' }],
       description: 'Primary team member responsible for this project',
+      group: 'metadata',
     }),
     defineField({
       name: 'publishedAt',
       title: 'Published At',
       type: 'datetime',
       initialValue: () => new Date().toISOString(),
+      group: 'metadata',
     }),
   ],
   orderings: [
@@ -232,15 +330,17 @@ export const caseStudy = defineType({
     select: {
       title: 'title',
       client: 'client',
+      category: 'category',
       industry: 'industry',
       featured: 'featured',
       media: 'clientLogo',
     },
-    prepare({ title, client, industry, featured, media }) {
+    prepare({ title, client, category, industry, featured, media }) {
       const star = featured ? '★ ' : ''
+      const categoryLabel = category ? `[${category}]` : ''
       return {
         title: `${star}${client}`,
-        subtitle: `${title} · ${industry}`,
+        subtitle: `${categoryLabel} ${title} · ${industry || 'No industry'}`,
         media,
       }
     },

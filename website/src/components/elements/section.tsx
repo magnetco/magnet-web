@@ -13,7 +13,7 @@ export function Section({
   cta,
   className,
   children,
-  withGridBg = false,
+  withGridBg = true,
   ...props
 }: {
   eyebrow?: ReactNode

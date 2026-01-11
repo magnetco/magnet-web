@@ -3,13 +3,18 @@ import { ButtonLink, PlainButtonLink } from '@/components/elements/button'
 import { Screenshot } from '@/components/elements/screenshot'
 import { TabbedLogoGallery, type GalleryItem } from '@/components/elements/tabbed-logo-gallery'
 import { ArrowNarrowRightIcon } from '@/components/icons/arrow-narrow-right-icon'
-import { ServiceProcess } from '@/components/sections/service-process'
 import { CallToActionWithEmail } from '@/components/sections/call-to-action-with-email'
+import { CaseStudiesPreview } from '@/components/sections/case-studies-preview'
 import { FeaturesBentoGrid } from '@/components/sections/features-bento-grid'
 import { HeroCenteredWithDemo } from '@/components/sections/hero-centered-with-demo'
+import { defaultIndustries, IndustriesGrid } from '@/components/sections/industries-grid'
+import { PricingWebsites } from '@/components/sections/pricing-websites'
+import { ServiceProcess } from '@/components/sections/service-process'
 import { Stat, StatsWithGraph } from '@/components/sections/stats-with-graph'
 import { TestimonialTwoColumnWithLargePhoto } from '@/components/sections/testimonial-two-column-with-large-photo'
-import { PricingWebsites } from '@/components/sections/pricing-websites'
+import { client } from '@/lib/sanity/client'
+import { caseStudiesByCategoryQuery, caseStudiesByServiceQuery } from '@/lib/sanity/queries'
+import type { CaseStudy } from '@/lib/sanity/types'
 import Image from 'next/image'
 
 const galleryItems: GalleryItem[] = [
@@ -441,7 +446,21 @@ const galleryItems: GalleryItem[] = [
   },
 ]
 
-export default function Page() {
+export default async function Page() {
+  // Fetch case studies from Sanity
+  const [ecommerceCaseStudies, websiteCaseStudies] = await Promise.all([
+    client.fetch<CaseStudy[]>(caseStudiesByCategoryQuery, { category: 'ecommerce' }),
+    client.fetch<CaseStudy[]>(caseStudiesByServiceQuery, { service: 'website' }),
+  ])
+
+  // Combine and deduplicate case studies
+  const seenSlugs = new Set<string>()
+  const combinedCaseStudies = [...ecommerceCaseStudies, ...websiteCaseStudies].filter((cs) => {
+    if (seenSlugs.has(cs.slug.current)) return false
+    seenSlugs.add(cs.slug.current)
+    return true
+  }).slice(0, 3)
+
   return (
     <>
       {/* Hero */}
@@ -581,6 +600,17 @@ export default function Page() {
         }
       />
 
+      {/* Case Studies */}
+      <CaseStudiesPreview
+        id="case-studies"
+        eyebrow="Case Studies"
+        headline="Websites that drive results"
+        subheadline={<p>See how we&apos;ve helped brands build high-converting websites and e-commerce experiences.</p>}
+        caseStudies={combinedCaseStudies}
+        viewAllHref="/work/ecommerce"
+        viewAllText="View all website work"
+      />
+
       {/* Stats */}
       <StatsWithGraph
         id="stats"
@@ -618,6 +648,22 @@ export default function Page() {
         }
         name="Sarah Chen"
         byline="Founder at TechFlow"
+      />
+
+      {/* Industries */}
+      <IndustriesGrid
+        id="industries"
+        eyebrow="Industries We Serve"
+        headline="Website expertise across sectors"
+        subheadline={
+          <p>
+            We build high-converting websites for companies across industries, with deep expertise in
+            the unique challenges and opportunities each sector presents.
+          </p>
+        }
+        industries={defaultIndustries.filter((i) =>
+          ['ecommerce', 'healthcare', 'manufacturing', 'professional-services', 'financial-services', 'education-technology'].includes(i.slug)
+        )}
       />
 
       {/* Call To Action */}

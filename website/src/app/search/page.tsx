@@ -1,17 +1,21 @@
 import { AnnouncementBadge } from '@/components/elements/announcement-badge'
 import { ButtonLink, PlainButtonLink } from '@/components/elements/button'
-import { Link } from '@/components/elements/link'
 import { Screenshot } from '@/components/elements/screenshot'
 import { TabbedLogoGallery, type GalleryItem } from '@/components/elements/tabbed-logo-gallery'
 import { ArrowNarrowRightIcon } from '@/components/icons/arrow-narrow-right-icon'
-import { ServiceProcess } from '@/components/sections/service-process'
 import { CallToActionWithEmail } from '@/components/sections/call-to-action-with-email'
-import { FAQsTwoColumnAccordion, Faq } from '@/components/sections/faqs-two-column-accordion'
-import { FeatureThreeColumnWithDemos, Features } from '@/components/sections/features-three-column-with-demos'
+import { CaseStudiesPreview } from '@/components/sections/case-studies-preview'
+import { FAQsWithChat } from '@/components/sections/faqs-with-chat'
+import { FeaturesBentoGrid } from '@/components/sections/features-bento-grid'
 import { HeroCenteredWithDemo } from '@/components/sections/hero-centered-with-demo'
+import { defaultIndustries, IndustriesGrid } from '@/components/sections/industries-grid'
 import { PricingSearch } from '@/components/sections/pricing-search'
+import { ServiceProcess } from '@/components/sections/service-process'
 import { Stat, StatsWithGraph } from '@/components/sections/stats-with-graph'
 import { TestimonialLargeQuote } from '@/components/sections/testimonial-with-large-quote'
+import { client } from '@/lib/sanity/client'
+import { caseStudiesByServiceQuery } from '@/lib/sanity/queries'
+import type { CaseStudy } from '@/lib/sanity/types'
 import Image from 'next/image'
 
 const galleryItems: GalleryItem[] = [
@@ -443,7 +447,10 @@ const galleryItems: GalleryItem[] = [
   },
 ]
 
-export default function Page() {
+export default async function Page() {
+  // Fetch case studies from Sanity
+  const searchCaseStudies = await client.fetch<CaseStudy[]>(caseStudiesByServiceQuery, { service: 'search-marketing' })
+
   return (
     <>
       {/* Hero */}
@@ -472,175 +479,90 @@ export default function Page() {
       />
 
       {/* Features */}
-      <Features
+      <FeaturesBentoGrid
         id="features"
-        headline="Everything you need to dominate search results.
-          "
+        withGridBg
+        headline="Everything you need to dominate search results."
         subheadline={
           <p>
             From SEO optimization to AI-powered content strategies, we provide all the tools and resources you need to improve
             your search rankings and drive qualified organic traffic.
           </p>
         }
-        cta={
-          <Link href="#">
-            See how it works <ArrowNarrowRightIcon />
-          </Link>
-        }
-        features={
-          <>
-            <FeatureThreeColumnWithDemos
-              demo={
-                <Screenshot wallpaper="blue" placement="bottom-right">
-                  <Image
-                    src="/img/screenshots/1-left-1000-top-800.webp"
-                    alt=""
-                    className="bg-white/75 sm:hidden dark:hidden"
-                    width={1000}
-                    height={800}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1000-top-800.webp"
-                    alt=""
-                    width={1000}
-                    height={800}
-                    className="bg-black/75 not-dark:hidden sm:hidden"
-                  />
-                  <Image
-                    src="/img/screenshots/1-left-1800-top-660.webp"
-                    alt=""
-                    className="bg-white/75 max-sm:hidden lg:hidden dark:hidden"
-                    width={1800}
-                    height={660}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1800-top-660.webp"
-                    alt=""
-                    width={1800}
-                    height={660}
-                    className="bg-black/75 not-dark:hidden max-sm:hidden lg:hidden"
-                  />
-                  <Image
-                    src="/img/screenshots/1-left-1300-top-1300.webp"
-                    alt=""
-                    className="bg-white/75 max-lg:hidden dark:hidden"
-                    width={1300}
-                    height={1300}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1300-top-1300.webp"
-                    alt=""
-                    width={1300}
-                    height={1300}
-                    className="bg-black/75 not-dark:hidden max-lg:hidden"
-                  />
-                </Screenshot>
-              }
-              headline="SEO Optimization"
-              subheadline={<p>Advanced SEO tools that help you rank higher in search results and attract more organic traffic.</p>}
-            />
-            <FeatureThreeColumnWithDemos
-              demo={
-                <Screenshot wallpaper="purple" placement="top-left">
-                  <Image
-                    src="/img/screenshots/1-right-1000-top-800.webp"
-                    alt=""
-                    className="bg-white/75 sm:hidden dark:hidden"
-                    width={1000}
-                    height={800}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-right-1000-top-800.webp"
-                    alt=""
-                    width={1000}
-                    height={800}
-                    className="bg-black/75 not-dark:hidden sm:hidden"
-                  />
-                  <Image
-                    src="/img/screenshots/1-right-1800-top-660.webp"
-                    alt=""
-                    className="bg-white/75 max-sm:hidden lg:hidden dark:hidden"
-                    width={1800}
-                    height={660}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-right-1800-top-660.webp"
-                    alt=""
-                    width={1800}
-                    height={660}
-                    className="bg-black/75 not-dark:hidden max-sm:hidden lg:hidden"
-                  />
-                  <Image
-                    src="/img/screenshots/1-right-1300-top-1300.webp"
-                    alt=""
-                    className="bg-white/75 max-lg:hidden dark:hidden"
-                    width={1300}
-                    height={1300}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-right-1300-top-1300.webp"
-                    alt=""
-                    width={1300}
-                    height={1300}
-                    className="bg-black/75 not-dark:hidden max-lg:hidden"
-                  />
-                </Screenshot>
-              }
-              headline="LLM-Powered Content"
-              subheadline={<p>Leverage large language models to create optimized, engaging content that search engines love.</p>}
-            />
-            <FeatureThreeColumnWithDemos
-              demo={
-                <Screenshot wallpaper="brown" placement="bottom-left">
-                  <Image
-                    src="/img/screenshots/1-left-1000-top-800.webp"
-                    alt=""
-                    className="bg-white/75 sm:hidden dark:hidden"
-                    width={1000}
-                    height={800}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1000-top-800.webp"
-                    alt=""
-                    width={1000}
-                    height={800}
-                    className="bg-black/75 not-dark:hidden sm:hidden"
-                  />
-                  <Image
-                    src="/img/screenshots/1-left-1800-top-660.webp"
-                    alt=""
-                    className="bg-white/75 max-sm:hidden lg:hidden dark:hidden"
-                    width={1800}
-                    height={660}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1800-top-660.webp"
-                    alt=""
-                    width={1800}
-                    height={660}
-                    className="bg-black/75 not-dark:hidden max-sm:hidden lg:hidden"
-                  />
-                  <Image
-                    src="/img/screenshots/1-left-1300-top-1300.webp"
-                    alt=""
-                    className="bg-white/75 max-lg:hidden dark:hidden"
-                    width={1300}
-                    height={1300}
-                  />
-                  <Image
-                    src="/img/screenshots/1-color-olive-left-1300-top-1300.webp"
-                    alt=""
-                    width={1300}
-                    height={1300}
-                    className="bg-black/75 not-dark:hidden max-lg:hidden"
-                  />
-                </Screenshot>
-              }
-              headline="Keyword Research"
-              subheadline={<p>Comprehensive keyword research tools that identify high-value opportunities to improve your rankings.</p>}
-            />
-          </>
-        }
+        features={[
+          {
+            title: 'SEO Optimization',
+            description:
+              'Advanced SEO tools that help you rank higher in search results and attract more organic traffic.',
+            href: '#',
+            demo: (
+              <Screenshot wallpaper="blue" placement="bottom-right" className="h-full">
+                <Image
+                  src="/img/screenshots/1-left-1800-top-1250.webp"
+                  alt="SEO optimization"
+                  className="bg-white/75 dark:hidden"
+                  width={1800}
+                  height={1250}
+                />
+                <Image
+                  src="/img/screenshots/1-color-olive-left-1800-top-1250.webp"
+                  alt="SEO optimization"
+                  width={1800}
+                  height={1250}
+                  className="bg-black/75 not-dark:hidden"
+                />
+              </Screenshot>
+            ),
+          },
+          {
+            title: 'LLM-Powered Content',
+            description:
+              'Leverage large language models to create optimized, engaging content that search engines love.',
+            href: '#',
+            demo: (
+              <Screenshot wallpaper="purple" placement="top-left" className="h-full">
+                <Image
+                  src="/img/screenshots/1-right-1300-top-1300.webp"
+                  alt="LLM-powered content"
+                  className="bg-white/75 dark:hidden"
+                  width={1300}
+                  height={1300}
+                />
+                <Image
+                  src="/img/screenshots/1-color-olive-right-1300-top-1300.webp"
+                  alt="LLM-powered content"
+                  width={1300}
+                  height={1300}
+                  className="bg-black/75 not-dark:hidden"
+                />
+              </Screenshot>
+            ),
+          },
+          {
+            title: 'Keyword Research',
+            description:
+              'Comprehensive keyword research tools that identify high-value opportunities to improve your rankings.',
+            href: '#',
+            demo: (
+              <Screenshot wallpaper="brown" placement="bottom-left" className="h-full">
+                <Image
+                  src="/img/screenshots/1-left-1300-top-1300.webp"
+                  alt="Keyword research"
+                  className="bg-white/75 dark:hidden"
+                  width={1300}
+                  height={1300}
+                />
+                <Image
+                  src="/img/screenshots/1-color-olive-left-1300-top-1300.webp"
+                  alt="Keyword research"
+                  width={1300}
+                  height={1300}
+                  className="bg-black/75 not-dark:hidden"
+                />
+              </Screenshot>
+            ),
+          },
+        ]}
       />
 
       {/* Pricing */}
@@ -666,6 +588,17 @@ export default function Page() {
             A proven four-step process to improve rankings and drive organic traffic that converts.
           </p>
         }
+      />
+
+      {/* Case Studies */}
+      <CaseStudiesPreview
+        id="case-studies"
+        eyebrow="Case Studies"
+        headline="Search success stories"
+        subheadline={<p>See how we&apos;ve helped brands dominate search results and drive organic growth.</p>}
+        caseStudies={searchCaseStudies}
+        viewAllHref="/work/full-funnel"
+        viewAllText="View all search work"
       />
 
       {/* Stats */}
@@ -708,32 +641,34 @@ export default function Page() {
       />
 
       {/* FAQs */}
-      <FAQsTwoColumnAccordion
+      <FAQsWithChat
         id="faqs"
-        headline="Questions & Answers
-          "
-      >
-        <Faq
-          id="faq-1"
-          question="What's included in a search marketing package?"
-          answer="Our search marketing packages include comprehensive SEO audits, keyword research, content optimization, LLM-powered content creation, technical SEO improvements, and ongoing performance monitoring. Higher tier packages include advanced analytics, link building, and dedicated account management."
-        />
-        <Faq
-          id="faq-2"
-          question="How long does it take to see SEO results?"
-          answer="SEO is a long-term strategy, and results typically start appearing within 3-6 months. However, technical improvements and initial optimizations can show impact within 4-8 weeks. We provide regular reporting so you can track progress along the way."
-        />
-        <Faq
-          id="faq-3"
-          question="How do LLMs help with search marketing?"
-          answer="Large language models help us create high-quality, SEO-optimized content at scale. They assist with keyword research, content ideation, optimization suggestions, and generating content that matches search intent while maintaining quality and relevance."
-        />
-        <Faq
-          id="faq-4"
-          question="Do you offer ongoing search marketing support?"
-          answer="Yes, we offer ongoing support packages that include regular content updates, performance monitoring, algorithm adaptation, continuous optimization, and monthly strategy reviews to ensure your search rankings continue to improve over time."
-        />
-      </FAQsTwoColumnAccordion>
+        eyebrow="Search FAQ"
+        headline="Questions & Answers"
+        subheadline="Get answers to common search marketing questions, or chat with our AI assistant for personalized guidance."
+        questions={[
+          { question: "What's included in a search marketing package?" },
+          { question: 'How long does it take to see SEO results?' },
+          { question: 'How do LLMs help with search marketing?' },
+          { question: 'Do you offer ongoing search marketing support?' },
+        ]}
+      />
+
+      {/* Industries */}
+      <IndustriesGrid
+        id="industries"
+        eyebrow="Industries We Serve"
+        headline="SEO expertise across sectors"
+        subheadline={
+          <p>
+            We build sustainable organic growth for companies across industries, with deep knowledge
+            of the search behavior and content strategies that work for each sector.
+          </p>
+        }
+        industries={defaultIndustries.filter((i) =>
+          ['healthcare', 'professional-services', 'manufacturing', 'ecommerce', 'education-technology', 'financial-services'].includes(i.slug)
+        )}
+      />
 
       {/* Call To Action */}
       <CallToActionWithEmail
