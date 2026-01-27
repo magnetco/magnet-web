@@ -13,8 +13,6 @@ import {
   SocialLink,
 } from '@/components/sections/footer-with-newsletter-form-categories-and-social-icons'
 import {
-  NavbarDropdown,
-  NavbarDropdownItem,
   NavbarLink,
   NavbarWithLinksActionsAndCenteredLogo,
 } from '@/components/sections/navbar-with-links-actions-and-centered-logo'
@@ -89,48 +87,6 @@ export default function RootLayout({
             links={
               <>
                 <NavbarLink href="/work">Work</NavbarLink>
-                <NavbarDropdown label="Industries">
-                  <NavbarDropdownItem
-                    title="Healthcare"
-                    subcopy="HIPAA-compliant digital experiences"
-                    href="/industries/healthcare"
-                  />
-                  <NavbarDropdownItem
-                    title="Manufacturing"
-                    subcopy="B2B marketing for technical buyers"
-                    href="/industries/manufacturing"
-                  />
-                  <NavbarDropdownItem
-                    title="Financial Services"
-                    subcopy="Trust-building digital platforms"
-                    href="/industries/financial-services"
-                  />
-                  <NavbarDropdownItem
-                    title="Ecommerce"
-                    subcopy="Stores that convert and scale"
-                    href="/industries/ecommerce"
-                  />
-                  <NavbarDropdownItem
-                    title="Professional Services"
-                    subcopy="Lead generation for service firms"
-                    href="/industries/professional-services"
-                  />
-                  <NavbarDropdownItem
-                    title="Education"
-                    subcopy="Learning platforms that engage"
-                    href="/industries/education-technology"
-                  />
-                  <NavbarDropdownItem
-                    title="Nonprofits"
-                    subcopy="Impact storytelling that inspires"
-                    href="/industries/nonprofits"
-                  />
-                  <NavbarDropdownItem
-                    title="View All Industries"
-                    subcopy="Explore our full industry expertise"
-                    href="/industries"
-                  />
-                </NavbarDropdown>
                 <NavbarLink href="/engineering">Engineering</NavbarLink>
                 <NavbarLink href="/branding">Branding</NavbarLink>
                 <NavbarLink href="/websites">Websites</NavbarLink>
@@ -141,7 +97,6 @@ export default function RootLayout({
             logo={<ScrollableLogo href="/" />}
             actions={
               <>
-                <Search />
                 <ButtonLink href="/contact">Get started</ButtonLink>
               </>
             }

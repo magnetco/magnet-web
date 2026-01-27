@@ -55,7 +55,7 @@ export default async function CampaignDetailPage({ params }: { params: Promise<{
         ]}
         actions={
           <div className="flex items-center gap-4">
-            <span className={`px-2 py-1 text-xs rounded-full ${
+            <span className={`px-2 py-1 text-xs font-medium rounded ${
               campaign.status === 'approved' ? 'bg-green-100 text-green-700' :
               campaign.status === 'review' ? 'bg-amber-100 text-amber-700' :
               'bg-gray-100 text-gray-600'
@@ -68,21 +68,21 @@ export default async function CampaignDetailPage({ params }: { params: Promise<{
       />
       <div className="max-w-4xl mx-auto">
 
-        <div className="space-y-8">
+        <div className="space-y-6">
           {mockups.map((mockup: any) => {
             const Preview = PREVIEW_COMPONENTS[mockup.platform as keyof typeof PREVIEW_COMPONENTS]
             if (!Preview) return null
 
             return (
-              <div key={mockup.id} className="p-6 bg-white rounded-lg border border-opal">
-                <h2 className="font-semibold text-oxblood mb-4">{mockup.name}</h2>
+              <div key={mockup.id} className="p-6 bg-white rounded-md shadow-sm">
+                <h2 className="font-medium text-gray-900 mb-4">{mockup.name}</h2>
                 <Preview content={mockup.content} showCharCounts={false} />
               </div>
             )
           })}
 
           {mockups.length === 0 && (
-            <p className="text-center text-gray-400 py-12">No mockups in this campaign</p>
+            <p className="text-center text-gray-500 text-sm py-12">No mockups in this campaign</p>
           )}
         </div>
       </div>

@@ -8,11 +8,11 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   return (
-    <div className="min-h-screen bg-snow">
+    <div className="min-h-screen bg-gray-50">
       {/* Mobile menu button */}
       <button
         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        className="fixed top-4 left-4 z-50 p-2 bg-white rounded-lg border border-opal md:hidden"
+        className="fixed top-4 left-4 z-50 p-2 bg-white rounded-md shadow-sm md:hidden"
         aria-label="Toggle menu"
       >
         {isMobileMenuOpen ? (

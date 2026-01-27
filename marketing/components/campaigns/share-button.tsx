@@ -42,7 +42,7 @@ export function ShareButton({ campaignId }: Props) {
           type="text"
           value={shareUrl}
           readOnly
-          className="px-3 py-1 text-sm border border-opal rounded bg-white"
+          className="px-3 py-1 text-sm border border-gray-200 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent"
           onClick={(e) => (e.target as HTMLInputElement).select()}
         />
         <button
@@ -50,7 +50,7 @@ export function ShareButton({ campaignId }: Props) {
             navigator.clipboard.writeText(shareUrl)
             alert('Link copied to clipboard!')
           }}
-          className="px-3 py-1 text-sm bg-ember text-frost rounded hover:bg-ember/90"
+          className="px-3 py-1 text-sm bg-ember text-white rounded-md hover:bg-ember/90 font-medium transition-colors"
         >
           Copy
         </button>
@@ -63,7 +63,7 @@ export function ShareButton({ campaignId }: Props) {
       <button
         onClick={handleShare}
         disabled={loading}
-        className="px-4 py-2 text-sm bg-basalt text-frost rounded hover:bg-basalt/90 disabled:opacity-50"
+        className="px-4 py-2 text-sm bg-gray-900 text-white rounded-md hover:bg-gray-800 disabled:opacity-50 font-medium transition-colors"
       >
         {loading ? 'Generating...' : 'Create Share Link'}
       </button>

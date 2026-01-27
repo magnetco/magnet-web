@@ -26,7 +26,7 @@ if (!DATABASE_URL) {
 
 const sql = neon(DATABASE_URL);
 
-const migrationPath = path.join(__dirname, '../website/src/lib/db/migrations/014_marketing_tables.sql');
+const migrationPath = path.join(__dirname, '../website/src/lib/db/migrations/015_landing_pages.sql');
 const migration = fs.readFileSync(migrationPath, 'utf8');
 
 (async () => {
@@ -58,7 +58,7 @@ const migration = fs.readFileSync(migrationPath, 'utf8');
     }
     
     console.log('✓ Migration completed successfully!');
-    console.log('✓ Created tables: marketing_campaigns, marketing_mockups, marketing_share_links');
+    console.log('✓ Created tables: marketing_landing_pages, marketing_page_sections');
   } catch (error) {
     console.error('Migration error:', error.message);
     process.exit(1);

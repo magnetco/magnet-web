@@ -11,7 +11,7 @@ export default function HomePage() {
         description="AI-powered marketing platform for Magnet"
       />
       
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {navigation.map((section) =>
           section.items.map((item) => {
             const Icon = item.icon
@@ -19,23 +19,23 @@ export default function HomePage() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="block p-6 bg-white rounded-lg border border-opal hover:border-ember transition-all hover:shadow-lg group"
+                className="block p-6 bg-white rounded-md shadow-sm hover:shadow-md transition-all group"
               >
                 <div className="flex items-start justify-between mb-4">
-                  <div className="p-2 bg-ember/10 rounded-lg group-hover:bg-ember/20 transition-colors">
-                    <Icon className="w-6 h-6 text-ember" />
+                  <div className="p-2 bg-gray-100 rounded-md group-hover:bg-gray-200 transition-colors">
+                    <Icon className="w-6 h-6 text-gray-700" />
                   </div>
                   {item.isNew && (
-                    <span className="px-2 py-1 text-xs font-semibold bg-green-100 text-green-700 rounded-full">
+                    <span className="px-2 py-1 text-xs font-medium bg-green-100 text-green-700 rounded">
                       NEW
                     </span>
                   )}
                 </div>
-                <h3 className="text-lg font-semibold text-oxblood mb-2 group-hover:text-ember transition-colors">
+                <h3 className="text-lg font-medium text-gray-900 mb-2">
                   {item.label}
                 </h3>
-                <p className="text-sm text-gray-600 mb-4">{item.description}</p>
-                <div className="flex items-center text-sm text-ember font-medium">
+                <p className="text-sm text-gray-500 mb-4">{item.description}</p>
+                <div className="flex items-center text-sm text-gray-700 font-medium">
                   <span>Open</span>
                   <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
                 </div>

@@ -16,14 +16,14 @@ interface PageHeaderProps {
 
 export function PageHeader({ title, description, breadcrumbs, actions }: PageHeaderProps) {
   return (
-    <div className="mb-8">
+    <div className="mb-6">
       {breadcrumbs && breadcrumbs.length > 0 && (
         <nav className="flex items-center gap-2 text-sm mb-2">
           {breadcrumbs.map((crumb, index) => (
             <div key={index} className="flex items-center gap-2">
               {index > 0 && <ChevronRight className="w-4 h-4 text-gray-400" />}
               {crumb.href ? (
-                <Link href={crumb.href} className="text-gray-600 hover:text-oxblood transition-colors">
+                <Link href={crumb.href} className="text-gray-500 hover:text-gray-900 transition-colors">
                   {crumb.label}
                 </Link>
               ) : (
@@ -36,8 +36,8 @@ export function PageHeader({ title, description, breadcrumbs, actions }: PageHea
       
       <div className="flex items-start justify-between">
         <div>
-          <h1 className="text-3xl font-semibold text-oxblood mb-2">{title}</h1>
-          {description && <p className="text-gray-600">{description}</p>}
+          <h1 className="text-2xl font-medium text-gray-900 mb-1">{title}</h1>
+          {description && <p className="text-gray-500 text-sm">{description}</p>}
         </div>
         {actions && <div className="flex items-center gap-2">{actions}</div>}
       </div>
