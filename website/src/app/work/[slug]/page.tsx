@@ -23,6 +23,7 @@ import type { CaseStudy, CaseStudyCategory } from '@/lib/sanity/types'
 const categoryConfig: Record<CaseStudyCategory, { label: string; href: string }> = {
   engineering: { label: 'Engineering', href: '/work/engineering' },
   'full-funnel': { label: 'Full-Funnel', href: '/work/full-funnel' },
+  websites: { label: 'Websites', href: '/work/websites' },
   ecommerce: { label: 'E-commerce', href: '/work/ecommerce' },
   other: { label: 'Work', href: '/work' },
 }
