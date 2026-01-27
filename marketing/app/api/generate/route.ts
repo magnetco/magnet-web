@@ -58,7 +58,7 @@ Generate ${count} high-quality ${count > 1 ? 'variations' : 'variation'} using M
       system: systemPrompt,
       prompt: userPrompt,
       maxTokens: count > 1 ? 2000 : 1000,
-    })
+    } as any)
 
     // Parse the JSON response, stripping markdown if present
     let text = result.text.trim()
