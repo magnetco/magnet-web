@@ -1,6 +1,8 @@
 import { sql } from '@/lib/db'
 import { notFound } from 'next/navigation'
 import { GoogleAdPreview } from '@/components/previews/google-ad-preview'
+
+export const dynamic = 'force-dynamic'
 import { LinkedInAdPreview } from '@/components/previews/linkedin-ad-preview'
 import { LinkedInPostPreview } from '@/components/previews/linkedin-post-preview'
 import { FacebookPreview } from '@/components/previews/facebook-preview'

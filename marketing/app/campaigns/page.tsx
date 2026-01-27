@@ -1,6 +1,8 @@
 import Link from 'next/link'
 import { sql } from '@/lib/db'
 
+export const dynamic = 'force-dynamic'
+
 async function getCampaigns() {
   const campaigns = await sql`
     SELECT c.*, COUNT(m.id)::int as mockup_count
