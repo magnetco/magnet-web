@@ -102,6 +102,8 @@ export default function RootLayout({
             }
           />
 
+          <Search />
+
           <Main>{children}</Main>
 
           <FooterWithNewsletterFormCategoriesAndSocialIcons

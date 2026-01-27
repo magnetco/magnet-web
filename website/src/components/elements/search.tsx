@@ -7,10 +7,20 @@ import { usePathname, useRouter } from 'next/navigation'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { MagnifyingGlassIcon } from '../icons/magnifying-glass-icon'
 
+// Quick actions for command palette
+const QUICK_ACTIONS = [
+  { path: '/work', label: 'Go to Work', icon: '💼' },
+  { path: '/contact', label: 'Go to Contact', icon: '✉️' },
+  { path: '/team', label: 'Go to Team', icon: '👥' },
+  { path: '/pricing', label: 'Go to Pricing', icon: '💰' },
+  { path: '/industries', label: 'View All Industries', icon: '🏢' },
+]
+
 // All site pages organized by category
 const SITEMAP = {
   Main: [
     { path: '/', label: 'Home' },
+    { path: '/work', label: 'Work' },
     { path: '/branding', label: 'Branding' },
     { path: '/websites', label: 'Websites' },
     { path: '/ads', label: 'Ads' },
@@ -23,6 +33,13 @@ const SITEMAP = {
     { path: '/pricing', label: 'Pricing' },
     { path: '/method', label: 'Method' },
     { path: '/posts', label: 'Posts' },
+  ],
+  Industries: [
+    { path: '/industries', label: 'All Industries' },
+    { path: '/industries/healthcare', label: 'Healthcare' },
+    { path: '/industries/manufacturing', label: 'Manufacturing' },
+    { path: '/industries/financial-services', label: 'Financial Services' },
+    { path: '/industries/ecommerce', label: 'Ecommerce' },
   ],
   Method: [
     { path: '/method/foundation', label: 'Foundation' },
@@ -86,6 +103,38 @@ const flatPages: SearchItem[] = Object.entries(SITEMAP).flatMap(([category, page
     type: 'page' as const,
   }))
 )
+
+function QuickAction({
+  action,
+  isActive,
+  onClick,
+}: {
+  action: { path: string; label: string; icon: string }
+  isActive: boolean
+  onClick: () => void
+}) {
+  return (
+    <Link
+      href={action.path}
+      onClick={onClick}
+      className={clsx(
+        'flex items-center gap-3 rounded-lg px-4 py-3 transition-colors',
+        isActive ? 'bg-ember text-white' : 'text-oxblood hover:bg-oxblood/5'
+      )}
+    >
+      <span className="text-lg">{action.icon}</span>
+      <span className={clsx('text-sm font-medium', isActive && 'text-white')}>
+        {action.label}
+      </span>
+      <kbd className={clsx(
+        'ml-auto rounded border px-1.5 py-0.5 font-mono text-[10px]',
+        isActive ? 'border-white/30 bg-white/10 text-white/70' : 'border-oxblood/20 bg-oxblood/5 text-oxblood/50'
+      )}>
+        ↵
+      </kbd>
+    </Link>
+  )
+}
 
 function SearchResult({
   item,
@@ -224,25 +273,34 @@ function SearchModal({
     return fuse.search(query).slice(0, 8).map((result) => result.item)
   }, [query, fuse])
 
+  // Show quick actions when no query
+  const showQuickActions = !query.trim()
+  const totalNavigableItems = showQuickActions ? QUICK_ACTIONS.length : results.length
+
   // Handle keyboard navigation
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
       if (e.key === 'ArrowDown') {
         e.preventDefault()
-        setActiveIndex((prev) => (prev + 1) % results.length)
+        setActiveIndex((prev) => (prev + 1) % totalNavigableItems)
       } else if (e.key === 'ArrowUp') {
         e.preventDefault()
-        setActiveIndex((prev) => (prev - 1 + results.length) % results.length)
-      } else if (e.key === 'Enter' && results[activeIndex]) {
+        setActiveIndex((prev) => (prev - 1 + totalNavigableItems) % totalNavigableItems)
+      } else if (e.key === 'Enter') {
         e.preventDefault()
-        router.push(results[activeIndex].path)
-        onClose()
+        if (showQuickActions && QUICK_ACTIONS[activeIndex]) {
+          router.push(QUICK_ACTIONS[activeIndex].path)
+          onClose()
+        } else if (results[activeIndex]) {
+          router.push(results[activeIndex].path)
+          onClose()
+        }
       } else if (e.key === 'Escape') {
         e.preventDefault()
         onClose()
       }
     },
-    [results, activeIndex, router, onClose]
+    [results, activeIndex, router, onClose, showQuickActions, totalNavigableItems]
   )
 
   // Focus input when modal opens
@@ -314,22 +372,43 @@ function SearchModal({
               placeholder="Search pages and posts..."
               className="flex-1 bg-transparent text-lg text-oxblood placeholder:text-oxblood/40 focus:outline-none"
             />
-            <kbd className="hidden rounded-md border border-oxblood/20 bg-oxblood/5 px-2 py-1 font-mono text-[10px] text-oxblood/50 sm:inline-block">
-              ESC
-            </kbd>
-            <button
-              onClick={onClose}
-              className="rounded-lg p-1.5 text-oxblood/40 transition-colors hover:bg-oxblood/5 hover:text-oxblood"
-            >
-              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
+            <div className="flex items-center gap-2">
+              <kbd className="hidden rounded border border-oxblood/20 bg-oxblood/5 px-1.5 py-0.5 font-mono text-[10px] text-oxblood/50 sm:inline-block">
+                ↑↓
+              </kbd>
+              <kbd className="hidden rounded border border-oxblood/20 bg-oxblood/5 px-1.5 py-0.5 font-mono text-[10px] text-oxblood/50 sm:inline-block">
+                ESC
+              </kbd>
+            </div>
           </div>
+
+          {/* Quick Actions */}
+          {!query.trim() && (
+            <div className="border-b border-oxblood/10 p-2">
+              <div className="mb-2 px-2 pt-2">
+                <h3 className="font-mono text-[10px] font-bold uppercase tracking-widest text-oxblood/40">
+                  Quick Actions
+                </h3>
+              </div>
+              {QUICK_ACTIONS.map((action, index) => (
+                <QuickAction
+                  key={action.path}
+                  action={action}
+                  isActive={index === activeIndex}
+                  onClick={handleNavigate}
+                />
+              ))}
+            </div>
+          )}
 
           {/* Search Results */}
           {query.trim() && results.length > 0 && (
             <div className="border-b border-oxblood/10 p-2">
+              <div className="mb-2 px-2 pt-2">
+                <h3 className="font-mono text-[10px] font-bold uppercase tracking-widest text-oxblood/40">
+                  Search Results
+                </h3>
+              </div>
               {results.map((item, index) => (
                 <SearchResult
                   key={item.path}
@@ -349,26 +428,28 @@ function SearchModal({
           )}
 
           {/* Sitemap */}
-          <div className="max-h-[60vh] overflow-y-auto p-6">
-            <h2 className="mb-4 font-mono text-xs font-semibold uppercase tracking-widest text-oxblood/60">
-              Sitemap
-            </h2>
-            <div className="grid grid-cols-2 gap-6 sm:grid-cols-3">
-              {Object.entries(SITEMAP).map(([category, pages]) => (
-                <SitemapSection
-                  key={category}
-                  title={category}
-                  pages={pages}
-                  currentPath={pathname}
-                  onNavigate={handleNavigate}
-                />
-              ))}
+          {!query.trim() && (
+            <div className="max-h-[60vh] overflow-y-auto p-6">
+              <h2 className="mb-4 font-mono text-xs font-semibold uppercase tracking-widest text-oxblood/60">
+                Sitemap
+              </h2>
+              <div className="grid grid-cols-2 gap-6 sm:grid-cols-3">
+                {Object.entries(SITEMAP).map(([category, pages]) => (
+                  <SitemapSection
+                    key={category}
+                    title={category}
+                    pages={pages}
+                    currentPath={pathname}
+                    onNavigate={handleNavigate}
+                  />
+                ))}
+              </div>
+              <div className="mt-6 border-t border-oxblood/10 pt-4 text-[10px] text-oxblood/40">
+                {Object.values(SITEMAP).flat().length} pages • Current:{' '}
+                <span className="font-medium text-oxblood/60">{pathname}</span>
+              </div>
             </div>
-            <div className="mt-6 border-t border-oxblood/10 pt-4 text-[10px] text-oxblood/40">
-              {Object.values(SITEMAP).flat().length} pages • Current:{' '}
-              <span className="font-medium text-oxblood/60">{pathname}</span>
-            </div>
-          </div>
+          )}
         </div>
       </div>
     </>
@@ -390,17 +471,6 @@ export function Search() {
     return () => document.removeEventListener('keydown', handleKeyDown)
   }, [])
 
-  return (
-    <>
-      <button
-        onClick={() => setIsOpen(true)}
-        aria-label="Search"
-        className="inline-flex h-8 w-8 items-center justify-center rounded-full text-oxblood transition-colors hover:bg-oxblood/10"
-      >
-        <MagnifyingGlassIcon className="h-4 w-4" />
-      </button>
-      <SearchModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
-    </>
-  )
+  return <SearchModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
 }
 

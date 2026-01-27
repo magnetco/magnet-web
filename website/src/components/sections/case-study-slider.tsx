@@ -143,7 +143,7 @@ function CaseStudySliderCard({
     <div
       ref={cardRef}
       className={clsx(
-        'group relative shrink-0 overflow-hidden rounded-xl transition-shadow duration-300',
+        'group relative shrink-0 overflow-hidden transition-shadow duration-300',
         'bg-white border border-gray-200',
         isExpanded
           ? 'z-20 shadow-[0_20px_50px_-12px_rgba(0,0,0,0.15)]'
@@ -192,11 +192,11 @@ function CaseStudySliderCard({
             )}
           />
 
-          {/* Plus button overlay - MOVED TO BOTTOM-RIGHT */}
+          {/* Plus button overlay - TOP-RIGHT */}
           <button
             type="button"
             className={clsx(
-              'absolute bottom-20 right-4 flex size-10 items-center justify-center rounded-full',
+              'absolute top-4 right-4 flex size-10 items-center justify-center rounded-full',
               'bg-white/20 text-white backdrop-blur-sm',
               'transition-all duration-300 hover:bg-white hover:text-gray-900',
               isExpanded && 'pointer-events-none opacity-0'
@@ -217,9 +217,6 @@ function CaseStudySliderCard({
               isExpanded ? 'pointer-events-none opacity-0' : 'opacity-100'
             )}
           >
-            {/* Accent line */}
-            <div className="mb-3 h-0.5 w-10 bg-amber-500" />
-
             {/* Client name */}
             <h3 className="mb-2 text-xl font-semibold text-white">{caseStudy.client}</h3>
 
@@ -228,22 +225,17 @@ function CaseStudySliderCard({
               {caseStudy.description}
             </p>
 
-            {/* Links */}
-            <div className="flex flex-col gap-1.5 text-sm">
-              <button
-                type="button"
-                className="flex items-center gap-1 font-medium text-amber-400 transition-colors hover:text-amber-300"
-                onClick={(e) => {
-                  e.stopPropagation()
-                  onExpand()
-                }}
-              >
-                Read case study
-              </button>
-              <span className="text-xs text-white/50">
-                Visit {caseStudy.client.toLowerCase().replace(/\s+/g, '')}.com
-              </span>
-            </div>
+            {/* Read case study button */}
+            <button
+              type="button"
+              className="flex items-center gap-1 text-sm font-medium text-amber-400 transition-colors hover:text-amber-300"
+              onClick={(e) => {
+                e.stopPropagation()
+                onExpand()
+              }}
+            >
+              Read case study
+            </button>
           </div>
         </div>
 
@@ -272,7 +264,6 @@ function CaseStudySliderCard({
           <div ref={detailsRef} className="flex h-full flex-col p-6 pr-14">
             {/* Header */}
             <div className="mb-5">
-              <div className="mb-3 h-0.5 w-10 bg-amber-500" />
               <h3 className="text-xl font-bold text-gray-900">{caseStudy.client}</h3>
               {industryDisplay && (
                 <p className="mt-1.5 text-xs font-medium uppercase tracking-wide text-amber-600">

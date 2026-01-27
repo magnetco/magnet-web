@@ -5,8 +5,6 @@ import { clsx } from 'clsx/lite'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useState, type ComponentProps, type ReactNode } from 'react'
-import { ChevronDownIcon } from '../icons/chevron-down-icon'
-import { MagnifyingGlassIcon } from '../icons/magnifying-glass-icon'
 import { LinkedInIcon } from '../icons/social/linkedin-icon'
 import { GridBgBorderLine, GridBgStripes } from '../elements/grid-bg'
 import { TransitionLink } from '../transitions'
@@ -234,20 +232,6 @@ export function NavbarWithLinksActionsAndCenteredLogo({
     dialog?.close()
   }
 
-  const openSearch = () => {
-    closeMenu()
-    // Small delay to let menu close animation start
-    setTimeout(() => {
-      // Trigger the global search by dispatching Cmd+K
-      const event = new KeyboardEvent('keydown', {
-        key: 'k',
-        metaKey: true,
-        bubbles: true,
-      })
-      document.dispatchEvent(event)
-    }, 150)
-  }
-
   return (
     <header
       className={clsx('sticky top-0 z-10', className)}
@@ -269,10 +253,17 @@ export function NavbarWithLinksActionsAndCenteredLogo({
       )}
 
       <nav className="relative">
-        <div className="mx-auto flex h-(--scroll-padding-top) w-full max-w-[calc(100%-16px)] items-center gap-4 px-4 md:max-w-[calc(100%-32px)] md:px-6 lg:max-w-7xl lg:px-10">
-          <div className="flex items-center">{logo}</div>
-          <div className="flex flex-1 items-center justify-end gap-8">
-            <div className="flex gap-8 max-lg:hidden">{links}</div>
+        <div className="relative mx-auto flex h-(--scroll-padding-top) w-full max-w-[calc(100%-16px)] items-center justify-between px-4 md:max-w-[calc(100%-32px)] md:px-6 lg:max-w-7xl lg:px-10">
+          {/* Left: Navigation Links */}
+          <div className="flex gap-8 max-lg:hidden">{links}</div>
+          
+          {/* Center: Logo (absolute positioned) */}
+          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+            {logo}
+          </div>
+          
+          {/* Right: Actions + Mobile Menu Button */}
+          <div className="flex items-center gap-5 ml-auto">
             <div className="flex shrink-0 items-center gap-5">{actions}</div>
 
             <button
@@ -309,32 +300,23 @@ export function NavbarWithLinksActionsAndCenteredLogo({
                   </svg>
                 </Link>
 
-                <div className="flex items-center gap-2">
-                  <button
-                    onClick={openSearch}
-                    aria-label="Search"
-                    className="mobile-menu-content inline-flex size-11 cursor-pointer items-center justify-center rounded-full text-coral transition-colors duration-200 hover:bg-coral/10 hover:text-frost"
+                <button
+                  command="close"
+                  commandfor="mobile-menu"
+                  aria-label="Close menu"
+                  className="mobile-menu-content inline-flex size-11 cursor-pointer items-center justify-center rounded-full text-coral transition-colors duration-200 hover:bg-coral/10 hover:text-frost"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="size-6"
                   >
-                    <MagnifyingGlassIcon className="size-5" />
-                  </button>
-                  <button
-                    command="close"
-                    commandfor="mobile-menu"
-                    aria-label="Close menu"
-                    className="mobile-menu-content inline-flex size-11 cursor-pointer items-center justify-center rounded-full text-coral transition-colors duration-200 hover:bg-coral/10 hover:text-frost"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth={1.5}
-                      stroke="currentColor"
-                      className="size-6"
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
-                    </svg>
-                  </button>
-                </div>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
+                  </svg>
+                </button>
               </div>
 
               {/* Card Sections */}
@@ -354,19 +336,6 @@ export function NavbarWithLinksActionsAndCenteredLogo({
                     <MobileMenuLink href="/search" isActive={isActive('/search')}>
                       Search Marketing
                     </MobileMenuLink>
-                  </div>
-                </MobileMenuCard>
-
-                {/* Industries Card */}
-                <MobileMenuCard label="Industries" className="mobile-menu-secondary">
-                  <div className="flex flex-wrap gap-x-1 gap-y-1">
-                    <MobileMenuSecondaryLink href="/industries/healthcare">Healthcare</MobileMenuSecondaryLink>
-                    <span className="py-2 text-coral/30">·</span>
-                    <MobileMenuSecondaryLink href="/industries/manufacturing">Manufacturing</MobileMenuSecondaryLink>
-                    <span className="py-2 text-coral/30">·</span>
-                    <MobileMenuSecondaryLink href="/industries/ecommerce">Ecommerce</MobileMenuSecondaryLink>
-                    <span className="py-2 text-coral/30">·</span>
-                    <MobileMenuSecondaryLink href="/industries">All Industries</MobileMenuSecondaryLink>
                   </div>
                 </MobileMenuCard>
 
