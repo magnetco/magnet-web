@@ -86,8 +86,6 @@ export default function RootLayout({
             withGridBg
             links={
               <>
-                <NavbarLink href="/work">Work</NavbarLink>
-                <NavbarLink href="/engineering">Engineering</NavbarLink>
                 <NavbarLink href="/branding">Branding</NavbarLink>
                 <NavbarLink href="/websites">Websites</NavbarLink>
                 <NavbarLink href="/ads">Paid Ads</NavbarLink>
