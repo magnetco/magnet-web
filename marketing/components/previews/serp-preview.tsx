@@ -13,7 +13,7 @@ interface Props {
 }
 
 export function SerpPreview({ content, showCharCounts = true }: Props) {
-  const baseUrl = content.url || 'magnetmarketingpartners.com'
+  const baseUrl = content.url || 'magnet.co'
 
   return (
     <div className="max-w-[600px] p-4 bg-white rounded-lg border border-opal">

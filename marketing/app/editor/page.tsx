@@ -9,6 +9,7 @@ import { LinkedInAdPreview } from '@/components/previews/linkedin-ad-preview'
 import { LinkedInPostPreview } from '@/components/previews/linkedin-post-preview'
 import { FacebookPreview } from '@/components/previews/facebook-preview'
 import { SerpPreview } from '@/components/previews/serp-preview'
+import { PageHeader } from '@/components/ui/page-header'
 
 const PLATFORMS: { value: Platform; label: string }[] = [
   { value: 'google_ad', label: 'Google Ads' },
@@ -136,9 +137,12 @@ export default function EditorPage() {
   }[platform]
 
   return (
-    <div className="min-h-screen bg-snow">
-      <div className="max-w-7xl mx-auto px-4 py-8">
-        <h1 className="text-3xl font-semibold text-oxblood mb-8">Mockup Editor</h1>
+    <>
+      <PageHeader
+        title="Ad Copy Editor"
+        description="Create and edit ad copy mockups with AI assistance"
+      />
+      <div className="max-w-7xl mx-auto">
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Left: Controls & Form */}
@@ -370,6 +374,6 @@ export default function EditorPage() {
           </div>
         </div>
       </div>
-    </div>
+    </>
   )
 }

@@ -46,7 +46,7 @@ export function FacebookPreview({ content, showCharCounts = true }: Props) {
       {/* Card content */}
       <div className="p-4 border-t border-gray-200 flex justify-between items-center">
         <div className="flex-1">
-          <div className="text-xs text-gray-500 uppercase">{content.destinationUrl || 'MAGNETMARKETINGPARTNERS.COM'}</div>
+          <div className="text-xs text-gray-500 uppercase">{content.destinationUrl || 'MAGNET.CO'}</div>
           <div className="font-semibold text-gray-900">{content.headline}</div>
           {showCharCounts && <CharCount current={content.headline.length} max={40} />}
           <div className="text-sm text-gray-600">{content.description}</div>

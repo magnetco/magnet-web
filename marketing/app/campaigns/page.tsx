@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { sql } from '@/lib/db'
+import { PageHeader } from '@/components/ui/page-header'
 
 export const dynamic = 'force-dynamic'
 
@@ -18,17 +19,20 @@ export default async function CampaignsPage() {
   const campaigns = await getCampaigns()
 
   return (
-    <div className="min-h-screen bg-snow">
-      <div className="max-w-4xl mx-auto px-4 py-8">
-        <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-semibold text-oxblood">Campaigns</h1>
+    <>
+      <PageHeader
+        title="Campaigns"
+        description="Manage your marketing campaigns and mockups"
+        actions={
           <Link
             href="/editor"
             className="px-4 py-2 bg-ember text-frost rounded-lg hover:bg-ember/90"
           >
             New Mockup
           </Link>
-        </div>
+        }
+      />
+      <div className="max-w-4xl mx-auto">
 
         <div className="space-y-4">
           {campaigns.map((campaign: any) => (
@@ -63,6 +67,6 @@ export default async function CampaignsPage() {
           )}
         </div>
       </div>
-    </div>
+    </>
   )
 }

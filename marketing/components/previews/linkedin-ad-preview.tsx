@@ -45,7 +45,7 @@ export function LinkedInAdPreview({ content, showCharCounts = true }: Props) {
 
       {/* Card content */}
       <div className="p-4 border-t border-gray-200">
-        <div className="text-sm text-gray-500 mb-1">{content.destinationUrl || 'magnetmarketingpartners.com'}</div>
+        <div className="text-sm text-gray-500 mb-1">{content.destinationUrl || 'magnet.co'}</div>
         <div className="font-semibold text-gray-900 mb-1">{content.headline}</div>
         {showCharCounts && <CharCount current={content.headline.length} max={70} className="mb-1" />}
         <div className="text-sm text-gray-600">{content.description}</div>

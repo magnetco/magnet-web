@@ -1,13 +1,14 @@
 import { sql } from '@/lib/db'
 import { notFound } from 'next/navigation'
 import { GoogleAdPreview } from '@/components/previews/google-ad-preview'
-
-export const dynamic = 'force-dynamic'
 import { LinkedInAdPreview } from '@/components/previews/linkedin-ad-preview'
 import { LinkedInPostPreview } from '@/components/previews/linkedin-post-preview'
 import { FacebookPreview } from '@/components/previews/facebook-preview'
 import { SerpPreview } from '@/components/previews/serp-preview'
 import { ShareButton } from '@/components/campaigns/share-button'
+import { PageHeader } from '@/components/ui/page-header'
+
+export const dynamic = 'force-dynamic'
 
 const PREVIEW_COMPONENTS = {
   google_ad: GoogleAdPreview,
@@ -44,14 +45,16 @@ export default async function CampaignDetailPage({ params }: { params: Promise<{
   const { campaign, mockups } = data
 
   return (
-    <div className="min-h-screen bg-snow">
-      <div className="max-w-4xl mx-auto px-4 py-8">
-        <div className="mb-8">
-          <h1 className="text-3xl font-semibold text-oxblood">{campaign.name}</h1>
-          {campaign.description && (
-            <p className="text-gray-600 mt-2">{campaign.description}</p>
-          )}
-          <div className="mt-4 flex items-center gap-4">
+    <>
+      <PageHeader
+        title={campaign.name}
+        description={campaign.description}
+        breadcrumbs={[
+          { label: 'Campaigns', href: '/campaigns' },
+          { label: campaign.name },
+        ]}
+        actions={
+          <div className="flex items-center gap-4">
             <span className={`px-2 py-1 text-xs rounded-full ${
               campaign.status === 'approved' ? 'bg-green-100 text-green-700' :
               campaign.status === 'review' ? 'bg-amber-100 text-amber-700' :
@@ -61,7 +64,9 @@ export default async function CampaignDetailPage({ params }: { params: Promise<{
             </span>
             <ShareButton campaignId={id} />
           </div>
-        </div>
+        }
+      />
+      <div className="max-w-4xl mx-auto">
 
         <div className="space-y-8">
           {mockups.map((mockup: any) => {
@@ -81,6 +86,6 @@ export default async function CampaignDetailPage({ params }: { params: Promise<{
           )}
         </div>
       </div>
-    </div>
+    </>
   )
 }
