@@ -126,8 +126,9 @@ flowchart TB
 |-----------|---------|------|
 | `context/` | Documentation and guidelines for development | N/A |
 | `studio/` | Sanity CMS Studio for content editors | 3333 |
-| `website/` | Public Next.js website | 3000 |
-| `data/` | Internal admin dashboard for data management | 4001 |
+| `website/` | Public Next.js website | 3010 |
+| `data/` | Internal admin dashboard for data management | 4010 |
+| `marketing/` | Marketing Studio (AI ad copy generation) | 5010 |
 
 ---
 

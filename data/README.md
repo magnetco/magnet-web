@@ -36,11 +36,11 @@ A minimalist CRUD app for managing Neon database tables (Clients, Leads, Applica
    pnpm dev
    ```
 
-5. Open http://localhost:4000
+5. Open http://localhost:4010
 
 ## Architecture
 
-- **Frontend:** React 18 + Vite + TypeScript + TailwindCSS (port 4000)
+- **Frontend:** React 18 + Vite + TypeScript + TailwindCSS (port 4010)
 - **Backend:** Express.js API (port 4001)
 - **Database:** Neon PostgreSQL
 

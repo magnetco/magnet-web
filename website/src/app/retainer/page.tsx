@@ -265,7 +265,7 @@ export default function RetainerPage() {
           {
             title: 'Analytics & Attribution',
             description:
-              'End-to-end tracking, custom dashboards, and attribution modeling so you know exactly what's driving results.',
+              'End-to-end tracking, custom dashboards, and attribution modeling so you know exactly what\'s driving results.',
             href: '/method/foundation/data-analytics-setup',
             demo: (
               <Screenshot wallpaper="purple" placement="top-right" className="h-full">

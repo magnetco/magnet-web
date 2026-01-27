@@ -79,7 +79,7 @@ export function ProcessStep({
   )
 }
 
-export type ServiceProcessType = 'branding' | 'websites' | 'paid-ads' | 'search' | 'engineering'
+export type ServiceProcessType = 'branding' | 'websites' | 'paid-ads' | 'search' | 'engineering' | 'retainer'
 
 const serviceProcesses: Record<ServiceProcessType, { steps: Array<{ title: string; description: string; duration?: string }> }> = {
   engineering: {
@@ -198,6 +198,30 @@ const serviceProcesses: Record<ServiceProcessType, { steps: Array<{ title: strin
       {
         title: 'Monitor & Adapt',
         description: 'Track rankings, analyze performance, adapt to algorithm updates, and refine strategy continuously.',
+        duration: 'Ongoing',
+      },
+    ],
+  },
+  retainer: {
+    steps: [
+      {
+        title: 'Onboarding & Audit',
+        description: 'Deep-dive into your business, audit existing marketing, and establish baselines and goals.',
+        duration: 'Month 1',
+      },
+      {
+        title: 'Foundation & Strategy',
+        description: 'Build core infrastructure, define channel strategy, and create your marketing roadmap.',
+        duration: 'Month 1-2',
+      },
+      {
+        title: 'Execute & Optimize',
+        description: 'Launch campaigns across channels, continuously test and optimize based on real performance data.',
+        duration: 'Ongoing',
+      },
+      {
+        title: 'Scale & Iterate',
+        description: 'Double down on what works, expand to new channels, and evolve strategy as your business grows.',
         duration: 'Ongoing',
       },
     ],

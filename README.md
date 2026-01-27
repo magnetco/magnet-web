@@ -5,9 +5,21 @@ The Magnet agency website. This README serves both humans and AI assistants.
 ## Quick Start
 
 ```bash
-cd website && pnpm dev    # Website at localhost:3000
+cd website && pnpm dev    # Website at localhost:3010
 cd studio && pnpm dev     # Sanity Studio at localhost:3333
+cd data && pnpm dev       # Data app at localhost:4010
+cd marketing && pnpm dev  # Marketing Studio at localhost:5010
 ```
+
+## Development Ports
+
+| Service | Port | Description | Configuration |
+|---------|------|-------------|---------------|
+| Website | 3010 | Main Next.js website | `website/package.json` (dev script: `next dev -p 3010`) |
+| Studio | 3333 | Sanity CMS Studio | Sanity default port |
+| Data (Frontend) | 4010 | Internal admin dashboard UI | `data/vite.config.ts` |
+| Data (Backend API) | 4001 | Express.js API server | `data/server/index.ts` |
+| Marketing | 5010 | Marketing Studio (AI-powered ad copy generation) | `marketing/package.json` (dev script: `next dev -p 5010`) |
 
 ## Context
 

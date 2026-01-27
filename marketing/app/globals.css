@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Geist", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, monospace;
+
+  /* Brand colors from DESIGN.md */
+  --color-ember: #F9432B;
+  --color-oxblood: #220002;
+  --color-powder: #BAD9DC;
+  --color-juniper: #001D22;
+  --color-basalt: #2A4144;
+  --color-opal: #DDE6E7;
+  --color-snow: #F5F7F7;
+  --color-frost: #FFFFFF;
+  --color-coral: #FFB5AB;
+}
+
+body {
+  font-family: var(--font-sans);
+}
